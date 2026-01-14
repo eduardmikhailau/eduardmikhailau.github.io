@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Miestas, žmonės ir laikas — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <div class="mx-auto flex min-h-screen max-w-3xl flex-col px-4 py-6">
+      <header class="mb-6 text-center">
+        <h1 class="text-2xl font-semibold sm:text-3xl">Miestas, žmonės ir laikas — Practice Tests</h1>
+        <p class="mt-2 text-sm text-slate-600 sm:text-base">
+          Flashcards, multiple choice, gap fill, definition, and case practice.
+        </p>
+      </header>
+
+      <main class="flex-1">
+        <section id="start-screen" class="space-y-4 rounded-2xl bg-white p-6 shadow-sm">
+          <h2 class="text-xl font-semibold">Ready to start?</h2>
+          <p class="text-sm text-slate-600">
+            Each run randomizes question order and answer options. You will see immediate feedback and
+            a summary at the end.
+          </p>
+          <button
+            id="start-button"
+            class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+          >
+            Start Tests
+          </button>
+        </section>
+
+        <section id="test-screen" class="hidden space-y-6 pb-28">
+          <div class="rounded-2xl bg-white p-5 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p id="test-title" class="text-lg font-semibold"></p>
+                <p id="test-progress" class="text-sm text-slate-600"></p>
+              </div>
+              <div class="text-right">
+                <p class="text-sm text-slate-500">Overall progress</p>
+                <p id="overall-progress" class="text-base font-semibold"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <div id="question-block" class="space-y-4">
+              <p id="question-label" class="text-sm font-semibold uppercase tracking-wide text-indigo-600"></p>
+              <p id="question-text" class="text-xl font-semibold"></p>
+              <p id="question-subtitle" class="text-sm text-slate-600"></p>
+            </div>
+
+            <div id="answer-block" class="mt-5 space-y-3"></div>
+
+            <div id="feedback" class="mt-4 hidden rounded-xl border px-4 py-3 text-sm"></div>
+          </div>
+
+          <div id="next-panel" class="fixed inset-x-0 bottom-0 z-10 hidden border-t border-slate-200 bg-white/95 backdrop-blur">
+            <div class="mx-auto max-w-3xl px-4 py-4">
+              <button
+                id="next-button"
+                class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="summary-screen" class="hidden space-y-5 rounded-2xl bg-white p-6 shadow-sm">
+          <div>
+            <h2 class="text-xl font-semibold">Your progress summary</h2>
+            <p id="summary-total" class="text-sm text-slate-600"></p>
+          </div>
+          <div id="summary-table" class="space-y-3"></div>
+          <button
+            id="restart-button"
+            class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+          >
+            Restart Tests
+          </button>
+        </section>
+      </main>
+
+      <footer class="mt-8 text-center text-xs text-slate-500">
+        Mobile-friendly UI with TailwindCSS.
+      </footer>
+    </div>
+
+    <script>
+      const wordSet = {
+        topic: "Miestas, žmonės ir laikas",
+        words: [
+          { id: "atostogauti", lt: "atostogauti", ru: "отдыхать" },
+          { id: "eiti", lt: "eiti", ru: "идти" },
+          { id: "skambinti", lt: "skambinti", ru: "звонить" },
+          { id: "skubeti", lt: "skubėti", ru: "спешить" },
+          { id: "susitikti", lt: "susitikti", ru: "встречаться" },
+          { id: "vaziuoti", lt: "važiuoti", ru: "ехать" },
+          { id: "veluoti", lt: "vėluoti", ru: "опаздывать" },
+          { id: "pilis", lt: "pilis", ru: "замок" },
+          { id: "muziejus", lt: "muziejus", ru: "музей" },
+          { id: "gatve", lt: "gatvė", ru: "улица" },
+          { id: "ligonine", lt: "ligoninė", ru: "больница" },
+          { id: "kino_teatras", lt: "kino teatras", ru: "кинотеатр" },
+          { id: "kavine", lt: "kavinė", ru: "кафе" },
+          { id: "kioskas", lt: "kioskas", ru: "киоск" },
+          { id: "ministerija", lt: "ministerija", ru: "министерство" },
+          { id: "viesbutis", lt: "viešbutis", ru: "отель" },
+          { id: "bendrabutis", lt: "bendrabutis", ru: "общежитие" },
+          { id: "restoranas", lt: "restoranas", ru: "ресторан" },
+          { id: "vaistine", lt: "vaistinė", ru: "аптека" },
+          { id: "baznycia", lt: "bažnyčia", ru: "церковь" },
+          { id: "parkas", lt: "parkas", ru: "парк" },
+          { id: "parduotuve", lt: "parduotuvė", ru: "магазин" },
+          { id: "aikste", lt: "aikštė", ru: "площадь" },
+          { id: "pastas", lt: "paštas", ru: "почта" },
+          { id: "bankas", lt: "bankas", ru: "банк" },
+          { id: "baras", lt: "baras", ru: "бар" },
+          { id: "baseinas", lt: "baseinas", ru: "бассейн" },
+          { id: "biblioteka", lt: "biblioteka", ru: "библиотека" },
+          { id: "bokstas", lt: "bokštas", ru: "башня" },
+          { id: "fontanas", lt: "fontanas", ru: "фонтан" },
+          { id: "kirpykla", lt: "kirpykla", ru: "парикмахерская" },
+          { id: "knygynas", lt: "knygynas", ru: "книжный магазин" },
+          { id: "klubas", lt: "klubas", ru: "клуб" },
+          { id: "mokykla", lt: "mokykla", ru: "школа" },
+          { id: "operos_teatras", lt: "operos teatras", ru: "оперный театр" },
+          { id: "oro_uostas", lt: "oro uostas", ru: "аэропорт" },
+          { id: "sankryza", lt: "sankryža", ru: "перекресток" },
+          { id: "sporto_klubas", lt: "sporto klubas", ru: "спортивный клуб" },
+          { id: "stotele", lt: "stotelė", ru: "остановка" },
+          { id: "stotis", lt: "stotis", ru: "вокзал" },
+          { id: "sviesoforas", lt: "šviesoforas", ru: "светофор" },
+          { id: "teatras", lt: "teatras", ru: "театр" },
+          { id: "uostas", lt: "uostas", ru: "порт" },
+          { id: "ezeras", lt: "ežeras", ru: "озеро" },
+          { id: "jura", lt: "jūra", ru: "море" },
+          { id: "mergaite", lt: "mergaitė", ru: "девочка" },
+          { id: "mergina", lt: "mergina", ru: "девушка" },
+          { id: "moteris", lt: "moteris", ru: "женщина" },
+          { id: "berniukas", lt: "berniukas", ru: "мальчик" },
+          { id: "vaikinas", lt: "vaikinas", ru: "парень" },
+          { id: "vyras", lt: "vyras", ru: "мужчина" },
+          { id: "mokinys", lt: "mokinys", ru: "ученик" },
+          { id: "mokine", lt: "mokinė", ru: "ученица" },
+          { id: "studentas", lt: "studentas", ru: "студент" },
+          { id: "studente", lt: "studentė", ru: "студентка" },
+          { id: "pensininkas", lt: "pensininkas", ru: "пенсионер" },
+          { id: "pensininke", lt: "pensininkė", ru: "пенсионерка" },
+          { id: "aktorius", lt: "aktorius", ru: "актер" },
+          { id: "aktore", lt: "aktorė", ru: "актриса" },
+          { id: "dailininkas", lt: "dailininkas", ru: "художник" },
+          { id: "dailininke", lt: "dailininkė", ru: "художница" },
+          { id: "dainininkas", lt: "dainininkas", ru: "певец" },
+          { id: "dainininke", lt: "dainininkė", ru: "певица" },
+          { id: "sportininkas", lt: "sportininkas", ru: "спортсмен" },
+          { id: "sportininke", lt: "sportininkė", ru: "спортсменка" },
+          { id: "mokslininkas", lt: "mokslininkas", ru: "ученый" },
+          { id: "mokslininke", lt: "mokslininkė", ru: "ученая" },
+          { id: "darbininkas", lt: "darbininkas", ru: "рабочий" },
+          { id: "darbininke", lt: "darbininkė", ru: "рабочая" },
+          { id: "policininkas", lt: "policininkas", ru: "полицейский" },
+          { id: "policininke", lt: "policininkė", ru: "полицейская" },
+          { id: "ukininkas", lt: "ūkininkas", ru: "фермер" },
+          { id: "ukininke", lt: "ūkininkė", ru: "фермерша" },
+          { id: "siuvejas", lt: "siuvėjas", ru: "портной" },
+          { id: "siuveja", lt: "siuvėja", ru: "швея" },
+          { id: "kirpejas", lt: "kirpėjas", ru: "парикмахер" },
+          { id: "kirpeja", lt: "kirpėja", ru: "парикмахерша" },
+          { id: "padavejas", lt: "padavėjas", ru: "официант" },
+          { id: "padaveja", lt: "padavėja", ru: "официантка" },
+          { id: "pardavejas", lt: "pardavėjas", ru: "продавец" },
+          { id: "pardaveja", lt: "pardavėja", ru: "продавщица" },
+          { id: "sokejas", lt: "šokėjas", ru: "танцор" },
+          { id: "sokeja", lt: "šokėja", ru: "танцовщица" },
+          { id: "virejas", lt: "virėjas", ru: "повар" },
+          { id: "vireja", lt: "virėja", ru: "повар" },
+          { id: "mokytojas", lt: "mokytojas", ru: "учитель" },
+          { id: "mokytoja", lt: "mokytoja", ru: "учительница" },
+          { id: "destytojas", lt: "dėstytojas", ru: "преподаватель" },
+          { id: "destytoja", lt: "dėstytoja", ru: "преподаватель" },
+          { id: "gydytojas", lt: "gydytojas", ru: "врач" },
+          { id: "gydytoja", lt: "gydytoja", ru: "врач" },
+          { id: "slaugytojas", lt: "slaugytojas", ru: "медбрат" },
+          { id: "slaugytoja", lt: "slaugytoja", ru: "медсестра" },
+          { id: "vairuotojas", lt: "vairuotojas", ru: "водитель" },
+          { id: "vairuotoja", lt: "vairuotoja", ru: "водитель" },
+          { id: "muzikantas", lt: "muzikantas", ru: "музыкант" },
+          { id: "muzikante", lt: "muzikantė", ru: "музыкантка" },
+          { id: "fotografas", lt: "fotografas", ru: "фотограф" },
+          { id: "fotografe", lt: "fotografė", ru: "фотограф" },
+          { id: "valytojas", lt: "valytojas", ru: "уборщик" },
+          { id: "valytoja", lt: "valytoja", ru: "уборщица" },
+          { id: "advokatas", lt: "advokatas", ru: "адвокат" },
+          { id: "advokate", lt: "advokatė", ru: "адвокат" },
+          { id: "ambasadorius", lt: "ambasadorius", ru: "посол" },
+          { id: "ambasadore", lt: "ambasadorė", ru: "посол" },
+          { id: "diplomatas", lt: "diplomatas", ru: "дипломат" },
+          { id: "diplomate", lt: "diplomatė", ru: "дипломат" },
+          { id: "ekonomistas", lt: "ekonomistas", ru: "экономист" },
+          { id: "ekonomiste", lt: "ekonomistė", ru: "экономист" },
+          { id: "inzinierius", lt: "inžinierius", ru: "инженер" },
+          { id: "inziniere", lt: "inžinierė", ru: "инженер" },
+          { id: "jurininkas", lt: "jūrininkas", ru: "моряк" },
+          { id: "jurininke", lt: "jūrininkė", ru: "морячка" },
+          { id: "lakunas", lt: "lakūnas", ru: "летчик" },
+          { id: "lakune", lt: "lakūnė", ru: "летчица" },
+          { id: "profesorius", lt: "profesorius", ru: "профессор" },
+          { id: "profesore", lt: "profesorė", ru: "профессор" },
+          { id: "rezisierius", lt: "režisierius", ru: "режиссер" },
+          { id: "rezisiere", lt: "režisierė", ru: "режиссер" },
+          { id: "sekretorius", lt: "sekretorius", ru: "секретарь" },
+          { id: "sekretore", lt: "sekretorė", ru: "секретарь" },
+          { id: "tarnautojas", lt: "tarnautojas", ru: "служащий" },
+          { id: "tarnautoja", lt: "tarnautoja", ru: "служащая" },
+          { id: "teisininkas", lt: "teisininkas", ru: "юрист" },
+          { id: "teisininke", lt: "teisininkė", ru: "юрист" },
+          { id: "vadybininkas", lt: "vadybininkas", ru: "менеджер" },
+          { id: "vadybininke", lt: "vadybininkė", ru: "менеджер" },
+          { id: "verslininkas", lt: "verslininkas", ru: "бизнесмен" },
+          { id: "verslininke", lt: "verslininkė", ru: "бизнесвумен" },
+          { id: "vertejas", lt: "vertėjas", ru: "переводчик" },
+          { id: "verteja", lt: "vertėja", ru: "переводчица" },
+          { id: "zurnalistas", lt: "žurnalistas", ru: "журналист" },
+          { id: "zurnaliste", lt: "žurnalistė", ru: "журналистка" },
+          { id: "pavasaris", lt: "pavasaris", ru: "весна" },
+          { id: "vasara", lt: "vasara", ru: "лето" },
+          { id: "ruduo", lt: "ruduo", ru: "осень" },
+          { id: "ziema", lt: "žiema", ru: "зима" },
+          { id: "pirmadienis", lt: "pirmadienis", ru: "понедельник" },
+          { id: "antradienis", lt: "antradienis", ru: "вторник" },
+          { id: "treciadienis", lt: "trečiadienis", ru: "среда" },
+          { id: "ketvirtadienis", lt: "ketvirtadienis", ru: "четверг" },
+          { id: "penktadienis", lt: "penktadienis", ru: "пятница" },
+          { id: "sestadienis", lt: "šeštadienis", ru: "суббота" },
+          { id: "sekmadienis", lt: "sekmadienis", ru: "воскресенье" },
+          { id: "savaitgalis", lt: "savaitgalis", ru: "выходные" },
+          { id: "rytas", lt: "rytas", ru: "утро" },
+          { id: "diena", lt: "diena", ru: "день" },
+          { id: "vakaras", lt: "vakaras", ru: "вечер" },
+          { id: "naktis", lt: "naktis", ru: "ночь" },
+          { id: "visada", lt: "visada", ru: "всегда" },
+          { id: "daznai", lt: "dažnai", ru: "часто" },
+          { id: "siandien", lt: "šiandien", ru: "сегодня" },
+          { id: "dabar", lt: "dabar", ru: "сейчас" },
+          { id: "niekada", lt: "niekada", ru: "никогда" },
+          { id: "kartais", lt: "kartais", ru: "иногда" },
+          { id: "rytoj", lt: "rytoj", ru: "завтра" },
+          { id: "kasdien", lt: "kasdien", ru: "каждый день" },
+          { id: "nulis", lt: "nulis", ru: "ноль" },
+          { id: "vienas", lt: "vienas", ru: "один" },
+          { id: "du", lt: "du", ru: "два" },
+          { id: "trys", lt: "trys", ru: "три" },
+          { id: "keturi", lt: "keturi", ru: "четыре" },
+          { id: "penki", lt: "penki", ru: "пять" },
+          { id: "sesi", lt: "šeši", ru: "шесть" },
+          { id: "septyni", lt: "septyni", ru: "семь" },
+          { id: "astuoni", lt: "aštuoni", ru: "восемь" },
+          { id: "devyni", lt: "devyni", ru: "девять" },
+          { id: "desimt", lt: "dešimt", ru: "десять" }
+        ]
+      };
+
+      const gapFillTemplates = [
+        { sentence: "Čia yra ___.", translationRu: "Здесь ___ ." },
+        { sentence: "Man patinka ___.", translationRu: "Мне нравится ___." },
+        { sentence: "Aš matau ___.", translationRu: "Я вижу ___." }
+      ];
+
+      const definitionTemplates = [
+        { definitionLt: "Žodis reiškia: {ru}.", translationRu: "Значение: {ru}." },
+        { definitionLt: "Rusiškai: {ru}.", translationRu: "По-русски: {ru}." },
+        { definitionLt: "Lietuviškai tai yra: {ru}.", translationRu: "По-литовски это: {ru}." }
+      ];
+
+      const caseTemplates = [
+        { sentence: "Aš matau ___.", translationRu: "Я вижу ___." },
+        { sentence: "Aš girdžiu ___.", translationRu: "Я слышу ___." },
+        { sentence: "Aš prisimenu ___.", translationRu: "Я помню ___." }
+      ];
+
+      const ui = {
+        startScreen: document.getElementById("start-screen"),
+        testScreen: document.getElementById("test-screen"),
+        summaryScreen: document.getElementById("summary-screen"),
+        startButton: document.getElementById("start-button"),
+        restartButton: document.getElementById("restart-button"),
+        testTitle: document.getElementById("test-title"),
+        testProgress: document.getElementById("test-progress"),
+        overallProgress: document.getElementById("overall-progress"),
+        questionLabel: document.getElementById("question-label"),
+        questionText: document.getElementById("question-text"),
+        questionSubtitle: document.getElementById("question-subtitle"),
+        answerBlock: document.getElementById("answer-block"),
+        feedback: document.getElementById("feedback"),
+        nextPanel: document.getElementById("next-panel"),
+        nextButton: document.getElementById("next-button"),
+        summaryTotal: document.getElementById("summary-total"),
+        summaryTable: document.getElementById("summary-table")
+      };
+
+      const shuffle = (array) => {
+        const copy = [...array];
+        for (let i = copy.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      };
+
+      const getRandomWords = (excludeId, count, field = "lt") => {
+        return shuffle(wordSet.words.filter((item) => item.id !== excludeId))
+          .slice(0, count)
+          .map((item) => item[field]);
+      };
+
+      const toAccusative = (word) => {
+        if (word.endsWith("as")) {
+          return `${word.slice(0, -2)}ą`;
+        }
+        if (word.endsWith("is")) {
+          return `${word.slice(0, -2)}į`;
+        }
+        if (word.endsWith("us")) {
+          return `${word.slice(0, -2)}ų`;
+        }
+        if (word.endsWith("a")) {
+          return `${word.slice(0, -1)}ą`;
+        }
+        if (word.endsWith("ė")) {
+          return `${word.slice(0, -1)}ę`;
+        }
+        return word;
+      };
+
+      const buildFlashcards = () => {
+        const cards = [];
+        wordSet.words.forEach((word) => {
+          cards.push({
+            id: `flash_${word.id}_lt`,
+            type: "flashcards",
+            prompt: word.lt,
+            answer: word.ru,
+            label: "Translate to Russian"
+          });
+          cards.push({
+            id: `flash_${word.id}_ru`,
+            type: "flashcards",
+            prompt: word.ru,
+            answer: word.lt,
+            label: "Translate to Lithuanian"
+          });
+        });
+        return shuffle(cards);
+      };
+
+      const buildMultipleChoice = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          for (let i = 0; i < 3; i += 1) {
+            const wrong = getRandomWords(word.id, 2, "ru");
+            const options = shuffle([word.ru, ...wrong]);
+            questions.push({
+              id: `mc_${word.id}_${i + 1}`,
+              type: "multipleChoice",
+              prompt: word.lt,
+              label: "Choose the correct translation",
+              options,
+              correct: word.ru
+            });
+          }
+        });
+        return shuffle(questions);
+      };
+
+      const buildGapFill = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          gapFillTemplates.forEach((template, index) => {
+            const options = shuffle([word.lt, ...getRandomWords(word.id, 2, "lt")]);
+            questions.push({
+              id: `gf_${word.id}_${index + 1}`,
+              type: "gapFill",
+              prompt: template.sentence,
+              subtitle: template.translationRu.replace("___", word.ru),
+              options,
+              correct: word.lt,
+              label: "Fill in the blank"
+            });
+          });
+        });
+        return shuffle(questions);
+      };
+
+      const buildDefinition = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          definitionTemplates.forEach((template, index) => {
+            const wrong = getRandomWords(word.id, 2, "lt");
+            const options = shuffle([word.lt, ...wrong]);
+            questions.push({
+              id: `def_${word.id}_${index + 1}`,
+              type: "definitionToWord",
+              prompt: template.definitionLt.replace("{ru}", word.ru),
+              subtitle: template.translationRu.replace("{ru}", word.ru),
+              options,
+              correct: word.lt,
+              label: "Pick the matching word"
+            });
+          });
+        });
+        return shuffle(questions);
+      };
+
+      const buildCasePractice = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          const accusative = toAccusative(word.lt);
+          caseTemplates.forEach((template, index) => {
+            const options = shuffle([accusative, word.lt, ...getRandomWords(word.id, 1, "lt")]);
+            questions.push({
+              id: `case_${word.id}_${index + 1}`,
+              type: "casePractice",
+              prompt: template.sentence,
+              subtitle: template.translationRu.replace("___", word.ru),
+              options,
+              correct: accusative,
+              label: "Choose the correct case"
+            });
+          });
+        });
+        return shuffle(questions);
+      };
+
+      const testBlueprints = [
+        { name: "Flashcards", type: "flashcards", build: buildFlashcards },
+        { name: "Multiple Choice", type: "multipleChoice", build: buildMultipleChoice },
+        { name: "Gap Fill", type: "gapFill", build: buildGapFill },
+        { name: "Definition → Word", type: "definitionToWord", build: buildDefinition },
+        { name: "Case Practice", type: "casePractice", build: buildCasePractice }
+      ];
+
+      let session = null;
+
+      const resetSession = () => {
+        session = {
+          tests: testBlueprints.map((test) => ({
+            ...test,
+            questions: test.build()
+          })),
+          currentTestIndex: 0,
+          currentQuestionIndex: 0,
+          analytics: {}
+        };
+
+        session.tests.forEach((test) => {
+          session.analytics[test.type] = {
+            name: test.name,
+            correct: 0,
+            total: test.questions.length
+          };
+        });
+      };
+
+      const showScreen = (screen) => {
+        ui.startScreen.classList.add("hidden");
+        ui.testScreen.classList.add("hidden");
+        ui.summaryScreen.classList.add("hidden");
+        screen.classList.remove("hidden");
+      };
+
+      const currentTest = () => session.tests[session.currentTestIndex];
+      const currentQuestion = () => currentTest().questions[session.currentQuestionIndex];
+
+      const getOverallProgress = () => {
+        const totals = session.tests.reduce(
+          (acc, test) => acc + test.questions.length,
+          0
+        );
+        const answered = session.tests.reduce((acc, test, index) => {
+          if (index < session.currentTestIndex) {
+            return acc + test.questions.length;
+          }
+          if (index === session.currentTestIndex) {
+            return acc + session.currentQuestionIndex;
+          }
+          return acc;
+        }, 0);
+        return `${answered} / ${totals}`;
+      };
+
+      const clearFeedback = () => {
+        ui.feedback.className = "mt-4 hidden rounded-xl border px-4 py-3 text-sm";
+        ui.feedback.textContent = "";
+      };
+
+      const showFeedback = (message, isCorrect) => {
+        ui.feedback.className = `mt-4 rounded-xl border px-4 py-3 text-sm ${
+          isCorrect ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-rose-200 bg-rose-50 text-rose-700"
+        }`;
+        ui.feedback.textContent = message;
+      };
+
+      const hideNextButton = () => {
+        ui.nextButton.classList.add("hidden");
+        ui.nextPanel.classList.add("hidden");
+      };
+
+      const showNextButton = () => {
+        ui.nextButton.classList.remove("hidden");
+        ui.nextPanel.classList.remove("hidden");
+      };
+
+      const renderOptions = (question) => {
+        ui.answerBlock.innerHTML = "";
+
+        if (question.type === "flashcards") {
+          const answerText = document.createElement("div");
+          answerText.className = "hidden rounded-xl bg-slate-100 px-4 py-3 text-sm text-slate-700";
+          answerText.textContent = `Answer: ${question.answer}`;
+
+          const actions = document.createElement("div");
+          actions.className = "mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2";
+
+          const knowButton = document.createElement("button");
+          knowButton.textContent = "Know";
+          knowButton.className =
+            "rounded-xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-500 disabled:opacity-50";
+
+          const dontKnowButton = document.createElement("button");
+          dontKnowButton.textContent = "Don’t know";
+          dontKnowButton.className =
+            "rounded-xl bg-rose-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-500 disabled:opacity-50";
+
+          const handleAnswer = (isCorrect) => {
+            session.analytics.flashcards.correct += isCorrect ? 1 : 0;
+            if (isCorrect) {
+              goToNext();
+              return;
+            }
+
+            answerText.classList.remove("hidden");
+            clearFeedback();
+            knowButton.disabled = true;
+            dontKnowButton.disabled = true;
+            showNextButton();
+          };
+
+          knowButton.addEventListener("click", () => handleAnswer(true));
+          dontKnowButton.addEventListener("click", () => handleAnswer(false));
+
+          ui.answerBlock.append(answerText, actions);
+          actions.append(knowButton, dontKnowButton);
+          return;
+        }
+
+        const optionsWrapper = document.createElement("div");
+        optionsWrapper.className = "grid gap-3";
+
+        question.options.forEach((option) => {
+          const button = document.createElement("button");
+          button.textContent = option;
+          button.className =
+            "w-full rounded-xl border border-slate-200 px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:bg-slate-50";
+
+          button.addEventListener("click", () => {
+            const isCorrect = option === question.correct;
+            session.analytics[question.type].correct += isCorrect ? 1 : 0;
+
+            optionsWrapper.querySelectorAll("button").forEach((child) => {
+              child.disabled = true;
+              if (child.textContent === question.correct) {
+                child.classList.add("border-emerald-400", "bg-emerald-50");
+              } else if (child.textContent === option && !isCorrect) {
+                child.classList.add("border-rose-300", "bg-rose-50");
+              }
+            });
+
+            showFeedback(
+              isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
+              isCorrect
+            );
+            showNextButton();
+          });
+
+          optionsWrapper.appendChild(button);
+        });
+
+        ui.answerBlock.appendChild(optionsWrapper);
+      };
+
+      const renderQuestion = () => {
+        const test = currentTest();
+        const question = currentQuestion();
+
+        ui.testTitle.textContent = test.name;
+        ui.testProgress.textContent = `Question ${session.currentQuestionIndex + 1} of ${test.questions.length}`;
+        ui.overallProgress.textContent = getOverallProgress();
+        ui.questionLabel.textContent = question.label;
+        ui.questionText.textContent = question.prompt;
+        ui.questionSubtitle.textContent = question.subtitle || "";
+        ui.questionSubtitle.classList.toggle("hidden", !question.subtitle);
+
+        hideNextButton();
+        clearFeedback();
+        renderOptions(question);
+      };
+
+      const goToNext = () => {
+        const test = currentTest();
+        if (session.currentQuestionIndex < test.questions.length - 1) {
+          session.currentQuestionIndex += 1;
+          renderQuestion();
+          return;
+        }
+
+        if (session.currentTestIndex < session.tests.length - 1) {
+          session.currentTestIndex += 1;
+          session.currentQuestionIndex = 0;
+          renderQuestion();
+          return;
+        }
+
+        renderSummary();
+      };
+
+      const renderSummary = () => {
+        hideNextButton();
+        showScreen(ui.summaryScreen);
+        const totals = Object.values(session.analytics).reduce(
+          (acc, item) => {
+            acc.correct += item.correct;
+            acc.total += item.total;
+            return acc;
+          },
+          { correct: 0, total: 0 }
+        );
+
+        const accuracy = totals.total === 0 ? 0 : Math.round((totals.correct / totals.total) * 100);
+        ui.summaryTotal.textContent = `Overall accuracy: ${accuracy}% (${totals.correct} of ${totals.total})`;
+        ui.summaryTable.innerHTML = "";
+
+        Object.values(session.analytics).forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm";
+          row.innerHTML = `
+            <div>
+              <p class="font-semibold text-slate-700">${item.name}</p>
+              <p class="text-xs text-slate-500">${item.correct} correct of ${item.total}</p>
+            </div>
+            <p class="text-sm font-semibold text-slate-700">${Math.round((item.correct / item.total) * 100)}%</p>
+          `;
+          ui.summaryTable.appendChild(row);
+        });
+      };
+
+      const startTests = () => {
+        resetSession();
+        showScreen(ui.testScreen);
+        renderQuestion();
+      };
+
+      ui.startButton.addEventListener("click", startTests);
+      ui.restartButton.addEventListener("click", startTests);
+      ui.nextButton.addEventListener("click", goToNext);
+    </script>
+  </body>
+</html>

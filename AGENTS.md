@@ -12,6 +12,7 @@ This repo is used to generate self-contained HTML practice tests for Lithuanian 
 
 - Extract **Lithuanian items** (words + short phrases) that look like vocabulary/targets.
 - Also extract the **Russian translation** when it is present.
+- If the Russian translation is **not** present, automatically provide `ru` by translating from Lithuanian.
 - De-duplicate items across screenshots.
 - Keep diacritics exactly (e.g. `tėvas`, `sūnus`, `senelė`).
 - Prefer producing a structured list like:
