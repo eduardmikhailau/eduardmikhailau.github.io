@@ -22,6 +22,7 @@
             Each run randomizes question order and answer options. You will see immediate feedback and
             a summary at the end.
           </p>
+          <p id="resume-note" class="hidden text-xs text-slate-500">Saved progress detected.</p>
           <button
             id="start-button"
             class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
@@ -37,9 +38,23 @@
                 <p id="test-title" class="text-lg font-semibold"></p>
                 <p id="test-progress" class="text-sm text-slate-600"></p>
               </div>
-              <div class="text-right">
-                <p class="text-sm text-slate-500">Overall progress</p>
-                <p id="overall-progress" class="text-base font-semibold"></p>
+              <div class="flex items-center gap-3 text-right">
+                <div>
+                  <p class="text-sm text-slate-500">Overall progress</p>
+                  <p id="overall-progress" class="text-base font-semibold"></p>
+                </div>
+                <button
+                  id="reset-button"
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition hover:bg-slate-50"
+                  type="button"
+                  title="Restart test"
+                  aria-label="Restart test"
+                >
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 1 0 3-6.7" />
+                    <path d="M3 4v6h6" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
@@ -286,7 +301,9 @@
         testScreen: document.getElementById("test-screen"),
         summaryScreen: document.getElementById("summary-screen"),
         startButton: document.getElementById("start-button"),
+        resumeNote: document.getElementById("resume-note"),
         restartButton: document.getElementById("restart-button"),
+        resetButton: document.getElementById("reset-button"),
         testTitle: document.getElementById("test-title"),
         testProgress: document.getElementById("test-progress"),
         overallProgress: document.getElementById("overall-progress"),
@@ -442,17 +459,49 @@
         { name: "Case Practice", type: "casePractice", build: buildCasePractice }
       ];
 
+      const QUESTION_TYPE_CHUNK_SIZE = 10;
+      const AUTO_ADVANCE_DELAY_MS = 3000;
+      const NEXT_BUTTON_LABEL = "Next";
+      const STORAGE_KEY = "lt-test-session";
+      const REPEAT_MIN_OFFSET = 4;
+      const REPEAT_MAX_OFFSET = 6;
+
       let session = null;
 
       const resetSession = () => {
-        session = {
-          tests: testBlueprints.map((test) => ({
+        const tests = testBlueprints.map((test) => {
+          const questions = test.build().map((question) => ({
+            ...question,
+            testName: test.name
+          }));
+
+          return {
             ...test,
-            questions: test.build()
-          })),
-          currentTestIndex: 0,
+            questions
+          };
+        });
+
+        const queues = tests.map((test) => ({
+          name: test.name,
+          type: test.type,
+          questions: [...test.questions]
+        }));
+
+        const questions = [];
+        while (queues.some((queue) => queue.questions.length > 0)) {
+          queues.forEach((queue) => {
+            questions.push(...queue.questions.splice(0, QUESTION_TYPE_CHUNK_SIZE));
+          });
+        }
+
+        session = {
+          tests,
+          questions,
           currentQuestionIndex: 0,
-          analytics: {}
+          analytics: {},
+          autoAdvanceTimeoutId: null,
+          autoAdvanceIntervalId: null,
+          repeatCounter: 0
         };
 
         session.tests.forEach((test) => {
@@ -464,6 +513,57 @@
         });
       };
 
+      const saveSession = () => {
+        if (!session) {
+          return;
+        }
+
+        const payload = {
+          questions: session.questions,
+          currentQuestionIndex: session.currentQuestionIndex,
+          analytics: session.analytics,
+          repeatCounter: session.repeatCounter
+        };
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      };
+
+      const loadSession = () => {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          return null;
+        }
+
+        try {
+          const parsed = JSON.parse(raw);
+          if (!parsed || !Array.isArray(parsed.questions) || typeof parsed.currentQuestionIndex !== "number") {
+            return null;
+          }
+
+          return {
+            tests: null,
+            questions: parsed.questions,
+            currentQuestionIndex: Math.min(parsed.currentQuestionIndex, parsed.questions.length),
+            analytics: parsed.analytics || {},
+            autoAdvanceTimeoutId: null,
+            autoAdvanceIntervalId: null,
+            repeatCounter: parsed.repeatCounter || 0
+          };
+        } catch (error) {
+          return null;
+        }
+      };
+
+      const clearSavedSession = () => {
+        localStorage.removeItem(STORAGE_KEY);
+      };
+
+      const updateStartScreen = () => {
+        const hasSaved = Boolean(loadSession());
+        ui.startButton.textContent = hasSaved ? "Continue Test" : "Start Tests";
+        ui.resumeNote.classList.toggle("hidden", !hasSaved);
+      };
+
       const showScreen = (screen) => {
         ui.startScreen.classList.add("hidden");
         ui.testScreen.classList.add("hidden");
@@ -471,23 +571,11 @@
         screen.classList.remove("hidden");
       };
 
-      const currentTest = () => session.tests[session.currentTestIndex];
-      const currentQuestion = () => currentTest().questions[session.currentQuestionIndex];
+      const currentQuestion = () => session.questions[session.currentQuestionIndex];
 
       const getOverallProgress = () => {
-        const totals = session.tests.reduce(
-          (acc, test) => acc + test.questions.length,
-          0
-        );
-        const answered = session.tests.reduce((acc, test, index) => {
-          if (index < session.currentTestIndex) {
-            return acc + test.questions.length;
-          }
-          if (index === session.currentTestIndex) {
-            return acc + session.currentQuestionIndex;
-          }
-          return acc;
-        }, 0);
+        const totals = session.questions.length;
+        const answered = session.currentQuestionIndex;
         return `${answered} / ${totals}`;
       };
 
@@ -509,8 +597,72 @@
       };
 
       const showNextButton = () => {
+        setNextButtonLabel();
         ui.nextButton.classList.remove("hidden");
         ui.nextPanel.classList.remove("hidden");
+      };
+
+      const setNextButtonLabel = (label = NEXT_BUTTON_LABEL) => {
+        ui.nextButton.textContent = label;
+      };
+
+      const clearAutoAdvance = () => {
+        if (!session || (session.autoAdvanceTimeoutId === null && session.autoAdvanceIntervalId === null)) {
+          return;
+        }
+
+        if (session.autoAdvanceTimeoutId !== null) {
+          clearTimeout(session.autoAdvanceTimeoutId);
+          session.autoAdvanceTimeoutId = null;
+        }
+
+        if (session.autoAdvanceIntervalId !== null) {
+          clearInterval(session.autoAdvanceIntervalId);
+          session.autoAdvanceIntervalId = null;
+        }
+
+        setNextButtonLabel();
+      };
+
+      const scheduleAutoAdvance = () => {
+        clearAutoAdvance();
+
+        let remainingSeconds = Math.ceil(AUTO_ADVANCE_DELAY_MS / 1000);
+        setNextButtonLabel(`${NEXT_BUTTON_LABEL} (${remainingSeconds})`);
+
+        session.autoAdvanceIntervalId = setInterval(() => {
+          remainingSeconds -= 1;
+          if (remainingSeconds > 0) {
+            setNextButtonLabel(`${NEXT_BUTTON_LABEL} (${remainingSeconds})`);
+          }
+        }, 1000);
+
+        session.autoAdvanceTimeoutId = setTimeout(() => {
+          session.autoAdvanceTimeoutId = null;
+          goToNext();
+        }, AUTO_ADVANCE_DELAY_MS);
+      };
+
+      const enqueueRepeatQuestion = (question) => {
+        if (!session) {
+          return;
+        }
+
+        const offset =
+          Math.floor(Math.random() * (REPEAT_MAX_OFFSET - REPEAT_MIN_OFFSET + 1)) + REPEAT_MIN_OFFSET;
+        const insertIndex = Math.min(session.currentQuestionIndex + offset, session.questions.length);
+        session.repeatCounter += 1;
+
+        const repeatQuestion = {
+          ...question,
+          id: `${question.id}_repeat_${session.repeatCounter}`,
+          repeatOf: question.repeatOf || question.id
+        };
+
+        session.questions.splice(insertIndex, 0, repeatQuestion);
+        if (session.analytics[question.type]) {
+          session.analytics[question.type].total += 1;
+        }
       };
 
       const renderOptions = (question) => {
@@ -545,7 +697,9 @@
             clearFeedback();
             knowButton.disabled = true;
             dontKnowButton.disabled = true;
+            enqueueRepeatQuestion(question);
             showNextButton();
+            saveSession();
           };
 
           knowButton.addEventListener("click", () => handleAnswer(true));
@@ -582,7 +736,14 @@
               isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
               isCorrect
             );
+            if (!isCorrect) {
+              enqueueRepeatQuestion(question);
+            }
             showNextButton();
+            saveSession();
+            if (isCorrect) {
+              scheduleAutoAdvance();
+            }
           });
 
           optionsWrapper.appendChild(button);
@@ -592,11 +753,12 @@
       };
 
       const renderQuestion = () => {
-        const test = currentTest();
         const question = currentQuestion();
 
-        ui.testTitle.textContent = test.name;
-        ui.testProgress.textContent = `Question ${session.currentQuestionIndex + 1} of ${test.questions.length}`;
+        clearAutoAdvance();
+
+        ui.testTitle.textContent = question.testName || "";
+        ui.testProgress.textContent = `Question ${session.currentQuestionIndex + 1} of ${session.questions.length}`;
         ui.overallProgress.textContent = getOverallProgress();
         ui.questionLabel.textContent = question.label;
         ui.questionText.textContent = question.prompt;
@@ -609,16 +771,11 @@
       };
 
       const goToNext = () => {
-        const test = currentTest();
-        if (session.currentQuestionIndex < test.questions.length - 1) {
-          session.currentQuestionIndex += 1;
-          renderQuestion();
-          return;
-        }
+        clearAutoAdvance();
 
-        if (session.currentTestIndex < session.tests.length - 1) {
-          session.currentTestIndex += 1;
-          session.currentQuestionIndex = 0;
+        if (session.currentQuestionIndex < session.questions.length - 1) {
+          session.currentQuestionIndex += 1;
+          saveSession();
           renderQuestion();
           return;
         }
@@ -627,8 +784,11 @@
       };
 
       const renderSummary = () => {
+        clearAutoAdvance();
         hideNextButton();
         showScreen(ui.summaryScreen);
+        clearSavedSession();
+        updateStartScreen();
         const totals = Object.values(session.analytics).reduce(
           (acc, item) => {
             acc.correct += item.correct;
@@ -656,14 +816,30 @@
         });
       };
 
-      const startTests = () => {
-        resetSession();
+      const startTests = (options = {}) => {
+        const { forceNew = false } = options;
+
+        if (forceNew) {
+          clearSavedSession();
+          resetSession();
+        } else {
+          const saved = loadSession();
+          session = saved || null;
+          if (!session || !session.questions.length) {
+            resetSession();
+          }
+        }
+
         showScreen(ui.testScreen);
         renderQuestion();
+        saveSession();
+        updateStartScreen();
       };
 
-      ui.startButton.addEventListener("click", startTests);
-      ui.restartButton.addEventListener("click", startTests);
+      updateStartScreen();
+      ui.startButton.addEventListener("click", () => startTests());
+      ui.restartButton.addEventListener("click", () => startTests({ forceNew: true }));
+      ui.resetButton.addEventListener("click", () => startTests({ forceNew: true }));
       ui.nextButton.addEventListener("click", goToNext);
     </script>
   </body>

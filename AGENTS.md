@@ -53,6 +53,7 @@ When generating a new test page:
   - Clicking **Know** immediately advances to the next card.
   - Clicking **Don’t know** reveals the translation and allows advancing.
 - The **Next** button should live in a fixed bottom panel (mobile-safe).
+- Gap fill and case practice should use **per-word predefined variants** with correct Lithuanian grammar forms (no generic templates).
 
 ## Implementation guidance
 
