@@ -104,6 +104,35 @@
     </div>
 
     <script>
+
+      const toAccusative = (word) => {
+        if (word.endsWith("as")) {
+          return `${word.slice(0, -2)}ą`;
+        }
+        if (word.endsWith("is")) {
+          return `${word.slice(0, -2)}į`;
+        }
+        if (word.endsWith("us")) {
+          return `${word.slice(0, -2)}ų`;
+        }
+        if (word.endsWith("a")) {
+          return `${word.slice(0, -1)}ą`;
+        }
+        if (word.endsWith("ė")) {
+          return `${word.slice(0, -1)}ę`;
+        }
+        return word;
+      };
+
+      const toAccusativePhrase = (phrase) => {
+        const parts = phrase.split(" ");
+        if (parts.length === 1) {
+          return toAccusative(phrase);
+        }
+        const lastWord = parts.pop();
+        return [...parts, toAccusative(lastWord)].join(" ");
+      };
+
       const wordSet = {
         topic: "Profesijos: paslaugos ir transportas",
         words: [
@@ -270,25 +299,6 @@
         return shuffle(wordSet.words.filter((item) => item.id !== excludeId))
           .slice(0, count)
           .map((item) => item[field]);
-      };
-
-      const toAccusative = (word) => {
-        if (word.endsWith("as")) {
-          return `${word.slice(0, -2)}ą`;
-        }
-        if (word.endsWith("is")) {
-          return `${word.slice(0, -2)}į`;
-        }
-        if (word.endsWith("us")) {
-          return `${word.slice(0, -2)}ų`;
-        }
-        if (word.endsWith("a")) {
-          return `${word.slice(0, -1)}ą`;
-        }
-        if (word.endsWith("ė")) {
-          return `${word.slice(0, -1)}ę`;
-        }
-        return word;
       };
 
       const normalizeAnswer = (value) => value.trim().toLowerCase().replace(/\s+/g, " ");
