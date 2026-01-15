@@ -37,11 +37,11 @@ GitHub Pages: https://eduardmikhailau.github.io/ (tests under `tests/`).
 
 ## Tests (GitHub Pages)
 
-- https://eduardmikhailau.github.io/tests/1.1-veiksmai-laikas.html
-- https://eduardmikhailau.github.io/tests/1.2-kalendorius-keliones.html
-- https://eduardmikhailau.github.io/tests/1.3-miestas-paslaugos-bendruomene.html
-- https://eduardmikhailau.github.io/tests/1.4-miestas-laisvalaikis-zmones.html
-- https://eduardmikhailau.github.io/tests/1.5-profesijos-kultura-sportas.html
-- https://eduardmikhailau.github.io/tests/1.6-profesijos-svietimas-medicina.html
-- https://eduardmikhailau.github.io/tests/1.7-profesijos-paslaugos-transportas.html
-- https://eduardmikhailau.github.io/tests/1.8-profesijos-valstybe-verslas.html
+- [1.1 Veiksmai ir laikas](https://eduardmikhailau.github.io/tests/1.1-veiksmai-laikas.html)
+- [1.2 Kalendorius ir kelionės](https://eduardmikhailau.github.io/tests/1.2-kalendorius-keliones.html)
+- [1.3 Miestas: paslaugos ir bendruomenė](https://eduardmikhailau.github.io/tests/1.3-miestas-paslaugos-bendruomene.html)
+- [1.4 Miestas: laisvalaikis ir žmonės](https://eduardmikhailau.github.io/tests/1.4-miestas-laisvalaikis-zmones.html)
+- [1.5 Profesijos: kultūra ir sportas](https://eduardmikhailau.github.io/tests/1.5-profesijos-kultura-sportas.html)
+- [1.6 Profesijos: švietimas ir medicina](https://eduardmikhailau.github.io/tests/1.6-profesijos-svietimas-medicina.html)
+- [1.7 Profesijos: paslaugos ir transportas](https://eduardmikhailau.github.io/tests/1.7-profesijos-paslaugos-transportas.html)
+- [1.8 Profesijos: valstybė ir verslas](https://eduardmikhailau.github.io/tests/1.8-profesijos-valstybe-verslas.html)
