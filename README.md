@@ -33,3 +33,4 @@ This repo is used to generate **self-contained HTML practice tests** for learnin
 ## Running
 
 Open any file from `tests/` directly in a browser (no build step required).
+GitHub Pages: https://eduardmikhailau.github.io/ (tests under `tests/`).
