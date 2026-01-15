@@ -105,34 +105,6 @@
 
     <script>
 
-      const toAccusative = (word) => {
-        if (word.endsWith("as")) {
-          return `${word.slice(0, -2)}ą`;
-        }
-        if (word.endsWith("is")) {
-          return `${word.slice(0, -2)}į`;
-        }
-        if (word.endsWith("us")) {
-          return `${word.slice(0, -2)}ų`;
-        }
-        if (word.endsWith("a")) {
-          return `${word.slice(0, -1)}ą`;
-        }
-        if (word.endsWith("ė")) {
-          return `${word.slice(0, -1)}ę`;
-        }
-        return word;
-      };
-
-      const toAccusativePhrase = (phrase) => {
-        const parts = phrase.split(" ");
-        if (parts.length === 1) {
-          return toAccusative(phrase);
-        }
-        const lastWord = parts.pop();
-        return [...parts, toAccusative(lastWord)].join(" ");
-      };
-
       const wordSet = {
         topic: "Profesijos: kultūra ir sportas",
         words: [
@@ -157,98 +129,583 @@
         ]
       };
 
-      const gapFillVariants = {
-        aktorius: [
-          { sentence: "Jis yra ___.", translationRu: "Он — актер.", answer: "aktorius", case: "nominative" },
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает актер.", answer: "aktorius", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу актер.", answer: toAccusativePhrase("aktorius"), case: "accusative" }
+                        const gapFillVariants = {
+        "aktorius": [
+          {
+            "sentence": "Jis yra ___.",
+            "translationRu": "Он — актер.",
+            "answer": "aktorius",
+            "options": [
+              "aktorius",
+              "aktorė",
+              "dailininkas"
+            ]
+          },
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает актер.",
+            "answer": "aktorius",
+            "options": [
+              "aktorius",
+              "aktorė",
+              "dailininkas"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу актер.",
+            "answer": "aktorių",
+            "options": [
+              "aktorių",
+              "aktorę",
+              "dailininką"
+            ]
+          }
         ],
-        aktore: [
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает актриса.", answer: "aktorė", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу актриса.", answer: toAccusativePhrase("aktorė"), case: "accusative" },
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает актриса.", answer: "aktorė", case: "nominative" }
+        "aktore": [
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает актриса.",
+            "answer": "aktorė",
+            "options": [
+              "aktorė",
+              "aktorius",
+              "dailininkas"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу актриса.",
+            "answer": "aktorę",
+            "options": [
+              "aktorę",
+              "aktorių",
+              "dailininką"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает актриса.",
+            "answer": "aktorė",
+            "options": [
+              "aktorė",
+              "aktorius",
+              "dailininkas"
+            ]
+          }
         ],
-        dailininkas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу художник.", answer: toAccusativePhrase("dailininkas"), case: "accusative" },
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает художник.", answer: "dailininkas", case: "nominative" },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю художник.", answer: toAccusativePhrase("dailininkas"), case: "accusative" }
+        "dailininkas": [
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу художник.",
+            "answer": "dailininką",
+            "options": [
+              "dailininką",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает художник.",
+            "answer": "dailininkas",
+            "options": [
+              "dailininkas",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю художник.",
+            "answer": "dailininką",
+            "options": [
+              "dailininką",
+              "aktorių",
+              "aktorę"
+            ]
+          }
         ],
-        dailininke: [
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает художница.", answer: "dailininkė", case: "nominative" },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю художница.", answer: toAccusativePhrase("dailininkė"), case: "accusative" },
-          { sentence: "Ji yra ___.", translationRu: "Она — художница.", answer: "dailininkė", case: "nominative" }
+        "dailininke": [
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает художница.",
+            "answer": "dailininkė",
+            "options": [
+              "dailininkė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю художница.",
+            "answer": "dailininkę",
+            "options": [
+              "dailininkę",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "Ji yra ___.",
+            "translationRu": "Она — художница.",
+            "answer": "dailininkė",
+            "options": [
+              "dailininkė",
+              "aktorius",
+              "aktorė"
+            ]
+          }
         ],
-        dainininkas: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю певец.", answer: toAccusativePhrase("dainininkas"), case: "accusative" },
-          { sentence: "Jis yra ___.", translationRu: "Он — певец.", answer: "dainininkas", case: "nominative" },
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает певец.", answer: "dainininkas", case: "nominative" }
+        "dainininkas": [
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю певец.",
+            "answer": "dainininką",
+            "options": [
+              "dainininką",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "Jis yra ___.",
+            "translationRu": "Он — певец.",
+            "answer": "dainininkas",
+            "options": [
+              "dainininkas",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает певец.",
+            "answer": "dainininkas",
+            "options": [
+              "dainininkas",
+              "aktorius",
+              "aktorė"
+            ]
+          }
         ],
-        dainininke: [
-          { sentence: "Ji yra ___.", translationRu: "Она — певица.", answer: "dainininkė", case: "nominative" },
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает певица.", answer: "dainininkė", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу певица.", answer: toAccusativePhrase("dainininkė"), case: "accusative" }
+        "dainininke": [
+          {
+            "sentence": "Ji yra ___.",
+            "translationRu": "Она — певица.",
+            "answer": "dainininkė",
+            "options": [
+              "dainininkė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает певица.",
+            "answer": "dainininkė",
+            "options": [
+              "dainininkė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу певица.",
+            "answer": "dainininkę",
+            "options": [
+              "dainininkę",
+              "aktorių",
+              "aktorę"
+            ]
+          }
         ],
-        sportininkas: [
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает спортсмен.", answer: "sportininkas", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу спортсмен.", answer: toAccusativePhrase("sportininkas"), case: "accusative" },
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает спортсмен.", answer: "sportininkas", case: "nominative" }
+        "sportininkas": [
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает спортсмен.",
+            "answer": "sportininkas",
+            "options": [
+              "sportininkas",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу спортсмен.",
+            "answer": "sportininką",
+            "options": [
+              "sportininką",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает спортсмен.",
+            "answer": "sportininkas",
+            "options": [
+              "sportininkas",
+              "aktorius",
+              "aktorė"
+            ]
+          }
         ],
-        sportininke: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу спортсменка.", answer: toAccusativePhrase("sportininkė"), case: "accusative" },
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает спортсменка.", answer: "sportininkė", case: "nominative" },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю спортсменка.", answer: toAccusativePhrase("sportininkė"), case: "accusative" }
+        "sportininke": [
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу спортсменка.",
+            "answer": "sportininkę",
+            "options": [
+              "sportininkę",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает спортсменка.",
+            "answer": "sportininkė",
+            "options": [
+              "sportininkė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю спортсменка.",
+            "answer": "sportininkę",
+            "options": [
+              "sportininkę",
+              "aktorių",
+              "aktorę"
+            ]
+          }
         ],
-        sokejas: [
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает танцор.", answer: "šokėjas", case: "nominative" },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю танцор.", answer: toAccusativePhrase("šokėjas"), case: "accusative" },
-          { sentence: "Jis yra ___.", translationRu: "Он — танцор.", answer: "šokėjas", case: "nominative" }
+        "sokejas": [
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает танцор.",
+            "answer": "šokėjas",
+            "options": [
+              "šokėjas",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю танцор.",
+            "answer": "šokėją",
+            "options": [
+              "šokėją",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "Jis yra ___.",
+            "translationRu": "Он — танцор.",
+            "answer": "šokėjas",
+            "options": [
+              "šokėjas",
+              "aktorius",
+              "aktorė"
+            ]
+          }
         ],
-        sokeja: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю танцовщица.", answer: toAccusativePhrase("šokėja"), case: "accusative" },
-          { sentence: "Ji yra ___.", translationRu: "Она — танцовщица.", answer: "šokėja", case: "nominative" },
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает танцовщица.", answer: "šokėja", case: "nominative" }
+        "sokeja": [
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю танцовщица.",
+            "answer": "šokėją",
+            "options": [
+              "šokėją",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "Ji yra ___.",
+            "translationRu": "Она — танцовщица.",
+            "answer": "šokėja",
+            "options": [
+              "šokėja",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает танцовщица.",
+            "answer": "šokėja",
+            "options": [
+              "šokėja",
+              "aktorius",
+              "aktorė"
+            ]
+          }
         ],
-        muzikantas: [
-          { sentence: "Jis yra ___.", translationRu: "Он — музыкант.", answer: "muzikantas", case: "nominative" },
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает музыкант.", answer: "muzikantas", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу музыкант.", answer: toAccusativePhrase("muzikantas"), case: "accusative" }
+        "muzikantas": [
+          {
+            "sentence": "Jis yra ___.",
+            "translationRu": "Он — музыкант.",
+            "answer": "muzikantas",
+            "options": [
+              "muzikantas",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает музыкант.",
+            "answer": "muzikantas",
+            "options": [
+              "muzikantas",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу музыкант.",
+            "answer": "muzikantą",
+            "options": [
+              "muzikantą",
+              "aktorių",
+              "aktorę"
+            ]
+          }
         ],
-        muzikante: [
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает музыкантка.", answer: "muzikantė", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу музыкантка.", answer: toAccusativePhrase("muzikantė"), case: "accusative" },
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает музыкантка.", answer: "muzikantė", case: "nominative" }
+        "muzikante": [
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает музыкантка.",
+            "answer": "muzikantė",
+            "options": [
+              "muzikantė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу музыкантка.",
+            "answer": "muzikantę",
+            "options": [
+              "muzikantę",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает музыкантка.",
+            "answer": "muzikantė",
+            "options": [
+              "muzikantė",
+              "aktorius",
+              "aktorė"
+            ]
+          }
         ],
-        fotografas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу фотограф.", answer: toAccusativePhrase("fotografas"), case: "accusative" },
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает фотограф.", answer: "fotografas", case: "nominative" },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю фотограф.", answer: toAccusativePhrase("fotografas"), case: "accusative" }
+        "fotografas": [
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу фотограф.",
+            "answer": "fotografą",
+            "options": [
+              "fotografą",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает фотограф.",
+            "answer": "fotografas",
+            "options": [
+              "fotografas",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю фотограф.",
+            "answer": "fotografą",
+            "options": [
+              "fotografą",
+              "aktorių",
+              "aktorę"
+            ]
+          }
         ],
-        fotografe: [
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает фотограф.", answer: "fotografė", case: "nominative" },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю фотограф.", answer: toAccusativePhrase("fotografė"), case: "accusative" },
-          { sentence: "Ji yra ___.", translationRu: "Она — фотограф.", answer: "fotografė", case: "nominative" }
+        "fotografe": [
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает фотограф.",
+            "answer": "fotografė",
+            "options": [
+              "fotografė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю фотограф.",
+            "answer": "fotografę",
+            "options": [
+              "fotografę",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "Ji yra ___.",
+            "translationRu": "Она — фотограф.",
+            "answer": "fotografė",
+            "options": [
+              "fotografė",
+              "aktorius",
+              "aktorė"
+            ]
+          }
         ],
-        rezisierius: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю режиссер.", answer: toAccusativePhrase("režisierius"), case: "accusative" },
-          { sentence: "Jis yra ___.", translationRu: "Он — режиссер.", answer: "režisierius", case: "nominative" },
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает режиссер.", answer: "režisierius", case: "nominative" }
+        "rezisierius": [
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю режиссер.",
+            "answer": "režisierių",
+            "options": [
+              "režisierių",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "Jis yra ___.",
+            "translationRu": "Он — режиссер.",
+            "answer": "režisierius",
+            "options": [
+              "režisierius",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает режиссер.",
+            "answer": "režisierius",
+            "options": [
+              "režisierius",
+              "aktorius",
+              "aktorė"
+            ]
+          }
         ],
-        rezisiere: [
-          { sentence: "Ji yra ___.", translationRu: "Она — режиссер.", answer: "režisierė", case: "nominative" },
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает режиссер.", answer: "režisierė", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу режиссер.", answer: toAccusativePhrase("režisierė"), case: "accusative" }
+        "rezisiere": [
+          {
+            "sentence": "Ji yra ___.",
+            "translationRu": "Она — режиссер.",
+            "answer": "režisierė",
+            "options": [
+              "režisierė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает режиссер.",
+            "answer": "režisierė",
+            "options": [
+              "režisierė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу режиссер.",
+            "answer": "režisierę",
+            "options": [
+              "režisierę",
+              "aktorių",
+              "aktorę"
+            ]
+          }
         ],
-        zurnalistas: [
-          { sentence: "Mieste dirba ___.", translationRu: "В городе работает журналист.", answer: "žurnalistas", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу журналист.", answer: toAccusativePhrase("žurnalistas"), case: "accusative" },
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает журналист.", answer: "žurnalistas", case: "nominative" }
+        "zurnalistas": [
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает журналист.",
+            "answer": "žurnalistas",
+            "options": [
+              "žurnalistas",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу журналист.",
+            "answer": "žurnalistą",
+            "options": [
+              "žurnalistą",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает журналист.",
+            "answer": "žurnalistas",
+            "options": [
+              "žurnalistas",
+              "aktorius",
+              "aktorė"
+            ]
+          }
         ],
-        zurnaliste: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу журналистка.", answer: toAccusativePhrase("žurnalistė"), case: "accusative" },
-          { sentence: "___ dirba ryte.", translationRu: "Утром работает журналистка.", answer: "žurnalistė", case: "nominative" },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю журналистка.", answer: toAccusativePhrase("žurnalistė"), case: "accusative" }
+        "zurnaliste": [
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу журналистка.",
+            "answer": "žurnalistę",
+            "options": [
+              "žurnalistę",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает журналистка.",
+            "answer": "žurnalistė",
+            "options": [
+              "žurnalistė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю журналистка.",
+            "answer": "žurnalistę",
+            "options": [
+              "žurnalistę",
+              "aktorių",
+              "aktorę"
+            ]
+          }
         ]
-
       };
 
       const ui = {
@@ -336,10 +793,7 @@
         wordSet.words.forEach((word) => {
           const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const otherWords = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => (variant.case === "accusative" ? toAccusative(item.lt) : item.lt));
-            const options = shuffle([variant.answer, ...otherWords]);
+            const options = shuffle(Array.from(new Set(variant.options || [variant.answer])));
             questions.push({
               id: `gf_${word.id}_${index + 1}`,
               type: "gapFill",

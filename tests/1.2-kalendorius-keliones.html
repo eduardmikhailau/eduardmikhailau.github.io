@@ -105,34 +105,6 @@
 
     <script>
 
-      const toAccusative = (word) => {
-        if (word.endsWith("as")) {
-          return `${word.slice(0, -2)}ą`;
-        }
-        if (word.endsWith("is")) {
-          return `${word.slice(0, -2)}į`;
-        }
-        if (word.endsWith("us")) {
-          return `${word.slice(0, -2)}ų`;
-        }
-        if (word.endsWith("a")) {
-          return `${word.slice(0, -1)}ą`;
-        }
-        if (word.endsWith("ė")) {
-          return `${word.slice(0, -1)}ę`;
-        }
-        return word;
-      };
-
-      const toAccusativePhrase = (phrase) => {
-        const parts = phrase.split(" ");
-        if (parts.length === 1) {
-          return toAccusative(phrase);
-        }
-        const lastWord = parts.pop();
-        return [...parts, toAccusative(lastWord)].join(" ");
-      };
-
       const wordSet = {
         topic: "Kalendorius ir kelionės",
         words: [
@@ -159,108 +131,647 @@
         ]
       };
 
-      const gapFillVariants = {
-        oro_uostas: [
-          { sentence: "Aš važiuoju į ___.", translationRu: "Я еду в аэропорт.", answer: toAccusativePhrase("oro uostas"), case: "accusative" },
-          { sentence: "___ yra didelis.", translationRu: "Аэропорт большой.", answer: "oro uostas", case: "nominative" },
-          { sentence: "___ yra netoli miesto.", translationRu: "Аэропорт недалеко от города.", answer: "oro uostas", case: "nominative" }
+                        const gapFillVariants = {
+        "oro_uostas": [
+          {
+            "sentence": "Aš važiuoju į ___.",
+            "translationRu": "Я еду в аэропорт.",
+            "answer": "oro uostą",
+            "options": [
+              "oro uostą",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ yra didelis.",
+            "translationRu": "Аэропорт большой.",
+            "answer": "oro uostas",
+            "options": [
+              "oro uostas",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "___ yra netoli miesto.",
+            "translationRu": "Аэропорт недалеко от города.",
+            "answer": "oro uostas",
+            "options": [
+              "oro uostas",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        sankryza: [
-          { sentence: "___ yra pavojinga.", translationRu: "Перекресток опасный.", answer: "sankryža", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу перекресток.", answer: toAccusativePhrase("sankryža"), case: "accusative" },
-          { sentence: "Priekyje yra ___.", translationRu: "Впереди перекресток.", answer: "sankryža", case: "nominative" }
+        "sankryza": [
+          {
+            "sentence": "___ yra pavojinga.",
+            "translationRu": "Перекресток опасный.",
+            "answer": "sankryža",
+            "options": [
+              "sankryža",
+              "stotelė",
+              "stotis"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу перекресток.",
+            "answer": "sankryžą",
+            "options": [
+              "sankryžą",
+              "stotelę",
+              "stotį"
+            ]
+          },
+          {
+            "sentence": "Priekyje yra ___.",
+            "translationRu": "Впереди перекресток.",
+            "answer": "sankryža",
+            "options": [
+              "sankryža",
+              "stotelė",
+              "stotis"
+            ]
+          }
         ],
-        stotele: [
-          { sentence: "Aš laukiu ___.", translationRu: "Я жду остановку.", answer: toAccusativePhrase("stotelė"), case: "accusative" },
-          { sentence: "___ yra šalia namų.", translationRu: "Остановка рядом с домом.", answer: "stotelė", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу остановку.", answer: toAccusativePhrase("stotelė"), case: "accusative" }
+        "stotele": [
+          {
+            "sentence": "Aš laukiu ___.",
+            "translationRu": "Я жду остановку.",
+            "answer": "stotelę",
+            "options": [
+              "stotelę",
+              "sankryžą",
+              "stotį"
+            ]
+          },
+          {
+            "sentence": "___ yra šalia namų.",
+            "translationRu": "Остановка рядом с домом.",
+            "answer": "stotelė",
+            "options": [
+              "stotelė",
+              "sankryža",
+              "stotis"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу остановку.",
+            "answer": "stotelę",
+            "options": [
+              "stotelę",
+              "sankryžą",
+              "stotį"
+            ]
+          }
         ],
-        stotis: [
-          { sentence: "Aš einu į ___.", translationRu: "Я иду на вокзал.", answer: toAccusativePhrase("stotis"), case: "accusative" },
-          { sentence: "___ yra miesto centre.", translationRu: "Вокзал в центре города.", answer: "stotis", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу вокзал.", answer: toAccusativePhrase("stotis"), case: "accusative" }
+        "stotis": [
+          {
+            "sentence": "Aš einu į ___.",
+            "translationRu": "Я иду на вокзал.",
+            "answer": "stotį",
+            "options": [
+              "stotį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ yra miesto centre.",
+            "translationRu": "Вокзал в центре города.",
+            "answer": "stotis",
+            "options": [
+              "stotis",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу вокзал.",
+            "answer": "stotį",
+            "options": [
+              "stotį",
+              "sankryžą",
+              "stotelę"
+            ]
+          }
         ],
-        sviesoforas: [
-          { sentence: "___ rodo raudoną.", translationRu: "Светофор показывает красный.", answer: "šviesoforas", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу светофор.", answer: toAccusativePhrase("šviesoforas"), case: "accusative" },
-          { sentence: "___ yra naujas.", translationRu: "Светофор новый.", answer: "šviesoforas", case: "nominative" }
+        "sviesoforas": [
+          {
+            "sentence": "___ rodo raudoną.",
+            "translationRu": "Светофор показывает красный.",
+            "answer": "šviesoforas",
+            "options": [
+              "šviesoforas",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу светофор.",
+            "answer": "šviesoforą",
+            "options": [
+              "šviesoforą",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ yra naujas.",
+            "translationRu": "Светофор новый.",
+            "answer": "šviesoforas",
+            "options": [
+              "šviesoforas",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        uostas: [
-          { sentence: "___ yra prie vandens.", translationRu: "Порт у воды.", answer: "uostas", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу порт.", answer: toAccusativePhrase("uostas"), case: "accusative" },
-          { sentence: "Mieste yra ___.", translationRu: "В городе есть порт.", answer: "uostas", case: "nominative" }
+        "uostas": [
+          {
+            "sentence": "___ yra prie vandens.",
+            "translationRu": "Порт у воды.",
+            "answer": "uostas",
+            "options": [
+              "uostas",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу порт.",
+            "answer": "uostą",
+            "options": [
+              "uostą",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "Mieste yra ___.",
+            "translationRu": "В городе есть порт.",
+            "answer": "uostas",
+            "options": [
+              "uostas",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        ezeras: [
-          { sentence: "___ yra netoli miško.", translationRu: "Озеро рядом с лесом.", answer: "ežeras", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу озеро.", answer: toAccusativePhrase("ežeras"), case: "accusative" },
-          { sentence: "Vasarą važiuoju į ___.", translationRu: "Летом еду к озеру.", answer: toAccusativePhrase("ežeras"), case: "accusative" }
+        "ezeras": [
+          {
+            "sentence": "___ yra netoli miško.",
+            "translationRu": "Озеро рядом с лесом.",
+            "answer": "ežeras",
+            "options": [
+              "ežeras",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу озеро.",
+            "answer": "ežerą",
+            "options": [
+              "ežerą",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "Vasarą važiuoju į ___.",
+            "translationRu": "Летом еду к озеру.",
+            "answer": "ežerą",
+            "options": [
+              "ežerą",
+              "sankryžą",
+              "stotelę"
+            ]
+          }
         ],
-        jura: [
-          { sentence: "___ didelė ir graži.", translationRu: "Море большое и красивое.", answer: "jūra", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу море.", answer: toAccusativePhrase("jūra"), case: "accusative" },
-          { sentence: "Vasarą važiuoju į ___.", translationRu: "Летом еду к морю.", answer: toAccusativePhrase("jūra"), case: "accusative" }
+        "jura": [
+          {
+            "sentence": "___ didelė ir graži.",
+            "translationRu": "Море большое и красивое.",
+            "answer": "jūra",
+            "options": [
+              "jūra",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу море.",
+            "answer": "jūrą",
+            "options": [
+              "jūrą",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "Vasarą važiuoju į ___.",
+            "translationRu": "Летом еду к морю.",
+            "answer": "jūrą",
+            "options": [
+              "jūrą",
+              "sankryžą",
+              "stotelę"
+            ]
+          }
         ],
-        pavasaris: [
-          { sentence: "___ ateina po žiemos.", translationRu: "Весна приходит после зимы.", answer: "pavasaris", case: "nominative" },
-          { sentence: "___ oras šiltas.", translationRu: "Весной погода теплая.", answer: toAccusativePhrase("pavasaris"), case: "accusative" },
-          { sentence: "Aš laukiu ___.", translationRu: "Я жду весну.", answer: toAccusativePhrase("pavasaris"), case: "accusative" }
+        "pavasaris": [
+          {
+            "sentence": "___ ateina po žiemos.",
+            "translationRu": "Весна приходит после зимы.",
+            "answer": "pavasaris",
+            "options": [
+              "pavasaris",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "___ oras šiltas.",
+            "translationRu": "Весной погода теплая.",
+            "answer": "pavasarį",
+            "options": [
+              "pavasarį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "Aš laukiu ___.",
+            "translationRu": "Я жду весну.",
+            "answer": "pavasarį",
+            "options": [
+              "pavasarį",
+              "sankryžą",
+              "stotelę"
+            ]
+          }
         ],
-        vasara: [
-          { sentence: "___ labai šilta.", translationRu: "Лето очень теплое.", answer: "vasara", case: "nominative" },
-          { sentence: "___ atostogauju.", translationRu: "Летом я отдыхаю.", answer: toAccusativePhrase("vasara"), case: "accusative" },
-          { sentence: "Aš laukiu ___.", translationRu: "Я жду лето.", answer: toAccusativePhrase("vasara"), case: "accusative" }
+        "vasara": [
+          {
+            "sentence": "___ labai šilta.",
+            "translationRu": "Лето очень теплое.",
+            "answer": "vasara",
+            "options": [
+              "vasara",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "___ atostogauju.",
+            "translationRu": "Летом я отдыхаю.",
+            "answer": "vasarą",
+            "options": [
+              "vasarą",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "Aš laukiu ___.",
+            "translationRu": "Я жду лето.",
+            "answer": "vasarą",
+            "options": [
+              "vasarą",
+              "sankryžą",
+              "stotelę"
+            ]
+          }
         ],
-        ruduo: [
-          { sentence: "___ dienos trumpesnės.", translationRu: "Осенью дни короче.", answer: "ruduo", case: "nominative" },
-          { sentence: "___ krinta lapai.", translationRu: "Осенью падают листья.", answer: toAccusativePhrase("ruduo"), case: "accusative" },
-          { sentence: "Aš mėgstu ___.", translationRu: "Я люблю осень.", answer: toAccusativePhrase("ruduo"), case: "accusative" }
+        "ruduo": [
+          {
+            "sentence": "___ dienos trumpesnės.",
+            "translationRu": "Осенью дни короче.",
+            "answer": "ruduo",
+            "options": [
+              "ruduo",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "___ krinta lapai.",
+            "translationRu": "Осенью падают листья.",
+            "answer": "ruduo",
+            "options": [
+              "ruduo",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "Aš mėgstu ___.",
+            "translationRu": "Я люблю осень.",
+            "answer": "ruduo",
+            "options": [
+              "ruduo",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        ziema: [
-          { sentence: "___ labai šalta.", translationRu: "Зимой очень холодно.", answer: "žiema", case: "nominative" },
-          { sentence: "___ sninga.", translationRu: "Зимой идет снег.", answer: toAccusativePhrase("žiema"), case: "accusative" },
-          { sentence: "Aš laukiu ___.", translationRu: "Я жду зиму.", answer: toAccusativePhrase("žiema"), case: "accusative" }
+        "ziema": [
+          {
+            "sentence": "___ labai šalta.",
+            "translationRu": "Зимой очень холодно.",
+            "answer": "žiema",
+            "options": [
+              "žiema",
+              "sankryža",
+              "stotelė"
+            ]
+          },
+          {
+            "sentence": "___ sninga.",
+            "translationRu": "Зимой идет снег.",
+            "answer": "žiemą",
+            "options": [
+              "žiemą",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "Aš laukiu ___.",
+            "translationRu": "Я жду зиму.",
+            "answer": "žiemą",
+            "options": [
+              "žiemą",
+              "sankryžą",
+              "stotelę"
+            ]
+          }
         ],
-        pirmadienis: [
-          { sentence: "___ pradedu darbą.", translationRu: "В понедельник я начинаю работу.", answer: toAccusativePhrase("pirmadienis"), case: "accusative" },
-          { sentence: "___ turiu daug darbo.", translationRu: "В понедельник у меня много работы.", answer: toAccusativePhrase("pirmadienis"), case: "accusative" },
-          { sentence: "___ man patinka.", translationRu: "Понедельник мне нравится.", answer: "pirmadienis", case: "nominative" }
+        "pirmadienis": [
+          {
+            "sentence": "___ pradedu darbą.",
+            "translationRu": "В понедельник я начинаю работу.",
+            "answer": "pirmadienį",
+            "options": [
+              "pirmadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ turiu daug darbo.",
+            "translationRu": "В понедельник у меня много работы.",
+            "answer": "pirmadienį",
+            "options": [
+              "pirmadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ man patinka.",
+            "translationRu": "Понедельник мне нравится.",
+            "answer": "pirmadienis",
+            "options": [
+              "pirmadienis",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        antradienis: [
-          { sentence: "___ einu į sporto klubą.", translationRu: "Во вторник я иду в спортклуб.", answer: toAccusativePhrase("antradienis"), case: "accusative" },
-          { sentence: "___ turiu pamoką.", translationRu: "Во вторник у меня урок.", answer: toAccusativePhrase("antradienis"), case: "accusative" },
-          { sentence: "___ dažnai būna ramus.", translationRu: "Вторник часто бывает спокойным.", answer: "antradienis", case: "nominative" }
+        "antradienis": [
+          {
+            "sentence": "___ einu į sporto klubą.",
+            "translationRu": "Во вторник я иду в спортклуб.",
+            "answer": "antradienį",
+            "options": [
+              "antradienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ turiu pamoką.",
+            "translationRu": "Во вторник у меня урок.",
+            "answer": "antradienį",
+            "options": [
+              "antradienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ dažnai būna ramus.",
+            "translationRu": "Вторник часто бывает спокойным.",
+            "answer": "antradienis",
+            "options": [
+              "antradienis",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        treciadienis: [
-          { sentence: "___ einu į biblioteką.", translationRu: "В среду я иду в библиотеку.", answer: toAccusativePhrase("trečiadienis"), case: "accusative" },
-          { sentence: "___ turiu trumpą dieną.", translationRu: "В среду у меня короткий день.", answer: toAccusativePhrase("trečiadienis"), case: "accusative" },
-          { sentence: "___ man patinka.", translationRu: "Среда мне нравится.", answer: "trečiadienis", case: "nominative" }
+        "treciadienis": [
+          {
+            "sentence": "___ einu į biblioteką.",
+            "translationRu": "В среду я иду в библиотеку.",
+            "answer": "trečiadienį",
+            "options": [
+              "trečiadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ turiu trumpą dieną.",
+            "translationRu": "В среду у меня короткий день.",
+            "answer": "trečiadienį",
+            "options": [
+              "trečiadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ man patinka.",
+            "translationRu": "Среда мне нравится.",
+            "answer": "trečiadienis",
+            "options": [
+              "trečiadienis",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        ketvirtadienis: [
-          { sentence: "___ einu į kursus.", translationRu: "В четверг я иду на курсы.", answer: toAccusativePhrase("ketvirtadienis"), case: "accusative" },
-          { sentence: "___ turiu susitikimą.", translationRu: "В четверг у меня встреча.", answer: toAccusativePhrase("ketvirtadienis"), case: "accusative" },
-          { sentence: "___ būna užimtas.", translationRu: "Четверг бывает занятым.", answer: "ketvirtadienis", case: "nominative" }
+        "ketvirtadienis": [
+          {
+            "sentence": "___ einu į kursus.",
+            "translationRu": "В четверг я иду на курсы.",
+            "answer": "ketvirtadienį",
+            "options": [
+              "ketvirtadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ turiu susitikimą.",
+            "translationRu": "В четверг у меня встреча.",
+            "answer": "ketvirtadienį",
+            "options": [
+              "ketvirtadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ būna užimtas.",
+            "translationRu": "Четверг бывает занятым.",
+            "answer": "ketvirtadienis",
+            "options": [
+              "ketvirtadienis",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        penktadienis: [
-          { sentence: "___ baigiu darbą anksčiau.", translationRu: "В пятницу я заканчиваю работу раньше.", answer: toAccusativePhrase("penktadienis"), case: "accusative" },
-          { sentence: "___ vakare einu į kiną.", translationRu: "В пятницу вечером иду в кино.", answer: toAccusativePhrase("penktadienis"), case: "accusative" },
-          { sentence: "___ man patinka.", translationRu: "Пятница мне нравится.", answer: "penktadienis", case: "nominative" }
+        "penktadienis": [
+          {
+            "sentence": "___ baigiu darbą anksčiau.",
+            "translationRu": "В пятницу я заканчиваю работу раньше.",
+            "answer": "penktadienį",
+            "options": [
+              "penktadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ vakare einu į kiną.",
+            "translationRu": "В пятницу вечером иду в кино.",
+            "answer": "penktadienį",
+            "options": [
+              "penktadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ man patinka.",
+            "translationRu": "Пятница мне нравится.",
+            "answer": "penktadienis",
+            "options": [
+              "penktadienis",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        sestadienis: [
-          { sentence: "___ miegu ilgiau.", translationRu: "В субботу сплю дольше.", answer: toAccusativePhrase("šeštadienis"), case: "accusative" },
-          { sentence: "___ einu į turgų.", translationRu: "В субботу иду на рынок.", answer: toAccusativePhrase("šeštadienis"), case: "accusative" },
-          { sentence: "___ yra laisvas.", translationRu: "Суббота свободная.", answer: "šeštadienis", case: "nominative" }
+        "sestadienis": [
+          {
+            "sentence": "___ miegu ilgiau.",
+            "translationRu": "В субботу сплю дольше.",
+            "answer": "šeštadienį",
+            "options": [
+              "šeštadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ einu į turgų.",
+            "translationRu": "В субботу иду на рынок.",
+            "answer": "šeštadienį",
+            "options": [
+              "šeštadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ yra laisvas.",
+            "translationRu": "Суббота свободная.",
+            "answer": "šeštadienis",
+            "options": [
+              "šeštadienis",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        sekmadienis: [
-          { sentence: "___ ilsimės namuose.", translationRu: "В воскресенье отдыхаем дома.", answer: toAccusativePhrase("sekmadienis"), case: "accusative" },
-          { sentence: "___ pietaujame su šeima.", translationRu: "В воскресенье обедаем с семьей.", answer: toAccusativePhrase("sekmadienis"), case: "accusative" },
-          { sentence: "___ yra ramus.", translationRu: "Воскресенье спокойное.", answer: "sekmadienis", case: "nominative" }
+        "sekmadienis": [
+          {
+            "sentence": "___ ilsimės namuose.",
+            "translationRu": "В воскресенье отдыхаем дома.",
+            "answer": "sekmadienį",
+            "options": [
+              "sekmadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ pietaujame su šeima.",
+            "translationRu": "В воскресенье обедаем с семьей.",
+            "answer": "sekmadienį",
+            "options": [
+              "sekmadienį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ yra ramus.",
+            "translationRu": "Воскресенье спокойное.",
+            "answer": "sekmadienis",
+            "options": [
+              "sekmadienis",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ],
-        savaitgalis: [
-          { sentence: "___ ilsimės.", translationRu: "В выходные отдыхаем.", answer: toAccusativePhrase("savaitgalis"), case: "accusative" },
-          { sentence: "___ esu namuose.", translationRu: "В выходные я дома.", answer: toAccusativePhrase("savaitgalis"), case: "accusative" },
-          { sentence: "___ man patinka.", translationRu: "Выходные мне нравятся.", answer: "savaitgalis", case: "nominative" }
+        "savaitgalis": [
+          {
+            "sentence": "___ ilsimės.",
+            "translationRu": "В выходные отдыхаем.",
+            "answer": "savaitgalį",
+            "options": [
+              "savaitgalį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ esu namuose.",
+            "translationRu": "В выходные я дома.",
+            "answer": "savaitgalį",
+            "options": [
+              "savaitgalį",
+              "sankryžą",
+              "stotelę"
+            ]
+          },
+          {
+            "sentence": "___ man patinka.",
+            "translationRu": "Выходные мне нравятся.",
+            "answer": "savaitgalis",
+            "options": [
+              "savaitgalis",
+              "sankryža",
+              "stotelė"
+            ]
+          }
         ]
-
       };
 
       const ui = {
@@ -348,10 +859,7 @@
         wordSet.words.forEach((word) => {
           const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const otherWords = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => (variant.case === "accusative" ? toAccusative(item.lt) : item.lt));
-            const options = shuffle([variant.answer, ...otherWords]);
+            const options = shuffle(Array.from(new Set(variant.options || [variant.answer])));
             questions.push({
               id: `gf_${word.id}_${index + 1}`,
               type: "gapFill",

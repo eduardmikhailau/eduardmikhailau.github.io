@@ -105,34 +105,6 @@
 
     <script>
 
-      const toAccusative = (word) => {
-        if (word.endsWith("as")) {
-          return `${word.slice(0, -2)}ą`;
-        }
-        if (word.endsWith("is")) {
-          return `${word.slice(0, -2)}į`;
-        }
-        if (word.endsWith("us")) {
-          return `${word.slice(0, -2)}ų`;
-        }
-        if (word.endsWith("a")) {
-          return `${word.slice(0, -1)}ą`;
-        }
-        if (word.endsWith("ė")) {
-          return `${word.slice(0, -1)}ę`;
-        }
-        return word;
-      };
-
-      const toAccusativePhrase = (phrase) => {
-        const parts = phrase.split(" ");
-        if (parts.length === 1) {
-          return toAccusative(phrase);
-        }
-        const lastWord = parts.pop();
-        return [...parts, toAccusative(lastWord)].join(" ");
-      };
-
       const wordSet = {
         topic: "Miestas: paslaugos ir bendruomenė",
         words: [
@@ -160,113 +132,679 @@
         ]
       };
 
-      const gapFillVariants = {
-        gatve: [
-          { sentence: "Ši ___ ilga.", translationRu: "Эта улица длинная.", answer: "gatvė", case: "nominative" },
-          { sentence: "Aš einu per ___.", translationRu: "Я иду через улицу.", answer: toAccusativePhrase("gatvė"), case: "accusative" },
-          { sentence: "___ yra rami.", translationRu: "Улица спокойная.", answer: "gatvė", case: "nominative" }
+                        const gapFillVariants = {
+        "gatve": [
+          {
+            "sentence": "Ši ___ ilga.",
+            "translationRu": "Эта улица длинная.",
+            "answer": "gatvė",
+            "options": [
+              "gatvė",
+              "ligoninė",
+              "kioskas"
+            ]
+          },
+          {
+            "sentence": "Aš einu per ___.",
+            "translationRu": "Я иду через улицу.",
+            "answer": "gatvę",
+            "options": [
+              "gatvę",
+              "ligoninę",
+              "kioską"
+            ]
+          },
+          {
+            "sentence": "___ yra rami.",
+            "translationRu": "Улица спокойная.",
+            "answer": "gatvė",
+            "options": [
+              "gatvė",
+              "ligoninė",
+              "kioskas"
+            ]
+          }
         ],
-        ligonine: [
-          { sentence: "Aš einu į ___.", translationRu: "Я иду в больницу.", answer: toAccusativePhrase("ligoninė"), case: "accusative" },
-          { sentence: "___ yra miesto centre.", translationRu: "Больница в центре города.", answer: "ligoninė", case: "nominative" },
-          { sentence: "___ dirba gydytojai.", translationRu: "В больнице работают врачи.", answer: "ligoninė", case: "nominative" }
+        "ligonine": [
+          {
+            "sentence": "Aš einu į ___.",
+            "translationRu": "Я иду в больницу.",
+            "answer": "ligoninę",
+            "options": [
+              "ligoninę",
+              "gatvę",
+              "kioską"
+            ]
+          },
+          {
+            "sentence": "___ yra miesto centre.",
+            "translationRu": "Больница в центре города.",
+            "answer": "ligoninė",
+            "options": [
+              "ligoninė",
+              "gatvė",
+              "kioskas"
+            ]
+          },
+          {
+            "sentence": "___ dirba gydytojai.",
+            "translationRu": "В больнице работают врачи.",
+            "answer": "ligoninė",
+            "options": [
+              "ligoninė",
+              "gatvė",
+              "kioskas"
+            ]
+          }
         ],
-        kioskas: [
-          { sentence: "Aš einu į ___ pirkti laikraščio.", translationRu: "Я иду в киоск купить газету.", answer: toAccusativePhrase("kioskas"), case: "accusative" },
-          { sentence: "___ yra mažas.", translationRu: "Киоск маленький.", answer: "kioskas", case: "nominative" },
-          { sentence: "___ dirba ryte.", translationRu: "Киоск работает утром.", answer: "kioskas", case: "nominative" }
+        "kioskas": [
+          {
+            "sentence": "Aš einu į ___ pirkti laikraščio.",
+            "translationRu": "Я иду в киоск купить газету.",
+            "answer": "kioską",
+            "options": [
+              "kioską",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ yra mažas.",
+            "translationRu": "Киоск маленький.",
+            "answer": "kioskas",
+            "options": [
+              "kioskas",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Киоск работает утром.",
+            "answer": "kioskas",
+            "options": [
+              "kioskas",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        ministerija: [
-          { sentence: "___ yra sostinėje.", translationRu: "Министерство в столице.", answer: "ministerija", case: "nominative" },
-          { sentence: "Aš einu į ___.", translationRu: "Я иду в министерство.", answer: toAccusativePhrase("ministerija"), case: "accusative" },
-          { sentence: "___ yra didelė.", translationRu: "Министерство большое.", answer: "ministerija", case: "nominative" }
+        "ministerija": [
+          {
+            "sentence": "___ yra sostinėje.",
+            "translationRu": "Министерство в столице.",
+            "answer": "ministerija",
+            "options": [
+              "ministerija",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Aš einu į ___.",
+            "translationRu": "Я иду в министерство.",
+            "answer": "ministeriją",
+            "options": [
+              "ministeriją",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ yra didelė.",
+            "translationRu": "Министерство большое.",
+            "answer": "ministerija",
+            "options": [
+              "ministerija",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        viesbutis: [
-          { sentence: "Mes renkamės ___.", translationRu: "Мы выбираем отель.", answer: toAccusativePhrase("viešbutis"), case: "accusative" },
-          { sentence: "___ yra centre.", translationRu: "Отель в центре.", answer: "viešbutis", case: "nominative" },
-          { sentence: "___ yra didelis.", translationRu: "Отель большой.", answer: "viešbutis", case: "nominative" }
+        "viesbutis": [
+          {
+            "sentence": "Mes renkamės ___.",
+            "translationRu": "Мы выбираем отель.",
+            "answer": "viešbutį",
+            "options": [
+              "viešbutį",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ yra centre.",
+            "translationRu": "Отель в центре.",
+            "answer": "viešbutis",
+            "options": [
+              "viešbutis",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ yra didelis.",
+            "translationRu": "Отель большой.",
+            "answer": "viešbutis",
+            "options": [
+              "viešbutis",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        bendrabutis: [
-          { sentence: "___ yra netoli universiteto.", translationRu: "Общежитие рядом с университетом.", answer: "bendrabutis", case: "nominative" },
-          { sentence: "Aš einu į ___.", translationRu: "Я иду в общежитие.", answer: toAccusativePhrase("bendrabutis"), case: "accusative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу общежитие.", answer: toAccusativePhrase("bendrabutis"), case: "accusative" }
+        "bendrabutis": [
+          {
+            "sentence": "___ yra netoli universiteto.",
+            "translationRu": "Общежитие рядом с университетом.",
+            "answer": "bendrabutis",
+            "options": [
+              "bendrabutis",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Aš einu į ___.",
+            "translationRu": "Я иду в общежитие.",
+            "answer": "bendrabutį",
+            "options": [
+              "bendrabutį",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу общежитие.",
+            "answer": "bendrabutį",
+            "options": [
+              "bendrabutį",
+              "gatvę",
+              "ligoninę"
+            ]
+          }
         ],
-        vaistine: [
-          { sentence: "Man reikia eiti į ___.", translationRu: "Мне нужно идти в аптеку.", answer: toAccusativePhrase("vaistinė"), case: "accusative" },
-          { sentence: "___ parduoda vaistus.", translationRu: "Аптека продает лекарства.", answer: "vaistinė", case: "nominative" },
-          { sentence: "___ dirba iki vakaro.", translationRu: "Аптека работает до вечера.", answer: "vaistinė", case: "nominative" }
+        "vaistine": [
+          {
+            "sentence": "Man reikia eiti į ___.",
+            "translationRu": "Мне нужно идти в аптеку.",
+            "answer": "vaistinę",
+            "options": [
+              "vaistinę",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ parduoda vaistus.",
+            "translationRu": "Аптека продает лекарства.",
+            "answer": "vaistinė",
+            "options": [
+              "vaistinė",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ dirba iki vakaro.",
+            "translationRu": "Аптека работает до вечера.",
+            "answer": "vaistinė",
+            "options": [
+              "vaistinė",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        baznycia: [
-          { sentence: "___ yra senamiestyje.", translationRu: "Церковь в старом городе.", answer: "bažnyčia", case: "nominative" },
-          { sentence: "Žmonės eina į ___.", translationRu: "Люди идут в церковь.", answer: toAccusativePhrase("bažnyčia"), case: "accusative" },
-          { sentence: "___ yra graži.", translationRu: "Церковь красивая.", answer: "bažnyčia", case: "nominative" }
+        "baznycia": [
+          {
+            "sentence": "___ yra senamiestyje.",
+            "translationRu": "Церковь в старом городе.",
+            "answer": "bažnyčia",
+            "options": [
+              "bažnyčia",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Žmonės eina į ___.",
+            "translationRu": "Люди идут в церковь.",
+            "answer": "bažnyčią",
+            "options": [
+              "bažnyčią",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ yra graži.",
+            "translationRu": "Церковь красивая.",
+            "answer": "bažnyčia",
+            "options": [
+              "bažnyčia",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        parduotuve: [
-          { sentence: "Aš einu į ___ pirkti maisto.", translationRu: "Я иду в магазин купить еду.", answer: toAccusativePhrase("parduotuvė"), case: "accusative" },
-          { sentence: "___ dirba nuo ryto.", translationRu: "Магазин работает с утра.", answer: "parduotuvė", case: "nominative" },
-          { sentence: "___ yra šalia.", translationRu: "Магазин рядом.", answer: "parduotuvė", case: "nominative" }
+        "parduotuve": [
+          {
+            "sentence": "Aš einu į ___ pirkti maisto.",
+            "translationRu": "Я иду в магазин купить еду.",
+            "answer": "parduotuvę",
+            "options": [
+              "parduotuvę",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ dirba nuo ryto.",
+            "translationRu": "Магазин работает с утра.",
+            "answer": "parduotuvė",
+            "options": [
+              "parduotuvė",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ yra šalia.",
+            "translationRu": "Магазин рядом.",
+            "answer": "parduotuvė",
+            "options": [
+              "parduotuvė",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        pastas: [
-          { sentence: "Aš einu į ___ siųsti laišką.", translationRu: "Я иду на почту отправить письмо.", answer: toAccusativePhrase("paštas"), case: "accusative" },
-          { sentence: "___ dirba nuo ryto.", translationRu: "Почта работает с утра.", answer: "paštas", case: "nominative" },
-          { sentence: "___ yra netoli namų.", translationRu: "Почта рядом с домом.", answer: "paštas", case: "nominative" }
+        "pastas": [
+          {
+            "sentence": "Aš einu į ___ siųsti laišką.",
+            "translationRu": "Я иду на почту отправить письмо.",
+            "answer": "paštą",
+            "options": [
+              "paštą",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ dirba nuo ryto.",
+            "translationRu": "Почта работает с утра.",
+            "answer": "paštas",
+            "options": [
+              "paštas",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ yra netoli namų.",
+            "translationRu": "Почта рядом с домом.",
+            "answer": "paštas",
+            "options": [
+              "paštas",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        bankas: [
-          { sentence: "Aš einu į ___ pasiimti pinigų.", translationRu: "Я иду в банк снять деньги.", answer: toAccusativePhrase("bankas"), case: "accusative" },
-          { sentence: "___ dirba iki vakaro.", translationRu: "Банк работает до вечера.", answer: "bankas", case: "nominative" },
-          { sentence: "___ yra miesto centre.", translationRu: "Банк в центре города.", answer: "bankas", case: "nominative" }
+        "bankas": [
+          {
+            "sentence": "Aš einu į ___ pasiimti pinigų.",
+            "translationRu": "Я иду в банк снять деньги.",
+            "answer": "banką",
+            "options": [
+              "banką",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ dirba iki vakaro.",
+            "translationRu": "Банк работает до вечера.",
+            "answer": "bankas",
+            "options": [
+              "bankas",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ yra miesto centre.",
+            "translationRu": "Банк в центре города.",
+            "answer": "bankas",
+            "options": [
+              "bankas",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        biblioteka: [
-          { sentence: "Aš einu į ___ skaityti.", translationRu: "Я иду в библиотеку читать.", answer: toAccusativePhrase("biblioteka"), case: "accusative" },
-          { sentence: "___ yra rami.", translationRu: "Библиотека тихая.", answer: "biblioteka", case: "nominative" },
-          { sentence: "___ dirba šiandien.", translationRu: "Библиотека работает сегодня.", answer: "biblioteka", case: "nominative" }
+        "biblioteka": [
+          {
+            "sentence": "Aš einu į ___ skaityti.",
+            "translationRu": "Я иду в библиотеку читать.",
+            "answer": "biblioteką",
+            "options": [
+              "biblioteką",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ yra rami.",
+            "translationRu": "Библиотека тихая.",
+            "answer": "biblioteka",
+            "options": [
+              "biblioteka",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ dirba šiandien.",
+            "translationRu": "Библиотека работает сегодня.",
+            "answer": "biblioteka",
+            "options": [
+              "biblioteka",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        kirpykla: [
-          { sentence: "Aš einu į ___ kirptis.", translationRu: "Я иду в парикмахерскую стричься.", answer: toAccusativePhrase("kirpykla"), case: "accusative" },
-          { sentence: "___ yra netoli namų.", translationRu: "Парикмахерская рядом с домом.", answer: "kirpykla", case: "nominative" },
-          { sentence: "___ dirba iki vakaro.", translationRu: "Парикмахерская работает до вечера.", answer: "kirpykla", case: "nominative" }
+        "kirpykla": [
+          {
+            "sentence": "Aš einu į ___ kirptis.",
+            "translationRu": "Я иду в парикмахерскую стричься.",
+            "answer": "kirpyklą",
+            "options": [
+              "kirpyklą",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ yra netoli namų.",
+            "translationRu": "Парикмахерская рядом с домом.",
+            "answer": "kirpykla",
+            "options": [
+              "kirpykla",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ dirba iki vakaro.",
+            "translationRu": "Парикмахерская работает до вечера.",
+            "answer": "kirpykla",
+            "options": [
+              "kirpykla",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        knygynas: [
-          { sentence: "Aš einu į ___ pirkti knygos.", translationRu: "Я иду в книжный магазин купить книгу.", answer: toAccusativePhrase("knygynas"), case: "accusative" },
-          { sentence: "___ yra netoli.", translationRu: "Книжный магазин рядом.", answer: "knygynas", case: "nominative" },
-          { sentence: "___ dirba iki vakaro.", translationRu: "Книжный магазин работает до вечера.", answer: "knygynas", case: "nominative" }
+        "knygynas": [
+          {
+            "sentence": "Aš einu į ___ pirkti knygos.",
+            "translationRu": "Я иду в книжный магазин купить книгу.",
+            "answer": "knygyną",
+            "options": [
+              "knygyną",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ yra netoli.",
+            "translationRu": "Книжный магазин рядом.",
+            "answer": "knygynas",
+            "options": [
+              "knygynas",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ dirba iki vakaro.",
+            "translationRu": "Книжный магазин работает до вечера.",
+            "answer": "knygynas",
+            "options": [
+              "knygynas",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        mokykla: [
-          { sentence: "Vaikai eina į ___.", translationRu: "Дети идут в школу.", answer: toAccusativePhrase("mokykla"), case: "accusative" },
-          { sentence: "___ yra didelė.", translationRu: "Школа большая.", answer: "mokykla", case: "nominative" },
-          { sentence: "___ prasideda ryte.", translationRu: "Школа начинается утром.", answer: "mokykla", case: "nominative" }
+        "mokykla": [
+          {
+            "sentence": "Vaikai eina į ___.",
+            "translationRu": "Дети идут в школу.",
+            "answer": "mokyklą",
+            "options": [
+              "mokyklą",
+              "gatvę",
+              "ligoninę"
+            ]
+          },
+          {
+            "sentence": "___ yra didelė.",
+            "translationRu": "Школа большая.",
+            "answer": "mokykla",
+            "options": [
+              "mokykla",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "___ prasideda ryte.",
+            "translationRu": "Школа начинается утром.",
+            "answer": "mokykla",
+            "options": [
+              "mokykla",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        mokinys: [
-          { sentence: "___ mokosi mokykloje.", translationRu: "Ученик учится в школе.", answer: "mokinys", case: "nominative" },
-          { sentence: "Tai mano ___.", translationRu: "Это мой ученик.", answer: "mokinys", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу ученика.", answer: toAccusativePhrase("mokinys"), case: "accusative" }
+        "mokinys": [
+          {
+            "sentence": "___ mokosi mokykloje.",
+            "translationRu": "Ученик учится в школе.",
+            "answer": "mokinys",
+            "options": [
+              "mokinys",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Tai mano ___.",
+            "translationRu": "Это мой ученик.",
+            "answer": "mokinys",
+            "options": [
+              "mokinys",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу ученика.",
+            "answer": "mokinys",
+            "options": [
+              "mokinys",
+              "gatvė",
+              "ligoninė"
+            ]
+          }
         ],
-        mokine: [
-          { sentence: "___ mokosi mokykloje.", translationRu: "Ученица учится в школе.", answer: "mokinė", case: "nominative" },
-          { sentence: "Tai mano ___.", translationRu: "Это моя ученица.", answer: "mokinė", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу ученицу.", answer: toAccusativePhrase("mokinė"), case: "accusative" }
+        "mokine": [
+          {
+            "sentence": "___ mokosi mokykloje.",
+            "translationRu": "Ученица учится в школе.",
+            "answer": "mokinė",
+            "options": [
+              "mokinė",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Tai mano ___.",
+            "translationRu": "Это моя ученица.",
+            "answer": "mokinė",
+            "options": [
+              "mokinė",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу ученицу.",
+            "answer": "mokinę",
+            "options": [
+              "mokinę",
+              "gatvę",
+              "ligoninę"
+            ]
+          }
         ],
-        studentas: [
-          { sentence: "___ studijuoja universitete.", translationRu: "Студент учится в университете.", answer: "studentas", case: "nominative" },
-          { sentence: "Tai mano ___.", translationRu: "Это мой студент.", answer: "studentas", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу студента.", answer: toAccusativePhrase("studentas"), case: "accusative" }
+        "studentas": [
+          {
+            "sentence": "___ studijuoja universitete.",
+            "translationRu": "Студент учится в университете.",
+            "answer": "studentas",
+            "options": [
+              "studentas",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Tai mano ___.",
+            "translationRu": "Это мой студент.",
+            "answer": "studentas",
+            "options": [
+              "studentas",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу студента.",
+            "answer": "studentą",
+            "options": [
+              "studentą",
+              "gatvę",
+              "ligoninę"
+            ]
+          }
         ],
-        studente: [
-          { sentence: "___ studijuoja universitete.", translationRu: "Студентка учится в университете.", answer: "studentė", case: "nominative" },
-          { sentence: "Tai mano ___.", translationRu: "Это моя студентка.", answer: "studentė", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу студентку.", answer: toAccusativePhrase("studentė"), case: "accusative" }
+        "studente": [
+          {
+            "sentence": "___ studijuoja universitete.",
+            "translationRu": "Студентка учится в университете.",
+            "answer": "studentė",
+            "options": [
+              "studentė",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Tai mano ___.",
+            "translationRu": "Это моя студентка.",
+            "answer": "studentė",
+            "options": [
+              "studentė",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу студентку.",
+            "answer": "studentę",
+            "options": [
+              "studentę",
+              "gatvę",
+              "ligoninę"
+            ]
+          }
         ],
-        pensininkas: [
-          { sentence: "___ gauna pensiją.", translationRu: "Пенсионер получает пенсию.", answer: "pensininkas", case: "nominative" },
-          { sentence: "Jis yra ___.", translationRu: "Он пенсионер.", answer: "pensininkas", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу пенсионера.", answer: toAccusativePhrase("pensininkas"), case: "accusative" }
+        "pensininkas": [
+          {
+            "sentence": "___ gauna pensiją.",
+            "translationRu": "Пенсионер получает пенсию.",
+            "answer": "pensininkas",
+            "options": [
+              "pensininkas",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Jis yra ___.",
+            "translationRu": "Он пенсионер.",
+            "answer": "pensininkas",
+            "options": [
+              "pensininkas",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу пенсионера.",
+            "answer": "pensininką",
+            "options": [
+              "pensininką",
+              "gatvę",
+              "ligoninę"
+            ]
+          }
         ],
-        pensininke: [
-          { sentence: "___ gauna pensiją.", translationRu: "Пенсионерка получает пенсию.", answer: "pensininkė", case: "nominative" },
-          { sentence: "Ji yra ___.", translationRu: "Она пенсионерка.", answer: "pensininkė", case: "nominative" },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу пенсионерку.", answer: toAccusativePhrase("pensininkė"), case: "accusative" }
+        "pensininke": [
+          {
+            "sentence": "___ gauna pensiją.",
+            "translationRu": "Пенсионерка получает пенсию.",
+            "answer": "pensininkė",
+            "options": [
+              "pensininkė",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Ji yra ___.",
+            "translationRu": "Она пенсионерка.",
+            "answer": "pensininkė",
+            "options": [
+              "pensininkė",
+              "gatvė",
+              "ligoninė"
+            ]
+          },
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу пенсионерку.",
+            "answer": "pensininkę",
+            "options": [
+              "pensininkę",
+              "gatvę",
+              "ligoninę"
+            ]
+          }
         ]
-
       };
 
       const ui = {
@@ -354,10 +892,7 @@
         wordSet.words.forEach((word) => {
           const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const otherWords = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => (variant.case === "accusative" ? toAccusative(item.lt) : item.lt));
-            const options = shuffle([variant.answer, ...otherWords]);
+            const options = shuffle(Array.from(new Set(variant.options || [variant.answer])));
             questions.push({
               id: `gf_${word.id}_${index + 1}`,
               type: "gapFill",

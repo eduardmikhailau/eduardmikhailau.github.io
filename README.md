@@ -29,6 +29,7 @@ This repo is used to generate **self-contained HTML practice tests** for learnin
   - Show correctness and the correct answer on mistakes
   - Show final analytics
   - Per-word minimums (including 2 flashcards per word)
+- For gap fill, hardcode `gapFillVariants` options in the correct Lithuanian form for each question (no helper-based generation).
 
 ## Running
 

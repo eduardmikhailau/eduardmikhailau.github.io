@@ -105,34 +105,6 @@
 
     <script>
 
-      const toAccusative = (word) => {
-        if (word.endsWith("as")) {
-          return `${word.slice(0, -2)}ą`;
-        }
-        if (word.endsWith("is")) {
-          return `${word.slice(0, -2)}į`;
-        }
-        if (word.endsWith("us")) {
-          return `${word.slice(0, -2)}ų`;
-        }
-        if (word.endsWith("a")) {
-          return `${word.slice(0, -1)}ą`;
-        }
-        if (word.endsWith("ė")) {
-          return `${word.slice(0, -1)}ę`;
-        }
-        return word;
-      };
-
-      const toAccusativePhrase = (phrase) => {
-        const parts = phrase.split(" ");
-        if (parts.length === 1) {
-          return toAccusative(phrase);
-        }
-        const lastWord = parts.pop();
-        return [...parts, toAccusative(lastWord)].join(" ");
-      };
-
       const wordSet = {
         topic: "Mano šeima",
         words: [
@@ -143,14 +115,44 @@
 
       const gapFillVariants = {
         tevas: [
-          { sentence: "Mano ___ dirba ligoninėje.", translationRu: "Мой отец работает в больнице.", answer: "tėvas", case: "nominative" },
-          { sentence: "Aš skambinu savo ___.", translationRu: "Я звоню своему отцу.", answer: "tėvą", case: "accusative" },
-          { sentence: "Šiandien mano ___ yra namuose.", translationRu: "Сегодня мой отец дома.", answer: "tėvas", case: "nominative" }
+          {
+            sentence: "Mano ___ dirba ligoninėje.",
+            translationRu: "Мой отец работает в больнице.",
+            answer: "tėvas",
+            options: ["tėvas", "mama", "brolis"]
+          },
+          {
+            sentence: "Aš skambinu savo ___.",
+            translationRu: "Я звоню своему отцу.",
+            answer: "tėvą",
+            options: ["tėvą", "mamą", "brolį"]
+          },
+          {
+            sentence: "Šiandien mano ___ yra namuose.",
+            translationRu: "Сегодня мой отец дома.",
+            answer: "tėvas",
+            options: ["tėvas", "mama", "brolis"]
+          }
         ],
         mama: [
-          { sentence: "Mano ___ gamina vakarienę.", translationRu: "Моя мама готовит ужин.", answer: "mama", case: "nominative" },
-          { sentence: "Aš apkabinu ___.", translationRu: "Я обнимаю маму.", answer: "mamą", case: "accusative" },
-          { sentence: "Ryte mano ___ geria arbatą.", translationRu: "Утром моя мама пьет чай.", answer: "mama", case: "nominative" }
+          {
+            sentence: "Mano ___ gamina vakarienę.",
+            translationRu: "Моя мама готовит ужин.",
+            answer: "mama",
+            options: ["mama", "tėvas", "sesuo"]
+          },
+          {
+            sentence: "Aš apkabinu ___.",
+            translationRu: "Я обнимаю маму.",
+            answer: "mamą",
+            options: ["mamą", "tėvą", "seserį"]
+          },
+          {
+            sentence: "Ryte mano ___ geria arbatą.",
+            translationRu: "Утром моя мама пьет чай.",
+            answer: "mama",
+            options: ["mama", "tėvas", "sesuo"]
+          }
         ]
       };
 
@@ -239,10 +241,7 @@
         wordSet.words.forEach((word) => {
           const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const otherWords = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => (variant.case === "accusative" ? toAccusative(item.lt) : item.lt));
-            const options = shuffle([variant.answer, ...otherWords]);
+            const options = shuffle(Array.from(new Set([...(variant.options || []), variant.answer])));
             questions.push({
               id: `gf_${word.id}_${index + 1}`,
               type: "gapFill",

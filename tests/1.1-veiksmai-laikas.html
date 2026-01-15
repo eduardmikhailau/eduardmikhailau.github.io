@@ -105,34 +105,6 @@
 
     <script>
 
-      const toAccusative = (word) => {
-        if (word.endsWith("as")) {
-          return `${word.slice(0, -2)}ą`;
-        }
-        if (word.endsWith("is")) {
-          return `${word.slice(0, -2)}į`;
-        }
-        if (word.endsWith("us")) {
-          return `${word.slice(0, -2)}ų`;
-        }
-        if (word.endsWith("a")) {
-          return `${word.slice(0, -1)}ą`;
-        }
-        if (word.endsWith("ė")) {
-          return `${word.slice(0, -1)}ę`;
-        }
-        return word;
-      };
-
-      const toAccusativePhrase = (phrase) => {
-        const parts = phrase.split(" ");
-        if (parts.length === 1) {
-          return toAccusative(phrase);
-        }
-        const lastWord = parts.pop();
-        return [...parts, toAccusative(lastWord)].join(" ");
-      };
-
       const wordSet = {
         topic: "Veiksmai ir laikas",
         words: [
@@ -158,101 +130,614 @@
         ]
       };
 
-      const gapFillVariants = {
-        atostogauti: [
-          { sentence: "Vasarą noriu ___ prie jūros.", translationRu: "Летом хочу отдыхать у моря.", answer: "atostogauti", case: "nominative" },
-          { sentence: "Mes planuojame ___ Lietuvoje.", translationRu: "Мы планируем отдыхать в Литве.", answer: "atostogauti", case: "nominative" },
-          { sentence: "Po darbo svarbu ___.", translationRu: "После работы важно отдыхать.", answer: "atostogauti", case: "nominative" }
+                        const gapFillVariants = {
+        "atostogauti": [
+          {
+            "sentence": "Vasarą noriu ___ prie jūros.",
+            "translationRu": "Летом хочу отдыхать у моря.",
+            "answer": "atostogauti",
+            "options": [
+              "atostogauti",
+              "eiti",
+              "skambinti"
+            ]
+          },
+          {
+            "sentence": "Mes planuojame ___ Lietuvoje.",
+            "translationRu": "Мы планируем отдыхать в Литве.",
+            "answer": "atostogauti",
+            "options": [
+              "atostogauti",
+              "eiti",
+              "skambinti"
+            ]
+          },
+          {
+            "sentence": "Po darbo svarbu ___.",
+            "translationRu": "После работы важно отдыхать.",
+            "answer": "atostogauti",
+            "options": [
+              "atostogauti",
+              "eiti",
+              "skambinti"
+            ]
+          }
         ],
-        eiti: [
-          { sentence: "Man reikia ___ į parduotuvę.", translationRu: "Мне нужно идти в магазин.", answer: "eiti", case: "nominative" },
-          { sentence: "Ar gali ___ su manimi?", translationRu: "Ты можешь идти со мной?", answer: "eiti", case: "nominative" },
-          { sentence: "Aš noriu ___ namo.", translationRu: "Я хочу идти домой.", answer: "eiti", case: "nominative" }
+        "eiti": [
+          {
+            "sentence": "Man reikia ___ į parduotuvę.",
+            "translationRu": "Мне нужно идти в магазин.",
+            "answer": "eiti",
+            "options": [
+              "eiti",
+              "atostogauti",
+              "skambinti"
+            ]
+          },
+          {
+            "sentence": "Ar gali ___ su manimi?",
+            "translationRu": "Ты можешь идти со мной?",
+            "answer": "eiti",
+            "options": [
+              "eiti",
+              "atostogauti",
+              "skambinti"
+            ]
+          },
+          {
+            "sentence": "Aš noriu ___ namo.",
+            "translationRu": "Я хочу идти домой.",
+            "answer": "eiti",
+            "options": [
+              "eiti",
+              "atostogauti",
+              "skambinti"
+            ]
+          }
         ],
-        skambinti: [
-          { sentence: "Turiu ___ draugui.", translationRu: "Мне нужно звонить другу.", answer: "skambinti", case: "nominative" },
-          { sentence: "Ji nori ___ gydytojui.", translationRu: "Она хочет звонить врачу.", answer: "skambinti", case: "nominative" },
-          { sentence: "Galite ___ vėliau?", translationRu: "Вы можете звонить позже?", answer: "skambinti", case: "nominative" }
+        "skambinti": [
+          {
+            "sentence": "Turiu ___ draugui.",
+            "translationRu": "Мне нужно звонить другу.",
+            "answer": "skambinti",
+            "options": [
+              "skambinti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Ji nori ___ gydytojui.",
+            "translationRu": "Она хочет звонить врачу.",
+            "answer": "skambinti",
+            "options": [
+              "skambinti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Galite ___ vėliau?",
+            "translationRu": "Вы можете звонить позже?",
+            "answer": "skambinti",
+            "options": [
+              "skambinti",
+              "atostogauti",
+              "eiti"
+            ]
+          }
         ],
-        skubeti: [
-          { sentence: "Man reikia ___ į autobusą.", translationRu: "Мне нужно спешить к автобусу.", answer: "skubėti", case: "nominative" },
-          { sentence: "Nenoriu ___ ryte.", translationRu: "Я не хочу спешить утром.", answer: "skubėti", case: "nominative" },
-          { sentence: "Mes turime ___ į susitikimą.", translationRu: "Мы должны спешить на встречу.", answer: "skubėti", case: "nominative" }
+        "skubeti": [
+          {
+            "sentence": "Man reikia ___ į autobusą.",
+            "translationRu": "Мне нужно спешить к автобусу.",
+            "answer": "skubėti",
+            "options": [
+              "skubėti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Nenoriu ___ ryte.",
+            "translationRu": "Я не хочу спешить утром.",
+            "answer": "skubėti",
+            "options": [
+              "skubėti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Mes turime ___ į susitikimą.",
+            "translationRu": "Мы должны спешить на встречу.",
+            "answer": "skubėti",
+            "options": [
+              "skubėti",
+              "atostogauti",
+              "eiti"
+            ]
+          }
         ],
-        susitikti: [
-          { sentence: "Norime ___ kavinėje.", translationRu: "Мы хотим встретиться в кафе.", answer: "susitikti", case: "nominative" },
-          { sentence: "Aš planuoju ___ su drauge.", translationRu: "Я планирую встретиться с подругой.", answer: "susitikti", case: "nominative" },
-          { sentence: "Ar galime ___ rytoj?", translationRu: "Можем встретиться завтра?", answer: "susitikti", case: "nominative" }
+        "susitikti": [
+          {
+            "sentence": "Norime ___ kavinėje.",
+            "translationRu": "Мы хотим встретиться в кафе.",
+            "answer": "susitikti",
+            "options": [
+              "susitikti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Aš planuoju ___ su drauge.",
+            "translationRu": "Я планирую встретиться с подругой.",
+            "answer": "susitikti",
+            "options": [
+              "susitikti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Ar galime ___ rytoj?",
+            "translationRu": "Можем встретиться завтра?",
+            "answer": "susitikti",
+            "options": [
+              "susitikti",
+              "atostogauti",
+              "eiti"
+            ]
+          }
         ],
-        vaziuoti: [
-          { sentence: "Rytoj noriu ___ į miestą.", translationRu: "Завтра хочу ехать в город.", answer: "važiuoti", case: "nominative" },
-          { sentence: "Mes turime ___ namo.", translationRu: "Мы должны ехать домой.", answer: "važiuoti", case: "nominative" },
-          { sentence: "Jie planuoja ___ traukiniu.", translationRu: "Они планируют ехать поездом.", answer: "važiuoti", case: "nominative" }
+        "vaziuoti": [
+          {
+            "sentence": "Rytoj noriu ___ į miestą.",
+            "translationRu": "Завтра хочу ехать в город.",
+            "answer": "važiuoti",
+            "options": [
+              "važiuoti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Mes turime ___ namo.",
+            "translationRu": "Мы должны ехать домой.",
+            "answer": "važiuoti",
+            "options": [
+              "važiuoti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Jie planuoja ___ traukiniu.",
+            "translationRu": "Они планируют ехать поездом.",
+            "answer": "važiuoti",
+            "options": [
+              "važiuoti",
+              "atostogauti",
+              "eiti"
+            ]
+          }
         ],
-        veluoti: [
-          { sentence: "Nenoriu ___ į pamoką.", translationRu: "Я не хочу опаздывать на урок.", answer: "vėluoti", case: "nominative" },
-          { sentence: "Jis negali ___ į darbą.", translationRu: "Он не может опаздывать на работу.", answer: "vėluoti", case: "nominative" },
-          { sentence: "Mums nereikia ___.", translationRu: "Нам не нужно опаздывать.", answer: "vėluoti", case: "nominative" }
+        "veluoti": [
+          {
+            "sentence": "Nenoriu ___ į pamoką.",
+            "translationRu": "Я не хочу опаздывать на урок.",
+            "answer": "vėluoti",
+            "options": [
+              "vėluoti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Jis negali ___ į darbą.",
+            "translationRu": "Он не может опаздывать на работу.",
+            "answer": "vėluoti",
+            "options": [
+              "vėluoti",
+              "atostogauti",
+              "eiti"
+            ]
+          },
+          {
+            "sentence": "Mums nereikia ___.",
+            "translationRu": "Нам не нужно опаздывать.",
+            "answer": "vėluoti",
+            "options": [
+              "vėluoti",
+              "atostogauti",
+              "eiti"
+            ]
+          }
         ],
-        rytas: [
-          { sentence: "___ prasideda anksti.", translationRu: "Утро начинается рано.", answer: "rytas", case: "nominative" },
-          { sentence: "Aš mėgstu ___.", translationRu: "Я люблю утро.", answer: toAccusativePhrase("rytas"), case: "accusative" },
-          { sentence: "Šiandien ___ šaltas.", translationRu: "Сегодня утро холодное.", answer: "rytas", case: "nominative" }
+        "rytas": [
+          {
+            "sentence": "___ prasideda anksti.",
+            "translationRu": "Утро начинается рано.",
+            "answer": "rytas",
+            "options": [
+              "rytas",
+              "diena",
+              "vakaras"
+            ]
+          },
+          {
+            "sentence": "Aš mėgstu ___.",
+            "translationRu": "Я люблю утро.",
+            "answer": "rytą",
+            "options": [
+              "rytą",
+              "dieną",
+              "vakarą"
+            ]
+          },
+          {
+            "sentence": "Šiandien ___ šaltas.",
+            "translationRu": "Сегодня утро холодное.",
+            "answer": "rytas",
+            "options": [
+              "rytas",
+              "diena",
+              "vakaras"
+            ]
+          }
         ],
-        diena: [
-          { sentence: "Šiandien ___ ilga.", translationRu: "Сегодня день длинный.", answer: "diena", case: "nominative" },
-          { sentence: "Aš turiu gerą ___.", translationRu: "У меня хороший день.", answer: toAccusativePhrase("diena"), case: "accusative" },
-          { sentence: "___ baigiasi vakare.", translationRu: "День заканчивается вечером.", answer: "diena", case: "nominative" }
+        "diena": [
+          {
+            "sentence": "Šiandien ___ ilga.",
+            "translationRu": "Сегодня день длинный.",
+            "answer": "diena",
+            "options": [
+              "diena",
+              "rytas",
+              "vakaras"
+            ]
+          },
+          {
+            "sentence": "Aš turiu gerą ___.",
+            "translationRu": "У меня хороший день.",
+            "answer": "dieną",
+            "options": [
+              "dieną",
+              "rytą",
+              "vakarą"
+            ]
+          },
+          {
+            "sentence": "___ baigiasi vakare.",
+            "translationRu": "День заканчивается вечером.",
+            "answer": "diena",
+            "options": [
+              "diena",
+              "rytas",
+              "vakaras"
+            ]
+          }
         ],
-        vakaras: [
-          { sentence: "___ prasideda po darbo.", translationRu: "Вечер начинается после работы.", answer: "vakaras", case: "nominative" },
-          { sentence: "Mes praleidžiame ___ namuose.", translationRu: "Мы проводим вечер дома.", answer: toAccusativePhrase("vakaras"), case: "accusative" },
-          { sentence: "Šiandien ___ ramus.", translationRu: "Сегодня вечер спокойный.", answer: "vakaras", case: "nominative" }
+        "vakaras": [
+          {
+            "sentence": "___ prasideda po darbo.",
+            "translationRu": "Вечер начинается после работы.",
+            "answer": "vakaras",
+            "options": [
+              "vakaras",
+              "rytas",
+              "diena"
+            ]
+          },
+          {
+            "sentence": "Mes praleidžiame ___ namuose.",
+            "translationRu": "Мы проводим вечер дома.",
+            "answer": "vakarą",
+            "options": [
+              "vakarą",
+              "rytą",
+              "dieną"
+            ]
+          },
+          {
+            "sentence": "Šiandien ___ ramus.",
+            "translationRu": "Сегодня вечер спокойный.",
+            "answer": "vakaras",
+            "options": [
+              "vakaras",
+              "rytas",
+              "diena"
+            ]
+          }
         ],
-        naktis: [
-          { sentence: "___ tamsi.", translationRu: "Ночь темная.", answer: "naktis", case: "nominative" },
-          { sentence: "Aš miegojau visą ___.", translationRu: "Я спал всю ночь.", answer: toAccusativePhrase("naktis"), case: "accusative" },
-          { sentence: "Ši ___ buvo rami.", translationRu: "Эта ночь была спокойной.", answer: "naktis", case: "nominative" }
+        "naktis": [
+          {
+            "sentence": "___ tamsi.",
+            "translationRu": "Ночь темная.",
+            "answer": "naktis",
+            "options": [
+              "naktis",
+              "rytas",
+              "diena"
+            ]
+          },
+          {
+            "sentence": "Aš miegojau visą ___.",
+            "translationRu": "Я спал всю ночь.",
+            "answer": "naktį",
+            "options": [
+              "naktį",
+              "rytą",
+              "dieną"
+            ]
+          },
+          {
+            "sentence": "Ši ___ buvo rami.",
+            "translationRu": "Эта ночь была спокойной.",
+            "answer": "naktis",
+            "options": [
+              "naktis",
+              "rytas",
+              "diena"
+            ]
+          }
         ],
-        visada: [
-          { sentence: "Aš ___ geriu arbatą ryte.", translationRu: "Я всегда пью чай утром.", answer: "visada", case: "nominative" },
-          { sentence: "Jis ___ ateina laiku.", translationRu: "Он всегда приходит вовремя.", answer: "visada", case: "nominative" },
-          { sentence: "Mes ___ sakome \"labas\".", translationRu: "Мы всегда говорим \"привет\".", answer: "visada", case: "nominative" }
+        "visada": [
+          {
+            "sentence": "Aš ___ geriu arbatą ryte.",
+            "translationRu": "Я всегда пью чай утром.",
+            "answer": "visada",
+            "options": [
+              "visada",
+              "dažnai",
+              "šiandien"
+            ]
+          },
+          {
+            "sentence": "Jis ___ ateina laiku.",
+            "translationRu": "Он всегда приходит вовремя.",
+            "answer": "visada",
+            "options": [
+              "visada",
+              "dažnai",
+              "šiandien"
+            ]
+          },
+          {
+            "sentence": "Mes ___ sakome \"labas\".",
+            "translationRu": "Мы всегда говорим \"привет\".",
+            "answer": "visada",
+            "options": [
+              "visada",
+              "dažnai",
+              "šiandien"
+            ]
+          }
         ],
-        daznai: [
-          { sentence: "Ji ___ vaikšto į parką.", translationRu: "Она часто ходит в парк.", answer: "dažnai", case: "nominative" },
-          { sentence: "Mes ___ gaminame vakarienę.", translationRu: "Мы часто готовим ужин.", answer: "dažnai", case: "nominative" },
-          { sentence: "Aš ___ skaitau knygas.", translationRu: "Я часто читаю книги.", answer: "dažnai", case: "nominative" }
+        "daznai": [
+          {
+            "sentence": "Ji ___ vaikšto į parką.",
+            "translationRu": "Она часто ходит в парк.",
+            "answer": "dažnai",
+            "options": [
+              "dažnai",
+              "visada",
+              "šiandien"
+            ]
+          },
+          {
+            "sentence": "Mes ___ gaminame vakarienę.",
+            "translationRu": "Мы часто готовим ужин.",
+            "answer": "dažnai",
+            "options": [
+              "dažnai",
+              "visada",
+              "šiandien"
+            ]
+          },
+          {
+            "sentence": "Aš ___ skaitau knygas.",
+            "translationRu": "Я часто читаю книги.",
+            "answer": "dažnai",
+            "options": [
+              "dažnai",
+              "visada",
+              "šiandien"
+            ]
+          }
         ],
-        siandien: [
-          { sentence: "___ aš dirbu namuose.", translationRu: "Сегодня я работаю дома.", answer: "šiandien", case: "nominative" },
-          { sentence: "Mes ___ susitinkame mieste.", translationRu: "Мы сегодня встречаемся в городе.", answer: "šiandien", case: "nominative" },
-          { sentence: "___ yra mano laisva diena.", translationRu: "Сегодня мой выходной.", answer: "šiandien", case: "nominative" }
+        "siandien": [
+          {
+            "sentence": "___ aš dirbu namuose.",
+            "translationRu": "Сегодня я работаю дома.",
+            "answer": "šiandien",
+            "options": [
+              "šiandien",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Mes ___ susitinkame mieste.",
+            "translationRu": "Мы сегодня встречаемся в городе.",
+            "answer": "šiandien",
+            "options": [
+              "šiandien",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "___ yra mano laisva diena.",
+            "translationRu": "Сегодня мой выходной.",
+            "answer": "šiandien",
+            "options": [
+              "šiandien",
+              "visada",
+              "dažnai"
+            ]
+          }
         ],
-        dabar: [
-          { sentence: "___ turiu pamoką.", translationRu: "Сейчас у меня урок.", answer: "dabar", case: "nominative" },
-          { sentence: "Mes ___ esame parduotuvėje.", translationRu: "Мы сейчас в магазине.", answer: "dabar", case: "nominative" },
-          { sentence: "Aš ___ neturiu laiko.", translationRu: "У меня сейчас нет времени.", answer: "dabar", case: "nominative" }
+        "dabar": [
+          {
+            "sentence": "___ turiu pamoką.",
+            "translationRu": "Сейчас у меня урок.",
+            "answer": "dabar",
+            "options": [
+              "dabar",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Mes ___ esame parduotuvėje.",
+            "translationRu": "Мы сейчас в магазине.",
+            "answer": "dabar",
+            "options": [
+              "dabar",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Aš ___ neturiu laiko.",
+            "translationRu": "У меня сейчас нет времени.",
+            "answer": "dabar",
+            "options": [
+              "dabar",
+              "visada",
+              "dažnai"
+            ]
+          }
         ],
-        niekada: [
-          { sentence: "Aš ___ nerūkau.", translationRu: "Я никогда не курю.", answer: "niekada", case: "nominative" },
-          { sentence: "Ji ___ nevėluoja.", translationRu: "Она никогда не опаздывает.", answer: "niekada", case: "nominative" },
-          { sentence: "Mes ___ nepamirštame raktų.", translationRu: "Мы никогда не забываем ключи.", answer: "niekada", case: "nominative" }
+        "niekada": [
+          {
+            "sentence": "Aš ___ nerūkau.",
+            "translationRu": "Я никогда не курю.",
+            "answer": "niekada",
+            "options": [
+              "niekada",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Ji ___ nevėluoja.",
+            "translationRu": "Она никогда не опаздывает.",
+            "answer": "niekada",
+            "options": [
+              "niekada",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Mes ___ nepamirštame raktų.",
+            "translationRu": "Мы никогда не забываем ключи.",
+            "answer": "niekada",
+            "options": [
+              "niekada",
+              "visada",
+              "dažnai"
+            ]
+          }
         ],
-        kartais: [
-          { sentence: "Aš ___ gaminu vakarienę.", translationRu: "Я иногда готовлю ужин.", answer: "kartais", case: "nominative" },
-          { sentence: "Mes ___ einame į kiną.", translationRu: "Мы иногда ходим в кино.", answer: "kartais", case: "nominative" },
-          { sentence: "Jis ___ dirba savaitgalį.", translationRu: "Он иногда работает в выходные.", answer: "kartais", case: "nominative" }
+        "kartais": [
+          {
+            "sentence": "Aš ___ gaminu vakarienę.",
+            "translationRu": "Я иногда готовлю ужин.",
+            "answer": "kartais",
+            "options": [
+              "kartais",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Mes ___ einame į kiną.",
+            "translationRu": "Мы иногда ходим в кино.",
+            "answer": "kartais",
+            "options": [
+              "kartais",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Jis ___ dirba savaitgalį.",
+            "translationRu": "Он иногда работает в выходные.",
+            "answer": "kartais",
+            "options": [
+              "kartais",
+              "visada",
+              "dažnai"
+            ]
+          }
         ],
-        rytoj: [
-          { sentence: "___ važiuoju pas draugą.", translationRu: "Завтра еду к другу.", answer: "rytoj", case: "nominative" },
-          { sentence: "Mes ___ turime egzaminą.", translationRu: "Завтра у нас экзамен.", answer: "rytoj", case: "nominative" },
-          { sentence: "___ bus lietus.", translationRu: "Завтра будет дождь.", answer: "rytoj", case: "nominative" }
+        "rytoj": [
+          {
+            "sentence": "___ važiuoju pas draugą.",
+            "translationRu": "Завтра еду к другу.",
+            "answer": "rytoj",
+            "options": [
+              "rytoj",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Mes ___ turime egzaminą.",
+            "translationRu": "Завтра у нас экзамен.",
+            "answer": "rytoj",
+            "options": [
+              "rytoj",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "___ bus lietus.",
+            "translationRu": "Завтра будет дождь.",
+            "answer": "rytoj",
+            "options": [
+              "rytoj",
+              "visada",
+              "dažnai"
+            ]
+          }
         ],
-        kasdien: [
-          { sentence: "Aš ___ mokausi lietuvių kalbos.", translationRu: "Я каждый день учу литовский язык.", answer: "kasdien", case: "nominative" },
-          { sentence: "Ji ___ eina į darbą pėsčiomis.", translationRu: "Она каждый день идет на работу пешком.", answer: "kasdien", case: "nominative" },
-          { sentence: "Mes ___ valgome pusryčius namuose.", translationRu: "Мы каждый день завтракаем дома.", answer: "kasdien", case: "nominative" }
+        "kasdien": [
+          {
+            "sentence": "Aš ___ mokausi lietuvių kalbos.",
+            "translationRu": "Я каждый день учу литовский язык.",
+            "answer": "kasdien",
+            "options": [
+              "kasdien",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Ji ___ eina į darbą pėsčiomis.",
+            "translationRu": "Она каждый день идет на работу пешком.",
+            "answer": "kasdien",
+            "options": [
+              "kasdien",
+              "visada",
+              "dažnai"
+            ]
+          },
+          {
+            "sentence": "Mes ___ valgome pusryčius namuose.",
+            "translationRu": "Мы каждый день завтракаем дома.",
+            "answer": "kasdien",
+            "options": [
+              "kasdien",
+              "visada",
+              "dažnai"
+            ]
+          }
         ]
       };
 
@@ -341,10 +826,7 @@
         wordSet.words.forEach((word) => {
           const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const otherWords = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => (variant.case === "accusative" ? toAccusative(item.lt) : item.lt));
-            const options = shuffle([variant.answer, ...otherWords]);
+            const options = shuffle(Array.from(new Set(variant.options || [variant.answer])));
             questions.push({
               id: `gf_${word.id}_${index + 1}`,
               type: "gapFill",

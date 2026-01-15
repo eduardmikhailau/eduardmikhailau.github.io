@@ -111,6 +111,8 @@ Insert the word from context.
 }
 ```
 
+**Rule:** Each gap-fill question must hardcode its `options` in the correct Lithuanian form for that sentence. Do not generate forms with helpers.
+
 ---
 
 ## 6. Test type 4 — Gap Fill (Typing)
