@@ -263,18 +263,7 @@
           { id: "niekada", lt: "niekada", ru: "никогда" },
           { id: "kartais", lt: "kartais", ru: "иногда" },
           { id: "rytoj", lt: "rytoj", ru: "завтра" },
-          { id: "kasdien", lt: "kasdien", ru: "каждый день" },
-          { id: "nulis", lt: "nulis", ru: "ноль" },
-          { id: "vienas", lt: "vienas", ru: "один" },
-          { id: "du", lt: "du", ru: "два" },
-          { id: "trys", lt: "trys", ru: "три" },
-          { id: "keturi", lt: "keturi", ru: "четыре" },
-          { id: "penki", lt: "penki", ru: "пять" },
-          { id: "sesi", lt: "šeši", ru: "шесть" },
-          { id: "septyni", lt: "septyni", ru: "семь" },
-          { id: "astuoni", lt: "aštuoni", ru: "восемь" },
-          { id: "devyni", lt: "devyni", ru: "девять" },
-          { id: "desimt", lt: "dešimt", ru: "десять" }
+          { id: "kasdien", lt: "kasdien", ru: "каждый день" }
         ]
       };
 
@@ -297,20 +286,6 @@
         "kartais",
         "rytoj",
         "kasdien"
-      ]);
-
-      const numberIds = new Set([
-        "nulis",
-        "vienas",
-        "du",
-        "trys",
-        "keturi",
-        "penki",
-        "sesi",
-        "septyni",
-        "astuoni",
-        "devyni",
-        "desimt"
       ]);
 
       const timeIds = new Set([
@@ -1188,61 +1163,6 @@
           { sentence: "Mes ___ susitinkame.", translationRu: "Мы каждый день встречаемся.", answer: "kasdien", case: "nominative" },
           { sentence: "Ji ___ būna namuose.", translationRu: "Она каждый день бывает дома.", answer: "kasdien", case: "nominative" }
         ],
-        nulis: [
-          { sentence: "Skaičius 0 lietuviškai yra ___.", translationRu: "Число 0 по-литовски это ноль.", answer: "nulis", case: "nominative" },
-          { sentence: "Parašykite skaičių 0: ___.", translationRu: "Напишите число 0: ноль.", answer: "nulis", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 0.", translationRu: "Слово ноль означает число 0.", answer: "nulis", case: "nominative" }
-        ],
-        vienas: [
-          { sentence: "Skaičius 1 lietuviškai yra ___.", translationRu: "Число 1 по-литовски это один.", answer: "vienas", case: "nominative" },
-          { sentence: "Parašykite skaičių 1: ___.", translationRu: "Напишите число 1: один.", answer: "vienas", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 1.", translationRu: "Слово один означает число 1.", answer: "vienas", case: "nominative" }
-        ],
-        du: [
-          { sentence: "Skaičius 2 lietuviškai yra ___.", translationRu: "Число 2 по-литовски это два.", answer: "du", case: "nominative" },
-          { sentence: "Parašykite skaičių 2: ___.", translationRu: "Напишите число 2: два.", answer: "du", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 2.", translationRu: "Слово два означает число 2.", answer: "du", case: "nominative" }
-        ],
-        trys: [
-          { sentence: "Skaičius 3 lietuviškai yra ___.", translationRu: "Число 3 по-литовски это три.", answer: "trys", case: "nominative" },
-          { sentence: "Parašykite skaičių 3: ___.", translationRu: "Напишите число 3: три.", answer: "trys", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 3.", translationRu: "Слово три означает число 3.", answer: "trys", case: "nominative" }
-        ],
-        keturi: [
-          { sentence: "Skaičius 4 lietuviškai yra ___.", translationRu: "Число 4 по-литовски это четыре.", answer: "keturi", case: "nominative" },
-          { sentence: "Parašykite skaičių 4: ___.", translationRu: "Напишите число 4: четыре.", answer: "keturi", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 4.", translationRu: "Слово четыре означает число 4.", answer: "keturi", case: "nominative" }
-        ],
-        penki: [
-          { sentence: "Skaičius 5 lietuviškai yra ___.", translationRu: "Число 5 по-литовски это пять.", answer: "penki", case: "nominative" },
-          { sentence: "Parašykite skaičių 5: ___.", translationRu: "Напишите число 5: пять.", answer: "penki", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 5.", translationRu: "Слово пять означает число 5.", answer: "penki", case: "nominative" }
-        ],
-        sesi: [
-          { sentence: "Skaičius 6 lietuviškai yra ___.", translationRu: "Число 6 по-литовски это шесть.", answer: "šeši", case: "nominative" },
-          { sentence: "Parašykite skaičių 6: ___.", translationRu: "Напишите число 6: шесть.", answer: "šeši", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 6.", translationRu: "Слово шесть означает число 6.", answer: "šeši", case: "nominative" }
-        ],
-        septyni: [
-          { sentence: "Skaičius 7 lietuviškai yra ___.", translationRu: "Число 7 по-литовски это семь.", answer: "septyni", case: "nominative" },
-          { sentence: "Parašykite skaičių 7: ___.", translationRu: "Напишите число 7: семь.", answer: "septyni", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 7.", translationRu: "Слово семь означает число 7.", answer: "septyni", case: "nominative" }
-        ],
-        astuoni: [
-          { sentence: "Skaičius 8 lietuviškai yra ___.", translationRu: "Число 8 по-литовски это восемь.", answer: "aštuoni", case: "nominative" },
-          { sentence: "Parašykite skaičių 8: ___.", translationRu: "Напишите число 8: восемь.", answer: "aštuoni", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 8.", translationRu: "Слово восемь означает число 8.", answer: "aštuoni", case: "nominative" }
-        ],
-        devyni: [
-          { sentence: "Skaičius 9 lietuviškai yra ___.", translationRu: "Число 9 по-литовски это девять.", answer: "devyni", case: "nominative" },
-          { sentence: "Parašykite skaičių 9: ___.", translationRu: "Напишите число 9: девять.", answer: "devyni", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 9.", translationRu: "Слово девять означает число 9.", answer: "devyni", case: "nominative" }
-        ],
-        desimt: [
-          { sentence: "Skaičius 10 lietuviškai yra ___.", translationRu: "Число 10 по-литовски это десять.", answer: "dešimt", case: "nominative" },
-          { sentence: "Parašykite skaičių 10: ___.", translationRu: "Напишите число 10: десять.", answer: "dešimt", case: "nominative" },
-          { sentence: "Žodis ___ reiškia skaičių 10.", translationRu: "Слово десять означает число 10.", answer: "dešimt", case: "nominative" }
-        ],
       };
 
       const casePracticeVariants = {
@@ -2030,61 +1950,6 @@
           { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"каждый день\".", answer: "kasdien" },
           { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"каждый день\".", answer: "kasdien" },
           { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"каждый день\".", answer: "kasdien" }
-        ],
-        nulis: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"ноль\".", answer: "nulis" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"ноль\".", answer: "nulis" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"ноль\".", answer: "nulis" }
-        ],
-        vienas: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"один\".", answer: "vienas" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"один\".", answer: "vienas" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"один\".", answer: "vienas" }
-        ],
-        du: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"два\".", answer: "du" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"два\".", answer: "du" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"два\".", answer: "du" }
-        ],
-        trys: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"три\".", answer: "trys" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"три\".", answer: "trys" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"три\".", answer: "trys" }
-        ],
-        keturi: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"четыре\".", answer: "keturi" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"четыре\".", answer: "keturi" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"четыре\".", answer: "keturi" }
-        ],
-        penki: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"пять\".", answer: "penki" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"пять\".", answer: "penki" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"пять\".", answer: "penki" }
-        ],
-        sesi: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"шесть\".", answer: "šeši" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"шесть\".", answer: "šeši" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"шесть\".", answer: "šeši" }
-        ],
-        septyni: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"семь\".", answer: "septyni" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"семь\".", answer: "septyni" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"семь\".", answer: "septyni" }
-        ],
-        astuoni: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"восемь\".", answer: "aštuoni" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"восемь\".", answer: "aštuoni" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"восемь\".", answer: "aštuoni" }
-        ],
-        devyni: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"девять\".", answer: "devyni" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"девять\".", answer: "devyni" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"девять\".", answer: "devyni" }
-        ],
-        desimt: [
-          { sentence: "Aš kartoju žodį \"___\".", translationRu: "Я повторяю слово \"десять\".", answer: "dešimt" },
-          { sentence: "Parašykite žodį \"___\".", translationRu: "Напишите слово \"десять\".", answer: "dešimt" },
-          { sentence: "Aš prisimenu žodį \"___\".", translationRu: "Я помню слово \"десять\".", answer: "dešimt" }
         ],
       };
 

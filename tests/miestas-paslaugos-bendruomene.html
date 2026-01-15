@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Miestas: paslaugos ir bendruomenė — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <div class="mx-auto flex min-h-screen max-w-3xl flex-col px-4 py-6">
+      <header class="mb-6 text-center">
+        <h1 class="text-2xl font-semibold sm:text-3xl">Miestas: paslaugos ir bendruomenė — Practice Tests</h1>
+        <p class="mt-2 text-sm text-slate-600 sm:text-base">
+          Flashcards, multiple choice, gap fill, definition, and case practice.
+        </p>
+      </header>
+
+      <main class="flex-1">
+        <section id="start-screen" class="space-y-4 rounded-2xl bg-white p-6 shadow-sm">
+          <h2 class="text-xl font-semibold">Ready to start?</h2>
+          <p class="text-sm text-slate-600">
+            Each run randomizes question order and answer options. You will see immediate feedback and
+            a summary at the end.
+          </p>
+          <p id="resume-note" class="hidden text-xs text-slate-500">Saved progress detected.</p>
+          <button
+            id="start-button"
+            class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+          >
+            Start Tests
+          </button>
+        </section>
+
+        <section id="test-screen" class="hidden space-y-6 pb-28">
+          <div class="rounded-2xl bg-white p-5 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p id="test-title" class="text-lg font-semibold"></p>
+                <p id="test-progress" class="text-sm text-slate-600"></p>
+              </div>
+              <div class="flex items-center gap-3 text-right">
+                <div>
+                  <p class="text-sm text-slate-500">Overall progress</p>
+                  <p id="overall-progress" class="text-base font-semibold"></p>
+                </div>
+                <button
+                  id="reset-button"
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition hover:bg-slate-50"
+                  type="button"
+                  title="Restart test"
+                  aria-label="Restart test"
+                >
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 1 0 3-6.7" />
+                    <path d="M3 4v6h6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <div id="question-block" class="space-y-4">
+              <p id="question-label" class="text-sm font-semibold uppercase tracking-wide text-indigo-600"></p>
+              <p id="question-text" class="text-xl font-semibold"></p>
+              <p id="question-subtitle" class="text-sm text-slate-600"></p>
+            </div>
+
+            <div id="answer-block" class="mt-5 space-y-3"></div>
+
+            <div id="feedback" class="mt-4 hidden rounded-xl border px-4 py-3 text-sm"></div>
+          </div>
+
+          <div id="next-panel" class="fixed inset-x-0 bottom-0 z-10 hidden border-t border-slate-200 bg-white/95 backdrop-blur">
+            <div class="mx-auto max-w-3xl px-4 py-4">
+              <button
+                id="next-button"
+                class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="summary-screen" class="hidden space-y-5 rounded-2xl bg-white p-6 shadow-sm">
+          <div>
+            <h2 class="text-xl font-semibold">Your progress summary</h2>
+            <p id="summary-total" class="text-sm text-slate-600"></p>
+          </div>
+          <div id="summary-table" class="space-y-3"></div>
+          <button
+            id="restart-button"
+            class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+          >
+            Restart Tests
+          </button>
+        </section>
+      </main>
+
+      <footer class="mt-8 text-center text-xs text-slate-500">
+        Mobile-friendly UI with TailwindCSS.
+      </footer>
+    </div>
+
+    <script>
+      const wordSet = {
+        topic: "Miestas: paslaugos ir bendruomenė",
+        words: [
+          { id: "gatve", lt: "gatvė", ru: "улица" },
+          { id: "ligonine", lt: "ligoninė", ru: "больница" },
+          { id: "kioskas", lt: "kioskas", ru: "киоск" },
+          { id: "ministerija", lt: "ministerija", ru: "министерство" },
+          { id: "viesbutis", lt: "viešbutis", ru: "отель" },
+          { id: "bendrabutis", lt: "bendrabutis", ru: "общежитие" },
+          { id: "vaistine", lt: "vaistinė", ru: "аптека" },
+          { id: "baznycia", lt: "bažnyčia", ru: "церковь" },
+          { id: "parduotuve", lt: "parduotuvė", ru: "магазин" },
+          { id: "pastas", lt: "paštas", ru: "почта" },
+          { id: "bankas", lt: "bankas", ru: "банк" },
+          { id: "biblioteka", lt: "biblioteka", ru: "библиотека" },
+          { id: "kirpykla", lt: "kirpykla", ru: "парикмахерская" },
+          { id: "knygynas", lt: "knygynas", ru: "книжный магазин" },
+          { id: "mokykla", lt: "mokykla", ru: "школа" },
+          { id: "mokinys", lt: "mokinys", ru: "ученик" },
+          { id: "mokine", lt: "mokinė", ru: "ученица" },
+          { id: "studentas", lt: "studentas", ru: "студент" },
+          { id: "studente", lt: "studentė", ru: "студентка" },
+          { id: "pensininkas", lt: "pensininkas", ru: "пенсионер" },
+          { id: "pensininke", lt: "pensininkė", ru: "пенсионерка" }
+        ]
+      };
+
+      const verbIds = new Set([
+        "atostogauti",
+        "eiti",
+        "skambinti",
+        "skubeti",
+        "susitikti",
+        "vaziuoti",
+        "veluoti"
+      ]);
+
+      const adverbIds = new Set([
+        "visada",
+        "daznai",
+        "siandien",
+        "dabar",
+        "niekada",
+        "kartais",
+        "rytoj",
+        "kasdien"
+      ]);
+
+      const timeIds = new Set([
+        "pavasaris",
+        "vasara",
+        "ruduo",
+        "ziema",
+        "pirmadienis",
+        "antradienis",
+        "treciadienis",
+        "ketvirtadienis",
+        "penktadienis",
+        "sestadienis",
+        "sekmadienis",
+        "savaitgalis",
+        "rytas",
+        "diena",
+        "vakaras",
+        "naktis"
+      ]);
+
+      const definitionTemplates = [
+        { definitionLt: "Žodis reiškia: {ru}.", translationRu: "Значение: {ru}." },
+        { definitionLt: "Rusiškai: {ru}.", translationRu: "По-русски: {ru}." },
+        { definitionLt: "Lietuviškai tai yra: {ru}.", translationRu: "По-литовски это: {ru}." }
+      ];
+
+      const ui = {
+        startScreen: document.getElementById("start-screen"),
+        testScreen: document.getElementById("test-screen"),
+        summaryScreen: document.getElementById("summary-screen"),
+        startButton: document.getElementById("start-button"),
+        resumeNote: document.getElementById("resume-note"),
+        restartButton: document.getElementById("restart-button"),
+        resetButton: document.getElementById("reset-button"),
+        testTitle: document.getElementById("test-title"),
+        testProgress: document.getElementById("test-progress"),
+        overallProgress: document.getElementById("overall-progress"),
+        questionLabel: document.getElementById("question-label"),
+        questionText: document.getElementById("question-text"),
+        questionSubtitle: document.getElementById("question-subtitle"),
+        answerBlock: document.getElementById("answer-block"),
+        feedback: document.getElementById("feedback"),
+        nextPanel: document.getElementById("next-panel"),
+        nextButton: document.getElementById("next-button"),
+        summaryTotal: document.getElementById("summary-total"),
+        summaryTable: document.getElementById("summary-table")
+      };
+
+      const shuffle = (array) => {
+        const copy = [...array];
+        for (let i = copy.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      };
+
+      const getRandomWords = (excludeId, count, field = "lt") => {
+        return shuffle(wordSet.words.filter((item) => item.id !== excludeId))
+          .slice(0, count)
+          .map((item) => item[field]);
+      };
+
+      const toAccusative = (word) => {
+        if (word.endsWith("as")) {
+          return `${word.slice(0, -2)}ą`;
+        }
+        if (word.endsWith("is")) {
+          return `${word.slice(0, -2)}į`;
+        }
+        if (word.endsWith("us")) {
+          return `${word.slice(0, -2)}ų`;
+        }
+        if (word.endsWith("a")) {
+          return `${word.slice(0, -1)}ą`;
+        }
+        if (word.endsWith("ė")) {
+          return `${word.slice(0, -1)}ę`;
+        }
+        return word;
+      };
+
+      const toAccusativePhrase = (phrase) => {
+        const parts = phrase.split(" ");
+        if (parts.length === 1) {
+          return toAccusative(phrase);
+        }
+        const lastWord = parts.pop();
+        return [...parts, toAccusative(lastWord)].join(" ");
+      };
+      const gapFillVariants = {
+        gatve: [
+          { sentence: "Ši ___ ilga.", translationRu: "Эта улица длинная.", answer: "gatvė", case: "nominative" },
+          { sentence: "Aš einu per ___.", translationRu: "Я иду через улицу.", answer: toAccusativePhrase("gatvė"), case: "accusative" },
+          { sentence: "___ yra rami.", translationRu: "Улица спокойная.", answer: "gatvė", case: "nominative" }
+        ],
+        ligonine: [
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в больницу.", answer: toAccusativePhrase("ligoninė"), case: "accusative" },
+          { sentence: "___ yra miesto centre.", translationRu: "Больница в центре города.", answer: "ligoninė", case: "nominative" },
+          { sentence: "___ dirba gydytojai.", translationRu: "В больнице работают врачи.", answer: "ligoninė", case: "nominative" }
+        ],
+        kioskas: [
+          { sentence: "Aš einu į ___ pirkti laikraščio.", translationRu: "Я иду в киоск купить газету.", answer: toAccusativePhrase("kioskas"), case: "accusative" },
+          { sentence: "___ yra mažas.", translationRu: "Киоск маленький.", answer: "kioskas", case: "nominative" },
+          { sentence: "___ dirba ryte.", translationRu: "Киоск работает утром.", answer: "kioskas", case: "nominative" }
+        ],
+        ministerija: [
+          { sentence: "___ yra sostinėje.", translationRu: "Министерство в столице.", answer: "ministerija", case: "nominative" },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в министерство.", answer: toAccusativePhrase("ministerija"), case: "accusative" },
+          { sentence: "___ yra didelė.", translationRu: "Министерство большое.", answer: "ministerija", case: "nominative" }
+        ],
+        viesbutis: [
+          { sentence: "Mes renkamės ___.", translationRu: "Мы выбираем отель.", answer: toAccusativePhrase("viešbutis"), case: "accusative" },
+          { sentence: "___ yra centre.", translationRu: "Отель в центре.", answer: "viešbutis", case: "nominative" },
+          { sentence: "___ yra didelis.", translationRu: "Отель большой.", answer: "viešbutis", case: "nominative" }
+        ],
+        bendrabutis: [
+          { sentence: "___ yra netoli universiteto.", translationRu: "Общежитие рядом с университетом.", answer: "bendrabutis", case: "nominative" },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в общежитие.", answer: toAccusativePhrase("bendrabutis"), case: "accusative" },
+          { sentence: "Aš matau ___.", translationRu: "Я вижу общежитие.", answer: toAccusativePhrase("bendrabutis"), case: "accusative" }
+        ],
+        vaistine: [
+          { sentence: "Man reikia eiti į ___.", translationRu: "Мне нужно идти в аптеку.", answer: toAccusativePhrase("vaistinė"), case: "accusative" },
+          { sentence: "___ parduoda vaistus.", translationRu: "Аптека продает лекарства.", answer: "vaistinė", case: "nominative" },
+          { sentence: "___ dirba iki vakaro.", translationRu: "Аптека работает до вечера.", answer: "vaistinė", case: "nominative" }
+        ],
+        baznycia: [
+          { sentence: "___ yra senamiestyje.", translationRu: "Церковь в старом городе.", answer: "bažnyčia", case: "nominative" },
+          { sentence: "Žmonės eina į ___.", translationRu: "Люди идут в церковь.", answer: toAccusativePhrase("bažnyčia"), case: "accusative" },
+          { sentence: "___ yra graži.", translationRu: "Церковь красивая.", answer: "bažnyčia", case: "nominative" }
+        ],
+        parduotuve: [
+          { sentence: "Aš einu į ___ pirkti maisto.", translationRu: "Я иду в магазин купить еду.", answer: toAccusativePhrase("parduotuvė"), case: "accusative" },
+          { sentence: "___ dirba nuo ryto.", translationRu: "Магазин работает с утра.", answer: "parduotuvė", case: "nominative" },
+          { sentence: "___ yra šalia.", translationRu: "Магазин рядом.", answer: "parduotuvė", case: "nominative" }
+        ],
+        pastas: [
+          { sentence: "Aš einu į ___ siųsti laišką.", translationRu: "Я иду на почту отправить письмо.", answer: toAccusativePhrase("paštas"), case: "accusative" },
+          { sentence: "___ dirba nuo ryto.", translationRu: "Почта работает с утра.", answer: "paštas", case: "nominative" },
+          { sentence: "___ yra netoli namų.", translationRu: "Почта рядом с домом.", answer: "paštas", case: "nominative" }
+        ],
+        bankas: [
+          { sentence: "Aš einu į ___ pasiimti pinigų.", translationRu: "Я иду в банк снять деньги.", answer: toAccusativePhrase("bankas"), case: "accusative" },
+          { sentence: "___ dirba iki vakaro.", translationRu: "Банк работает до вечера.", answer: "bankas", case: "nominative" },
+          { sentence: "___ yra miesto centre.", translationRu: "Банк в центре города.", answer: "bankas", case: "nominative" }
+        ],
+        biblioteka: [
+          { sentence: "Aš einu į ___ skaityti.", translationRu: "Я иду в библиотеку читать.", answer: toAccusativePhrase("biblioteka"), case: "accusative" },
+          { sentence: "___ yra rami.", translationRu: "Библиотека тихая.", answer: "biblioteka", case: "nominative" },
+          { sentence: "___ dirba šiandien.", translationRu: "Библиотека работает сегодня.", answer: "biblioteka", case: "nominative" }
+        ],
+        kirpykla: [
+          { sentence: "Aš einu į ___ kirptis.", translationRu: "Я иду в парикмахерскую стричься.", answer: toAccusativePhrase("kirpykla"), case: "accusative" },
+          { sentence: "___ yra netoli namų.", translationRu: "Парикмахерская рядом с домом.", answer: "kirpykla", case: "nominative" },
+          { sentence: "___ dirba iki vakaro.", translationRu: "Парикмахерская работает до вечера.", answer: "kirpykla", case: "nominative" }
+        ],
+        knygynas: [
+          { sentence: "Aš einu į ___ pirkti knygos.", translationRu: "Я иду в книжный магазин купить книгу.", answer: toAccusativePhrase("knygynas"), case: "accusative" },
+          { sentence: "___ yra netoli.", translationRu: "Книжный магазин рядом.", answer: "knygynas", case: "nominative" },
+          { sentence: "___ dirba iki vakaro.", translationRu: "Книжный магазин работает до вечера.", answer: "knygynas", case: "nominative" }
+        ],
+        mokykla: [
+          { sentence: "Vaikai eina į ___.", translationRu: "Дети идут в школу.", answer: toAccusativePhrase("mokykla"), case: "accusative" },
+          { sentence: "___ yra didelė.", translationRu: "Школа большая.", answer: "mokykla", case: "nominative" },
+          { sentence: "___ prasideda ryte.", translationRu: "Школа начинается утром.", answer: "mokykla", case: "nominative" }
+        ],
+        mokinys: [
+          { sentence: "___ mokosi mokykloje.", translationRu: "Ученик учится в школе.", answer: "mokinys", case: "nominative" },
+          { sentence: "Tai mano ___.", translationRu: "Это мой ученик.", answer: "mokinys", case: "nominative" },
+          { sentence: "Aš matau ___.", translationRu: "Я вижу ученика.", answer: toAccusativePhrase("mokinys"), case: "accusative" }
+        ],
+        mokine: [
+          { sentence: "___ mokosi mokykloje.", translationRu: "Ученица учится в школе.", answer: "mokinė", case: "nominative" },
+          { sentence: "Tai mano ___.", translationRu: "Это моя ученица.", answer: "mokinė", case: "nominative" },
+          { sentence: "Aš matau ___.", translationRu: "Я вижу ученицу.", answer: toAccusativePhrase("mokinė"), case: "accusative" }
+        ],
+        studentas: [
+          { sentence: "___ studijuoja universitete.", translationRu: "Студент учится в университете.", answer: "studentas", case: "nominative" },
+          { sentence: "Tai mano ___.", translationRu: "Это мой студент.", answer: "studentas", case: "nominative" },
+          { sentence: "Aš matau ___.", translationRu: "Я вижу студента.", answer: toAccusativePhrase("studentas"), case: "accusative" }
+        ],
+        studente: [
+          { sentence: "___ studijuoja universitete.", translationRu: "Студентка учится в университете.", answer: "studentė", case: "nominative" },
+          { sentence: "Tai mano ___.", translationRu: "Это моя студентка.", answer: "studentė", case: "nominative" },
+          { sentence: "Aš matau ___.", translationRu: "Я вижу студентку.", answer: toAccusativePhrase("studentė"), case: "accusative" }
+        ],
+        pensininkas: [
+          { sentence: "___ gauna pensiją.", translationRu: "Пенсионер получает пенсию.", answer: "pensininkas", case: "nominative" },
+          { sentence: "Jis yra ___.", translationRu: "Он пенсионер.", answer: "pensininkas", case: "nominative" },
+          { sentence: "Aš matau ___.", translationRu: "Я вижу пенсионера.", answer: toAccusativePhrase("pensininkas"), case: "accusative" }
+        ],
+        pensininke: [
+          { sentence: "___ gauna pensiją.", translationRu: "Пенсионерка получает пенсию.", answer: "pensininkė", case: "nominative" },
+          { sentence: "Ji yra ___.", translationRu: "Она пенсионерка.", answer: "pensininkė", case: "nominative" },
+          { sentence: "Aš matau ___.", translationRu: "Я вижу пенсионерку.", answer: toAccusativePhrase("pensininkė"), case: "accusative" }
+        ]
+
+      };
+
+      const casePracticeVariants = {
+        gatve: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу улицу.", answer: toAccusativePhrase("gatvė") },
+          { sentence: "Aš pereinu ___.", translationRu: "Я перехожу улицу.", answer: toAccusativePhrase("gatvė") },
+          { sentence: "Aš einu per ___.", translationRu: "Я иду через улицу.", answer: toAccusativePhrase("gatvė") }
+        ],
+        ligonine: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу больницу.", answer: toAccusativePhrase("ligoninė") },
+          { sentence: "Aš randu ___.", translationRu: "Я нахожу больницу.", answer: toAccusativePhrase("ligoninė") },
+          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до больницы.", answer: toAccusativePhrase("ligoninė") }
+        ],
+        kioskas: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу киоск.", answer: toAccusativePhrase("kioskas") },
+          { sentence: "Aš randu ___.", translationRu: "Я нахожу киоск.", answer: toAccusativePhrase("kioskas") },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в киоск.", answer: toAccusativePhrase("kioskas") }
+        ],
+        ministerija: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу министерство.", answer: toAccusativePhrase("ministerija") },
+          { sentence: "Aš randu ___.", translationRu: "Я нахожу министерство.", answer: toAccusativePhrase("ministerija") },
+          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до министерства.", answer: toAccusativePhrase("ministerija") }
+        ],
+        viesbutis: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу отель.", answer: toAccusativePhrase("viešbutis") },
+          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю отель.", answer: toAccusativePhrase("viešbutis") },
+          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до отеля.", answer: toAccusativePhrase("viešbutis") }
+        ],
+        bendrabutis: [
+          { sentence: "Aš randu ___.", translationRu: "Я нахожу общежитие.", answer: toAccusativePhrase("bendrabutis") },
+          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до общежития.", answer: toAccusativePhrase("bendrabutis") },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в общежитие.", answer: toAccusativePhrase("bendrabutis") }
+        ],
+        vaistine: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу аптеку.", answer: toAccusativePhrase("vaistinė") },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в аптеку.", answer: toAccusativePhrase("vaistinė") },
+          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю аптеку.", answer: toAccusativePhrase("vaistinė") }
+        ],
+        baznycia: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу церковь.", answer: toAccusativePhrase("bažnyčia") },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в церковь.", answer: toAccusativePhrase("bažnyčia") },
+          { sentence: "Aš randu ___.", translationRu: "Я нахожу церковь.", answer: toAccusativePhrase("bažnyčia") }
+        ],
+        parduotuve: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу магазин.", answer: toAccusativePhrase("parduotuvė") },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в магазин.", answer: toAccusativePhrase("parduotuvė") },
+          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю магазин.", answer: toAccusativePhrase("parduotuvė") }
+        ],
+        pastas: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу почту.", answer: toAccusativePhrase("paštas") },
+          { sentence: "Aš randu ___.", translationRu: "Я нахожу почту.", answer: toAccusativePhrase("paštas") },
+          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до почты.", answer: toAccusativePhrase("paštas") }
+        ],
+        bankas: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу банк.", answer: toAccusativePhrase("bankas") },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в банк.", answer: toAccusativePhrase("bankas") },
+          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю банк.", answer: toAccusativePhrase("bankas") }
+        ],
+        biblioteka: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу библиотеку.", answer: toAccusativePhrase("biblioteka") },
+          { sentence: "Aš ieškau ___.", translationRu: "Я ищу библиотеку.", answer: toAccusativePhrase("biblioteka") },
+          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю библиотеку.", answer: toAccusativePhrase("biblioteka") }
+        ],
+        kirpykla: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу парикмахерскую.", answer: toAccusativePhrase("kirpykla") },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в парикмахерскую.", answer: toAccusativePhrase("kirpykla") },
+          { sentence: "Aš randu ___.", translationRu: "Я нахожу парикмахерскую.", answer: toAccusativePhrase("kirpykla") }
+        ],
+        knygynas: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу книжный магазин.", answer: toAccusativePhrase("knygynas") },
+          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю книжный магазин.", answer: toAccusativePhrase("knygynas") },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в книжный магазин.", answer: toAccusativePhrase("knygynas") }
+        ],
+        mokykla: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу школу.", answer: toAccusativePhrase("mokykla") },
+          { sentence: "Aš einu į ___.", translationRu: "Я иду в школу.", answer: toAccusativePhrase("mokykla") },
+          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю школу.", answer: toAccusativePhrase("mokykla") }
+        ],
+        mokinys: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу ученика.", answer: toAccusativePhrase("mokinys") },
+          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю ученика.", answer: toAccusativePhrase("mokinys") },
+          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю ученика.", answer: toAccusativePhrase("mokinys") }
+        ],
+        mokine: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу ученицу.", answer: toAccusativePhrase("mokinė") },
+          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю ученицу.", answer: toAccusativePhrase("mokinė") },
+          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю ученицу.", answer: toAccusativePhrase("mokinė") }
+        ],
+        studentas: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу студента.", answer: toAccusativePhrase("studentas") },
+          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю студента.", answer: toAccusativePhrase("studentas") },
+          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю студента.", answer: toAccusativePhrase("studentas") }
+        ],
+        studente: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу студентку.", answer: toAccusativePhrase("studentė") },
+          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю студентку.", answer: toAccusativePhrase("studentė") },
+          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю студентку.", answer: toAccusativePhrase("studentė") }
+        ],
+        pensininkas: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу пенсионера.", answer: toAccusativePhrase("pensininkas") },
+          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю пенсионера.", answer: toAccusativePhrase("pensininkas") },
+          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю пенсионера.", answer: toAccusativePhrase("pensininkas") }
+        ],
+        pensininke: [
+          { sentence: "Aš matau ___.", translationRu: "Я вижу пенсионерку.", answer: toAccusativePhrase("pensininkė") },
+          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю пенсионерку.", answer: toAccusativePhrase("pensininkė") },
+          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю пенсионерку.", answer: toAccusativePhrase("pensininkė") }
+        ]
+
+
+      };
+
+      const buildFlashcards = () => {
+        const cards = [];
+        wordSet.words.forEach((word) => {
+          cards.push({
+            id: `flash_${word.id}_lt`,
+            type: "flashcards",
+            prompt: word.lt,
+            answer: word.ru,
+            label: "Translate to Russian"
+          });
+          cards.push({
+            id: `flash_${word.id}_ru`,
+            type: "flashcards",
+            prompt: word.ru,
+            answer: word.lt,
+            label: "Translate to Lithuanian"
+          });
+        });
+        return shuffle(cards);
+      };
+
+      const buildMultipleChoice = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          for (let i = 0; i < 3; i += 1) {
+            const wrong = getRandomWords(word.id, 2, "ru");
+            const options = shuffle([word.ru, ...wrong]);
+            questions.push({
+              id: `mc_${word.id}_${i + 1}`,
+              type: "multipleChoice",
+              prompt: word.lt,
+              label: "Choose the correct translation",
+              options,
+              correct: word.ru
+            });
+          }
+        });
+        return shuffle(questions);
+      };
+
+      const buildGapFill = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          const variants = gapFillVariants[word.id] || [];
+          variants.forEach((variant, index) => {
+            const otherWords = shuffle(wordSet.words.filter((item) => item.id !== word.id))
+              .slice(0, 2)
+              .map((item) => (variant.case === "accusative" ? toAccusativePhrase(item.lt) : item.lt));
+            const options = shuffle([variant.answer, ...otherWords]);
+            questions.push({
+              id: `gf_${word.id}_${index + 1}`,
+              type: "gapFill",
+              prompt: variant.sentence,
+              subtitle: variant.translationRu,
+              options,
+              correct: variant.answer,
+              label: "Fill in the blank"
+            });
+          });
+        });
+        return shuffle(questions);
+      };
+
+      const buildDefinition = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          definitionTemplates.forEach((template, index) => {
+            const wrong = getRandomWords(word.id, 2, "lt");
+            const options = shuffle([word.lt, ...wrong]);
+            questions.push({
+              id: `def_${word.id}_${index + 1}`,
+              type: "definitionToWord",
+              prompt: template.definitionLt.replace("{ru}", word.ru),
+              subtitle: template.translationRu.replace("{ru}", word.ru),
+              options,
+              correct: word.lt,
+              label: "Pick the matching word"
+            });
+          });
+        });
+        return shuffle(questions);
+      };
+
+      const buildCasePractice = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          const variants = casePracticeVariants[word.id] || [];
+          variants.forEach((variant, index) => {
+            const wrongOptions = shuffle(wordSet.words.filter((item) => item.id !== word.id))
+              .slice(0, 2)
+              .map((item) => toAccusativePhrase(item.lt));
+            const options = shuffle([variant.answer, ...wrongOptions]);
+            questions.push({
+              id: `case_${word.id}_${index + 1}`,
+              type: "casePractice",
+              prompt: variant.sentence,
+              subtitle: variant.translationRu,
+              options,
+              correct: variant.answer,
+              label: "Choose the correct case"
+            });
+          });
+        });
+        return shuffle(questions);
+      };
+
+      const testBlueprints = [
+        { name: "Flashcards", type: "flashcards", build: buildFlashcards },
+        { name: "Multiple Choice", type: "multipleChoice", build: buildMultipleChoice },
+        { name: "Gap Fill", type: "gapFill", build: buildGapFill },
+        { name: "Definition → Word", type: "definitionToWord", build: buildDefinition },
+        { name: "Case Practice", type: "casePractice", build: buildCasePractice }
+      ];
+
+      const QUESTION_TYPE_CHUNK_SIZE = 10;
+      const AUTO_ADVANCE_DELAY_MS = 3000;
+      const NEXT_BUTTON_LABEL = "Next";
+      const STORAGE_KEY = "lt-test-session";
+      const REPEAT_MIN_OFFSET = 4;
+      const REPEAT_MAX_OFFSET = 6;
+
+      let session = null;
+
+      const resetSession = () => {
+        const tests = testBlueprints.map((test) => {
+          const questions = test.build().map((question) => ({
+            ...question,
+            testName: test.name
+          }));
+
+          return {
+            ...test,
+            questions
+          };
+        });
+
+        const queues = tests.map((test) => ({
+          name: test.name,
+          type: test.type,
+          questions: [...test.questions]
+        }));
+
+        const questions = [];
+        while (queues.some((queue) => queue.questions.length > 0)) {
+          queues.forEach((queue) => {
+            questions.push(...queue.questions.splice(0, QUESTION_TYPE_CHUNK_SIZE));
+          });
+        }
+
+        session = {
+          tests,
+          questions,
+          currentQuestionIndex: 0,
+          analytics: {},
+          autoAdvanceTimeoutId: null,
+          autoAdvanceIntervalId: null,
+          repeatCounter: 0
+        };
+
+        session.tests.forEach((test) => {
+          session.analytics[test.type] = {
+            name: test.name,
+            correct: 0,
+            total: test.questions.length
+          };
+        });
+      };
+
+      const saveSession = () => {
+        if (!session) {
+          return;
+        }
+
+        const payload = {
+          questions: session.questions,
+          currentQuestionIndex: session.currentQuestionIndex,
+          analytics: session.analytics,
+          repeatCounter: session.repeatCounter
+        };
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      };
+
+      const loadSession = () => {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          return null;
+        }
+
+        try {
+          const parsed = JSON.parse(raw);
+          if (!parsed || !Array.isArray(parsed.questions) || typeof parsed.currentQuestionIndex !== "number") {
+            return null;
+          }
+
+          return {
+            tests: null,
+            questions: parsed.questions,
+            currentQuestionIndex: Math.min(parsed.currentQuestionIndex, parsed.questions.length),
+            analytics: parsed.analytics || {},
+            autoAdvanceTimeoutId: null,
+            autoAdvanceIntervalId: null,
+            repeatCounter: parsed.repeatCounter || 0
+          };
+        } catch (error) {
+          return null;
+        }
+      };
+
+      const clearSavedSession = () => {
+        localStorage.removeItem(STORAGE_KEY);
+      };
+
+      const updateStartScreen = () => {
+        const hasSaved = Boolean(loadSession());
+        ui.startButton.textContent = hasSaved ? "Continue Test" : "Start Tests";
+        ui.resumeNote.classList.toggle("hidden", !hasSaved);
+      };
+
+      const showScreen = (screen) => {
+        ui.startScreen.classList.add("hidden");
+        ui.testScreen.classList.add("hidden");
+        ui.summaryScreen.classList.add("hidden");
+        screen.classList.remove("hidden");
+      };
+
+      const currentQuestion = () => session.questions[session.currentQuestionIndex];
+
+      const getOverallProgress = () => {
+        const totals = session.questions.length;
+        const answered = session.currentQuestionIndex;
+        return `${answered} / ${totals}`;
+      };
+
+      const clearFeedback = () => {
+        ui.feedback.className = "mt-4 hidden rounded-xl border px-4 py-3 text-sm";
+        ui.feedback.textContent = "";
+      };
+
+      const showFeedback = (message, isCorrect) => {
+        ui.feedback.className = `mt-4 rounded-xl border px-4 py-3 text-sm ${
+          isCorrect ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-rose-200 bg-rose-50 text-rose-700"
+        }`;
+        ui.feedback.textContent = message;
+      };
+
+      const hideNextButton = () => {
+        ui.nextButton.classList.add("hidden");
+        ui.nextPanel.classList.add("hidden");
+      };
+
+      const showNextButton = () => {
+        setNextButtonLabel();
+        ui.nextButton.classList.remove("hidden");
+        ui.nextPanel.classList.remove("hidden");
+      };
+
+      const setNextButtonLabel = (label = NEXT_BUTTON_LABEL) => {
+        ui.nextButton.textContent = label;
+      };
+
+      const clearAutoAdvance = () => {
+        if (!session || (session.autoAdvanceTimeoutId === null && session.autoAdvanceIntervalId === null)) {
+          return;
+        }
+
+        if (session.autoAdvanceTimeoutId !== null) {
+          clearTimeout(session.autoAdvanceTimeoutId);
+          session.autoAdvanceTimeoutId = null;
+        }
+
+        if (session.autoAdvanceIntervalId !== null) {
+          clearInterval(session.autoAdvanceIntervalId);
+          session.autoAdvanceIntervalId = null;
+        }
+
+        setNextButtonLabel();
+      };
+
+      const scheduleAutoAdvance = () => {
+        clearAutoAdvance();
+
+        let remainingSeconds = Math.ceil(AUTO_ADVANCE_DELAY_MS / 1000);
+        setNextButtonLabel(`${NEXT_BUTTON_LABEL} (${remainingSeconds})`);
+
+        session.autoAdvanceIntervalId = setInterval(() => {
+          remainingSeconds -= 1;
+          if (remainingSeconds > 0) {
+            setNextButtonLabel(`${NEXT_BUTTON_LABEL} (${remainingSeconds})`);
+          }
+        }, 1000);
+
+        session.autoAdvanceTimeoutId = setTimeout(() => {
+          session.autoAdvanceTimeoutId = null;
+          goToNext();
+        }, AUTO_ADVANCE_DELAY_MS);
+      };
+
+      const enqueueRepeatQuestion = (question) => {
+        if (!session) {
+          return;
+        }
+
+        const offset =
+          Math.floor(Math.random() * (REPEAT_MAX_OFFSET - REPEAT_MIN_OFFSET + 1)) + REPEAT_MIN_OFFSET;
+        const insertIndex = Math.min(session.currentQuestionIndex + offset, session.questions.length);
+        session.repeatCounter += 1;
+
+        const repeatQuestion = {
+          ...question,
+          id: `${question.id}_repeat_${session.repeatCounter}`,
+          repeatOf: question.repeatOf || question.id
+        };
+
+        session.questions.splice(insertIndex, 0, repeatQuestion);
+        if (session.analytics[question.type]) {
+          session.analytics[question.type].total += 1;
+        }
+      };
+
+      const renderOptions = (question) => {
+        ui.answerBlock.innerHTML = "";
+
+        if (question.type === "flashcards") {
+          const answerText = document.createElement("div");
+          answerText.className = "hidden rounded-xl bg-slate-100 px-4 py-3 text-sm text-slate-700";
+          answerText.textContent = `Answer: ${question.answer}`;
+
+          const actions = document.createElement("div");
+          actions.className = "mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2";
+
+          const knowButton = document.createElement("button");
+          knowButton.textContent = "Know";
+          knowButton.className =
+            "rounded-xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-500 disabled:opacity-50";
+
+          const dontKnowButton = document.createElement("button");
+          dontKnowButton.textContent = "Don’t know";
+          dontKnowButton.className =
+            "rounded-xl bg-rose-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-500 disabled:opacity-50";
+
+          const handleAnswer = (isCorrect) => {
+            session.analytics.flashcards.correct += isCorrect ? 1 : 0;
+            if (isCorrect) {
+              goToNext();
+              return;
+            }
+
+            answerText.classList.remove("hidden");
+            clearFeedback();
+            knowButton.disabled = true;
+            dontKnowButton.disabled = true;
+            enqueueRepeatQuestion(question);
+            showNextButton();
+            saveSession();
+          };
+
+          knowButton.addEventListener("click", () => handleAnswer(true));
+          dontKnowButton.addEventListener("click", () => handleAnswer(false));
+
+          ui.answerBlock.append(answerText, actions);
+          actions.append(knowButton, dontKnowButton);
+          return;
+        }
+
+        const optionsWrapper = document.createElement("div");
+        optionsWrapper.className = "grid gap-3";
+
+        question.options.forEach((option) => {
+          const button = document.createElement("button");
+          button.textContent = option;
+          button.className =
+            "w-full rounded-xl border border-slate-200 px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:bg-slate-50";
+
+          button.addEventListener("click", () => {
+            const isCorrect = option === question.correct;
+            session.analytics[question.type].correct += isCorrect ? 1 : 0;
+
+            optionsWrapper.querySelectorAll("button").forEach((child) => {
+              child.disabled = true;
+              if (child.textContent === question.correct) {
+                child.classList.add("border-emerald-400", "bg-emerald-50");
+              } else if (child.textContent === option && !isCorrect) {
+                child.classList.add("border-rose-300", "bg-rose-50");
+              }
+            });
+
+            showFeedback(
+              isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
+              isCorrect
+            );
+            if (!isCorrect) {
+              enqueueRepeatQuestion(question);
+            }
+            showNextButton();
+            saveSession();
+            if (isCorrect) {
+              scheduleAutoAdvance();
+            }
+          });
+
+          optionsWrapper.appendChild(button);
+        });
+
+        ui.answerBlock.appendChild(optionsWrapper);
+      };
+
+      const renderQuestion = () => {
+        const question = currentQuestion();
+
+        clearAutoAdvance();
+
+        ui.testTitle.textContent = question.testName || "";
+        ui.testProgress.textContent = `Question ${session.currentQuestionIndex + 1} of ${session.questions.length}`;
+        ui.overallProgress.textContent = getOverallProgress();
+        ui.questionLabel.textContent = question.label;
+        ui.questionText.textContent = question.prompt;
+        ui.questionSubtitle.textContent = question.subtitle || "";
+        ui.questionSubtitle.classList.toggle("hidden", !question.subtitle);
+
+        hideNextButton();
+        clearFeedback();
+        renderOptions(question);
+      };
+
+      const goToNext = () => {
+        clearAutoAdvance();
+
+        if (session.currentQuestionIndex < session.questions.length - 1) {
+          session.currentQuestionIndex += 1;
+          saveSession();
+          renderQuestion();
+          return;
+        }
+
+        renderSummary();
+      };
+
+      const renderSummary = () => {
+        clearAutoAdvance();
+        hideNextButton();
+        showScreen(ui.summaryScreen);
+        clearSavedSession();
+        updateStartScreen();
+        const totals = Object.values(session.analytics).reduce(
+          (acc, item) => {
+            acc.correct += item.correct;
+            acc.total += item.total;
+            return acc;
+          },
+          { correct: 0, total: 0 }
+        );
+
+        const accuracy = totals.total === 0 ? 0 : Math.round((totals.correct / totals.total) * 100);
+        ui.summaryTotal.textContent = `Overall accuracy: ${accuracy}% (${totals.correct} of ${totals.total})`;
+        ui.summaryTable.innerHTML = "";
+
+        Object.values(session.analytics).forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm";
+          row.innerHTML = `
+            <div>
+              <p class="font-semibold text-slate-700">${item.name}</p>
+              <p class="text-xs text-slate-500">${item.correct} correct of ${item.total}</p>
+            </div>
+            <p class="text-sm font-semibold text-slate-700">${Math.round((item.correct / item.total) * 100)}%</p>
+          `;
+          ui.summaryTable.appendChild(row);
+        });
+      };
+
+      const startTests = (options = {}) => {
+        const { forceNew = false } = options;
+
+        if (forceNew) {
+          clearSavedSession();
+          resetSession();
+        } else {
+          const saved = loadSession();
+          session = saved || null;
+          if (!session || !session.questions.length) {
+            resetSession();
+          }
+        }
+
+        showScreen(ui.testScreen);
+        renderQuestion();
+        saveSession();
+        updateStartScreen();
+      };
+
+      updateStartScreen();
+      ui.startButton.addEventListener("click", () => startTests());
+      ui.restartButton.addEventListener("click", () => startTests({ forceNew: true }));
+      ui.resetButton.addEventListener("click", () => startTests({ forceNew: true }));
+      ui.nextButton.addEventListener("click", goToNext);
+    </script>
+  </body>
+</html>
