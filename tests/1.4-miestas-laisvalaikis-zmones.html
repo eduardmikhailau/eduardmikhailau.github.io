@@ -11,7 +11,7 @@
       <header class="mb-6 text-center">
         <h1 class="text-2xl font-semibold sm:text-3xl">Miestas: laisvalaikis ir žmonės — Practice Tests</h1>
         <p class="mt-2 text-sm text-slate-600 sm:text-base">
-          Flashcards, multiple choice, gap fill, definition, and case practice.
+          Flashcards, multiple choice, gap fill, and typing.
         </p>
       </header>
 
@@ -169,15 +169,7 @@
         "diena",
         "vakaras",
         "naktis"
-      ]);
-
-      const definitionTemplates = [
-        { definitionLt: "Žodis reiškia: {ru}.", translationRu: "Значение: {ru}." },
-        { definitionLt: "Rusiškai: {ru}.", translationRu: "По-русски: {ru}." },
-        { definitionLt: "Lietuviškai tai yra: {ru}.", translationRu: "По-литовски это: {ru}." }
-      ];
-
-      const ui = {
+      ]);      const ui = {
         startScreen: document.getElementById("start-screen"),
         testScreen: document.getElementById("test-screen"),
         summaryScreen: document.getElementById("summary-screen"),
@@ -241,6 +233,8 @@
         const lastWord = parts.pop();
         return [...parts, toAccusative(lastWord)].join(" ");
       };
+
+      const normalizeAnswer = (value) => value.trim().toLowerCase().replace(/\s+/g, " ");
       const gapFillVariants = {
         pilis: [
           { sentence: "___ yra sena.", translationRu: "Замок старый.", answer: "pilis", case: "nominative" },
@@ -348,119 +342,7 @@
           { sentence: "Aš matau ___.", translationRu: "Я вижу мужчину.", answer: toAccusativePhrase("vyras"), case: "accusative" }
         ]
 
-      };
-
-      const casePracticeVariants = {
-        pilis: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу замок.", answer: toAccusativePhrase("pilis") },
-          { sentence: "Aš lankau ___.", translationRu: "Я посещаю замок.", answer: toAccusativePhrase("pilis") },
-          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до замка.", answer: toAccusativePhrase("pilis") }
-        ],
-        muziejus: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу музей.", answer: toAccusativePhrase("muziejus") },
-          { sentence: "Aš lankau ___.", translationRu: "Я посещаю музей.", answer: toAccusativePhrase("muziejus") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю музей.", answer: toAccusativePhrase("muziejus") }
-        ],
-        kino_teatras: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю кинотеатр.", answer: toAccusativePhrase("kino teatras") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу кинотеатр.", answer: toAccusativePhrase("kino teatras") },
-          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до кинотеатра.", answer: toAccusativePhrase("kino teatras") }
-        ],
-        kavine: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю кафе.", answer: toAccusativePhrase("kavinė") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу кафе.", answer: toAccusativePhrase("kavinė") },
-          { sentence: "Aš einu į ___.", translationRu: "Я иду в кафе.", answer: toAccusativePhrase("kavinė") }
-        ],
-        restoranas: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю ресторан.", answer: toAccusativePhrase("restoranas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу ресторан.", answer: toAccusativePhrase("restoranas") },
-          { sentence: "Aš einu į ___.", translationRu: "Я иду в ресторан.", answer: toAccusativePhrase("restoranas") }
-        ],
-        parkas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу парк.", answer: toAccusativePhrase("parkas") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю парк.", answer: toAccusativePhrase("parkas") },
-          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до парка.", answer: toAccusativePhrase("parkas") }
-        ],
-        aikste: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу площадь.", answer: toAccusativePhrase("aikštė") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю площадь.", answer: toAccusativePhrase("aikštė") },
-          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до площади.", answer: toAccusativePhrase("aikštė") }
-        ],
-        baras: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю бар.", answer: toAccusativePhrase("baras") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу бар.", answer: toAccusativePhrase("baras") },
-          { sentence: "Aš einu į ___.", translationRu: "Я иду в бар.", answer: toAccusativePhrase("baras") }
-        ],
-        baseinas: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю бассейн.", answer: toAccusativePhrase("baseinas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу бассейн.", answer: toAccusativePhrase("baseinas") },
-          { sentence: "Aš einu į ___.", translationRu: "Я иду в бассейн.", answer: toAccusativePhrase("baseinas") }
-        ],
-        bokstas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу башню.", answer: toAccusativePhrase("bokštas") },
-          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до башни.", answer: toAccusativePhrase("bokštas") },
-          { sentence: "Aš fotografuoju ___.", translationRu: "Я фотографирую башню.", answer: toAccusativePhrase("bokštas") }
-        ],
-        fontanas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу фонтан.", answer: toAccusativePhrase("fontanas") },
-          { sentence: "Aš fotografuoju ___.", translationRu: "Я фотографирую фонтан.", answer: toAccusativePhrase("fontanas") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю фонтан.", answer: toAccusativePhrase("fontanas") }
-        ],
-        klubas: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю клуб.", answer: toAccusativePhrase("klubas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу клуб.", answer: toAccusativePhrase("klubas") },
-          { sentence: "Aš einu į ___.", translationRu: "Я иду в клуб.", answer: toAccusativePhrase("klubas") }
-        ],
-        operos_teatras: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу оперный театр.", answer: toAccusativePhrase("operos teatras") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю оперный театр.", answer: toAccusativePhrase("operos teatras") },
-          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до оперного театра.", answer: toAccusativePhrase("operos teatras") }
-        ],
-        sporto_klubas: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю спортклуб.", answer: toAccusativePhrase("sporto klubas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу спортклуб.", answer: toAccusativePhrase("sporto klubas") },
-          { sentence: "Aš einu į ___.", translationRu: "Я иду в спортклуб.", answer: toAccusativePhrase("sporto klubas") }
-        ],
-        teatras: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу театр.", answer: toAccusativePhrase("teatras") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю театр.", answer: toAccusativePhrase("teatras") },
-          { sentence: "Aš pasiekiu ___.", translationRu: "Я добираюсь до театра.", answer: toAccusativePhrase("teatras") }
-        ],
-        mergaite: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу девочку.", answer: toAccusativePhrase("mergaitė") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю девочку.", answer: toAccusativePhrase("mergaitė") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю девочку.", answer: toAccusativePhrase("mergaitė") }
-        ],
-        mergina: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу девушку.", answer: toAccusativePhrase("mergina") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю девушку.", answer: toAccusativePhrase("mergina") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю девушку.", answer: toAccusativePhrase("mergina") }
-        ],
-        moteris: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу женщину.", answer: toAccusativePhrase("moteris") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю женщину.", answer: toAccusativePhrase("moteris") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю женщину.", answer: toAccusativePhrase("moteris") }
-        ],
-        berniukas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу мальчика.", answer: toAccusativePhrase("berniukas") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю мальчика.", answer: toAccusativePhrase("berniukas") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю мальчика.", answer: toAccusativePhrase("berniukas") }
-        ],
-        vaikinas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу парня.", answer: toAccusativePhrase("vaikinas") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю парня.", answer: toAccusativePhrase("vaikinas") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю парня.", answer: toAccusativePhrase("vaikinas") }
-        ],
-        vyras: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу мужчину.", answer: toAccusativePhrase("vyras") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю мужчину.", answer: toAccusativePhrase("vyras") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю мужчину.", answer: toAccusativePhrase("vyras") }
-        ]
-
-
-      };
-
-      const buildFlashcards = () => {
+      };      const buildFlashcards = () => {
         const cards = [];
         wordSet.words.forEach((word) => {
           cards.push({
@@ -523,56 +405,30 @@
         return shuffle(questions);
       };
 
-      const buildDefinition = () => {
+      const buildGapFillInput = () => {
         const questions = [];
         wordSet.words.forEach((word) => {
-          definitionTemplates.forEach((template, index) => {
-            const wrong = getRandomWords(word.id, 2, "lt");
-            const options = shuffle([word.lt, ...wrong]);
-            questions.push({
-              id: `def_${word.id}_${index + 1}`,
-              type: "definitionToWord",
-              prompt: template.definitionLt.replace("{ru}", word.ru),
-              subtitle: template.translationRu.replace("{ru}", word.ru),
-              options,
-              correct: word.lt,
-              label: "Pick the matching word"
-            });
-          });
-        });
-        return shuffle(questions);
-      };
-
-      const buildCasePractice = () => {
-        const questions = [];
-        wordSet.words.forEach((word) => {
-          const variants = casePracticeVariants[word.id] || [];
+          const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const wrongOptions = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => toAccusativePhrase(item.lt));
-            const options = shuffle([variant.answer, ...wrongOptions]);
             questions.push({
-              id: `case_${word.id}_${index + 1}`,
-              type: "casePractice",
+              id: `gfi_${word.id}_${index + 1}`,
+              type: "gapFillInput",
               prompt: variant.sentence,
               subtitle: variant.translationRu,
-              options,
               correct: variant.answer,
-              label: "Choose the correct case"
+              label: "Type the missing word"
             });
           });
         });
         return shuffle(questions);
       };
-
-      const testBlueprints = [
+            const testBlueprints = [
         { name: "Flashcards", type: "flashcards", build: buildFlashcards },
         { name: "Multiple Choice", type: "multipleChoice", build: buildMultipleChoice },
         { name: "Gap Fill", type: "gapFill", build: buildGapFill },
-        { name: "Definition → Word", type: "definitionToWord", build: buildDefinition },
-        { name: "Case Practice", type: "casePractice", build: buildCasePractice }
+        { name: "Gap Fill (Typing)", type: "gapFillInput", build: buildGapFillInput }
       ];
+
 
       const QUESTION_TYPE_CHUNK_SIZE = 10;
       const AUTO_ADVANCE_DELAY_MS = 3000;
@@ -632,6 +488,68 @@
         if (!session) {
           return;
         }
+
+        if (question.type === "gapFillInput") {
+          const wrapper = document.createElement("div");
+          wrapper.className = "space-y-3";
+
+          const input = document.createElement("input");
+          input.type = "text";
+          input.autocomplete = "off";
+          input.className =
+            "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100 disabled:bg-slate-50";
+          input.placeholder = "Type your answer";
+
+          const submit = document.createElement("button");
+          submit.textContent = "Check answer";
+          submit.className =
+            "w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 disabled:opacity-50";
+
+          const handleSubmit = () => {
+            if (submit.disabled) {
+              return;
+            }
+
+            const rawValue = input.value.trim();
+            if (!rawValue) {
+              showFeedback("Type your answer first.", false);
+              return;
+            }
+
+            const isCorrect =
+              normalizeAnswer(rawValue) === normalizeAnswer(question.correct);
+            session.analytics[question.type].correct += isCorrect ? 1 : 0;
+
+            input.disabled = true;
+            submit.disabled = true;
+
+            showFeedback(
+              isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
+              isCorrect
+            );
+            if (!isCorrect) {
+              enqueueRepeatQuestion(question);
+            }
+            showNextButton();
+            saveSession();
+            if (isCorrect) {
+              scheduleAutoAdvance();
+            }
+          };
+
+          submit.addEventListener("click", handleSubmit);
+          input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+              handleSubmit();
+            }
+          });
+
+          wrapper.append(input, submit);
+          ui.answerBlock.appendChild(wrapper);
+          input.focus();
+          return;
+        }
+
 
         const payload = {
           questions: session.questions,

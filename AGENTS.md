@@ -46,7 +46,7 @@ When generating a new test page:
 
 - For each word, include **2 flashcards** (`lt→ru` and `ru→lt`).
 - For each word, create **at least 3 questions for each non-flashcard test type**.
-- Ensure every word has **real-life, A2-level sentences** in both `gapFillVariants` and `casePracticeVariants`.
+- Ensure every word has **real-life, A2-level sentences** in `gapFillVariants` (used for both multiple-choice gap fill and typing gap fill).
 - Vary sentence contexts per word so they are not repetitive or template-like.
 
 ### Notes
@@ -55,7 +55,8 @@ When generating a new test page:
   - Clicking **Know** immediately advances to the next card.
   - Clicking **Don’t know** reveals the translation and allows advancing.
 - The **Next** button should live in a fixed bottom panel (mobile-safe).
-- Gap fill and case practice should use **per-word predefined variants** with correct Lithuanian grammar forms (no generic templates).
+- Gap fill should use **per-word predefined variants** with correct Lithuanian grammar forms (no generic templates).
+- Add a typing-based gap fill test type that reuses `gapFillVariants` and expects free-text input.
 
 ### Word grouping rules
 

@@ -11,7 +11,7 @@
       <header class="mb-6 text-center">
         <h1 class="text-2xl font-semibold sm:text-3xl">Veiksmai ir laikas — Practice Tests</h1>
         <p class="mt-2 text-sm text-slate-600 sm:text-base">
-          Flashcards, multiple choice, gap fill, definition, and case practice.
+          Flashcards, multiple choice, gap fill, and typing.
         </p>
       </header>
 
@@ -167,15 +167,7 @@
         "diena",
         "vakaras",
         "naktis"
-      ]);
-
-      const definitionTemplates = [
-        { definitionLt: "Žodis reiškia: {ru}.", translationRu: "Значение: {ru}." },
-        { definitionLt: "Rusiškai: {ru}.", translationRu: "По-русски: {ru}." },
-        { definitionLt: "Lietuviškai tai yra: {ru}.", translationRu: "По-литовски это: {ru}." }
-      ];
-
-      const ui = {
+      ]);      const ui = {
         startScreen: document.getElementById("start-screen"),
         testScreen: document.getElementById("test-screen"),
         summaryScreen: document.getElementById("summary-screen"),
@@ -239,6 +231,8 @@
         const lastWord = parts.pop();
         return [...parts, toAccusative(lastWord)].join(" ");
       };
+
+      const normalizeAnswer = (value) => value.trim().toLowerCase().replace(/\s+/g, " ");
       const gapFillVariants = {
         atostogauti: [
           { sentence: "Vasarą noriu ___ prie jūros.", translationRu: "Летом хочу отдыхать у моря.", answer: "atostogauti", case: "nominative" },
@@ -335,107 +329,7 @@
           { sentence: "Ji ___ eina į darbą pėsčiomis.", translationRu: "Она каждый день идет на работу пешком.", answer: "kasdien", case: "nominative" },
           { sentence: "Mes ___ valgome pusryčius namuose.", translationRu: "Мы каждый день завтракаем дома.", answer: "kasdien", case: "nominative" }
         ]
-      };
-
-      const casePracticeVariants = {
-        atostogauti: [
-          { sentence: "Norime ___ rugpjūtį.", translationRu: "Мы хотим отдыхать в августе.", answer: "atostogauti" },
-          { sentence: "Man patinka ___ prie ežero.", translationRu: "Мне нравится отдыхать у озера.", answer: "atostogauti" },
-          { sentence: "Šeima nori ___ savaitę.", translationRu: "Семья хочет отдыхать неделю.", answer: "atostogauti" }
-        ],
-        eiti: [
-          { sentence: "Ar nori ___ kartu?", translationRu: "Ты хочешь идти вместе?", answer: "eiti" },
-          { sentence: "Aš turiu ___ į banką.", translationRu: "Мне нужно идти в банк.", answer: "eiti" },
-          { sentence: "Vaikai mėgsta ___ į parką.", translationRu: "Дети любят ходить в парк.", answer: "eiti" }
-        ],
-        skambinti: [
-          { sentence: "Prašau ___ man vakare.", translationRu: "Пожалуйста, звонить мне вечером.", answer: "skambinti" },
-          { sentence: "Aš turiu ___ draugui.", translationRu: "Мне нужно звонить другу.", answer: "skambinti" },
-          { sentence: "Ji nori ___ sesei.", translationRu: "Она хочет звонить сестре.", answer: "skambinti" }
-        ],
-        skubeti: [
-          { sentence: "Nereikia ___, turime laiko.", translationRu: "Не нужно спешить, у нас есть время.", answer: "skubėti" },
-          { sentence: "Aš turiu ___ į traukinį.", translationRu: "Мне нужно спешить на поезд.", answer: "skubėti" },
-          { sentence: "Jie turi ___, nes vėluoja.", translationRu: "Они должны спешить, потому что опаздывают.", answer: "skubėti" }
-        ],
-        susitikti: [
-          { sentence: "Noriu ___ po darbo.", translationRu: "Я хочу встретиться после работы.", answer: "susitikti" },
-          { sentence: "Mes turime ___ stotyje.", translationRu: "Мы должны встретиться на вокзале.", answer: "susitikti" },
-          { sentence: "Jis nori ___ su šeima.", translationRu: "Он хочет встретиться с семьей.", answer: "susitikti" }
-        ],
-        vaziuoti: [
-          { sentence: "Ar gali ___ autobusu?", translationRu: "Ты можешь ехать на автобусе?", answer: "važiuoti" },
-          { sentence: "Man reikia ___ į oro uostą.", translationRu: "Мне нужно ехать в аэропорт.", answer: "važiuoti" },
-          { sentence: "Mes norime ___ savaitgalį.", translationRu: "Мы хотим ехать в выходные.", answer: "važiuoti" }
-        ],
-        veluoti: [
-          { sentence: "Prašau ne___ į susitikimą.", translationRu: "Пожалуйста, не опаздывать на встречу.", answer: "vėluoti" },
-          { sentence: "Ji nenori ___ į darbą.", translationRu: "Она не хочет опаздывать на работу.", answer: "vėluoti" },
-          { sentence: "Aš bijau ___ į lėktuvą.", translationRu: "Я боюсь опоздать на самолет.", answer: "vėluoti" }
-        ],
-        rytas: [
-          { sentence: "Aš praleidžiu ___ su šeima.", translationRu: "Я провожу утро с семьей.", answer: toAccusativePhrase("rytas") },
-          { sentence: "Mes susitinkame ___ kavinėje.", translationRu: "Мы встречаемся утром в кафе.", answer: toAccusativePhrase("rytas") },
-          { sentence: "Visą ___ lyja.", translationRu: "Всё утро идет дождь.", answer: toAccusativePhrase("rytas") }
-        ],
-        diena: [
-          { sentence: "Visą ___ dirbu.", translationRu: "Я работаю весь день.", answer: toAccusativePhrase("diena") },
-          { sentence: "Mes praleidžiame ___ mieste.", translationRu: "Мы проводим день в городе.", answer: toAccusativePhrase("diena") },
-          { sentence: "Aš planuoju ___ su šeima.", translationRu: "Я планирую день с семьей.", answer: toAccusativePhrase("diena") }
-        ],
-        vakaras: [
-          { sentence: "Aš mėgstu ___ namuose.", translationRu: "Я люблю вечер дома.", answer: toAccusativePhrase("vakaras") },
-          { sentence: "Mes leidžiame ___ parke.", translationRu: "Мы проводим вечер в парке.", answer: toAccusativePhrase("vakaras") },
-          { sentence: "Visą ___ žiūrime filmą.", translationRu: "Весь вечер смотрим фильм.", answer: toAccusativePhrase("vakaras") }
-        ],
-        naktis: [
-          { sentence: "Aš miegojau visą ___.", translationRu: "Я спал всю ночь.", answer: toAccusativePhrase("naktis") },
-          { sentence: "Mes važiavome per ___.", translationRu: "Мы ехали ночью.", answer: toAccusativePhrase("naktis") },
-          { sentence: "Ji dirba visą ___.", translationRu: "Она работает всю ночь.", answer: toAccusativePhrase("naktis") }
-        ],
-        visada: [
-          { sentence: "Aš ___ atsinešu vandens.", translationRu: "Я всегда приношу воду.", answer: "visada" },
-          { sentence: "Ji ___ rašo žinutes.", translationRu: "Она всегда пишет сообщения.", answer: "visada" },
-          { sentence: "Mes ___ grįžtame namo kartu.", translationRu: "Мы всегда возвращаемся домой вместе.", answer: "visada" }
-        ],
-        daznai: [
-          { sentence: "Aš ___ geriu kavą.", translationRu: "Я часто пью кофе.", answer: "dažnai" },
-          { sentence: "Jis ___ važiuoja autobusu.", translationRu: "Он часто ездит на автобусе.", answer: "dažnai" },
-          { sentence: "Mes ___ lankome tėvus.", translationRu: "Мы часто навещаем родителей.", answer: "dažnai" }
-        ],
-        siandien: [
-          { sentence: "___ einu į polikliniką.", translationRu: "Сегодня я иду в поликлинику.", answer: "šiandien" },
-          { sentence: "___ neturiu pamokų.", translationRu: "Сегодня у меня нет занятий.", answer: "šiandien" },
-          { sentence: "___ susitinkame parke.", translationRu: "Сегодня встречаемся в парке.", answer: "šiandien" }
-        ],
-        dabar: [
-          { sentence: "___ aš kalbu telefonu.", translationRu: "Сейчас я говорю по телефону.", answer: "dabar" },
-          { sentence: "Mes ___ laukiame autobuso.", translationRu: "Мы сейчас ждем автобус.", answer: "dabar" },
-          { sentence: "___ negaliu ateiti.", translationRu: "Сейчас не могу прийти.", answer: "dabar" }
-        ],
-        niekada: [
-          { sentence: "Aš ___ nevalgau žuvies.", translationRu: "Я никогда не ем рыбу.", answer: "niekada" },
-          { sentence: "Ji ___ nekeliasi anksti.", translationRu: "Она никогда не встает рано.", answer: "niekada" },
-          { sentence: "Mes ___ nevažiuojame naktį.", translationRu: "Мы никогда не ездим ночью.", answer: "niekada" }
-        ],
-        kartais: [
-          { sentence: "Aš ___ perku kavą mieste.", translationRu: "Я иногда покупаю кофе в городе.", answer: "kartais" },
-          { sentence: "Mes ___ žaidžiame futbolą.", translationRu: "Мы иногда играем в футбол.", answer: "kartais" },
-          { sentence: "Jis ___ dirba vakare.", translationRu: "Он иногда работает вечером.", answer: "kartais" }
-        ],
-        rytoj: [
-          { sentence: "___ einame į kiną.", translationRu: "Завтра идем в кино.", answer: "rytoj" },
-          { sentence: "___ turiu laisvą dieną.", translationRu: "Завтра у меня свободный день.", answer: "rytoj" },
-          { sentence: "___ važiuojame į Kauną.", translationRu: "Завтра едем в Каунас.", answer: "rytoj" }
-        ],
-        kasdien: [
-          { sentence: "Aš ___ mokausi žodžių.", translationRu: "Я каждый день учу слова.", answer: "kasdien" },
-          { sentence: "Ji ___ vaikšto su šunimi.", translationRu: "Она каждый день гуляет с собакой.", answer: "kasdien" },
-          { sentence: "Mes ___ grįžtame namo vakare.", translationRu: "Мы каждый день возвращаемся домой вечером.", answer: "kasdien" }
-        ]
-      };
-
-      const buildFlashcards = () => {
+      };      const buildFlashcards = () => {
         const cards = [];
         wordSet.words.forEach((word) => {
           cards.push({
@@ -498,56 +392,30 @@
         return shuffle(questions);
       };
 
-      const buildDefinition = () => {
+      const buildGapFillInput = () => {
         const questions = [];
         wordSet.words.forEach((word) => {
-          definitionTemplates.forEach((template, index) => {
-            const wrong = getRandomWords(word.id, 2, "lt");
-            const options = shuffle([word.lt, ...wrong]);
-            questions.push({
-              id: `def_${word.id}_${index + 1}`,
-              type: "definitionToWord",
-              prompt: template.definitionLt.replace("{ru}", word.ru),
-              subtitle: template.translationRu.replace("{ru}", word.ru),
-              options,
-              correct: word.lt,
-              label: "Pick the matching word"
-            });
-          });
-        });
-        return shuffle(questions);
-      };
-
-      const buildCasePractice = () => {
-        const questions = [];
-        wordSet.words.forEach((word) => {
-          const variants = casePracticeVariants[word.id] || [];
+          const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const wrongOptions = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => toAccusativePhrase(item.lt));
-            const options = shuffle([variant.answer, ...wrongOptions]);
             questions.push({
-              id: `case_${word.id}_${index + 1}`,
-              type: "casePractice",
+              id: `gfi_${word.id}_${index + 1}`,
+              type: "gapFillInput",
               prompt: variant.sentence,
               subtitle: variant.translationRu,
-              options,
               correct: variant.answer,
-              label: "Choose the correct case"
+              label: "Type the missing word"
             });
           });
         });
         return shuffle(questions);
       };
-
-      const testBlueprints = [
+            const testBlueprints = [
         { name: "Flashcards", type: "flashcards", build: buildFlashcards },
         { name: "Multiple Choice", type: "multipleChoice", build: buildMultipleChoice },
         { name: "Gap Fill", type: "gapFill", build: buildGapFill },
-        { name: "Definition → Word", type: "definitionToWord", build: buildDefinition },
-        { name: "Case Practice", type: "casePractice", build: buildCasePractice }
+        { name: "Gap Fill (Typing)", type: "gapFillInput", build: buildGapFillInput }
       ];
+
 
       const QUESTION_TYPE_CHUNK_SIZE = 10;
       const AUTO_ADVANCE_DELAY_MS = 3000;
@@ -607,6 +475,68 @@
         if (!session) {
           return;
         }
+
+        if (question.type === "gapFillInput") {
+          const wrapper = document.createElement("div");
+          wrapper.className = "space-y-3";
+
+          const input = document.createElement("input");
+          input.type = "text";
+          input.autocomplete = "off";
+          input.className =
+            "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100 disabled:bg-slate-50";
+          input.placeholder = "Type your answer";
+
+          const submit = document.createElement("button");
+          submit.textContent = "Check answer";
+          submit.className =
+            "w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 disabled:opacity-50";
+
+          const handleSubmit = () => {
+            if (submit.disabled) {
+              return;
+            }
+
+            const rawValue = input.value.trim();
+            if (!rawValue) {
+              showFeedback("Type your answer first.", false);
+              return;
+            }
+
+            const isCorrect =
+              normalizeAnswer(rawValue) === normalizeAnswer(question.correct);
+            session.analytics[question.type].correct += isCorrect ? 1 : 0;
+
+            input.disabled = true;
+            submit.disabled = true;
+
+            showFeedback(
+              isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
+              isCorrect
+            );
+            if (!isCorrect) {
+              enqueueRepeatQuestion(question);
+            }
+            showNextButton();
+            saveSession();
+            if (isCorrect) {
+              scheduleAutoAdvance();
+            }
+          };
+
+          submit.addEventListener("click", handleSubmit);
+          input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+              handleSubmit();
+            }
+          });
+
+          wrapper.append(input, submit);
+          ui.answerBlock.appendChild(wrapper);
+          input.focus();
+          return;
+        }
+
 
         const payload = {
           questions: session.questions,

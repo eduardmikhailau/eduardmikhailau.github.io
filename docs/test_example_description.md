@@ -113,17 +113,22 @@ Insert the word from context.
 
 ---
 
-## 6. Test type 4 — Definition → word
+## 6. Test type 4 — Gap Fill (Typing)
+
+**Idea:**  
+Show a sentence with a gap; the learner types the missing word.
+
+### Example
 
 ```json
 {
-  "testType": "definitionToWord",
+  "testType": "gapFillInput",
   "questions": [
     {
-      "id": "def_1",
-      "definitionLt": "Mano mamos tėvas.",
-      "translationRu": "Отец моей мамы.",
-      "correct": "senelis"
+      "id": "gfi_1",
+      "sentence": "Aš einu į ___.",
+      "translationRu": "Я иду в ___ .",
+      "correct": "parduotuvę"
     }
   ]
 }
@@ -131,28 +136,7 @@ Insert the word from context.
 
 ---
 
-## 7. Test type 5 — Declension / cases
-
-```json
-{
-  "testType": "casePractice",
-  "case": "accusative",
-  "caseQuestion": "ką?",
-  "questions": [
-    {
-      "id": "case_1",
-      "baseWord": "tėvas",
-      "sentence": "Aš matau ___ kiekvieną dieną.",
-      "translationRu": "Я вижу ___ каждый день.",
-      "correct": "tėvą"
-    }
-  ]
-}
-```
-
----
-
-## 8. Overall set structure
+## 7. Overall set structure
 
 ```json
 {
@@ -162,8 +146,7 @@ Insert the word from context.
     { "testType": "flashcards" },
     { "testType": "multipleChoice" },
     { "testType": "gapFill" },
-    { "testType": "definitionToWord" },
-    { "testType": "casePractice" }
+    { "testType": "gapFillInput" }
   ]
 }
 ```

@@ -11,7 +11,7 @@
       <header class="mb-6 text-center">
         <h1 class="text-2xl font-semibold sm:text-3xl">Profesijos: kultūra ir sportas — Practice Tests</h1>
         <p class="mt-2 text-sm text-slate-600 sm:text-base">
-          Flashcards, multiple choice, gap fill, definition, and case practice.
+          Flashcards, multiple choice, gap fill, and typing.
         </p>
       </header>
 
@@ -166,15 +166,7 @@
         "diena",
         "vakaras",
         "naktis"
-      ]);
-
-      const definitionTemplates = [
-        { definitionLt: "Žodis reiškia: {ru}.", translationRu: "Значение: {ru}." },
-        { definitionLt: "Rusiškai: {ru}.", translationRu: "По-русски: {ru}." },
-        { definitionLt: "Lietuviškai tai yra: {ru}.", translationRu: "По-литовски это: {ru}." }
-      ];
-
-      const ui = {
+      ]);      const ui = {
         startScreen: document.getElementById("start-screen"),
         testScreen: document.getElementById("test-screen"),
         summaryScreen: document.getElementById("summary-screen"),
@@ -238,6 +230,8 @@
         const lastWord = parts.pop();
         return [...parts, toAccusative(lastWord)].join(" ");
       };
+
+      const normalizeAnswer = (value) => value.trim().toLowerCase().replace(/\s+/g, " ");
       const gapFillVariants = {
         aktorius: [
           { sentence: "Jis yra ___.", translationRu: "Он — актер.", answer: "aktorius", case: "nominative" },
@@ -330,104 +324,7 @@
           { sentence: "Aš pažįstu ___.", translationRu: "Я знаю журналистка.", answer: toAccusativePhrase("žurnalistė"), case: "accusative" }
         ]
 
-      };
-
-      const casePracticeVariants = {
-        aktorius: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу актер.", answer: toAccusativePhrase("aktorius") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю актер.", answer: toAccusativePhrase("aktorius") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю актер.", answer: toAccusativePhrase("aktorius") }
-        ],
-        aktore: [
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю актриса.", answer: toAccusativePhrase("aktorė") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю актриса.", answer: toAccusativePhrase("aktorė") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю актриса.", answer: toAccusativePhrase("aktorė") }
-        ],
-        dailininkas: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю художник.", answer: toAccusativePhrase("dailininkas") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю художник.", answer: toAccusativePhrase("dailininkas") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю художник.", answer: toAccusativePhrase("dailininkas") }
-        ],
-        dailininke: [
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю художница.", answer: toAccusativePhrase("dailininkė") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю художница.", answer: toAccusativePhrase("dailininkė") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу художница.", answer: toAccusativePhrase("dailininkė") }
-        ],
-        dainininkas: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю певец.", answer: toAccusativePhrase("dainininkas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу певец.", answer: toAccusativePhrase("dainininkas") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю певец.", answer: toAccusativePhrase("dainininkas") }
-        ],
-        dainininke: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу певица.", answer: toAccusativePhrase("dainininkė") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю певица.", answer: toAccusativePhrase("dainininkė") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю певица.", answer: toAccusativePhrase("dainininkė") }
-        ],
-        sportininkas: [
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю спортсмен.", answer: toAccusativePhrase("sportininkas") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю спортсмен.", answer: toAccusativePhrase("sportininkas") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю спортсмен.", answer: toAccusativePhrase("sportininkas") }
-        ],
-        sportininke: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю спортсменка.", answer: toAccusativePhrase("sportininkė") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю спортсменка.", answer: toAccusativePhrase("sportininkė") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю спортсменка.", answer: toAccusativePhrase("sportininkė") }
-        ],
-        sokejas: [
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю танцор.", answer: toAccusativePhrase("šokėjas") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю танцор.", answer: toAccusativePhrase("šokėjas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу танцор.", answer: toAccusativePhrase("šokėjas") }
-        ],
-        sokeja: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю танцовщица.", answer: toAccusativePhrase("šokėja") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу танцовщица.", answer: toAccusativePhrase("šokėja") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю танцовщица.", answer: toAccusativePhrase("šokėja") }
-        ],
-        muzikantas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу музыкант.", answer: toAccusativePhrase("muzikantas") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю музыкант.", answer: toAccusativePhrase("muzikantas") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю музыкант.", answer: toAccusativePhrase("muzikantas") }
-        ],
-        muzikante: [
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю музыкантка.", answer: toAccusativePhrase("muzikantė") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю музыкантка.", answer: toAccusativePhrase("muzikantė") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю музыкантка.", answer: toAccusativePhrase("muzikantė") }
-        ],
-        fotografas: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю фотограф.", answer: toAccusativePhrase("fotografas") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю фотограф.", answer: toAccusativePhrase("fotografas") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю фотограф.", answer: toAccusativePhrase("fotografas") }
-        ],
-        fotografe: [
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю фотограф.", answer: toAccusativePhrase("fotografė") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю фотограф.", answer: toAccusativePhrase("fotografė") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу фотограф.", answer: toAccusativePhrase("fotografė") }
-        ],
-        rezisierius: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю режиссер.", answer: toAccusativePhrase("režisierius") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу режиссер.", answer: toAccusativePhrase("režisierius") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю режиссер.", answer: toAccusativePhrase("režisierius") }
-        ],
-        rezisiere: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу режиссер.", answer: toAccusativePhrase("režisierė") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю режиссер.", answer: toAccusativePhrase("režisierė") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю режиссер.", answer: toAccusativePhrase("režisierė") }
-        ],
-        zurnalistas: [
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю журналист.", answer: toAccusativePhrase("žurnalistas") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю журналист.", answer: toAccusativePhrase("žurnalistas") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю журналист.", answer: toAccusativePhrase("žurnalistas") }
-        ],
-        zurnaliste: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю журналистка.", answer: toAccusativePhrase("žurnalistė") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю журналистка.", answer: toAccusativePhrase("žurnalistė") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю журналистка.", answer: toAccusativePhrase("žurnalistė") }
-        ]
-
-
-      };
-
-      const buildFlashcards = () => {
+      };      const buildFlashcards = () => {
         const cards = [];
         wordSet.words.forEach((word) => {
           cards.push({
@@ -490,56 +387,30 @@
         return shuffle(questions);
       };
 
-      const buildDefinition = () => {
+      const buildGapFillInput = () => {
         const questions = [];
         wordSet.words.forEach((word) => {
-          definitionTemplates.forEach((template, index) => {
-            const wrong = getRandomWords(word.id, 2, "lt");
-            const options = shuffle([word.lt, ...wrong]);
-            questions.push({
-              id: `def_${word.id}_${index + 1}`,
-              type: "definitionToWord",
-              prompt: template.definitionLt.replace("{ru}", word.ru),
-              subtitle: template.translationRu.replace("{ru}", word.ru),
-              options,
-              correct: word.lt,
-              label: "Pick the matching word"
-            });
-          });
-        });
-        return shuffle(questions);
-      };
-
-      const buildCasePractice = () => {
-        const questions = [];
-        wordSet.words.forEach((word) => {
-          const variants = casePracticeVariants[word.id] || [];
+          const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const wrongOptions = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => toAccusativePhrase(item.lt));
-            const options = shuffle([variant.answer, ...wrongOptions]);
             questions.push({
-              id: `case_${word.id}_${index + 1}`,
-              type: "casePractice",
+              id: `gfi_${word.id}_${index + 1}`,
+              type: "gapFillInput",
               prompt: variant.sentence,
               subtitle: variant.translationRu,
-              options,
               correct: variant.answer,
-              label: "Choose the correct case"
+              label: "Type the missing word"
             });
           });
         });
         return shuffle(questions);
       };
-
-      const testBlueprints = [
+            const testBlueprints = [
         { name: "Flashcards", type: "flashcards", build: buildFlashcards },
         { name: "Multiple Choice", type: "multipleChoice", build: buildMultipleChoice },
         { name: "Gap Fill", type: "gapFill", build: buildGapFill },
-        { name: "Definition → Word", type: "definitionToWord", build: buildDefinition },
-        { name: "Case Practice", type: "casePractice", build: buildCasePractice }
+        { name: "Gap Fill (Typing)", type: "gapFillInput", build: buildGapFillInput }
       ];
+
 
       const QUESTION_TYPE_CHUNK_SIZE = 10;
       const AUTO_ADVANCE_DELAY_MS = 3000;
@@ -599,6 +470,68 @@
         if (!session) {
           return;
         }
+
+        if (question.type === "gapFillInput") {
+          const wrapper = document.createElement("div");
+          wrapper.className = "space-y-3";
+
+          const input = document.createElement("input");
+          input.type = "text";
+          input.autocomplete = "off";
+          input.className =
+            "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100 disabled:bg-slate-50";
+          input.placeholder = "Type your answer";
+
+          const submit = document.createElement("button");
+          submit.textContent = "Check answer";
+          submit.className =
+            "w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 disabled:opacity-50";
+
+          const handleSubmit = () => {
+            if (submit.disabled) {
+              return;
+            }
+
+            const rawValue = input.value.trim();
+            if (!rawValue) {
+              showFeedback("Type your answer first.", false);
+              return;
+            }
+
+            const isCorrect =
+              normalizeAnswer(rawValue) === normalizeAnswer(question.correct);
+            session.analytics[question.type].correct += isCorrect ? 1 : 0;
+
+            input.disabled = true;
+            submit.disabled = true;
+
+            showFeedback(
+              isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
+              isCorrect
+            );
+            if (!isCorrect) {
+              enqueueRepeatQuestion(question);
+            }
+            showNextButton();
+            saveSession();
+            if (isCorrect) {
+              scheduleAutoAdvance();
+            }
+          };
+
+          submit.addEventListener("click", handleSubmit);
+          input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+              handleSubmit();
+            }
+          });
+
+          wrapper.append(input, submit);
+          ui.answerBlock.appendChild(wrapper);
+          input.focus();
+          return;
+        }
+
 
         const payload = {
           questions: session.questions,

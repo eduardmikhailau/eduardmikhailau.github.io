@@ -11,7 +11,7 @@
       <header class="mb-6 text-center">
         <h1 class="text-2xl font-semibold sm:text-3xl">Profesijos: paslaugos ir transportas — Practice Tests</h1>
         <p class="mt-2 text-sm text-slate-600 sm:text-base">
-          Flashcards, multiple choice, gap fill, definition, and case practice.
+          Flashcards, multiple choice, gap fill, and typing.
         </p>
       </header>
 
@@ -168,15 +168,7 @@
         "diena",
         "vakaras",
         "naktis"
-      ]);
-
-      const definitionTemplates = [
-        { definitionLt: "Žodis reiškia: {ru}.", translationRu: "Значение: {ru}." },
-        { definitionLt: "Rusiškai: {ru}.", translationRu: "По-русски: {ru}." },
-        { definitionLt: "Lietuviškai tai yra: {ru}.", translationRu: "По-литовски это: {ru}." }
-      ];
-
-      const ui = {
+      ]);      const ui = {
         startScreen: document.getElementById("start-screen"),
         testScreen: document.getElementById("test-screen"),
         summaryScreen: document.getElementById("summary-screen"),
@@ -240,6 +232,8 @@
         const lastWord = parts.pop();
         return [...parts, toAccusative(lastWord)].join(" ");
       };
+
+      const normalizeAnswer = (value) => value.trim().toLowerCase().replace(/\s+/g, " ");
       const gapFillVariants = {
         darbininkas: [
           { sentence: "Jis yra ___.", translationRu: "Он — рабочий.", answer: "darbininkas", case: "nominative" },
@@ -342,114 +336,7 @@
           { sentence: "Mieste dirba ___.", translationRu: "В городе работает морячка.", answer: "jūrininkė", case: "nominative" }
         ]
 
-      };
-
-      const casePracticeVariants = {
-        darbininkas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу рабочий.", answer: toAccusativePhrase("darbininkas") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю рабочий.", answer: toAccusativePhrase("darbininkas") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю рабочий.", answer: toAccusativePhrase("darbininkas") }
-        ],
-        darbininke: [
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю рабочая.", answer: toAccusativePhrase("darbininkė") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю рабочая.", answer: toAccusativePhrase("darbininkė") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю рабочая.", answer: toAccusativePhrase("darbininkė") }
-        ],
-        ukininkas: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю фермер.", answer: toAccusativePhrase("ūkininkas") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю фермер.", answer: toAccusativePhrase("ūkininkas") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю фермер.", answer: toAccusativePhrase("ūkininkas") }
-        ],
-        ukininke: [
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю фермерша.", answer: toAccusativePhrase("ūkininkė") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю фермерша.", answer: toAccusativePhrase("ūkininkė") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу фермерша.", answer: toAccusativePhrase("ūkininkė") }
-        ],
-        siuvejas: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю портной.", answer: toAccusativePhrase("siuvėjas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу портной.", answer: toAccusativePhrase("siuvėjas") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю портной.", answer: toAccusativePhrase("siuvėjas") }
-        ],
-        siuveja: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу швея.", answer: toAccusativePhrase("siuvėja") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю швея.", answer: toAccusativePhrase("siuvėja") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю швея.", answer: toAccusativePhrase("siuvėja") }
-        ],
-        kirpejas: [
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю парикмахер.", answer: toAccusativePhrase("kirpėjas") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю парикмахер.", answer: toAccusativePhrase("kirpėjas") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю парикмахер.", answer: toAccusativePhrase("kirpėjas") }
-        ],
-        kirpeja: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю парикмахерша.", answer: toAccusativePhrase("kirpėja") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю парикмахерша.", answer: toAccusativePhrase("kirpėja") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю парикмахерша.", answer: toAccusativePhrase("kirpėja") }
-        ],
-        padavejas: [
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю официант.", answer: toAccusativePhrase("padavėjas") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю официант.", answer: toAccusativePhrase("padavėjas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу официант.", answer: toAccusativePhrase("padavėjas") }
-        ],
-        padaveja: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю официантка.", answer: toAccusativePhrase("padavėja") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу официантка.", answer: toAccusativePhrase("padavėja") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю официантка.", answer: toAccusativePhrase("padavėja") }
-        ],
-        pardavejas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу продавец.", answer: toAccusativePhrase("pardavėjas") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю продавец.", answer: toAccusativePhrase("pardavėjas") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю продавец.", answer: toAccusativePhrase("pardavėjas") }
-        ],
-        pardaveja: [
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю продавщица.", answer: toAccusativePhrase("pardavėja") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю продавщица.", answer: toAccusativePhrase("pardavėja") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю продавщица.", answer: toAccusativePhrase("pardavėja") }
-        ],
-        virejas: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю повар.", answer: toAccusativePhrase("virėjas") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю повар.", answer: toAccusativePhrase("virėjas") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю повар.", answer: toAccusativePhrase("virėjas") }
-        ],
-        vireja: [
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю повар.", answer: toAccusativePhrase("virėja") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю повар.", answer: toAccusativePhrase("virėja") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу повар.", answer: toAccusativePhrase("virėja") }
-        ],
-        vairuotojas: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю водитель.", answer: toAccusativePhrase("vairuotojas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу водитель.", answer: toAccusativePhrase("vairuotojas") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю водитель.", answer: toAccusativePhrase("vairuotojas") }
-        ],
-        vairuotoja: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу водитель.", answer: toAccusativePhrase("vairuotoja") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю водитель.", answer: toAccusativePhrase("vairuotoja") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю водитель.", answer: toAccusativePhrase("vairuotoja") }
-        ],
-        valytojas: [
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю уборщик.", answer: toAccusativePhrase("valytojas") },
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю уборщик.", answer: toAccusativePhrase("valytojas") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю уборщик.", answer: toAccusativePhrase("valytojas") }
-        ],
-        valytoja: [
-          { sentence: "Aš renkuosi ___.", translationRu: "Я выбираю уборщица.", answer: toAccusativePhrase("valytoja") },
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю уборщица.", answer: toAccusativePhrase("valytoja") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю уборщица.", answer: toAccusativePhrase("valytoja") }
-        ],
-        jurininkas: [
-          { sentence: "Aš kviečiu ___.", translationRu: "Я приглашаю моряк.", answer: toAccusativePhrase("jūrininkas") },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю моряк.", answer: toAccusativePhrase("jūrininkas") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу моряк.", answer: toAccusativePhrase("jūrininkas") }
-        ],
-        jurininke: [
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю морячка.", answer: toAccusativePhrase("jūrininkė") },
-          { sentence: "Aš matau ___.", translationRu: "Я вижу морячка.", answer: toAccusativePhrase("jūrininkė") },
-          { sentence: "Aš sutinku ___.", translationRu: "Я встречаю морячка.", answer: toAccusativePhrase("jūrininkė") }
-        ]
-
-
-      };
-
-      const buildFlashcards = () => {
+      };      const buildFlashcards = () => {
         const cards = [];
         wordSet.words.forEach((word) => {
           cards.push({
@@ -512,56 +399,30 @@
         return shuffle(questions);
       };
 
-      const buildDefinition = () => {
+      const buildGapFillInput = () => {
         const questions = [];
         wordSet.words.forEach((word) => {
-          definitionTemplates.forEach((template, index) => {
-            const wrong = getRandomWords(word.id, 2, "lt");
-            const options = shuffle([word.lt, ...wrong]);
-            questions.push({
-              id: `def_${word.id}_${index + 1}`,
-              type: "definitionToWord",
-              prompt: template.definitionLt.replace("{ru}", word.ru),
-              subtitle: template.translationRu.replace("{ru}", word.ru),
-              options,
-              correct: word.lt,
-              label: "Pick the matching word"
-            });
-          });
-        });
-        return shuffle(questions);
-      };
-
-      const buildCasePractice = () => {
-        const questions = [];
-        wordSet.words.forEach((word) => {
-          const variants = casePracticeVariants[word.id] || [];
+          const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const wrongOptions = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => toAccusativePhrase(item.lt));
-            const options = shuffle([variant.answer, ...wrongOptions]);
             questions.push({
-              id: `case_${word.id}_${index + 1}`,
-              type: "casePractice",
+              id: `gfi_${word.id}_${index + 1}`,
+              type: "gapFillInput",
               prompt: variant.sentence,
               subtitle: variant.translationRu,
-              options,
               correct: variant.answer,
-              label: "Choose the correct case"
+              label: "Type the missing word"
             });
           });
         });
         return shuffle(questions);
       };
-
-      const testBlueprints = [
+            const testBlueprints = [
         { name: "Flashcards", type: "flashcards", build: buildFlashcards },
         { name: "Multiple Choice", type: "multipleChoice", build: buildMultipleChoice },
         { name: "Gap Fill", type: "gapFill", build: buildGapFill },
-        { name: "Definition → Word", type: "definitionToWord", build: buildDefinition },
-        { name: "Case Practice", type: "casePractice", build: buildCasePractice }
+        { name: "Gap Fill (Typing)", type: "gapFillInput", build: buildGapFillInput }
       ];
+
 
       const QUESTION_TYPE_CHUNK_SIZE = 10;
       const AUTO_ADVANCE_DELAY_MS = 3000;
@@ -621,6 +482,68 @@
         if (!session) {
           return;
         }
+
+        if (question.type === "gapFillInput") {
+          const wrapper = document.createElement("div");
+          wrapper.className = "space-y-3";
+
+          const input = document.createElement("input");
+          input.type = "text";
+          input.autocomplete = "off";
+          input.className =
+            "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100 disabled:bg-slate-50";
+          input.placeholder = "Type your answer";
+
+          const submit = document.createElement("button");
+          submit.textContent = "Check answer";
+          submit.className =
+            "w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 disabled:opacity-50";
+
+          const handleSubmit = () => {
+            if (submit.disabled) {
+              return;
+            }
+
+            const rawValue = input.value.trim();
+            if (!rawValue) {
+              showFeedback("Type your answer first.", false);
+              return;
+            }
+
+            const isCorrect =
+              normalizeAnswer(rawValue) === normalizeAnswer(question.correct);
+            session.analytics[question.type].correct += isCorrect ? 1 : 0;
+
+            input.disabled = true;
+            submit.disabled = true;
+
+            showFeedback(
+              isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
+              isCorrect
+            );
+            if (!isCorrect) {
+              enqueueRepeatQuestion(question);
+            }
+            showNextButton();
+            saveSession();
+            if (isCorrect) {
+              scheduleAutoAdvance();
+            }
+          };
+
+          submit.addEventListener("click", handleSubmit);
+          input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+              handleSubmit();
+            }
+          });
+
+          wrapper.append(input, submit);
+          ui.answerBlock.appendChild(wrapper);
+          input.focus();
+          return;
+        }
+
 
         const payload = {
           questions: session.questions,

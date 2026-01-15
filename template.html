@@ -11,7 +11,7 @@
       <header class="mb-6 text-center">
         <h1 class="text-2xl font-semibold sm:text-3xl">Mano šeima — Practice Tests</h1>
         <p class="mt-2 text-sm text-slate-600 sm:text-base">
-          Flashcards, multiple choice, gap fill, definition, and case practice.
+          Flashcards, multiple choice, gap fill, and typing.
         </p>
       </header>
 
@@ -114,33 +114,14 @@
 
       const gapFillVariants = {
         tevas: [
-          { sentence: "Tai mano ___.", translationRu: "Это мой отец.", answer: "tėvas", case: "nominative" },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю отца.", answer: "tėvą", case: "accusative" },
-          { sentence: "Čia yra mano ___.", translationRu: "Это мой отец.", answer: "tėvas", case: "nominative" }
+          { sentence: "Mano ___ dirba ligoninėje.", translationRu: "Мой отец работает в больнице.", answer: "tėvas", case: "nominative" },
+          { sentence: "Aš skambinu savo ___.", translationRu: "Я звоню своему отцу.", answer: "tėvą", case: "accusative" },
+          { sentence: "Šiandien mano ___ yra namuose.", translationRu: "Сегодня мой отец дома.", answer: "tėvas", case: "nominative" }
         ],
         mama: [
-          { sentence: "Tai mano ___.", translationRu: "Это моя мама.", answer: "mama", case: "nominative" },
-          { sentence: "Aš pažįstu ___.", translationRu: "Я знаю маму.", answer: "mamą", case: "accusative" },
-          { sentence: "Čia yra mano ___.", translationRu: "Это моя мама.", answer: "mama", case: "nominative" }
-        ]
-      };
-
-      const definitionTemplates = [
-        { definitionLt: "Žodis reiškia: {ru}.", translationRu: "Значение: {ru}." },
-        { definitionLt: "Rusiškai: {ru}.", translationRu: "По-русски: {ru}." },
-        { definitionLt: "Tai žmogus: {ru}.", translationRu: "Это человек: {ru}." }
-      ];
-
-      const casePracticeVariants = {
-        tevas: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу отца.", answer: "tėvą" },
-          { sentence: "Aš myliu ___.", translationRu: "Я люблю отца.", answer: "tėvą" },
-          { sentence: "Aš girdžiu ___.", translationRu: "Я слышу отца.", answer: "tėvą" }
-        ],
-        mama: [
-          { sentence: "Aš matau ___.", translationRu: "Я вижу маму.", answer: "mamą" },
-          { sentence: "Aš myliu ___.", translationRu: "Я люблю маму.", answer: "mamą" },
-          { sentence: "Aš girdžiu ___.", translationRu: "Я слышу маму.", answer: "mamą" }
+          { sentence: "Mano ___ gamina vakarienę.", translationRu: "Моя мама готовит ужин.", answer: "mama", case: "nominative" },
+          { sentence: "Aš apkabinu ___.", translationRu: "Я обнимаю маму.", answer: "mamą", case: "accusative" },
+          { sentence: "Ryte mano ___ geria arbatą.", translationRu: "Утром моя мама пьет чай.", answer: "mama", case: "nominative" }
         ]
       };
 
@@ -200,6 +181,8 @@
         }
         return word;
       };
+
+      const normalizeAnswer = (value) => value.trim().toLowerCase().replace(/\s+/g, " ");
 
       const buildFlashcards = () => {
         const cards = [];
@@ -264,43 +247,18 @@
         return shuffle(questions);
       };
 
-      const buildDefinition = () => {
+      const buildGapFillInput = () => {
         const questions = [];
         wordSet.words.forEach((word) => {
-          definitionTemplates.forEach((template, index) => {
-            const wrong = getRandomWords(word.id, 2, "lt");
-            const options = shuffle([word.lt, ...wrong]);
-            questions.push({
-              id: `def_${word.id}_${index + 1}`,
-              type: "definitionToWord",
-              prompt: template.definitionLt.replace("{ru}", word.ru),
-              subtitle: template.translationRu.replace("{ru}", word.ru),
-              options,
-              correct: word.lt,
-              label: "Pick the matching word"
-            });
-          });
-        });
-        return shuffle(questions);
-      };
-
-      const buildCasePractice = () => {
-        const questions = [];
-        wordSet.words.forEach((word) => {
-          const variants = casePracticeVariants[word.id] || [];
+          const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const wrongOptions = shuffle(wordSet.words.filter((item) => item.id !== word.id))
-              .slice(0, 2)
-              .map((item) => toAccusative(item.lt));
-            const options = shuffle([variant.answer, ...wrongOptions]);
             questions.push({
-              id: `case_${word.id}_${index + 1}`,
-              type: "casePractice",
+              id: `gfi_${word.id}_${index + 1}`,
+              type: "gapFillInput",
               prompt: variant.sentence,
               subtitle: variant.translationRu,
-              options,
               correct: variant.answer,
-              label: "Choose the correct case"
+              label: "Type the missing word"
             });
           });
         });
@@ -311,8 +269,7 @@
         { name: "Flashcards", type: "flashcards", build: buildFlashcards },
         { name: "Multiple Choice", type: "multipleChoice", build: buildMultipleChoice },
         { name: "Gap Fill", type: "gapFill", build: buildGapFill },
-        { name: "Definition → Word", type: "definitionToWord", build: buildDefinition },
-        { name: "Case Practice", type: "casePractice", build: buildCasePractice }
+        { name: "Gap Fill (Typing)", type: "gapFillInput", build: buildGapFillInput }
       ];
 
       const QUESTION_TYPE_CHUNK_SIZE = 10;
@@ -563,6 +520,67 @@
 
           ui.answerBlock.append(answerText, actions);
           actions.append(knowButton, dontKnowButton);
+          return;
+        }
+
+        if (question.type === "gapFillInput") {
+          const wrapper = document.createElement("div");
+          wrapper.className = "space-y-3";
+
+          const input = document.createElement("input");
+          input.type = "text";
+          input.autocomplete = "off";
+          input.className =
+            "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100 disabled:bg-slate-50";
+          input.placeholder = "Type your answer";
+
+          const submit = document.createElement("button");
+          submit.textContent = "Check answer";
+          submit.className =
+            "w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 disabled:opacity-50";
+
+          const handleSubmit = () => {
+            if (submit.disabled) {
+              return;
+            }
+
+            const rawValue = input.value.trim();
+            if (!rawValue) {
+              showFeedback("Type your answer first.", false);
+              return;
+            }
+
+            const isCorrect =
+              normalizeAnswer(rawValue) === normalizeAnswer(question.correct);
+            session.analytics[question.type].correct += isCorrect ? 1 : 0;
+
+            input.disabled = true;
+            submit.disabled = true;
+
+            showFeedback(
+              isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
+              isCorrect
+            );
+            if (!isCorrect) {
+              enqueueRepeatQuestion(question);
+            }
+            showNextButton();
+            saveSession();
+            if (isCorrect) {
+              scheduleAutoAdvance();
+            }
+          };
+
+          submit.addEventListener("click", handleSubmit);
+          input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+              handleSubmit();
+            }
+          });
+
+          wrapper.append(input, submit);
+          ui.answerBlock.appendChild(wrapper);
+          input.focus();
           return;
         }
 
