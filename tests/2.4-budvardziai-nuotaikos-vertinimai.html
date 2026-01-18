@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>2.4 Būdvardžiai: nuotaikos ir vertinimai — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <div class="mx-auto flex min-h-screen max-w-3xl flex-col px-4 py-6">
+      <header class="mb-6 text-center">
+        <h1 class="text-2xl font-semibold sm:text-3xl">2.4 Būdvardžiai: nuotaikos ir vertinimai — Practice Tests</h1>
+      </header>
+
+      <main class="flex-1">
+        <section id="start-screen" class="space-y-4 rounded-2xl bg-white p-6 shadow-sm">
+          <h2 class="text-xl font-semibold">Ready to start?</h2>
+          <p class="text-sm text-slate-600">
+            Each run randomizes question order and answer options. You will see immediate feedback and
+            a summary at the end.
+          </p>
+          <p id="resume-note" class="hidden text-xs text-slate-500">Saved progress detected.</p>
+          <p id="version-note" class="hidden text-xs text-amber-600">
+            This test was updated. Continue to use the saved version or start a new one.
+          </p>
+          <button
+            id="start-button"
+            class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+          >
+            Start Tests
+          </button>
+          <button
+            id="start-new-button"
+            class="hidden w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
+          >
+            Start New Version
+          </button>
+        </section>
+
+        <section id="test-screen" class="hidden space-y-6 pb-28">
+          <div class="rounded-2xl bg-white p-5 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p id="test-title" class="text-lg font-semibold"></p>
+                <p id="test-progress" class="text-sm text-slate-600"></p>
+              </div>
+              <div class="flex items-center gap-3 text-right">
+                <div>
+                  <p class="text-sm text-slate-500">Overall progress</p>
+                  <p id="overall-progress" class="text-base font-semibold"></p>
+                </div>
+                <button
+                  id="reset-button"
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition hover:bg-slate-50"
+                  type="button"
+                  title="Restart test"
+                  aria-label="Restart test"
+                >
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 1 0 3-6.7" />
+                    <path d="M3 4v6h6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <div id="question-block" class="space-y-4">
+              <p id="question-label" class="text-sm font-semibold uppercase tracking-wide text-indigo-600"></p>
+              <p id="question-text" class="text-xl font-semibold"></p>
+              <p id="question-subtitle" class="text-sm text-slate-600"></p>
+            </div>
+
+            <div id="answer-block" class="mt-5 space-y-3"></div>
+
+            <div id="feedback" class="mt-4 hidden rounded-xl border px-4 py-3 text-sm"></div>
+          </div>
+
+          <div id="next-panel" class="fixed inset-x-0 bottom-0 z-10 hidden border-t border-slate-200 bg-white/95 backdrop-blur">
+            <div class="mx-auto max-w-3xl px-4 py-4">
+              <button
+                id="next-button"
+                class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="summary-screen" class="hidden space-y-5 rounded-2xl bg-white p-6 shadow-sm">
+          <div>
+            <h2 class="text-xl font-semibold">Your progress summary</h2>
+            <p id="summary-total" class="text-sm text-slate-600"></p>
+          </div>
+          <div id="summary-table" class="space-y-3"></div>
+          <button
+            id="restart-button"
+            class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+          >
+            Restart Tests
+          </button>
+        </section>
+      </main>
+
+      <footer class="mt-8 text-center text-xs text-slate-500">
+        Mobile-friendly UI with TailwindCSS.
+      </footer>
+    </div>
+
+    <script>
+
+      const wordSet = {
+        topic: "Būdvardžiai: nuotaikos ir vertinimai",
+        words: [
+          { id: "linksmas", lt: "linksmas, linksma", ru: "весёлый, весёлая" },
+          { id: "liudnas", lt: "liūdnas, liūdna", ru: "грустный, грустная" },
+          { id: "puikus", lt: "puikus, puiki", ru: "отличный, отличная" },
+          { id: "geras", lt: "geras, gera", ru: "хороший, хорошая" },
+          { id: "blogas", lt: "blogas, bloga", ru: "плохой, плохая" },
+          { id: "malonus", lt: "malonus, maloni", ru: "приятный, приятная" },
+          { id: "bjaurus", lt: "bjaurus, bjauri", ru: "мерзкий, мерзкая" },
+          { id: "laimingas", lt: "laimingas, laiminga", ru: "счастливый, счастливая" },
+          { id: "nelaimingas", lt: "nelaimingas, nelaiminga", ru: "несчастный, несчастная" },
+          { id: "mielas", lt: "mielas, miela", ru: "милый, милая" },
+          { id: "piktas", lt: "piktas, pikta", ru: "злой, злая" },
+          { id: "naujas", lt: "naujas, nauja", ru: "новый, новая" },
+          { id: "keistas", lt: "keistas, keista", ru: "странный, странная" },
+          { id: "idomus", lt: "įdomus, įdomi", ru: "интересный, интересная" },
+          { id: "nuobodus", lt: "nuobodus, nuobodi", ru: "скучный, скучная" },
+          { id: "draugiskas", lt: "draugiškas, draugiška", ru: "дружелюбный, дружелюбная" },
+          { id: "protingas", lt: "protingas, protinga", ru: "умный, умная" },
+          { id: "triuksmingas", lt: "triukšmingas, triukšminga", ru: "шумный, шумная" }
+        ]
+      };
+
+                        const gapFillVariants = {
+        "linksmas": [
+          {
+            "sentence": "Vaikas yra ___.",
+            "translationRu": "Ребенок веселый.",
+            "answer": "linksmas",
+            "options": ["linksmas", "liūdnas", "piktas"]
+          },
+          {
+            "sentence": "Ji šiandien ___.",
+            "translationRu": "Она сегодня веселая.",
+            "answer": "linksma",
+            "options": ["linksma", "liūdna", "pikta"]
+          },
+          {
+            "sentence": "Tai ___ šventė.",
+            "translationRu": "Это веселый праздник.",
+            "answer": "linksma",
+            "options": ["linksma", "liūdna", "triukšminga"]
+          }
+        ],
+        "liudnas": [
+          {
+            "sentence": "Jis atrodo ___.",
+            "translationRu": "Он выглядит грустным.",
+            "answer": "liūdnas",
+            "options": ["liūdnas", "linksmas", "piktas"]
+          },
+          {
+            "sentence": "Ji šiandien ___.",
+            "translationRu": "Она сегодня грустная.",
+            "answer": "liūdna",
+            "options": ["liūdna", "linksma", "pikta"]
+          },
+          {
+            "sentence": "Tai ___ žinia.",
+            "translationRu": "Это грустная новость.",
+            "answer": "liūdna",
+            "options": ["liūdna", "gera", "keista"]
+          }
+        ],
+        "puikus": [
+          {
+            "sentence": "Tai ___ filmas.",
+            "translationRu": "Это отличный фильм.",
+            "answer": "puikus",
+            "options": ["puikus", "nuobodus", "įdomus"]
+          },
+          {
+            "sentence": "Diena buvo ___.",
+            "translationRu": "День был отличный.",
+            "answer": "puiki",
+            "options": ["puiki", "bloga", "liūdna"]
+          },
+          {
+            "sentence": "Mūsų mokytojas yra ___.",
+            "translationRu": "Наш учитель отличный.",
+            "answer": "puikus",
+            "options": ["puikus", "geras", "piktas"]
+          }
+        ],
+        "geras": [
+          {
+            "sentence": "Jis yra ___ draugas.",
+            "translationRu": "Он хороший друг.",
+            "answer": "geras",
+            "options": ["geras", "blogas", "keistas"]
+          },
+          {
+            "sentence": "Ji yra ___ specialistė.",
+            "translationRu": "Она хорошая специалистка.",
+            "answer": "gera",
+            "options": ["gera", "bloga", "protinga"]
+          },
+          {
+            "sentence": "Oras šiandien ___.",
+            "translationRu": "Погода сегодня хорошая.",
+            "answer": "geras",
+            "options": ["geras", "blogas", "keistas"]
+          }
+        ],
+        "blogas": [
+          {
+            "sentence": "Tai ___ sprendimas.",
+            "translationRu": "Это плохое решение.",
+            "answer": "blogas",
+            "options": ["blogas", "geras", "keistas"]
+          },
+          {
+            "sentence": "Situacija yra ___.",
+            "translationRu": "Ситуация плохая.",
+            "answer": "bloga",
+            "options": ["bloga", "gera", "keista"]
+          },
+          {
+            "sentence": "Oras buvo ___.",
+            "translationRu": "Погода была плохая.",
+            "answer": "blogas",
+            "options": ["blogas", "geras", "puikus"]
+          }
+        ],
+        "malonus": [
+          {
+            "sentence": "Kaimynas yra ___.",
+            "translationRu": "Сосед приятный.",
+            "answer": "malonus",
+            "options": ["malonus", "piktas", "keistas"]
+          },
+          {
+            "sentence": "Jos šypsena yra ___.",
+            "translationRu": "Ее улыбка приятная.",
+            "answer": "maloni",
+            "options": ["maloni", "pikta", "liūdna"]
+          },
+          {
+            "sentence": "Tai ___ vakaras.",
+            "translationRu": "Это приятный вечер.",
+            "answer": "malonus",
+            "options": ["malonus", "blogas", "triukšmingas"]
+          }
+        ],
+        "bjaurus": [
+          {
+            "sentence": "Tai ___ elgesys.",
+            "translationRu": "Это мерзкое поведение.",
+            "answer": "bjaurus",
+            "options": ["bjaurus", "geras", "keistas"]
+          },
+          {
+            "sentence": "Ši vieta atrodo ___.",
+            "translationRu": "Это место выглядит мерзким.",
+            "answer": "bjauri",
+            "options": ["bjauri", "graži", "keista"]
+          },
+          {
+            "sentence": "Kvapas buvo ___.",
+            "translationRu": "Запах был мерзким.",
+            "answer": "bjaurus",
+            "options": ["bjaurus", "malonus", "keistas"]
+          }
+        ],
+        "laimingas": [
+          {
+            "sentence": "Jis yra ___.",
+            "translationRu": "Он счастлив.",
+            "answer": "laimingas",
+            "options": ["laimingas", "nelaimingas", "piktas"]
+          },
+          {
+            "sentence": "Ji jaučiasi ___.",
+            "translationRu": "Она чувствует себя счастливой.",
+            "answer": "laiminga",
+            "options": ["laiminga", "nelaiminga", "liūdna"]
+          },
+          {
+            "sentence": "Tai ___ šeima.",
+            "translationRu": "Это счастливая семья.",
+            "answer": "laiminga",
+            "options": ["laiminga", "nelaiminga", "draugiška"]
+          }
+        ],
+        "nelaimingas": [
+          {
+            "sentence": "Jis buvo ___ po pralaimėjimo.",
+            "translationRu": "Он был несчастным после поражения.",
+            "answer": "nelaimingas",
+            "options": ["nelaimingas", "laimingas", "piktas"]
+          },
+          {
+            "sentence": "Ji atrodo ___.",
+            "translationRu": "Она выглядит несчастной.",
+            "answer": "nelaiminga",
+            "options": ["nelaiminga", "laiminga", "linksma"]
+          },
+          {
+            "sentence": "Tai ___ vaikas.",
+            "translationRu": "Это несчастный ребенок.",
+            "answer": "nelaimingas",
+            "options": ["nelaimingas", "laimingas", "piktas"]
+          }
+        ],
+        "mielas": [
+          {
+            "sentence": "Tai ___ katinas.",
+            "translationRu": "Это милый кот.",
+            "answer": "mielas",
+            "options": ["mielas", "bjaurus", "piktas"]
+          },
+          {
+            "sentence": "Ji yra labai ___.",
+            "translationRu": "Она очень милая.",
+            "answer": "miela",
+            "options": ["miela", "pikta", "liūdna"]
+          },
+          {
+            "sentence": "Šuniukas yra ___.",
+            "translationRu": "Щенок милый.",
+            "answer": "mielas",
+            "options": ["mielas", "bjaurus", "triukšmingas"]
+          }
+        ],
+        "piktas": [
+          {
+            "sentence": "Tėvas buvo ___.",
+            "translationRu": "Отец был злой.",
+            "answer": "piktas",
+            "options": ["piktas", "linksmas", "liūdnas"]
+          },
+          {
+            "sentence": "Ji šiandien ___.",
+            "translationRu": "Она сегодня злая.",
+            "answer": "pikta",
+            "options": ["pikta", "linksma", "liūdna"]
+          },
+          {
+            "sentence": "Ponas Jonas atrodo ___.",
+            "translationRu": "Господин Йонас выглядит злым.",
+            "answer": "piktas",
+            "options": ["piktas", "malonus", "draugiškas"]
+          }
+        ],
+        "naujas": [
+          {
+            "sentence": "Telefonas yra ___.",
+            "translationRu": "Телефон новый.",
+            "answer": "naujas",
+            "options": ["naujas", "senas", "keistas"]
+          },
+          {
+            "sentence": "Mano knyga yra ___.",
+            "translationRu": "Моя книга новая.",
+            "answer": "nauja",
+            "options": ["nauja", "sena", "įdomi"]
+          },
+          {
+            "sentence": "Tai ___ darbas.",
+            "translationRu": "Это новая работа.",
+            "answer": "naujas",
+            "options": ["naujas", "senas", "nuobodus"]
+          }
+        ],
+        "keistas": [
+          {
+            "sentence": "Tai ___ klausimas.",
+            "translationRu": "Это странный вопрос.",
+            "answer": "keistas",
+            "options": ["keistas", "įdomus", "nuobodus"]
+          },
+          {
+            "sentence": "Situacija atrodo ___.",
+            "translationRu": "Ситуация выглядит странной.",
+            "answer": "keista",
+            "options": ["keista", "gera", "bloga"]
+          },
+          {
+            "sentence": "Jo elgesys yra ___.",
+            "translationRu": "Его поведение странное.",
+            "answer": "keistas",
+            "options": ["keistas", "malonus", "bjaurus"]
+          }
+        ],
+        "idomus": [
+          {
+            "sentence": "Knyga yra ___.",
+            "translationRu": "Книга интересная.",
+            "answer": "įdomi",
+            "options": ["įdomi", "nuobodi", "gera"]
+          },
+          {
+            "sentence": "Tai ___ darbas.",
+            "translationRu": "Это интересная работа.",
+            "answer": "įdomus",
+            "options": ["įdomus", "nuobodus", "keistas"]
+          },
+          {
+            "sentence": "Pokalbis buvo ___.",
+            "translationRu": "Разговор был интересным.",
+            "answer": "įdomus",
+            "options": ["įdomus", "nuobodus", "keistas"]
+          }
+        ],
+        "nuobodus": [
+          {
+            "sentence": "Pamoka buvo ___.",
+            "translationRu": "Урок был скучным.",
+            "answer": "nuobodi",
+            "options": ["nuobodi", "įdomi", "gera"]
+          },
+          {
+            "sentence": "Filmas atrodo ___.",
+            "translationRu": "Фильм выглядит скучным.",
+            "answer": "nuobodus",
+            "options": ["nuobodus", "įdomus", "puikus"]
+          },
+          {
+            "sentence": "Darbas yra ___.",
+            "translationRu": "Работа скучная.",
+            "answer": "nuobodus",
+            "options": ["nuobodus", "įdomus", "keistas"]
+          }
+        ],
+        "draugiskas": [
+          {
+            "sentence": "Šuo yra ___.",
+            "translationRu": "Собака дружелюбная.",
+            "answer": "draugiškas",
+            "options": ["draugiškas", "piktas", "bjaurus"]
+          },
+          {
+            "sentence": "Ji labai ___.",
+            "translationRu": "Она очень дружелюбная.",
+            "answer": "draugiška",
+            "options": ["draugiška", "pikta", "liūdna"]
+          },
+          {
+            "sentence": "Kolektyvas yra ___.",
+            "translationRu": "Коллектив дружелюбный.",
+            "answer": "draugiškas",
+            "options": ["draugiškas", "piktas", "triukšmingas"]
+          }
+        ],
+        "protingas": [
+          {
+            "sentence": "Jis yra ___ studentas.",
+            "translationRu": "Он умный студент.",
+            "answer": "protingas",
+            "options": ["protingas", "piktas", "keistas"]
+          },
+          {
+            "sentence": "Ji labai ___.",
+            "translationRu": "Она очень умная.",
+            "answer": "protinga",
+            "options": ["protinga", "pikta", "linksma"]
+          },
+          {
+            "sentence": "Tai ___ sprendimas.",
+            "translationRu": "Это умное решение.",
+            "answer": "protingas",
+            "options": ["protingas", "blogas", "keistas"]
+          }
+        ],
+        "triuksmingas": [
+          {
+            "sentence": "Vakarėlis buvo ___.",
+            "translationRu": "Вечеринка была шумной.",
+            "answer": "triukšmingas",
+            "options": ["triukšmingas", "tylus", "linksmas"]
+          },
+          {
+            "sentence": "Gatvė yra ___.",
+            "translationRu": "Улица шумная.",
+            "answer": "triukšminga",
+            "options": ["triukšminga", "tyli", "bloga"]
+          },
+          {
+            "sentence": "Šis baras labai ___.",
+            "translationRu": "Этот бар очень шумный.",
+            "answer": "triukšmingas",
+            "options": ["triukšmingas", "tylus", "malonus"]
+          }
+        ]
+      };
+
+      const ui = {
+        startScreen: document.getElementById("start-screen"),
+        testScreen: document.getElementById("test-screen"),
+        summaryScreen: document.getElementById("summary-screen"),
+        startButton: document.getElementById("start-button"),
+        resumeNote: document.getElementById("resume-note"),
+        versionNote: document.getElementById("version-note"),
+        startNewButton: document.getElementById("start-new-button"),
+        restartButton: document.getElementById("restart-button"),
+        resetButton: document.getElementById("reset-button"),
+        testTitle: document.getElementById("test-title"),
+
+        testProgress: document.getElementById("test-progress"),
+        overallProgress: document.getElementById("overall-progress"),
+        questionLabel: document.getElementById("question-label"),
+        questionText: document.getElementById("question-text"),
+        questionSubtitle: document.getElementById("question-subtitle"),
+        answerBlock: document.getElementById("answer-block"),
+        feedback: document.getElementById("feedback"),
+        nextPanel: document.getElementById("next-panel"),
+        nextButton: document.getElementById("next-button"),
+        summaryTotal: document.getElementById("summary-total"),
+        summaryTable: document.getElementById("summary-table")
+      };
+
+      const shuffle = (array) => {
+        const copy = [...array];
+        for (let i = copy.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      };
+
+      const getRandomWords = (excludeId, count, field = "lt") => {
+        return shuffle(wordSet.words.filter((item) => item.id !== excludeId))
+          .slice(0, count)
+          .map((item) => item[field]);
+      };
+
+      const normalizeAnswer = (value) => value.trim().toLowerCase().replace(/\s+/g, " ");
+
+      const buildFlashcards = () => {
+        const cards = [];
+        wordSet.words.forEach((word) => {
+          cards.push({
+            id: `flash_${word.id}_lt`,
+            type: "flashcards",
+            prompt: word.lt,
+            answer: word.ru,
+            label: "Translate to Russian"
+          });
+          cards.push({
+            id: `flash_${word.id}_ru`,
+            type: "flashcards",
+            prompt: word.ru,
+            answer: word.lt,
+            label: "Translate to Lithuanian"
+          });
+        });
+        return shuffle(cards);
+      };
+
+      const buildMultipleChoice = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          for (let i = 0; i < 3; i += 1) {
+            const wrong = getRandomWords(word.id, 2, "ru");
+            const options = shuffle([word.ru, ...wrong]);
+            questions.push({
+              id: `mc_${word.id}_${i + 1}`,
+              type: "multipleChoice",
+              prompt: word.lt,
+              label: "Choose the correct translation",
+              options,
+              correct: word.ru
+            });
+          }
+        });
+        return shuffle(questions);
+      };
+
+      const buildGapFill = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          const variants = gapFillVariants[word.id] || [];
+          variants.forEach((variant, index) => {
+            const options = shuffle(Array.from(new Set(variant.options || [variant.answer])));
+            questions.push({
+              id: `gf_${word.id}_${index + 1}`,
+              type: "gapFill",
+              prompt: variant.sentence,
+              subtitle: variant.translationRu,
+              options,
+              correct: variant.answer,
+              label: "Fill in the blank"
+            });
+          });
+        });
+        return shuffle(questions);
+      };
+
+      const buildGapFillInput = () => {
+        const questions = [];
+        wordSet.words.forEach((word) => {
+          const variants = gapFillVariants[word.id] || [];
+          variants.forEach((variant, index) => {
+            questions.push({
+              id: `gfi_${word.id}_${index + 1}`,
+              type: "gapFillInput",
+              prompt: variant.sentence,
+              subtitle: variant.translationRu,
+              correct: variant.answer,
+              label: "Type the missing word"
+            });
+          });
+        });
+        return shuffle(questions);
+      };
+
+      const testBlueprints = [
+        { name: "Flashcards", type: "flashcards", build: buildFlashcards },
+        { name: "Multiple Choice", type: "multipleChoice", build: buildMultipleChoice },
+        { name: "Gap Fill", type: "gapFill", build: buildGapFill },
+        { name: "Gap Fill (Typing)", type: "gapFillInput", build: buildGapFillInput }
+      ];
+
+      const QUESTION_TYPE_CHUNK_SIZE = 10;
+      const AUTO_ADVANCE_DELAY_MS = 3000;
+      const NEXT_BUTTON_LABEL = "Next";
+      const TEST_VERSION = "1.0.0";
+      const STORAGE_KEY = `lt-test-session:${location.pathname}`;
+      const REPEAT_MIN_OFFSET = 4;
+      const REPEAT_MAX_OFFSET = 6;
+
+      let session = null;
+
+      const resetSession = () => {
+        const tests = testBlueprints.map((test) => {
+          const questions = test.build().map((question) => ({
+            ...question,
+            testName: test.name
+          }));
+
+          return {
+            ...test,
+            questions
+          };
+        });
+
+        const queues = tests.map((test) => ({
+          name: test.name,
+          type: test.type,
+          questions: [...test.questions]
+        }));
+
+        const questions = [];
+        while (queues.some((queue) => queue.questions.length > 0)) {
+          queues.forEach((queue) => {
+            questions.push(...queue.questions.splice(0, QUESTION_TYPE_CHUNK_SIZE));
+          });
+        }
+
+        session = {
+          tests,
+          questions,
+          currentQuestionIndex: 0,
+          analytics: {},
+          autoAdvanceTimeoutId: null,
+          autoAdvanceIntervalId: null,
+          repeatCounter: 0
+        };
+
+        session.tests.forEach((test) => {
+          session.analytics[test.type] = {
+            name: test.name,
+            correct: 0,
+            total: test.questions.length
+          };
+        });
+      };
+
+      const saveSession = () => {
+        if (!session) {
+          return;
+        }
+
+        const payload = {
+          version: TEST_VERSION,
+          questions: session.questions,
+          currentQuestionIndex: session.currentQuestionIndex,
+          analytics: session.analytics,
+          repeatCounter: session.repeatCounter
+        };
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      };
+
+      const loadSession = () => {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          return { session: null, isOutdated: false };
+        }
+
+        try {
+          const parsed = JSON.parse(raw);
+          if (!parsed || !Array.isArray(parsed.questions) || typeof parsed.currentQuestionIndex !== "number") {
+            return { session: null, isOutdated: false };
+          }
+
+          const isOutdated = parsed.version !== TEST_VERSION;
+
+          return {
+            session: {
+              tests: null,
+              questions: parsed.questions,
+              currentQuestionIndex: Math.min(parsed.currentQuestionIndex, parsed.questions.length),
+              analytics: parsed.analytics || {},
+              autoAdvanceTimeoutId: null,
+              autoAdvanceIntervalId: null,
+              repeatCounter: parsed.repeatCounter || 0
+            },
+            isOutdated
+          };
+        } catch (error) {
+          return { session: null, isOutdated: false };
+        }
+      };
+
+      const clearSavedSession = () => {
+        localStorage.removeItem(STORAGE_KEY);
+      };
+
+      const updateStartScreen = () => {
+        const saved = loadSession();
+        const hasSaved = Boolean(saved.session);
+        const showOutdated = hasSaved && saved.isOutdated;
+
+        ui.startButton.textContent = hasSaved ? "Continue Test" : "Start Tests";
+        ui.resumeNote.classList.toggle("hidden", !hasSaved);
+        ui.versionNote.classList.toggle("hidden", !showOutdated);
+        ui.startNewButton.classList.toggle("hidden", !showOutdated);
+      };
+
+      const showScreen = (screen) => {
+        ui.startScreen.classList.add("hidden");
+        ui.testScreen.classList.add("hidden");
+        ui.summaryScreen.classList.add("hidden");
+        screen.classList.remove("hidden");
+      };
+
+      const currentQuestion = () => session.questions[session.currentQuestionIndex];
+
+      const getOverallProgress = () => {
+        const totals = session.questions.length;
+        const answered = session.currentQuestionIndex;
+        return `${answered} / ${totals}`;
+      };
+
+      const clearFeedback = () => {
+        ui.feedback.className = "mt-4 hidden rounded-xl border px-4 py-3 text-sm";
+        ui.feedback.textContent = "";
+      };
+
+      const showFeedback = (message, isCorrect) => {
+        ui.feedback.className = `mt-4 rounded-xl border px-4 py-3 text-sm ${
+          isCorrect ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-rose-200 bg-rose-50 text-rose-700"
+        }`;
+        ui.feedback.textContent = message;
+      };
+
+      const hideNextButton = () => {
+        ui.nextButton.classList.add("hidden");
+        ui.nextPanel.classList.add("hidden");
+      };
+
+      const showNextButton = () => {
+        setNextButtonLabel();
+        ui.nextButton.classList.remove("hidden");
+        ui.nextPanel.classList.remove("hidden");
+      };
+
+      const setNextButtonLabel = (label = NEXT_BUTTON_LABEL) => {
+        ui.nextButton.textContent = label;
+      };
+
+      const clearAutoAdvance = () => {
+        if (!session || (session.autoAdvanceTimeoutId === null && session.autoAdvanceIntervalId === null)) {
+          return;
+        }
+
+        if (session.autoAdvanceTimeoutId !== null) {
+          clearTimeout(session.autoAdvanceTimeoutId);
+          session.autoAdvanceTimeoutId = null;
+        }
+
+        if (session.autoAdvanceIntervalId !== null) {
+          clearInterval(session.autoAdvanceIntervalId);
+          session.autoAdvanceIntervalId = null;
+        }
+
+        setNextButtonLabel();
+      };
+
+      const scheduleAutoAdvance = () => {
+        clearAutoAdvance();
+
+        let remainingSeconds = Math.ceil(AUTO_ADVANCE_DELAY_MS / 1000);
+        setNextButtonLabel(`${NEXT_BUTTON_LABEL} (${remainingSeconds})`);
+
+        session.autoAdvanceIntervalId = setInterval(() => {
+          remainingSeconds -= 1;
+          if (remainingSeconds > 0) {
+            setNextButtonLabel(`${NEXT_BUTTON_LABEL} (${remainingSeconds})`);
+          }
+        }, 1000);
+
+        session.autoAdvanceTimeoutId = setTimeout(() => {
+          session.autoAdvanceTimeoutId = null;
+          goToNext();
+        }, AUTO_ADVANCE_DELAY_MS);
+      };
+
+      const enqueueRepeatQuestion = (question) => {
+        if (!session) {
+          return;
+        }
+
+        const offset =
+          Math.floor(Math.random() * (REPEAT_MAX_OFFSET - REPEAT_MIN_OFFSET + 1)) + REPEAT_MIN_OFFSET;
+        const insertIndex = Math.min(session.currentQuestionIndex + offset, session.questions.length);
+        session.repeatCounter += 1;
+
+        const repeatQuestion = {
+          ...question,
+          id: `${question.id}_repeat_${session.repeatCounter}`,
+          repeatOf: question.repeatOf || question.id
+        };
+
+        session.questions.splice(insertIndex, 0, repeatQuestion);
+        if (session.analytics[question.type]) {
+          session.analytics[question.type].total += 1;
+        }
+      };
+
+      const renderOptions = (question) => {
+        ui.answerBlock.innerHTML = "";
+
+        if (question.type === "flashcards") {
+          const answerText = document.createElement("div");
+          answerText.className = "hidden rounded-xl bg-slate-100 px-4 py-3 text-sm text-slate-700";
+          answerText.textContent = `Answer: ${question.answer}`;
+
+          const actions = document.createElement("div");
+          actions.className = "mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2";
+
+          const knowButton = document.createElement("button");
+          knowButton.textContent = "Know";
+          knowButton.className =
+            "rounded-xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-500 disabled:opacity-50";
+
+          const dontKnowButton = document.createElement("button");
+          dontKnowButton.textContent = "Don’t know";
+          dontKnowButton.className =
+            "rounded-xl bg-rose-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-500 disabled:opacity-50";
+
+          const handleAnswer = (isCorrect) => {
+            session.analytics.flashcards.correct += isCorrect ? 1 : 0;
+            if (isCorrect) {
+              goToNext();
+              return;
+            }
+
+            answerText.classList.remove("hidden");
+            clearFeedback();
+            knowButton.disabled = true;
+            dontKnowButton.disabled = true;
+            enqueueRepeatQuestion(question);
+            showNextButton();
+            saveSession();
+          };
+
+          knowButton.addEventListener("click", () => handleAnswer(true));
+          dontKnowButton.addEventListener("click", () => handleAnswer(false));
+
+          ui.answerBlock.append(answerText, actions);
+          actions.append(knowButton, dontKnowButton);
+          return;
+        }
+
+        if (question.type === "gapFillInput") {
+          const wrapper = document.createElement("div");
+          wrapper.className = "space-y-3";
+
+          const input = document.createElement("input");
+          input.type = "text";
+          input.autocomplete = "off";
+          input.className =
+            "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-700 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100 disabled:bg-slate-50";
+          input.placeholder = "Type your answer";
+
+          const submit = document.createElement("button");
+          submit.textContent = "Check answer";
+          submit.className =
+            "w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 disabled:opacity-50";
+
+          const handleSubmit = () => {
+            if (submit.disabled) {
+              return;
+            }
+
+            const rawValue = input.value.trim();
+            if (!rawValue) {
+              showFeedback("Type your answer first.", false);
+              return;
+            }
+
+            const isCorrect =
+              normalizeAnswer(rawValue) === normalizeAnswer(question.correct);
+            session.analytics[question.type].correct += isCorrect ? 1 : 0;
+
+            input.disabled = true;
+            submit.disabled = true;
+
+            showFeedback(
+              isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
+              isCorrect
+            );
+            if (!isCorrect) {
+              enqueueRepeatQuestion(question);
+            }
+            showNextButton();
+            saveSession();
+            if (isCorrect) {
+              scheduleAutoAdvance();
+            }
+          };
+
+          submit.addEventListener("click", handleSubmit);
+          input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+              handleSubmit();
+            }
+          });
+
+          wrapper.append(input, submit);
+          ui.answerBlock.appendChild(wrapper);
+          input.focus();
+          return;
+        }
+
+        const optionsWrapper = document.createElement("div");
+        optionsWrapper.className = "grid gap-3";
+
+        question.options.forEach((option) => {
+          const button = document.createElement("button");
+          button.textContent = option;
+          button.className =
+            "w-full rounded-xl border border-slate-200 px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:bg-slate-50";
+
+          button.addEventListener("click", () => {
+            const isCorrect = option === question.correct;
+            session.analytics[question.type].correct += isCorrect ? 1 : 0;
+
+            optionsWrapper.querySelectorAll("button").forEach((child) => {
+              child.disabled = true;
+              if (child.textContent === question.correct) {
+                child.classList.add("border-emerald-400", "bg-emerald-50");
+              } else if (child.textContent === option && !isCorrect) {
+                child.classList.add("border-rose-300", "bg-rose-50");
+              }
+            });
+
+            showFeedback(
+              isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
+              isCorrect
+            );
+            if (!isCorrect) {
+              enqueueRepeatQuestion(question);
+            }
+            showNextButton();
+            saveSession();
+            if (isCorrect) {
+              scheduleAutoAdvance();
+            }
+          });
+
+          optionsWrapper.appendChild(button);
+        });
+
+        ui.answerBlock.appendChild(optionsWrapper);
+      };
+
+      const renderQuestion = () => {
+        const question = currentQuestion();
+
+        clearAutoAdvance();
+
+        ui.testTitle.textContent = question.testName || "";
+        ui.testProgress.textContent = `Question ${session.currentQuestionIndex + 1} of ${session.questions.length}`;
+        ui.overallProgress.textContent = getOverallProgress();
+        ui.questionLabel.textContent = question.label;
+        ui.questionText.textContent = question.prompt;
+        ui.questionSubtitle.textContent = question.subtitle || "";
+        ui.questionSubtitle.classList.toggle("hidden", !question.subtitle);
+
+        hideNextButton();
+        clearFeedback();
+        renderOptions(question);
+      };
+
+      const goToNext = () => {
+        clearAutoAdvance();
+
+        if (session.currentQuestionIndex < session.questions.length - 1) {
+          session.currentQuestionIndex += 1;
+          saveSession();
+          renderQuestion();
+          return;
+        }
+
+        renderSummary();
+      };
+
+      const renderSummary = () => {
+        clearAutoAdvance();
+        hideNextButton();
+        showScreen(ui.summaryScreen);
+        clearSavedSession();
+        updateStartScreen();
+        const totals = Object.values(session.analytics).reduce(
+          (acc, item) => {
+            acc.correct += item.correct;
+            acc.total += item.total;
+            return acc;
+          },
+          { correct: 0, total: 0 }
+        );
+
+        const accuracy = totals.total === 0 ? 0 : Math.round((totals.correct / totals.total) * 100);
+        ui.summaryTotal.textContent = `Overall accuracy: ${accuracy}% (${totals.correct} of ${totals.total})`;
+        ui.summaryTable.innerHTML = "";
+
+        Object.values(session.analytics).forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm";
+          row.innerHTML = `
+            <div>
+              <p class="font-semibold text-slate-700">${item.name}</p>
+              <p class="text-xs text-slate-500">${item.correct} correct of ${item.total}</p>
+            </div>
+            <p class="text-sm font-semibold text-slate-700">${Math.round((item.correct / item.total) * 100)}%</p>
+          `;
+          ui.summaryTable.appendChild(row);
+        });
+      };
+
+      const startTests = (options = {}) => {
+        const { forceNew = false } = options;
+
+        if (forceNew) {
+          clearSavedSession();
+          resetSession();
+        } else {
+          const saved = loadSession();
+          session = saved.session || null;
+          if (!session || !session.questions.length) {
+            resetSession();
+          }
+        }
+
+        showScreen(ui.testScreen);
+        renderQuestion();
+        saveSession();
+        updateStartScreen();
+      };
+
+      updateStartScreen();
+      ui.startButton.addEventListener("click", () => startTests());
+      ui.startNewButton.addEventListener("click", () => startTests({ forceNew: true }));
+      ui.restartButton.addEventListener("click", () => startTests({ forceNew: true }));
+      ui.resetButton.addEventListener("click", () => startTests({ forceNew: true }));
+      ui.nextButton.addEventListener("click", goToNext);
+    </script>
+  </body>
+</html>
