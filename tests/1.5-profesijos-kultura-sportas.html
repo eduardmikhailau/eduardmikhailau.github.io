@@ -105,31 +105,62 @@
 
     <script>
 
-      const wordSet = {
-        topic: "Profesijos: kultūra ir sportas",
-        words: [
-          { id: "aktorius", lt: "aktorius", ru: "актер" },
-          { id: "aktore", lt: "aktorė", ru: "актриса" },
-          { id: "dailininkas", lt: "dailininkas", ru: "художник" },
-          { id: "dailininke", lt: "dailininkė", ru: "художница" },
-          { id: "dainininkas", lt: "dainininkas", ru: "певец" },
-          { id: "dainininke", lt: "dainininkė", ru: "певица" },
-          { id: "sportininkas", lt: "sportininkas", ru: "спортсмен" },
-          { id: "sportininke", lt: "sportininkė", ru: "спортсменка" },
-          { id: "sokejas", lt: "šokėjas", ru: "танцор" },
-          { id: "sokeja", lt: "šokėja", ru: "танцовщица" },
-          { id: "muzikantas", lt: "muzikantas", ru: "музыкант" },
-          { id: "muzikante", lt: "muzikantė", ru: "музыкантка" },
-          { id: "fotografas", lt: "fotografas", ru: "фотограф" },
-          { id: "fotografe", lt: "fotografė", ru: "фотограф" },
-          { id: "rezisierius", lt: "režisierius", ru: "режиссер" },
-          { id: "rezisiere", lt: "režisierė", ru: "режиссер" },
-          { id: "zurnalistas", lt: "žurnalistas", ru: "журналист" },
-          { id: "zurnaliste", lt: "žurnalistė", ru: "журналистка" }
-        ]
-      };
-
-                        const gapFillVariants = {
+            const wordSet = {
+        "topic": "Profesijos: kultūra ir sportas",
+        "words": [
+          {
+            "id": "aktorius",
+            "lt": "aktorius",
+            "ru": "актер"
+          },
+          {
+            "id": "aktore",
+            "lt": "aktorė",
+            "ru": "актриса"
+          },
+          {
+            "id": "dailininkas",
+            "lt": "dailininkas",
+            "ru": "художник"
+          },
+          {
+            "id": "dailininke",
+            "lt": "dailininkė",
+            "ru": "художница"
+          },
+          {
+            "id": "dainininkas",
+            "lt": "dainininkas",
+            "ru": "певец"
+          },
+          {
+            "id": "dainininke",
+            "lt": "dainininkė",
+            "ru": "певица"
+          },
+          {
+            "id": "sportininkas",
+            "lt": "sportininkas",
+            "ru": "спортсмен"
+          },
+          {
+            "id": "sportininke",
+            "lt": "sportininkė",
+            "ru": "спортсменка"
+          },
+          {
+            "id": "sokejas",
+            "lt": "šokėjas",
+            "ru": "танцор"
+          },
+          {
+            "id": "sokeja",
+            "lt": "šokėja",
+            "ru": "танцовщица"
+          },
+          {
+            "id": "muzikantas",
+       const gapFillVariants = {
         "aktorius": [
           {
             "sentence": "Jis yra ___.",
@@ -153,7 +184,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу актер.",
+            "translationRu": "Я вижу актера.",
             "answer": "aktorių",
             "options": [
               "aktorių",
@@ -175,7 +206,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу актриса.",
+            "translationRu": "Я вижу актрису.",
             "answer": "aktorę",
             "options": [
               "aktorę",
@@ -197,7 +228,7 @@
         "dailininkas": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу художник.",
+            "translationRu": "Я вижу художника.",
             "answer": "dailininką",
             "options": [
               "dailininką",
@@ -217,7 +248,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю художник.",
+            "translationRu": "Я знаю художника.",
             "answer": "dailininką",
             "options": [
               "dailininką",
@@ -239,7 +270,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю художница.",
+            "translationRu": "Я знаю художницу.",
             "answer": "dailininkę",
             "options": [
               "dailininkę",
@@ -261,7 +292,7 @@
         "dainininkas": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю певец.",
+            "translationRu": "Я знаю певца.",
             "answer": "dainininką",
             "options": [
               "dainininką",
@@ -313,7 +344,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу певица.",
+            "translationRu": "Я вижу певицу.",
             "answer": "dainininkę",
             "options": [
               "dainininkę",
@@ -335,7 +366,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу спортсмен.",
+            "translationRu": "Я вижу спортсмена.",
             "answer": "sportininką",
             "options": [
               "sportininką",
@@ -357,7 +388,7 @@
         "sportininke": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу спортсменка.",
+            "translationRu": "Я вижу спортсменку.",
             "answer": "sportininkę",
             "options": [
               "sportininkę",
@@ -377,7 +408,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю спортсменка.",
+            "translationRu": "Я знаю спортсменку.",
             "answer": "sportininkę",
             "options": [
               "sportininkę",
@@ -399,7 +430,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю танцор.",
+            "translationRu": "Я знаю танцора.",
             "answer": "šokėją",
             "options": [
               "šokėją",
@@ -421,7 +452,7 @@
         "sokeja": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю танцовщица.",
+            "translationRu": "Я знаю танцовщицу.",
             "answer": "šokėją",
             "options": [
               "šokėją",
@@ -473,7 +504,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу музыкант.",
+            "translationRu": "Я вижу музыканта.",
             "answer": "muzikantą",
             "options": [
               "muzikantą",
@@ -495,7 +526,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу музыкантка.",
+            "translationRu": "Я вижу музыкантку.",
             "answer": "muzikantę",
             "options": [
               "muzikantę",
@@ -517,7 +548,7 @@
         "fotografas": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу фотограф.",
+            "translationRu": "Я вижу фотографа.",
             "answer": "fotografą",
             "options": [
               "fotografą",
@@ -537,7 +568,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю фотограф.",
+            "translationRu": "Я знаю фотографа.",
             "answer": "fotografą",
             "options": [
               "fotografą",
@@ -549,7 +580,7 @@
         "fotografe": [
           {
             "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает фотограф.",
+            "translationRu": "Утром работает фотографка.",
             "answer": "fotografė",
             "options": [
               "fotografė",
@@ -559,7 +590,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю фотограф.",
+            "translationRu": "Я знаю фотографку.",
             "answer": "fotografę",
             "options": [
               "fotografę",
@@ -569,7 +600,7 @@
           },
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — фотограф.",
+            "translationRu": "Она — фотографка.",
             "answer": "fotografė",
             "options": [
               "fotografė",
@@ -581,7 +612,7 @@
         "rezisierius": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю режиссер.",
+            "translationRu": "Я знаю режиссера.",
             "answer": "režisierių",
             "options": [
               "režisierių",
@@ -613,7 +644,7 @@
         "rezisiere": [
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — режиссер.",
+            "translationRu": "Она — режиссерка.",
             "answer": "režisierė",
             "options": [
               "režisierė",
@@ -623,7 +654,7 @@
           },
           {
             "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает режиссер.",
+            "translationRu": "В городе работает режиссерка.",
             "answer": "režisierė",
             "options": [
               "režisierė",
@@ -633,7 +664,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу режиссер.",
+            "translationRu": "Я вижу режиссерку.",
             "answer": "režisierę",
             "options": [
               "režisierę",
@@ -655,7 +686,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу журналист.",
+            "translationRu": "Я вижу журналиста.",
             "answer": "žurnalistą",
             "options": [
               "žurnalistą",
@@ -669,6 +700,44 @@
             "answer": "žurnalistas",
             "options": [
               "žurnalistas",
+              "aktorius",
+              "aktorė"
+            ]
+          }
+        ],
+        "zurnaliste": [
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу журналистку.",
+            "answer": "žurnalistę",
+            "options": [
+              "žurnalistę",
+              "aktorių",
+              "aktorę"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает журналистка.",
+            "answer": "žurnalistė",
+            "options": [
+              "žurnalistė",
+              "aktorius",
+              "aktorė"
+            ]
+          },
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю журналистку.",
+            "answer": "žurnalistę",
+            "options": [
+              "žurnalistę",
+              "aktorių",
+              "aktorę"
+            ]
+          }
+        ]
+      };",
               "aktorius",
               "aktorė"
             ]

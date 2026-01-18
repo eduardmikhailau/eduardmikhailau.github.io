@@ -105,33 +105,67 @@
 
     <script>
 
-      const wordSet = {
-        topic: "Profesijos: valstybė ir verslas",
-        words: [
-          { id: "policininkas", lt: "policininkas", ru: "полицейский" },
-          { id: "policininke", lt: "policininkė", ru: "полицейская" },
-          { id: "advokatas", lt: "advokatas", ru: "адвокат" },
-          { id: "advokate", lt: "advokatė", ru: "адвокат" },
-          { id: "ambasadorius", lt: "ambasadorius", ru: "посол" },
-          { id: "ambasadore", lt: "ambasadorė", ru: "посол" },
-          { id: "diplomatas", lt: "diplomatas", ru: "дипломат" },
-          { id: "diplomate", lt: "diplomatė", ru: "дипломат" },
-          { id: "lakunas", lt: "lakūnas", ru: "летчик" },
-          { id: "lakune", lt: "lakūnė", ru: "летчица" },
-          { id: "sekretorius", lt: "sekretorius", ru: "секретарь" },
-          { id: "sekretore", lt: "sekretorė", ru: "секретарь" },
-          { id: "tarnautojas", lt: "tarnautojas", ru: "служащий" },
-          { id: "tarnautoja", lt: "tarnautoja", ru: "служащая" },
-          { id: "teisininkas", lt: "teisininkas", ru: "юрист" },
-          { id: "teisininke", lt: "teisininkė", ru: "юрист" },
-          { id: "vadybininkas", lt: "vadybininkas", ru: "менеджер" },
-          { id: "vadybininke", lt: "vadybininkė", ru: "менеджер" },
-          { id: "verslininkas", lt: "verslininkas", ru: "бизнесмен" },
-          { id: "verslininke", lt: "verslininkė", ru: "бизнесвумен" }
-        ]
-      };
-
-                        const gapFillVariants = {
+            const wordSet = {
+        "topic": "Profesijos: valstybė ir verslas",
+        "words": [
+          {
+            "id": "policininkas",
+            "lt": "policininkas",
+            "ru": "полицейский"
+          },
+          {
+            "id": "policininke",
+            "lt": "policininkė",
+            "ru": "полицейская"
+          },
+          {
+            "id": "advokatas",
+            "lt": "advokatas",
+            "ru": "адвокат"
+          },
+          {
+            "id": "advokate",
+            "lt": "advokatė",
+            "ru": "адвокатка"
+          },
+          {
+            "id": "ambasadorius",
+            "lt": "ambasadorius",
+            "ru": "посол"
+          },
+          {
+            "id": "ambasadore",
+            "lt": "ambasadorė",
+            "ru": "послица"
+          },
+          {
+            "id": "diplomatas",
+            "lt": "diplomatas",
+            "ru": "дипломат"
+          },
+          {
+            "id": "diplomate",
+            "lt": "diplomatė",
+            "ru": "дипломатка"
+          },
+          {
+            "id": "lakunas",
+            "lt": "lakūnas",
+            "ru": "летчик"
+          },
+          {
+            "id": "lakune",
+            "lt": "lakūnė",
+            "ru": "летчица"
+          },
+          {
+            "id": "sekretorius",
+            "lt": "sekretorius",
+            "ru": "секретарь"
+          },
+          {
+            "id": "sekretore",
+            "lt": "      const gapFillVariants = {
         "policininkas": [
           {
             "sentence": "Jis yra ___.",
@@ -155,7 +189,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу полицейский.",
+            "translationRu": "Я вижу полицейского.",
             "answer": "policininką",
             "options": [
               "policininką",
@@ -177,7 +211,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу полицейская.",
+            "translationRu": "Я вижу полицейскую.",
             "answer": "policininkę",
             "options": [
               "policininkę",
@@ -199,7 +233,7 @@
         "advokatas": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу адвокат.",
+            "translationRu": "Я вижу адвоката.",
             "answer": "advokatą",
             "options": [
               "advokatą",
@@ -219,7 +253,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю адвокат.",
+            "translationRu": "Я знаю адвоката.",
             "answer": "advokatą",
             "options": [
               "advokatą",
@@ -231,7 +265,7 @@
         "advokate": [
           {
             "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает адвокат.",
+            "translationRu": "Утром работает адвокатка.",
             "answer": "advokatė",
             "options": [
               "advokatė",
@@ -241,7 +275,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю адвокат.",
+            "translationRu": "Я знаю адвокатку.",
             "answer": "advokatę",
             "options": [
               "advokatę",
@@ -251,7 +285,7 @@
           },
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — адвокат.",
+            "translationRu": "Она — адвокатка.",
             "answer": "advokatė",
             "options": [
               "advokatė",
@@ -263,7 +297,7 @@
         "ambasadorius": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю посол.",
+            "translationRu": "Я знаю посла.",
             "answer": "ambasadorių",
             "options": [
               "ambasadorių",
@@ -295,7 +329,7 @@
         "ambasadore": [
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — посол.",
+            "translationRu": "Она — послица.",
             "answer": "ambasadorė",
             "options": [
               "ambasadorė",
@@ -305,7 +339,7 @@
           },
           {
             "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает посол.",
+            "translationRu": "В городе работает послица.",
             "answer": "ambasadorė",
             "options": [
               "ambasadorė",
@@ -315,7 +349,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу посол.",
+            "translationRu": "Я вижу послицу.",
             "answer": "ambasadorę",
             "options": [
               "ambasadorę",
@@ -337,7 +371,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу дипломат.",
+            "translationRu": "Я вижу дипломата.",
             "answer": "diplomatą",
             "options": [
               "diplomatą",
@@ -359,7 +393,7 @@
         "diplomate": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу дипломат.",
+            "translationRu": "Я вижу дипломатку.",
             "answer": "diplomatę",
             "options": [
               "diplomatę",
@@ -369,7 +403,7 @@
           },
           {
             "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает дипломат.",
+            "translationRu": "Утром работает дипломатка.",
             "answer": "diplomatė",
             "options": [
               "diplomatė",
@@ -379,7 +413,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю дипломат.",
+            "translationRu": "Я знаю дипломатку.",
             "answer": "diplomatę",
             "options": [
               "diplomatę",
@@ -401,7 +435,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю летчик.",
+            "translationRu": "Я знаю летчика.",
             "answer": "lakūną",
             "options": [
               "lakūną",
@@ -423,7 +457,7 @@
         "lakune": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю летчица.",
+            "translationRu": "Я знаю летчицу.",
             "answer": "lakūnę",
             "options": [
               "lakūnę",
@@ -475,7 +509,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу секретарь.",
+            "translationRu": "Я вижу секретаря.",
             "answer": "sekretorių",
             "options": [
               "sekretorių",
@@ -487,7 +521,7 @@
         "sekretore": [
           {
             "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает секретарь.",
+            "translationRu": "В городе работает секретарша.",
             "answer": "sekretorė",
             "options": [
               "sekretorė",
@@ -497,7 +531,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу секретарь.",
+            "translationRu": "Я вижу секретаршу.",
             "answer": "sekretorę",
             "options": [
               "sekretorę",
@@ -507,7 +541,7 @@
           },
           {
             "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает секретарь.",
+            "translationRu": "Утром работает секретарша.",
             "answer": "sekretorė",
             "options": [
               "sekretorė",
@@ -519,7 +553,7 @@
         "tarnautojas": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу служащий.",
+            "translationRu": "Я вижу служащого.",
             "answer": "tarnautoją",
             "options": [
               "tarnautoją",
@@ -539,7 +573,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю служащий.",
+            "translationRu": "Я знаю служащого.",
             "answer": "tarnautoją",
             "options": [
               "tarnautoją",
@@ -561,7 +595,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю служащая.",
+            "translationRu": "Я знаю служащую.",
             "answer": "tarnautoją",
             "options": [
               "tarnautoją",
@@ -583,7 +617,7 @@
         "teisininkas": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю юрист.",
+            "translationRu": "Я знаю юриста.",
             "answer": "teisininką",
             "options": [
               "teisininką",
@@ -615,7 +649,7 @@
         "teisininke": [
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — юрист.",
+            "translationRu": "Она — юристка.",
             "answer": "teisininkė",
             "options": [
               "teisininkė",
@@ -625,7 +659,7 @@
           },
           {
             "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает юрист.",
+            "translationRu": "В городе работает юристка.",
             "answer": "teisininkė",
             "options": [
               "teisininkė",
@@ -635,7 +669,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу юрист.",
+            "translationRu": "Я вижу юристку.",
             "answer": "teisininkę",
             "options": [
               "teisininkę",
@@ -657,7 +691,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу менеджер.",
+            "translationRu": "Я вижу менеджера.",
             "answer": "vadybininką",
             "options": [
               "vadybininką",
@@ -679,7 +713,7 @@
         "vadybininke": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу менеджер.",
+            "translationRu": "Я вижу менеджерку.",
             "answer": "vadybininkę",
             "options": [
               "vadybininkę",
@@ -689,7 +723,7 @@
           },
           {
             "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает менеджер.",
+            "translationRu": "Утром работает менеджерка.",
             "answer": "vadybininkė",
             "options": [
               "vadybininkė",
@@ -699,7 +733,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю менеджер.",
+            "translationRu": "Я знаю менеджерку.",
             "answer": "vadybininkę",
             "options": [
               "vadybininkę",
@@ -721,7 +755,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю бизнесмен.",
+            "translationRu": "Я знаю бизнесмена.",
             "answer": "verslininką",
             "options": [
               "verslininką",
@@ -733,6 +767,46 @@
             "sentence": "Jis yra ___.",
             "translationRu": "Он — бизнесмен.",
             "answer": "verslininkas",
+            "options": [
+              "verslininkas",
+              "policininkas",
+              "policininkė"
+            ]
+          }
+        ],
+        "verslininke": [
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю бизнесвумен.",
+            "answer": "verslininkę",
+            "options": [
+              "verslininkę",
+              "policininką",
+              "policininkę"
+            ]
+          },
+          {
+            "sentence": "Ji yra ___.",
+            "translationRu": "Она — бизнесвумен.",
+            "answer": "verslininkė",
+            "options": [
+              "verslininkė",
+              "policininkas",
+              "policininkė"
+            ]
+          },
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает бизнесвумен.",
+            "answer": "verslininkė",
+            "options": [
+              "verslininkė",
+              "policininkas",
+              "policininkė"
+            ]
+          }
+        ]
+      };rslininkas",
             "options": [
               "verslininkas",
               "policininkas",

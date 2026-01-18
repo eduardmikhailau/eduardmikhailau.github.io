@@ -105,33 +105,66 @@
 
     <script>
 
-      const wordSet = {
-        topic: "Profesijos: paslaugos ir transportas",
-        words: [
-          { id: "darbininkas", lt: "darbininkas", ru: "рабочий" },
-          { id: "darbininke", lt: "darbininkė", ru: "рабочая" },
-          { id: "ukininkas", lt: "ūkininkas", ru: "фермер" },
-          { id: "ukininke", lt: "ūkininkė", ru: "фермерша" },
-          { id: "siuvejas", lt: "siuvėjas", ru: "портной" },
-          { id: "siuveja", lt: "siuvėja", ru: "швея" },
-          { id: "kirpejas", lt: "kirpėjas", ru: "парикмахер" },
-          { id: "kirpeja", lt: "kirpėja", ru: "парикмахерша" },
-          { id: "padavejas", lt: "padavėjas", ru: "официант" },
-          { id: "padaveja", lt: "padavėja", ru: "официантка" },
-          { id: "pardavejas", lt: "pardavėjas", ru: "продавец" },
-          { id: "pardaveja", lt: "pardavėja", ru: "продавщица" },
-          { id: "virejas", lt: "virėjas", ru: "повар" },
-          { id: "vireja", lt: "virėja", ru: "повар" },
-          { id: "vairuotojas", lt: "vairuotojas", ru: "водитель" },
-          { id: "vairuotoja", lt: "vairuotoja", ru: "водитель" },
-          { id: "valytojas", lt: "valytojas", ru: "уборщик" },
-          { id: "valytoja", lt: "valytoja", ru: "уборщица" },
-          { id: "jurininkas", lt: "jūrininkas", ru: "моряк" },
-          { id: "jurininke", lt: "jūrininkė", ru: "морячка" }
-        ]
-      };
-
-                        const gapFillVariants = {
+            const wordSet = {
+        "topic": "Profesijos: paslaugos ir transportas",
+        "words": [
+          {
+            "id": "darbininkas",
+            "lt": "darbininkas",
+            "ru": "рабочий"
+          },
+          {
+            "id": "darbininke",
+            "lt": "darbininkė",
+            "ru": "рабочая"
+          },
+          {
+            "id": "ukininkas",
+            "lt": "ūkininkas",
+            "ru": "фермер"
+          },
+          {
+            "id": "ukininke",
+            "lt": "ūkininkė",
+            "ru": "фермерша"
+          },
+          {
+            "id": "siuvejas",
+            "lt": "siuvėjas",
+            "ru": "портной"
+          },
+          {
+            "id": "siuveja",
+            "lt": "siuvėja",
+            "ru": "швея"
+          },
+          {
+            "id": "kirpejas",
+            "lt": "kirpėjas",
+            "ru": "парикмахер"
+          },
+          {
+            "id": "kirpeja",
+            "lt": "kirpėja",
+            "ru": "парикмахерша"
+          },
+          {
+            "id": "padavejas",
+            "lt": "padavėjas",
+            "ru": "официант"
+          },
+          {
+            "id": "padaveja",
+            "lt": "padavėja",
+            "ru": "официантка"
+          },
+          {
+            "id": "pardavejas",
+            "lt": "pardavėjas",
+            "ru": "продавец"
+          },
+          {
+                  const gapFillVariants = {
         "darbininkas": [
           {
             "sentence": "Jis yra ___.",
@@ -155,7 +188,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу рабочий.",
+            "translationRu": "Я вижу рабочого.",
             "answer": "darbininką",
             "options": [
               "darbininką",
@@ -177,7 +210,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу рабочая.",
+            "translationRu": "Я вижу рабочую.",
             "answer": "darbininkę",
             "options": [
               "darbininkę",
@@ -199,7 +232,7 @@
         "ukininkas": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу фермер.",
+            "translationRu": "Я вижу фермера.",
             "answer": "ūkininką",
             "options": [
               "ūkininką",
@@ -219,7 +252,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю фермер.",
+            "translationRu": "Я знаю фермера.",
             "answer": "ūkininką",
             "options": [
               "ūkininką",
@@ -241,7 +274,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю фермерша.",
+            "translationRu": "Я знаю фермершу.",
             "answer": "ūkininkę",
             "options": [
               "ūkininkę",
@@ -263,7 +296,7 @@
         "siuvejas": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю портной.",
+            "translationRu": "Я знаю портного.",
             "answer": "siuvėją",
             "options": [
               "siuvėją",
@@ -315,7 +348,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу швея.",
+            "translationRu": "Я вижу швею.",
             "answer": "siuvėją",
             "options": [
               "siuvėją",
@@ -337,7 +370,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу парикмахер.",
+            "translationRu": "Я вижу парикмахера.",
             "answer": "kirpėją",
             "options": [
               "kirpėją",
@@ -359,7 +392,7 @@
         "kirpeja": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу парикмахерша.",
+            "translationRu": "Я вижу парикмахершу.",
             "answer": "kirpėją",
             "options": [
               "kirpėją",
@@ -379,7 +412,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю парикмахерша.",
+            "translationRu": "Я знаю парикмахершу.",
             "answer": "kirpėją",
             "options": [
               "kirpėją",
@@ -401,7 +434,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю официант.",
+            "translationRu": "Я знаю официанта.",
             "answer": "padavėją",
             "options": [
               "padavėją",
@@ -423,7 +456,7 @@
         "padaveja": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю официантка.",
+            "translationRu": "Я знаю официантку.",
             "answer": "padavėją",
             "options": [
               "padavėją",
@@ -475,7 +508,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу продавец.",
+            "translationRu": "Я вижу продавца.",
             "answer": "pardavėją",
             "options": [
               "pardavėją",
@@ -497,7 +530,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу продавщица.",
+            "translationRu": "Я вижу продавщицу.",
             "answer": "pardavėją",
             "options": [
               "pardavėją",
@@ -519,7 +552,7 @@
         "virejas": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу повар.",
+            "translationRu": "Я вижу повара.",
             "answer": "virėją",
             "options": [
               "virėją",
@@ -539,7 +572,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю повар.",
+            "translationRu": "Я знаю повара.",
             "answer": "virėją",
             "options": [
               "virėją",
@@ -551,7 +584,7 @@
         "vireja": [
           {
             "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает повар.",
+            "translationRu": "Утром работает повариха.",
             "answer": "virėja",
             "options": [
               "virėja",
@@ -561,7 +594,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю повар.",
+            "translationRu": "Я знаю повариху.",
             "answer": "virėją",
             "options": [
               "virėją",
@@ -571,7 +604,7 @@
           },
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — повар.",
+            "translationRu": "Она — повариха.",
             "answer": "virėja",
             "options": [
               "virėja",
@@ -583,7 +616,7 @@
         "vairuotojas": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю водитель.",
+            "translationRu": "Я знаю водителя.",
             "answer": "vairuotoją",
             "options": [
               "vairuotoją",
@@ -615,7 +648,7 @@
         "vairuotoja": [
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — водитель.",
+            "translationRu": "Она — водительница.",
             "answer": "vairuotoja",
             "options": [
               "vairuotoja",
@@ -625,7 +658,7 @@
           },
           {
             "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает водитель.",
+            "translationRu": "В городе работает водительница.",
             "answer": "vairuotoja",
             "options": [
               "vairuotoja",
@@ -635,7 +668,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу водитель.",
+            "translationRu": "Я вижу водительницу.",
             "answer": "vairuotoją",
             "options": [
               "vairuotoją",
@@ -657,7 +690,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу уборщик.",
+            "translationRu": "Я вижу уборщика.",
             "answer": "valytoją",
             "options": [
               "valytoją",
@@ -679,7 +712,7 @@
         "valytoja": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу уборщица.",
+            "translationRu": "Я вижу уборщицу.",
             "answer": "valytoją",
             "options": [
               "valytoją",
@@ -699,7 +732,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю уборщица.",
+            "translationRu": "Я знаю уборщицу.",
             "answer": "valytoją",
             "options": [
               "valytoją",
@@ -721,7 +754,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю моряк.",
+            "translationRu": "Я знаю моряка.",
             "answer": "jūrininką",
             "options": [
               "jūrininką",
@@ -732,6 +765,47 @@
           {
             "sentence": "Jis yra ___.",
             "translationRu": "Он — моряк.",
+            "answer": "jūrininkas",
+            "options": [
+              "jūrininkas",
+              "darbininkas",
+              "darbininkė"
+            ]
+          }
+        ],
+        "jurininke": [
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю морячку.",
+            "answer": "jūrininkę",
+            "options": [
+              "jūrininkę",
+              "darbininką",
+              "darbininkę"
+            ]
+          },
+          {
+            "sentence": "Ji yra ___.",
+            "translationRu": "Она — морячка.",
+            "answer": "jūrininkė",
+            "options": [
+              "jūrininkė",
+              "darbininkas",
+              "darbininkė"
+            ]
+          },
+          {
+            "sentence": "Mieste dirba ___.",
+            "translationRu": "В городе работает морячка.",
+            "answer": "jūrininkė",
+            "options": [
+              "jūrininkė",
+              "darbininkas",
+              "darbininkė"
+            ]
+          }
+        ]
+      };моряк.",
             "answer": "jūrininkas",
             "options": [
               "jūrininkas",

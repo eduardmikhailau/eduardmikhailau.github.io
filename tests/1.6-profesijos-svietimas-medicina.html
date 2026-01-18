@@ -105,31 +105,61 @@
 
     <script>
 
-      const wordSet = {
-        topic: "Profesijos: švietimas ir medicina",
-        words: [
-          { id: "mokslininkas", lt: "mokslininkas", ru: "ученый" },
-          { id: "mokslininke", lt: "mokslininkė", ru: "ученая" },
-          { id: "mokytojas", lt: "mokytojas", ru: "учитель" },
-          { id: "mokytoja", lt: "mokytoja", ru: "учительница" },
-          { id: "destytojas", lt: "dėstytojas", ru: "преподаватель" },
-          { id: "destytoja", lt: "dėstytoja", ru: "преподаватель" },
-          { id: "gydytojas", lt: "gydytojas", ru: "врач" },
-          { id: "gydytoja", lt: "gydytoja", ru: "врач" },
-          { id: "slaugytojas", lt: "slaugytojas", ru: "медбрат" },
-          { id: "slaugytoja", lt: "slaugytoja", ru: "медсестра" },
-          { id: "ekonomistas", lt: "ekonomistas", ru: "экономист" },
-          { id: "ekonomiste", lt: "ekonomistė", ru: "экономист" },
-          { id: "inzinierius", lt: "inžinierius", ru: "инженер" },
-          { id: "inziniere", lt: "inžinierė", ru: "инженер" },
-          { id: "profesorius", lt: "profesorius", ru: "профессор" },
-          { id: "profesore", lt: "profesorė", ru: "профессор" },
-          { id: "vertejas", lt: "vertėjas", ru: "переводчик" },
-          { id: "verteja", lt: "vertėja", ru: "переводчица" }
-        ]
-      };
-
-                        const gapFillVariants = {
+            const wordSet = {
+        "topic": "Profesijos: švietimas ir medicina",
+        "words": [
+          {
+            "id": "mokslininkas",
+            "lt": "mokslininkas",
+            "ru": "ученый"
+          },
+          {
+            "id": "mokslininke",
+            "lt": "mokslininkė",
+            "ru": "ученая"
+          },
+          {
+            "id": "mokytojas",
+            "lt": "mokytojas",
+            "ru": "учитель"
+          },
+          {
+            "id": "mokytoja",
+            "lt": "mokytoja",
+            "ru": "учительница"
+          },
+          {
+            "id": "destytojas",
+            "lt": "dėstytojas",
+            "ru": "преподаватель"
+          },
+          {
+            "id": "destytoja",
+            "lt": "dėstytoja",
+            "ru": "преподавательница"
+          },
+          {
+            "id": "gydytojas",
+            "lt": "gydytojas",
+            "ru": "врач"
+          },
+          {
+            "id": "gydytoja",
+            "lt": "gydytoja",
+            "ru": "врач (жен.)"
+          },
+          {
+            "id": "slaugytojas",
+            "lt": "slaugytojas",
+            "ru": "медбрат"
+          },
+          {
+            "id": "slaugytoja",
+            "lt": "slaugytoja",
+            "ru": "медсестра"
+          },
+          {
+            "id":      const gapFillVariants = {
         "mokslininkas": [
           {
             "sentence": "Jis yra ___.",
@@ -153,7 +183,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу ученый.",
+            "translationRu": "Я вижу ученого.",
             "answer": "mokslininką",
             "options": [
               "mokslininką",
@@ -175,7 +205,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу ученая.",
+            "translationRu": "Я вижу ученую.",
             "answer": "mokslininkę",
             "options": [
               "mokslininkę",
@@ -197,7 +227,7 @@
         "mokytojas": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу учитель.",
+            "translationRu": "Я вижу учителя.",
             "answer": "mokytoją",
             "options": [
               "mokytoją",
@@ -217,7 +247,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю учитель.",
+            "translationRu": "Я знаю учителя.",
             "answer": "mokytoją",
             "options": [
               "mokytoją",
@@ -239,7 +269,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю учительница.",
+            "translationRu": "Я знаю учительницу.",
             "answer": "mokytoją",
             "options": [
               "mokytoją",
@@ -261,7 +291,7 @@
         "destytojas": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю преподаватель.",
+            "translationRu": "Я знаю преподавателя.",
             "answer": "dėstytoją",
             "options": [
               "dėstytoją",
@@ -293,7 +323,7 @@
         "destytoja": [
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — преподаватель.",
+            "translationRu": "Она — преподавательница.",
             "answer": "dėstytoja",
             "options": [
               "dėstytoja",
@@ -303,7 +333,7 @@
           },
           {
             "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает преподаватель.",
+            "translationRu": "В городе работает преподавательница.",
             "answer": "dėstytoja",
             "options": [
               "dėstytoja",
@@ -313,7 +343,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу преподаватель.",
+            "translationRu": "Я вижу преподавательницу.",
             "answer": "dėstytoją",
             "options": [
               "dėstytoją",
@@ -335,7 +365,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу врач.",
+            "translationRu": "Я вижу врача.",
             "answer": "gydytoją",
             "options": [
               "gydytoją",
@@ -357,7 +387,7 @@
         "gydytoja": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу врач.",
+            "translationRu": "Я вижу врача (жен.).",
             "answer": "gydytoją",
             "options": [
               "gydytoją",
@@ -367,7 +397,7 @@
           },
           {
             "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает врач.",
+            "translationRu": "Утром работает врач (жен.).",
             "answer": "gydytoja",
             "options": [
               "gydytoja",
@@ -377,7 +407,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю врач.",
+            "translationRu": "Я знаю врача (жен.).",
             "answer": "gydytoją",
             "options": [
               "gydytoją",
@@ -399,7 +429,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю медбрат.",
+            "translationRu": "Я знаю медбрата.",
             "answer": "slaugytoją",
             "options": [
               "slaugytoją",
@@ -421,7 +451,7 @@
         "slaugytoja": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю медсестра.",
+            "translationRu": "Я знаю медсестру.",
             "answer": "slaugytoją",
             "options": [
               "slaugytoją",
@@ -473,7 +503,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу экономист.",
+            "translationRu": "Я вижу экономиста.",
             "answer": "ekonomistą",
             "options": [
               "ekonomistą",
@@ -485,7 +515,7 @@
         "ekonomiste": [
           {
             "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает экономист.",
+            "translationRu": "В городе работает экономистка.",
             "answer": "ekonomistė",
             "options": [
               "ekonomistė",
@@ -495,7 +525,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу экономист.",
+            "translationRu": "Я вижу экономистку.",
             "answer": "ekonomistę",
             "options": [
               "ekonomistę",
@@ -505,7 +535,7 @@
           },
           {
             "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает экономист.",
+            "translationRu": "Утром работает экономистка.",
             "answer": "ekonomistė",
             "options": [
               "ekonomistė",
@@ -517,7 +547,7 @@
         "inzinierius": [
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу инженер.",
+            "translationRu": "Я вижу инженера.",
             "answer": "inžinierių",
             "options": [
               "inžinierių",
@@ -537,7 +567,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю инженер.",
+            "translationRu": "Я знаю инженера.",
             "answer": "inžinierių",
             "options": [
               "inžinierių",
@@ -549,7 +579,7 @@
         "inziniere": [
           {
             "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает инженер.",
+            "translationRu": "Утром работает инженерка.",
             "answer": "inžinierė",
             "options": [
               "inžinierė",
@@ -559,7 +589,7 @@
           },
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю инженер.",
+            "translationRu": "Я знаю инженерку.",
             "answer": "inžinierę",
             "options": [
               "inžinierę",
@@ -569,7 +599,7 @@
           },
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — инженер.",
+            "translationRu": "Она — инженерка.",
             "answer": "inžinierė",
             "options": [
               "inžinierė",
@@ -581,7 +611,7 @@
         "profesorius": [
           {
             "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю профессор.",
+            "translationRu": "Я знаю профессора.",
             "answer": "profesorių",
             "options": [
               "profesorių",
@@ -613,7 +643,7 @@
         "profesore": [
           {
             "sentence": "Ji yra ___.",
-            "translationRu": "Она — профессор.",
+            "translationRu": "Она — профессорка.",
             "answer": "profesorė",
             "options": [
               "profesorė",
@@ -623,7 +653,7 @@
           },
           {
             "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает профессор.",
+            "translationRu": "В городе работает профессорка.",
             "answer": "profesorė",
             "options": [
               "profesorė",
@@ -633,7 +663,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу профессор.",
+            "translationRu": "Я вижу профессорку.",
             "answer": "profesorę",
             "options": [
               "profesorę",
@@ -655,7 +685,7 @@
           },
           {
             "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу переводчик.",
+            "translationRu": "Я вижу переводчика.",
             "answer": "vertėją",
             "options": [
               "vertėją",
@@ -669,6 +699,44 @@
             "answer": "vertėjas",
             "options": [
               "vertėjas",
+              "mokslininkas",
+              "mokslininkė"
+            ]
+          }
+        ],
+        "verteja": [
+          {
+            "sentence": "Aš matau ___.",
+            "translationRu": "Я вижу переводчицу.",
+            "answer": "vertėją",
+            "options": [
+              "vertėją",
+              "mokslininką",
+              "mokslininkę"
+            ]
+          },
+          {
+            "sentence": "___ dirba ryte.",
+            "translationRu": "Утром работает переводчица.",
+            "answer": "vertėja",
+            "options": [
+              "vertėja",
+              "mokslininkas",
+              "mokslininkė"
+            ]
+          },
+          {
+            "sentence": "Aš pažįstu ___.",
+            "translationRu": "Я знаю переводчицу.",
+            "answer": "vertėją",
+            "options": [
+              "vertėją",
+              "mokslininką",
+              "mokslininkę"
+            ]
+          }
+        ]
+      };
               "mokslininkas",
               "mokslininkė"
             ]
