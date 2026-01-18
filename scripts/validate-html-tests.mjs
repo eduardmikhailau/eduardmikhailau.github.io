@@ -80,9 +80,43 @@ const validateFile = (filePath) => {
   return errors;
 };
 
-const htmlFiles = listHtmlFiles(testsRoot);
+const collectHtmlFiles = (inputs) => {
+  if (!inputs.length) {
+    return listHtmlFiles(testsRoot);
+  }
+
+  const collected = [];
+  for (const input of inputs) {
+    const resolved = path.resolve(input);
+    if (!fs.existsSync(resolved)) {
+      console.error(`Path not found: ${input}`);
+      continue;
+    }
+
+    const stats = fs.statSync(resolved);
+    if (stats.isDirectory()) {
+      collected.push(...listHtmlFiles(resolved));
+      continue;
+    }
+
+    if (stats.isFile()) {
+      if (resolved.endsWith(".html")) {
+        collected.push(resolved);
+      } else {
+        console.error(`Skipping non-HTML file: ${input}`);
+      }
+    }
+  }
+
+  return Array.from(new Set(collected));
+};
+
+const htmlFiles = collectHtmlFiles(process.argv.slice(2));
 if (!htmlFiles.length) {
-  console.error("No HTML tests found under tests/.");
+  const message = process.argv.length > 2
+    ? "No HTML tests found for provided paths."
+    : "No HTML tests found under tests/.";
+  console.error(message);
   process.exit(1);
 }
 

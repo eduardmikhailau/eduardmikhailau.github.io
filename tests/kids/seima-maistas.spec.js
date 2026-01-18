@@ -1,10 +1,10 @@
 const path = require("path");
 const { test, expect } = require("playwright/test");
 
-test("seima-maistas flows to summary without errors", async ({ page }) => {
+test("1.1-seima-maistas flows to summary without errors", async ({ page }) => {
   test.setTimeout(120000);
 
-  const filePath = path.resolve(__dirname, "seima-maistas.html");
+  const filePath = path.resolve(__dirname, "1.1-seima-maistas.html");
   const url = `file://${filePath}`;
   const issues = [];
 

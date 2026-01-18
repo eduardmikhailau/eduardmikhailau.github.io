@@ -1,7 +1,7 @@
 import path from "path";
 import { chromium } from "playwright";
 
-const filePath = path.resolve("tests/kids/seima-maistas.html");
+const filePath = path.resolve("tests/kids/1.1-seima-maistas.html");
 const url = `file://${filePath}`;
 
 const issues = [];

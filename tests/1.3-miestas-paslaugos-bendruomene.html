@@ -20,11 +20,20 @@
             a summary at the end.
           </p>
           <p id="resume-note" class="hidden text-xs text-slate-500">Saved progress detected.</p>
+          <p id="version-note" class="hidden text-xs text-amber-600">
+            This test was updated. Continue to use the saved version or start a new one.
+          </p>
           <button
             id="start-button"
             class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
           >
             Start Tests
+          </button>
+          <button
+            id="start-new-button"
+            class="hidden w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
+          >
+            Start New Version
           </button>
         </section>
 
@@ -810,6 +819,8 @@
         summaryScreen: document.getElementById("summary-screen"),
         startButton: document.getElementById("start-button"),
         resumeNote: document.getElementById("resume-note"),
+        versionNote: document.getElementById("version-note"),
+        startNewButton: document.getElementById("start-new-button"),
         restartButton: document.getElementById("restart-button"),
         resetButton: document.getElementById("reset-button"),
         testTitle: document.getElementById("test-title"),
@@ -932,6 +943,7 @@
       const QUESTION_TYPE_CHUNK_SIZE = 10;
       const AUTO_ADVANCE_DELAY_MS = 3000;
       const NEXT_BUTTON_LABEL = "Next";
+      const TEST_VERSION = "1.0.0";
       const STORAGE_KEY = `lt-test-session:${location.pathname}`;
       const REPEAT_MIN_OFFSET = 4;
       const REPEAT_MAX_OFFSET = 6;
@@ -989,6 +1001,7 @@
         }
 
         const payload = {
+          version: TEST_VERSION,
           questions: session.questions,
           currentQuestionIndex: session.currentQuestionIndex,
           analytics: session.analytics,
@@ -1001,26 +1014,31 @@
       const loadSession = () => {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) {
-          return null;
+          return { session: null, isOutdated: false };
         }
 
         try {
           const parsed = JSON.parse(raw);
           if (!parsed || !Array.isArray(parsed.questions) || typeof parsed.currentQuestionIndex !== "number") {
-            return null;
+            return { session: null, isOutdated: false };
           }
 
+          const isOutdated = parsed.version !== TEST_VERSION;
+
           return {
-            tests: null,
-            questions: parsed.questions,
-            currentQuestionIndex: Math.min(parsed.currentQuestionIndex, parsed.questions.length),
-            analytics: parsed.analytics || {},
-            autoAdvanceTimeoutId: null,
-            autoAdvanceIntervalId: null,
-            repeatCounter: parsed.repeatCounter || 0
+            session: {
+              tests: null,
+              questions: parsed.questions,
+              currentQuestionIndex: Math.min(parsed.currentQuestionIndex, parsed.questions.length),
+              analytics: parsed.analytics || {},
+              autoAdvanceTimeoutId: null,
+              autoAdvanceIntervalId: null,
+              repeatCounter: parsed.repeatCounter || 0
+            },
+            isOutdated
           };
         } catch (error) {
-          return null;
+          return { session: null, isOutdated: false };
         }
       };
 
@@ -1029,9 +1047,14 @@
       };
 
       const updateStartScreen = () => {
-        const hasSaved = Boolean(loadSession());
+        const saved = loadSession();
+        const hasSaved = Boolean(saved.session);
+        const showOutdated = hasSaved && saved.isOutdated;
+
         ui.startButton.textContent = hasSaved ? "Continue Test" : "Start Tests";
         ui.resumeNote.classList.toggle("hidden", !hasSaved);
+        ui.versionNote.classList.toggle("hidden", !showOutdated);
+        ui.startNewButton.classList.toggle("hidden", !showOutdated);
       };
 
       const showScreen = (screen) => {
@@ -1355,7 +1378,7 @@
           resetSession();
         } else {
           const saved = loadSession();
-          session = saved || null;
+          session = saved.session || null;
           if (!session || !session.questions.length) {
             resetSession();
           }
@@ -1369,6 +1392,7 @@
 
       updateStartScreen();
       ui.startButton.addEventListener("click", () => startTests());
+      ui.startNewButton.addEventListener("click", () => startTests({ forceNew: true }));
       ui.restartButton.addEventListener("click", () => startTests({ forceNew: true }));
       ui.resetButton.addEventListener("click", () => startTests({ forceNew: true }));
       ui.nextButton.addEventListener("click", goToNext);
