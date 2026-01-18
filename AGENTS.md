@@ -48,6 +48,8 @@ When generating a new test page:
 - For each word, create **at least 3 questions for each non-flashcard test type**.
 - Ensure every word has **real-life, A2-level sentences** in `gapFillVariants` (used for both multiple-choice gap fill and typing gap fill).
 - Vary sentence contexts per word so they are not repetitive or template-like.
+- Verify **Russian translations are grammatically correct** for each sentence context.
+- Use **Russian feminatives** for female profession entries when appropriate.
 
 ### Notes
 
