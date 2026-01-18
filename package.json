@@ -1,0 +1,29 @@
+{
+  "name": "eduardmikhailau.github.io",
+  "version": "1.0.0",
+  "description": "This repo is used to generate **self-contained HTML practice tests** for learning Lithuanian vocabulary with **Russian translations**.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:html": "node scripts/validate-html-tests.mjs && npx playwright test tests/all-tests.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardmikhailau/eduardmikhailau.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/eduardmikhailau/eduardmikhailau.github.io/issues"
+  },
+  "homepage": "https://github.com/eduardmikhailau/eduardmikhailau.github.io#readme",
+  "devDependencies": {
+    "playwright": "^1.57.0"
+  }
+}

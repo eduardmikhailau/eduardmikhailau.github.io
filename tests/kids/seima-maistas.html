@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Profesijos: paslaugos ir transportas — Practice Tests</title>
+    <title>Vaikams: šeima ir maistas — Practice Tests</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900">
     <div class="mx-auto flex min-h-screen max-w-3xl flex-col px-4 py-6">
       <header class="mb-6 text-center">
-        <h1 class="text-2xl font-semibold sm:text-3xl">Profesijos: paslaugos ir transportas — Practice Tests</h1>
+        <h1 class="text-2xl font-semibold sm:text-3xl">Vaikams: šeima ir maistas — Practice Tests</h1>
         <p class="mt-2 text-sm text-slate-600 sm:text-base">
           Flashcards, multiple choice, gap fill, and typing.
         </p>
@@ -105,751 +105,368 @@
 
     <script>
 
-            const wordSet = {
-        "topic": "Profesijos: paslaugos ir transportas",
-        "words": [
-          {
-            "id": "darbininkas",
-            "lt": "darbininkas",
-            "ru": "рабочий"
-          },
-          {
-            "id": "darbininke",
-            "lt": "darbininkė",
-            "ru": "рабочая"
-          },
-          {
-            "id": "ukininkas",
-            "lt": "ūkininkas",
-            "ru": "фермер"
-          },
-          {
-            "id": "ukininke",
-            "lt": "ūkininkė",
-            "ru": "фермерша"
-          },
-          {
-            "id": "siuvejas",
-            "lt": "siuvėjas",
-            "ru": "портной"
-          },
-          {
-            "id": "siuveja",
-            "lt": "siuvėja",
-            "ru": "швея"
-          },
-          {
-            "id": "kirpejas",
-            "lt": "kirpėjas",
-            "ru": "парикмахер"
-          },
-          {
-            "id": "kirpeja",
-            "lt": "kirpėja",
-            "ru": "парикмахерша"
-          },
-          {
-            "id": "padavejas",
-            "lt": "padavėjas",
-            "ru": "официант"
-          },
-          {
-            "id": "padaveja",
-            "lt": "padavėja",
-            "ru": "официантка"
-          },
-          {
-            "id": "pardavejas",
-            "lt": "pardavėjas",
-            "ru": "продавец"
-          },
-          {
-            "id": "pardaveja",
-            "lt": "pardavėja",
-            "ru": "продавщица"
-          },
-          {
-            "id": "virejas",
-            "lt": "virėjas",
-            "ru": "повар"
-          },
-          {
-            "id": "vireja",
-            "lt": "virėja",
-            "ru": "повариха"
-          },
-          {
-            "id": "vairuotojas",
-            "lt": "vairuotojas",
-            "ru": "водитель"
-          },
-          {
-            "id": "vairuotoja",
-            "lt": "vairuotoja",
-            "ru": "водительница"
-          },
-          {
-            "id": "valytojas",
-            "lt": "valytojas",
-            "ru": "уборщик"
-          },
-          {
-            "id": "valytoja",
-            "lt": "valytoja",
-            "ru": "уборщица"
-          },
-          {
-            "id": "jurininkas",
-            "lt": "jūrininkas",
-            "ru": "моряк"
-          },
-          {
-            "id": "jurininke",
-            "lt": "jūrininkė",
-            "ru": "морячка"
-          }
+      const wordSet = {
+        topic: "Vaikams: šeima ir maistas",
+        words: [
+          { id: "mamyte", lt: "mamytė", ru: "мамочка" },
+          { id: "tevelis", lt: "tėvelis", ru: "папа" },
+          { id: "broliukas", lt: "broliukas", ru: "младший брат" },
+          { id: "sesute", lt: "sesutė", ru: "сестричка" },
+          { id: "senelis", lt: "senelis", ru: "дедушка" },
+          { id: "mociute", lt: "močiutė", ru: "бабушка" },
+          { id: "sriuba", lt: "sriuba", ru: "суп" },
+          { id: "mesa", lt: "mėsa", ru: "мясо" },
+          { id: "zuvis", lt: "žuvis", ru: "рыба" },
+          { id: "kiausinis", lt: "kiaušinis", ru: "яйцо" },
+          { id: "kose", lt: "košė", ru: "каша" },
+          { id: "pomidoras", lt: "pomidoras", ru: "помидор" },
+          { id: "obuolys", lt: "obuolys", ru: "яблоко" },
+          { id: "saldainis", lt: "saldainis", ru: "конфета" },
+          { id: "kisielius", lt: "kisielius", ru: "кисель" },
+          { id: "kompotas", lt: "kompotas", ru: "компот" },
+          { id: "sultinys", lt: "sultinys", ru: "бульон" }
         ]
       };
 
-       const gapFillVariants = {
-        "darbininkas": [
+      const gapFillVariants = {
+        mamyte: [
           {
-            "sentence": "Jis yra ___.",
-            "translationRu": "Он — рабочий.",
-            "answer": "darbininkas",
-            "options": [
-              "darbininkas",
-              "darbininkė",
-              "ūkininkas"
-            ]
+            sentence: "Aš myliu ___.",
+            translationRu: "Я люблю мамочку.",
+            answer: "mamytę",
+            options: ["mamytę", "tėvelį", "sesutę"]
           },
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает рабочий.",
-            "answer": "darbininkas",
-            "options": [
-              "darbininkas",
-              "darbininkė",
-              "ūkininkas"
-            ]
+            sentence: "Aš myliu ___ ir savo draugą.",
+            translationRu: "Я люблю мамочку и своего друга.",
+            answer: "mamytę",
+            options: ["mamytę", "močiutę", "senelį"]
           },
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу рабочого.",
-            "answer": "darbininką",
-            "options": [
-              "darbininką",
-              "darbininkę",
-              "ūkininką"
-            ]
+            sentence: "Aš myliu ___, tėvelį, broliuką, sesutę, senelį ir močiutę.",
+            translationRu: "Я люблю мамочку, папу, младшего брата, сестричку, дедушку и бабушку.",
+            answer: "mamytę",
+            options: ["mamytę", "tėvelį", "močiutę"]
           }
         ],
-        "darbininke": [
+        tevelis: [
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает рабочая.",
-            "answer": "darbininkė",
-            "options": [
-              "darbininkė",
-              "darbininkas",
-              "ūkininkas"
-            ]
+            sentence: "Aš myliu ___.",
+            translationRu: "Я люблю папу.",
+            answer: "tėvelį",
+            options: ["tėvelį", "broliuką", "senelį"]
           },
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу рабочую.",
-            "answer": "darbininkę",
-            "options": [
-              "darbininkę",
-              "darbininką",
-              "ūkininką"
-            ]
+            sentence: "Aš myliu ___ ir savo draugą.",
+            translationRu: "Я люблю папу и своего друга.",
+            answer: "tėvelį",
+            options: ["tėvelį", "mamytę", "močiutę"]
           },
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает рабочая.",
-            "answer": "darbininkė",
-            "options": [
-              "darbininkė",
-              "darbininkas",
-              "ūkininkas"
-            ]
+            sentence: "Aš myliu mamytę, ___, broliuką, sesutę, senelį ir močiutę.",
+            translationRu: "Я люблю мамочку, папу, младшего брата, сестричку, дедушку и бабушку.",
+            answer: "tėvelį",
+            options: ["tėvelį", "senelį", "broliuką"]
           }
         ],
-        "ukininkas": [
+        broliukas: [
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу фермера.",
-            "answer": "ūkininką",
-            "options": [
-              "ūkininką",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš myliu ___.",
+            translationRu: "Я люблю младшего брата.",
+            answer: "broliuką",
+            options: ["broliuką", "tėvelį", "senelį"]
           },
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает фермер.",
-            "answer": "ūkininkas",
-            "options": [
-              "ūkininkas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš myliu ___ ir savo draugą.",
+            translationRu: "Я люблю младшего брата и своего друга.",
+            answer: "broliuką",
+            options: ["broliuką", "sesutę", "mamytę"]
           },
           {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю фермера.",
-            "answer": "ūkininką",
-            "options": [
-              "ūkininką",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš myliu mamytę, tėvelį, ___, sesutę, senelį ir močiutę.",
+            translationRu: "Я люблю мамочку, папу, младшего брата, сестричку, дедушку и бабушку.",
+            answer: "broliuką",
+            options: ["broliuką", "sesutę", "senelį"]
           }
         ],
-        "ukininke": [
+        sesute: [
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает фермерша.",
-            "answer": "ūkininkė",
-            "options": [
-              "ūkininkė",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš myliu ___.",
+            translationRu: "Я люблю сестричку.",
+            answer: "sesutę",
+            options: ["sesutę", "mamytę", "močiutę"]
           },
           {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю фермершу.",
-            "answer": "ūkininkę",
-            "options": [
-              "ūkininkę",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš myliu ___ ir savo draugą.",
+            translationRu: "Я люблю сестричку и своего друга.",
+            answer: "sesutę",
+            options: ["sesutę", "broliuką", "tėvelį"]
           },
           {
-            "sentence": "Ji yra ___.",
-            "translationRu": "Она — фермерша.",
-            "answer": "ūkininkė",
-            "options": [
-              "ūkininkė",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš myliu mamytę, tėvelį, broliuką, ___, senelį ir močiutę.",
+            translationRu: "Я люблю мамочку, папу, младшего брата, сестричку, дедушку и бабушку.",
+            answer: "sesutę",
+            options: ["sesutę", "senelį", "močiutę"]
           }
         ],
-        "siuvejas": [
+        senelis: [
           {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю портного.",
-            "answer": "siuvėją",
-            "options": [
-              "siuvėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš myliu ___.",
+            translationRu: "Я люблю дедушку.",
+            answer: "senelį",
+            options: ["senelį", "tėvelį", "broliuką"]
           },
           {
-            "sentence": "Jis yra ___.",
-            "translationRu": "Он — портной.",
-            "answer": "siuvėjas",
-            "options": [
-              "siuvėjas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš myliu ___ ir savo draugą.",
+            translationRu: "Я люблю дедушку и своего друга.",
+            answer: "senelį",
+            options: ["senelį", "močiutę", "mamytę"]
           },
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает портной.",
-            "answer": "siuvėjas",
-            "options": [
-              "siuvėjas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš myliu mamytę, tėvelį, broliuką, sesutę, ___ ir močiutę.",
+            translationRu: "Я люблю мамочку, папу, младшего брата, сестричку, дедушку и бабушку.",
+            answer: "senelį",
+            options: ["senelį", "močiutę", "tėvelį"]
           }
         ],
-        "siuveja": [
+        mociute: [
           {
-            "sentence": "Ji yra ___.",
-            "translationRu": "Она — швея.",
-            "answer": "siuvėja",
-            "options": [
-              "siuvėja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš myliu ___.",
+            translationRu: "Я люблю бабушку.",
+            answer: "močiutę",
+            options: ["močiutę", "mamytę", "sesutę"]
           },
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает швея.",
-            "answer": "siuvėja",
-            "options": [
-              "siuvėja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš myliu ___ ir savo draugą.",
+            translationRu: "Я люблю бабушку и своего друга.",
+            answer: "močiutę",
+            options: ["močiutę", "senelį", "tėvelį"]
           },
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу швею.",
-            "answer": "siuvėją",
-            "options": [
-              "siuvėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš myliu mamytę, tėvelį, broliuką, sesutę, senelį ir ___.",
+            translationRu: "Я люблю мамочку, папу, младшего брата, сестричку, дедушку и бабушку.",
+            answer: "močiutę",
+            options: ["močiutę", "senelį", "mamytę"]
           }
         ],
-        "kirpejas": [
+        sriuba: [
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает парикмахер.",
-            "answer": "kirpėjas",
-            "options": [
-              "kirpėjas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю суп.",
+            answer: "sriubą",
+            options: ["sriubą", "mėsą", "košę"]
           },
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу парикмахера.",
-            "answer": "kirpėją",
-            "options": [
-              "kirpėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___, mėsą ir žuvį.",
+            translationRu: "Я люблю суп, мясо и рыбу.",
+            answer: "sriubą",
+            options: ["sriubą", "mėsą", "žuvį"]
           },
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает парикмахер.",
-            "answer": "kirpėjas",
-            "options": [
-              "kirpėjas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, pomidorą ir obuolį.",
+            translationRu: "Я люблю суп, помидор и яблоко.",
+            answer: "sriubą",
+            options: ["sriubą", "pomidorą", "obuolį"]
           }
         ],
-        "kirpeja": [
+        mesa: [
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу парикмахершу.",
-            "answer": "kirpėją",
-            "options": [
-              "kirpėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю мясо.",
+            answer: "mėsą",
+            options: ["mėsą", "sriubą", "žuvį"]
           },
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает парикмахерша.",
-            "answer": "kirpėja",
-            "options": [
-              "kirpėja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, sriubą ir žuvį.",
+            translationRu: "Я люблю мясо, суп и рыбу.",
+            answer: "mėsą",
+            options: ["mėsą", "sriubą", "žuvį"]
           },
           {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю парикмахершу.",
-            "answer": "kirpėją",
-            "options": [
-              "kirpėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___, košę ir pomidorą.",
+            translationRu: "Я люблю мясо, кашу и помидор.",
+            answer: "mėsą",
+            options: ["mėsą", "košę", "pomidorą"]
           }
         ],
-        "padavejas": [
+        zuvis: [
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает официант.",
-            "answer": "padavėjas",
-            "options": [
-              "padavėjas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю рыбу.",
+            answer: "žuvį",
+            options: ["žuvį", "mėsą", "sriubą"]
           },
           {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю официанта.",
-            "answer": "padavėją",
-            "options": [
-              "padavėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___, sriubą ir mėsą.",
+            translationRu: "Я люблю рыбу, суп и мясо.",
+            answer: "žuvį",
+            options: ["žuvį", "sriubą", "mėsą"]
           },
           {
-            "sentence": "Jis yra ___.",
-            "translationRu": "Он — официант.",
-            "answer": "padavėjas",
-            "options": [
-              "padavėjas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, pomidorą ir obuolį.",
+            translationRu: "Я люблю рыбу, помидор и яблоко.",
+            answer: "žuvį",
+            options: ["žuvį", "pomidorą", "obuolį"]
           }
         ],
-        "padaveja": [
+        kiausinis: [
           {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю официантку.",
-            "answer": "padavėją",
-            "options": [
-              "padavėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю яйцо.",
+            answer: "kiaušinį",
+            options: ["kiaušinį", "košę", "sriubą"]
           },
           {
-            "sentence": "Ji yra ___.",
-            "translationRu": "Она — официантка.",
-            "answer": "padavėja",
-            "options": [
-              "padavėja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, sriubą ir košę.",
+            translationRu: "Я люблю яйцо, суп и кашу.",
+            answer: "kiaušinį",
+            options: ["kiaušinį", "sriubą", "košę"]
           },
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает официантка.",
-            "answer": "padavėja",
-            "options": [
-              "padavėja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, saldainį ir kisielių.",
+            translationRu: "Я люблю яйцо, конфету и кисель.",
+            answer: "kiaušinį",
+            options: ["kiaušinį", "saldainį", "kisielių"]
           }
         ],
-        "pardavejas": [
+        kose: [
           {
-            "sentence": "Jis yra ___.",
-            "translationRu": "Он — продавец.",
-            "answer": "pardavėjas",
-            "options": [
-              "pardavėjas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю кашу.",
+            answer: "košę",
+            options: ["košę", "sriubą", "kiaušinį"]
           },
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает продавец.",
-            "answer": "pardavėjas",
-            "options": [
-              "pardavėjas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, sriubą ir kiaušinį.",
+            translationRu: "Я люблю кашу, суп и яйцо.",
+            answer: "košę",
+            options: ["košę", "sriubą", "kiaušinį"]
           },
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу продавца.",
-            "answer": "pardavėją",
-            "options": [
-              "pardavėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___, kompotą ir sultinį.",
+            translationRu: "Я люблю кашу, компот и бульон.",
+            answer: "košę",
+            options: ["košę", "kompotą", "sultinį"]
           }
         ],
-        "pardaveja": [
+        pomidoras: [
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает продавщица.",
-            "answer": "pardavėja",
-            "options": [
-              "pardavėja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю помидор.",
+            answer: "pomidorą",
+            options: ["pomidorą", "obuolį", "saldainį"]
           },
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу продавщицу.",
-            "answer": "pardavėją",
-            "options": [
-              "pardavėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___, sriubą ir mėsą.",
+            translationRu: "Я люблю помидор, суп и мясо.",
+            answer: "pomidorą",
+            options: ["pomidorą", "sriubą", "mėsą"]
           },
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает продавщица.",
-            "answer": "pardavėja",
-            "options": [
-              "pardavėja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, obuolį ir saldainį.",
+            translationRu: "Я люблю помидор, яблоко и конфету.",
+            answer: "pomidorą",
+            options: ["pomidorą", "obuolį", "saldainį"]
           }
         ],
-        "virejas": [
+        obuolys: [
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу повара.",
-            "answer": "virėją",
-            "options": [
-              "virėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю яблоко.",
+            answer: "obuolį",
+            options: ["obuolį", "pomidorą", "saldainį"]
           },
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает повар.",
-            "answer": "virėjas",
-            "options": [
-              "virėjas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, žuvį ir košę.",
+            translationRu: "Я люблю яблоко, рыбу и кашу.",
+            answer: "obuolį",
+            options: ["obuolį", "žuvį", "košę"]
           },
           {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю повара.",
-            "answer": "virėją",
-            "options": [
-              "virėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___, pomidorą ir saldainį.",
+            translationRu: "Я люблю яблоко, помидор и конфету.",
+            answer: "obuolį",
+            options: ["obuolį", "pomidorą", "saldainį"]
           }
         ],
-        "vireja": [
+        saldainis: [
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает повариха.",
-            "answer": "virėja",
-            "options": [
-              "virėja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю конфету.",
+            answer: "saldainį",
+            options: ["saldainį", "kisielių", "kompotą"]
           },
           {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю повариху.",
-            "answer": "virėją",
-            "options": [
-              "virėją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___, kiaušinį ir košę.",
+            translationRu: "Я люблю конфету, яйцо и кашу.",
+            answer: "saldainį",
+            options: ["saldainį", "kiaušinį", "košę"]
           },
           {
-            "sentence": "Ji yra ___.",
-            "translationRu": "Она — повариха.",
-            "answer": "virėja",
-            "options": [
-              "virėja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, pomidorą ir obuolį.",
+            translationRu: "Я люблю конфету, помидор и яблоко.",
+            answer: "saldainį",
+            options: ["saldainį", "pomidorą", "obuolį"]
           }
         ],
-        "vairuotojas": [
+        kisielius: [
           {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю водителя.",
-            "answer": "vairuotoją",
-            "options": [
-              "vairuotoją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю кисель.",
+            answer: "kisielių",
+            options: ["kisielių", "kompotą", "sultinį"]
           },
           {
-            "sentence": "Jis yra ___.",
-            "translationRu": "Он — водитель.",
-            "answer": "vairuotojas",
-            "options": [
-              "vairuotojas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, sriubą ir mėsą.",
+            translationRu: "Я люблю кисель, суп и мясо.",
+            answer: "kisielių",
+            options: ["kisielių", "sriubą", "mėsą"]
           },
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает водитель.",
-            "answer": "vairuotojas",
-            "options": [
-              "vairuotojas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, kompotą ir sultinį.",
+            translationRu: "Я люблю кисель, компот и бульон.",
+            answer: "kisielių",
+            options: ["kisielių", "kompotą", "sultinį"]
           }
         ],
-        "vairuotoja": [
+        kompotas: [
           {
-            "sentence": "Ji yra ___.",
-            "translationRu": "Она — водительница.",
-            "answer": "vairuotoja",
-            "options": [
-              "vairuotoja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю компот.",
+            answer: "kompotą",
+            options: ["kompotą", "kisielių", "sultinį"]
           },
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает водительница.",
-            "answer": "vairuotoja",
-            "options": [
-              "vairuotoja",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, sriubą ir žuvį.",
+            translationRu: "Я люблю компот, суп и рыбу.",
+            answer: "kompotą",
+            options: ["kompotą", "sriubą", "žuvį"]
           },
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу водительницу.",
-            "answer": "vairuotoją",
-            "options": [
-              "vairuotoją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___, kisielių ir saldainį.",
+            translationRu: "Я люблю компот, кисель и конфету.",
+            answer: "kompotą",
+            options: ["kompotą", "kisielių", "saldainį"]
           }
         ],
-        "valytojas": [
+        sultinys: [
           {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает уборщик.",
-            "answer": "valytojas",
-            "options": [
-              "valytojas",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___.",
+            translationRu: "Я люблю бульон.",
+            answer: "sultinį",
+            options: ["sultinį", "kompotą", "kisielių"]
           },
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу уборщика.",
-            "answer": "valytoją",
-            "options": [
-              "valytoją",
-              "darbininką",
-              "darbininkę"
-            ]
+            sentence: "Aš mėgstu ___, mėsą ir kiaušinį.",
+            translationRu: "Я люблю бульон, мясо и яйцо.",
+            answer: "sultinį",
+            options: ["sultinį", "mėsą", "kiaušinį"]
           },
           {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает уборщик.",
-            "answer": "valytojas",
-            "options": [
-              "valytojas",
-              "darbininkas",
-              "darbininkė"
-            ]
-          }
-        ],
-        "valytoja": [
-          {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу уборщицу.",
-            "answer": "valytoją",
-            "options": [
-              "valytoją",
-              "darbininką",
-              "darbininkę"
-            ]
-          },
-          {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает уборщица.",
-            "answer": "valytoja",
-            "options": [
-              "valytoja",
-              "darbininkas",
-              "darbininkė"
-            ]
-          },
-          {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю уборщицу.",
-            "answer": "valytoją",
-            "options": [
-              "valytoją",
-              "darbininką",
-              "darbininkę"
-            ]
-          }
-        ],
-        "jurininkas": [
-          {
-            "sentence": "___ dirba ryte.",
-            "translationRu": "Утром работает моряк.",
-            "answer": "jūrininkas",
-            "options": [
-              "jūrininkas",
-              "darbininkas",
-              "darbininkė"
-            ]
-          },
-          {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю моряка.",
-            "answer": "jūrininką",
-            "options": [
-              "jūrininką",
-              "darbininką",
-              "darbininkę"
-            ]
-          },
-          {
-            "sentence": "Jis yra ___.",
-            "translationRu": "Он — моряк.",
-            "answer": "jūrininkas",
-            "options": [
-              "jūrininkas",
-              "darbininkas",
-              "darbininkė"
-            ]
-          }
-        ],
-        "jurininke": [
-          {
-            "sentence": "Aš pažįstu ___.",
-            "translationRu": "Я знаю морячку.",
-            "answer": "jūrininkę",
-            "options": [
-              "jūrininkę",
-              "darbininką",
-              "darbininkę"
-            ]
-          },
-          {
-            "sentence": "Ji yra ___.",
-            "translationRu": "Она — морячка.",
-            "answer": "jūrininkė",
-            "options": [
-              "jūrininkė",
-              "darbininkas",
-              "darbininkė"
-            ]
-          },
-          {
-            "sentence": "Mieste dirba ___.",
-            "translationRu": "В городе работает морячка.",
-            "answer": "jūrininkė",
-            "options": [
-              "jūrininkė",
-              "darbininkas",
-              "darbininkė"
-            ]
+            sentence: "Aš mėgstu ___, kisielių ir kompotą.",
+            translationRu: "Я люблю бульон, кисель и компот.",
+            answer: "sultinį",
+            options: ["sultinį", "kisielių", "kompotą"]
           }
         ]
       };
@@ -939,7 +556,7 @@
         wordSet.words.forEach((word) => {
           const variants = gapFillVariants[word.id] || [];
           variants.forEach((variant, index) => {
-            const options = shuffle(Array.from(new Set(variant.options || [variant.answer])));
+            const options = shuffle(Array.from(new Set([...(variant.options || []), variant.answer])));
             questions.push({
               id: `gf_${word.id}_${index + 1}`,
               type: "gapFill",
