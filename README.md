@@ -46,3 +46,7 @@ GitHub Pages: https://eduardmikhailau.github.io/ (tests under `tests/`).
 - [1.6 Profesijos: švietimas ir medicina](https://eduardmikhailau.github.io/tests/1.6-profesijos-svietimas-medicina.html)
 - [1.7 Profesijos: paslaugos ir transportas](https://eduardmikhailau.github.io/tests/1.7-profesijos-paslaugos-transportas.html)
 - [1.8 Profesijos: valstybė ir verslas](https://eduardmikhailau.github.io/tests/1.8-profesijos-valstybe-verslas.html)
+- [2.1 Šeima ir giminės](https://eduardmikhailau.github.io/tests/2.1-seima-ir-gimines.html)
+- [2.2 Veiksmažodžiai](https://eduardmikhailau.github.io/tests/2.2-veiksmazodziai.html)
+- [2.3 Būdvardžiai: išvaizda ir dydis](https://eduardmikhailau.github.io/tests/2.3-budvardziai-isvaizda-dydis.html)
+- [2.4 Būdvardžiai: nuotaikos ir vertinimai](https://eduardmikhailau.github.io/tests/2.4-budvardziai-nuotaikos-vertinimai.html)
