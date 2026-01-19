@@ -105,7 +105,6 @@
       </main>
 
       <footer class="mt-8 text-center text-xs text-slate-500">
-        Mobile-friendly UI with TailwindCSS.
       </footer>
     </div>
 
@@ -116,8 +115,10 @@
         words: [
           { id: "seima", lt: "šeima", ru: "семья" },
           { id: "tevai", lt: "tėvai", ru: "родители" },
-          { id: "tevas_tetis", lt: "tėvas / tėtis", ru: "отец / папа" },
-          { id: "motina_mama", lt: "motina / mama", ru: "мать / мама" },
+          { id: "tevas", lt: "tėvas", ru: "отец (нейтр./официально)" },
+          { id: "tetis", lt: "tėtis", ru: "папа, папочка (разг.)" },
+          { id: "motina", lt: "motina", ru: "мать (нейтр./официально)" },
+          { id: "mama", lt: "mama", ru: "мама, мамочка (разг.)" },
           { id: "sunus", lt: "sūnus", ru: "сын" },
           { id: "dukte", lt: "duktė", ru: "дочь" },
           { id: "brolis", lt: "brolis", ru: "брат" },
@@ -127,7 +128,8 @@
           { id: "vyras", lt: "vyras", ru: "муж" },
           { id: "zmona", lt: "žmona", ru: "жена" },
           { id: "senelis", lt: "senelis", ru: "дедушка" },
-          { id: "senele_mociute", lt: "senelė / močiutė", ru: "бабушка" },
+          { id: "senele", lt: "senelė", ru: "бабушка (нейтр.)" },
+          { id: "mociute", lt: "močiutė", ru: "бабуля, бабушка (ласк.)" },
           { id: "prosenelis", lt: "prosenelis", ru: "прадедушка" },
           { id: "prosenele", lt: "prosenelė", ru: "прабабушка" },
           { id: "anukas_anuke", lt: "anūkas, anūkė", ru: "внук, внучка" },
@@ -186,7 +188,7 @@
             "options": ["tėvai", "giminės", "vaikai"]
           }
         ],
-        "tevas_tetis": [
+        "tevas": [
           {
             "sentence": "Mano ___ dirba ligoninėje.",
             "translationRu": "Мой отец работает в больнице.",
@@ -194,19 +196,39 @@
             "options": ["tėvas", "dėdė", "brolis"]
           },
           {
+            "sentence": "Aš matau savo ___.",
+            "translationRu": "Я вижу своего отца.",
+            "answer": "tėvą",
+            "options": ["tėvą", "dėdę", "brolį"]
+          },
+          {
+            "sentence": "Be ___ patarimo man sunku.",
+            "translationRu": "Без совета отца мне трудно.",
+            "answer": "tėvo",
+            "options": ["tėvo", "dėdės", "brolio"]
+          }
+        ],
+        "tetis": [
+          {
             "sentence": "Mano ___ mėgsta žvejoti.",
             "translationRu": "Мой папа любит рыбалку.",
             "answer": "tėtis",
             "options": ["tėtis", "dėdė", "brolis"]
           },
           {
-            "sentence": "Aš matau ___.",
-            "translationRu": "Я вижу отца.",
-            "answer": "tėvą",
-            "options": ["tėvą", "dėdę", "brolį"]
+            "sentence": "Ryte ___ geria kavą.",
+            "translationRu": "Утром папа пьет кофе.",
+            "answer": "tėtis",
+            "options": ["tėtis", "dėdė", "brolis"]
+          },
+          {
+            "sentence": "Aš apkabinu ___.",
+            "translationRu": "Я обнимаю папу.",
+            "answer": "tėtį",
+            "options": ["tėtį", "dėdę", "brolį"]
           }
         ],
-        "motina_mama": [
+        "motina": [
           {
             "sentence": "Mano ___ gyvena kitame mieste.",
             "translationRu": "Моя мать живет в другом городе.",
@@ -214,10 +236,30 @@
             "options": ["motina", "teta", "žmona"]
           },
           {
-            "sentence": "Ryte ___ geria arbatą.",
-            "translationRu": "Утром мама пьет чай.",
+            "sentence": "Aš kalbu su savo ___.",
+            "translationRu": "Я разговариваю со своей матерью.",
+            "answer": "motina",
+            "options": ["motina", "teta", "žmona"]
+          },
+          {
+            "sentence": "Be ___ pagalbos man sunku.",
+            "translationRu": "Без помощи матери мне трудно.",
+            "answer": "motinos",
+            "options": ["motinos", "tetos", "žmonos"]
+          }
+        ],
+        "mama": [
+          {
+            "sentence": "___ gamina vakarienę.",
+            "translationRu": "Мама готовит ужин.",
             "answer": "mama",
             "options": ["mama", "sesuo", "žmona"]
+          },
+          {
+            "sentence": "Aš skambinu ___.",
+            "translationRu": "Я звоню маме.",
+            "answer": "mamai",
+            "options": ["mamai", "seseriai", "tetai"]
           },
           {
             "sentence": "Aš apkabinu ___.",
@@ -406,30 +448,50 @@
             "options": ["senelis", "tėvas", "dėdė"]
           }
         ],
-        "senele_mociute": [
+        "senele": [
           {
             "sentence": "Mano ___ kepa pyragus.",
-            "translationRu": "Моя бабушка печет пироги.",
+            "translationRu": "Моя бабушка (нейтр.) печет пироги.",
             "answer": "senelė",
             "options": ["senelė", "močiutė", "teta"]
           },
           {
+            "sentence": "Aš lankau ___.",
+            "translationRu": "Я навещаю бабушку (нейтр.).",
+            "answer": "senelę",
+            "options": ["senelę", "tetą", "seserį"]
+          },
+          {
+            "sentence": "Be ___ pasakų man liūdna.",
+            "translationRu": "Без сказок бабушки (нейтр.) мне грустно.",
+            "answer": "senelės",
+            "options": ["senelės", "tetos", "sesers"]
+          }
+        ],
+        "mociute": [
+          {
+            "sentence": "Mano ___ kepa pyragus.",
+            "translationRu": "Моя бабушка (ласк.) печет пироги.",
+            "answer": "močiutė",
+            "options": ["močiutė", "senelė", "teta"]
+          },
+          {
             "sentence": "Aš apkabinu ___.",
-            "translationRu": "Я обнимаю бабушку.",
+            "translationRu": "Я обнимаю бабушку (ласк.).",
             "answer": "močiutę",
             "options": ["močiutę", "tetą", "seserį"]
           },
           {
             "sentence": "___ pasakoja pasakas.",
-            "translationRu": "Бабушка рассказывает сказки.",
+            "translationRu": "Бабушка (ласк.) рассказывает сказки.",
             "answer": "močiutė",
             "options": ["močiutė", "senelė", "teta"]
           }
         ],
         "prosenelis": [
           {
-            "sentence": "Mano ___ gyveno kaime.",
-            "translationRu": "Мой прадедушка жил в деревне.",
+            "sentence": "Mano ___ gyvena kaime.",
+            "translationRu": "Мой прадедушка живет в деревне.",
             "answer": "prosenelis",
             "options": ["prosenelis", "senelis", "tėvas"]
           },
@@ -440,16 +502,16 @@
             "options": ["prosenelį", "senelį", "tėvą"]
           },
           {
-            "sentence": "___ buvo mokytojas.",
-            "translationRu": "Прадедушка был учителем.",
+            "sentence": "___ yra mokytojas.",
+            "translationRu": "Прадедушка — учитель.",
             "answer": "prosenelis",
             "options": ["prosenelis", "senelis", "tėvas"]
           }
         ],
         "prosenele": [
           {
-            "sentence": "Mano ___ gyveno mažame name.",
-            "translationRu": "Моя прабабушка жила в маленьком доме.",
+            "sentence": "Mano ___ gyvena mažame name.",
+            "translationRu": "Моя прабабушка живет в маленьком доме.",
             "answer": "prosenelė",
             "options": ["prosenelė", "senelė", "teta"]
           },
@@ -460,8 +522,8 @@
             "options": ["prosenelę", "senelę", "tetą"]
           },
           {
-            "sentence": "___ buvo siuvėja.",
-            "translationRu": "Прабабушка была портнихой.",
+            "sentence": "___ yra siuvėja.",
+            "translationRu": "Прабабушка — портниха.",
             "answer": "prosenelė",
             "options": ["prosenelė", "senelė", "teta"]
           }
@@ -608,7 +670,7 @@
         ],
         "istekejusi": [
           {
-            "sentence": "Ona yra ___.",
+            "sentence": "Ji yra ___.",
             "translationRu": "Она замужем.",
             "answer": "ištekėjusi",
             "options": ["ištekėjusi", "išsiskyrusi", "mirusi"]
@@ -640,8 +702,8 @@
             "options": ["išsiskyręs", "vedęs", "miręs"]
           },
           {
-            "sentence": "Po skyrybų jis liko ___.",
-            "translationRu": "После развода он остался разведенным.",
+            "sentence": "Po skyrybų jis yra ___.",
+            "translationRu": "После развода он разведен.",
             "answer": "išsiskyręs",
             "options": ["išsiskyręs", "vedęs", "miręs"]
           }
@@ -660,8 +722,8 @@
             "options": ["išsiskyrusi", "ištekėjusi", "mirusi"]
           },
           {
-            "sentence": "Po skyrybų ji liko ___.",
-            "translationRu": "После развода она осталась разведенной.",
+            "sentence": "Po skyrybų ji yra ___.",
+            "translationRu": "После развода она разведена.",
             "answer": "išsiskyrusi",
             "options": ["išsiskyrusi", "ištekėjusi", "mirusi"]
           }

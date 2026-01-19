@@ -1,6 +1,8 @@
 const path = require("path");
 const { test, expect } = require("playwright/test");
 
+test.use({ ignoreHTTPSErrors: true });
+
 test("1.1-seima-maistas flows to summary without errors", async ({ page }) => {
   test.setTimeout(120000);
 

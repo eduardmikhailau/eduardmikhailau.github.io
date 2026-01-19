@@ -5,6 +5,8 @@ const { test, expect } = require("playwright/test");
 
 const testsRoot = path.resolve(__dirname);
 
+test.use({ ignoreHTTPSErrors: true });
+
 const listHtmlFiles = (dir) => {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   return entries.flatMap((entry) => {
