@@ -67,7 +67,23 @@
 
           <div class="rounded-2xl bg-white p-6 shadow-sm">
             <div id="question-block" class="space-y-4">
-              <p id="question-label" class="text-sm font-semibold uppercase tracking-wide text-indigo-600"></p>
+              <div class="flex items-start justify-between gap-3">
+                <p id="question-label" class="text-sm font-semibold uppercase tracking-wide text-indigo-600"></p>
+                <button
+                  id="save-question"
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 shadow-sm transition hover:bg-slate-50"
+                  type="button"
+                  aria-label="Save question"
+                  title="Save question"
+                  aria-pressed="false"
+                >
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V7.5A2.5 2.5 0 0 1 5.5 5H17l4 4v10a2 2 0 0 1-2 2z"/>
+                    <path d="M7 21V12h10v9"/>
+                    <path d="M7 5v4h8"/>
+                  </svg>
+                </button>
+              </div>
               <p id="question-text" class="text-xl font-semibold"></p>
               <p id="question-subtitle" class="text-sm text-slate-600"></p>
             </div>
@@ -95,6 +111,20 @@
             <p id="summary-total" class="text-sm text-slate-600"></p>
           </div>
           <div id="summary-table" class="space-y-3"></div>
+          <div id="saved-questions-section" class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-semibold">Saved questions</h3>
+              <button
+                id="clear-saved-questions"
+                class="text-xs font-semibold text-slate-500 transition hover:text-slate-700"
+                type="button"
+              >
+                Clear
+              </button>
+            </div>
+            <p id="saved-questions-empty" class="text-sm text-slate-500">No saved questions yet.</p>
+            <div id="saved-questions-list" class="space-y-3"></div>
+          </div>
           <button
             id="restart-button"
             class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
@@ -514,12 +544,17 @@
         questionLabel: document.getElementById("question-label"),
         questionText: document.getElementById("question-text"),
         questionSubtitle: document.getElementById("question-subtitle"),
+        saveButton: document.getElementById("save-question"),
         answerBlock: document.getElementById("answer-block"),
         feedback: document.getElementById("feedback"),
         nextPanel: document.getElementById("next-panel"),
         nextButton: document.getElementById("next-button"),
         summaryTotal: document.getElementById("summary-total"),
-        summaryTable: document.getElementById("summary-table")
+        summaryTable: document.getElementById("summary-table"),
+        savedQuestionsSection: document.getElementById("saved-questions-section"),
+        savedQuestionsList: document.getElementById("saved-questions-list"),
+        savedQuestionsEmpty: document.getElementById("saved-questions-empty"),
+        clearSavedQuestionsButton: document.getElementById("clear-saved-questions")
       };
 
       const shuffle = (array) => {
@@ -629,6 +664,7 @@
       const NEXT_BUTTON_LABEL = "Next";
       const TEST_VERSION = "1.0.0";
       const STORAGE_KEY = `lt-test-session:${location.pathname}`;
+      const SAVED_QUESTIONS_KEY = `lt-test-saved:${location.pathname}`;
       const REPEAT_MIN_OFFSET = 4;
       const REPEAT_MAX_OFFSET = 6;
 
@@ -728,6 +764,99 @@
 
       const clearSavedSession = () => {
         localStorage.removeItem(STORAGE_KEY);
+      };
+
+      const loadSavedQuestions = () => {
+        try {
+          const raw = localStorage.getItem(SAVED_QUESTIONS_KEY);
+          if (!raw) {
+            return [];
+          }
+          const parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+          return [];
+        }
+      };
+
+      const persistSavedQuestions = (items) => {
+        localStorage.setItem(SAVED_QUESTIONS_KEY, JSON.stringify(items));
+      };
+
+      const buildSavedQuestion = (question) => {
+        const id = question.repeatOf || question.id;
+        return {
+          id,
+          type: question.type,
+          label: question.label || "",
+          testName: question.testName || "",
+          prompt: question.prompt || "",
+          subtitle: question.subtitle || "",
+          answer: question.correct ?? question.answer ?? ""
+        };
+      };
+
+      const updateSaveButton = (question) => {
+        if (!ui.saveButton) {
+          return;
+        }
+        const saved = loadSavedQuestions();
+        const questionId = question ? (question.repeatOf || question.id) : null;
+        const isSaved = questionId ? saved.some((item) => item.id === questionId) : false;
+        ui.saveButton.setAttribute("aria-pressed", isSaved ? "true" : "false");
+        ui.saveButton.classList.toggle("text-emerald-600", isSaved);
+        ui.saveButton.classList.toggle("border-emerald-200", isSaved);
+        ui.saveButton.title = isSaved ? "Saved" : "Save question";
+      };
+
+      const toggleSavedQuestion = () => {
+        const question = currentQuestion();
+        if (!question) {
+          return;
+        }
+        const saved = loadSavedQuestions();
+        const questionId = question.repeatOf || question.id;
+        const existingIndex = saved.findIndex((item) => item.id === questionId);
+        if (existingIndex >= 0) {
+          saved.splice(existingIndex, 1);
+        } else {
+          saved.push(buildSavedQuestion(question));
+        }
+        persistSavedQuestions(saved);
+        updateSaveButton(question);
+      };
+
+      const renderSavedQuestions = () => {
+        if (!ui.savedQuestionsList || !ui.savedQuestionsEmpty) {
+          return;
+        }
+        const saved = loadSavedQuestions();
+        ui.savedQuestionsList.innerHTML = "";
+        if (!saved.length) {
+          ui.savedQuestionsEmpty.classList.remove("hidden");
+          return;
+        }
+        ui.savedQuestionsEmpty.classList.add("hidden");
+        saved.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm text-slate-700";
+          card.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <p class="font-semibold text-slate-800">${item.label || item.testName || "Saved question"}</p>
+              <p class="text-xs text-slate-500">${item.type}</p>
+            </div>
+            <p class="mt-2 font-semibold">${item.prompt}</p>
+            ${item.subtitle ? `<p class="mt-1 text-xs text-slate-500">${item.subtitle}</p>` : ""}
+            <p class="mt-2 text-xs text-slate-500">Answer: <span class="font-semibold text-slate-700">${item.answer}</span></p>
+          `;
+          ui.savedQuestionsList.appendChild(card);
+        });
+      };
+
+      const clearSavedQuestions = () => {
+        localStorage.removeItem(SAVED_QUESTIONS_KEY);
+        renderSavedQuestions();
+        updateSaveButton(currentQuestion());
       };
 
       const updateStartScreen = () => {
@@ -1002,6 +1131,7 @@
         ui.questionText.textContent = question.prompt;
         ui.questionSubtitle.textContent = question.subtitle || "";
         ui.questionSubtitle.classList.toggle("hidden", !question.subtitle);
+        updateSaveButton(question);
 
         hideNextButton();
         clearFeedback();
@@ -1052,6 +1182,8 @@
           `;
           ui.summaryTable.appendChild(row);
         });
+
+        renderSavedQuestions();
       };
 
       const startTests = (options = {}) => {
@@ -1080,6 +1212,12 @@
       ui.restartButton.addEventListener("click", () => startTests({ forceNew: true }));
       ui.resetButton.addEventListener("click", () => startTests({ forceNew: true }));
       ui.nextButton.addEventListener("click", goToNext);
+      if (ui.saveButton) {
+        ui.saveButton.addEventListener("click", toggleSavedQuestion);
+      }
+      if (ui.clearSavedQuestionsButton) {
+        ui.clearSavedQuestionsButton.addEventListener("click", clearSavedQuestions);
+      }
     </script>
   </body>
 </html>

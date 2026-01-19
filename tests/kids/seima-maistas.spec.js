@@ -9,6 +9,8 @@ test("1.1-seima-maistas flows to summary without errors", async ({ page }) => {
   const filePath = path.resolve(__dirname, "1.1-seima-maistas.html");
   const url = `file://${filePath}`;
   const issues = [];
+  let savedPrompt = "";
+  let savedAnswer = "";
 
   page.on("console", (msg) => {
     if (msg.type() === "error") {
@@ -20,6 +22,9 @@ test("1.1-seima-maistas flows to summary without errors", async ({ page }) => {
     issues.push(`Page error: ${error.message}`);
   });
 
+  await page.addInitScript(() => {
+    localStorage.clear();
+  });
   await page.goto(url, { waitUntil: "load" });
   await page.click("#start-button");
 
@@ -48,17 +53,29 @@ test("1.1-seima-maistas flows to summary without errors", async ({ page }) => {
       break;
     }
 
-    const { type, correct, index } = await page.evaluate(() => {
+    const { type, correct, index, prompt, answer } = await page.evaluate(() => {
       if (!session || !session.questions || session.currentQuestionIndex >= session.questions.length) {
-        return { type: null, correct: null, index: -1 };
+        return { type: null, correct: null, index: -1, prompt: "", answer: "" };
       }
       const q = session.questions[session.currentQuestionIndex];
-      return { type: q.type, correct: q.correct, index: session.currentQuestionIndex };
+      return {
+        type: q.type,
+        correct: q.correct,
+        index: session.currentQuestionIndex,
+        prompt: q.prompt || "",
+        answer: q.correct ?? q.answer ?? ""
+      };
     });
 
     if (!type) {
       issues.push("No current question detected.");
       break;
+    }
+
+    if (!savedPrompt && prompt) {
+      await page.click("#save-question");
+      savedPrompt = prompt;
+      savedAnswer = answer || "";
     }
 
     if (type === "flashcards") {
@@ -95,10 +112,22 @@ test("1.1-seima-maistas flows to summary without errors", async ({ page }) => {
     }
     const total = document.getElementById("summary-total")?.textContent || "";
     const rows = Array.from(document.querySelectorAll("#summary-table > div")).map((row) => row.textContent || "");
-    return { total, rows };
+    const savedItems = Array.from(document.querySelectorAll("#saved-questions-list > div")).map(
+      (row) => row.textContent || ""
+    );
+    const savedEmptyHidden = document.getElementById("saved-questions-empty")?.classList.contains("hidden") || false;
+    return { total, rows, savedItems, savedEmptyHidden };
   });
 
   expect(summary, "Summary screen should be visible").not.toBeNull();
   expect(summary.total, "Summary total should be present").not.toEqual("");
   expect(issues, issues.join("\n")).toEqual([]);
+  expect(summary.savedItems.length, "Saved questions should render").toBeGreaterThan(0);
+  expect(summary.savedEmptyHidden, "Saved empty state should be hidden").toBe(true);
+  if (savedPrompt) {
+    expect(summary.savedItems.join(" ")).toContain(savedPrompt);
+  }
+  if (savedAnswer) {
+    expect(summary.savedItems.join(" ")).toContain(savedAnswer);
+  }
 });
