@@ -21,19 +21,13 @@
           </p>
           <p id="resume-note" class="hidden text-xs text-slate-500">Saved progress detected.</p>
           <p id="version-note" class="hidden text-xs text-amber-600">
-            This test was updated. Continue to use the saved version or start a new one.
+            Saved progress was reset because this test was updated.
           </p>
           <button
             id="start-button"
             class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
           >
             Start Tests
-          </button>
-          <button
-            id="start-new-button"
-            class="hidden w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
-          >
-            Start New Version
           </button>
         </section>
 
@@ -896,7 +890,6 @@
         startButton: document.getElementById("start-button"),
         resumeNote: document.getElementById("resume-note"),
         versionNote: document.getElementById("version-note"),
-        startNewButton: document.getElementById("start-new-button"),
         restartButton: document.getElementById("restart-button"),
         resetButton: document.getElementById("reset-button"),
         testTitle: document.getElementById("test-title"),
@@ -1024,7 +1017,7 @@
       const QUESTION_TYPE_CHUNK_SIZE = 10;
       const AUTO_ADVANCE_DELAY_MS = 3000;
       const NEXT_BUTTON_LABEL = "Next";
-      const TEST_VERSION = "1.1.0";
+      const TEST_VERSION = "1.1.1";
       const STORAGE_KEY = `lt-test-session:${location.pathname}`;
       const SAVED_QUESTIONS_KEY = `lt-test-saved:${location.pathname}`;
       const REPEAT_MIN_OFFSET = 4;
@@ -1107,6 +1100,11 @@
 
           const isOutdated = parsed.version !== TEST_VERSION;
 
+          if (isOutdated) {
+            clearSavedSession();
+            return { session: null, isOutdated: true };
+          }
+
           return {
             session: {
               tests: null,
@@ -1117,7 +1115,7 @@
               autoAdvanceIntervalId: null,
               repeatCounter: parsed.repeatCounter || 0
             },
-            isOutdated
+            isOutdated: false
           };
         } catch (error) {
           return { session: null, isOutdated: false };
@@ -1224,12 +1222,11 @@
       const updateStartScreen = () => {
         const saved = loadSession();
         const hasSaved = Boolean(saved.session);
-        const showOutdated = hasSaved && saved.isOutdated;
+        const showOutdated = saved.isOutdated;
 
         ui.startButton.textContent = hasSaved ? "Continue Test" : "Start Tests";
         ui.resumeNote.classList.toggle("hidden", !hasSaved);
         ui.versionNote.classList.toggle("hidden", !showOutdated);
-        ui.startNewButton.classList.toggle("hidden", !showOutdated);
       };
 
       const showScreen = (screen) => {
@@ -1570,7 +1567,6 @@
 
       updateStartScreen();
       ui.startButton.addEventListener("click", () => startTests());
-      ui.startNewButton.addEventListener("click", () => startTests({ forceNew: true }));
       ui.restartButton.addEventListener("click", () => startTests({ forceNew: true }));
       ui.resetButton.addEventListener("click", () => startTests({ forceNew: true }));
       ui.nextButton.addEventListener("click", goToNext);

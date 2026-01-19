@@ -44,11 +44,50 @@ const runPracticeTest = async (page, filePath) => {
   };
 
   await page.addInitScript(() => {
-    localStorage.clear();
+    if (!localStorage.getItem("lt-test-skip-clear")) {
+      localStorage.clear();
+    }
   });
   await page.goto(url, { waitUntil: "load" });
   await page.waitForTimeout(50);
   assertNoIssues("Page load");
+  const storageMeta = await page.evaluate(() => ({
+    key: STORAGE_KEY,
+    version: TEST_VERSION
+  }));
+  await page.evaluate(({ key }) => {
+    localStorage.setItem("lt-test-skip-clear", "1");
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        version: "0.0.0",
+        questions: [],
+        currentQuestionIndex: 0,
+        analytics: {},
+        repeatCounter: 0
+      })
+    );
+  }, storageMeta);
+  await page.reload({ waitUntil: "load" });
+  await page.waitForTimeout(50);
+  assertNoIssues("Reload after stale session");
+  const versionStatus = await page.evaluate(() => {
+    const versionNote = document.getElementById("version-note");
+    const resumeNote = document.getElementById("resume-note");
+    return {
+      versionVisible: versionNote && !versionNote.classList.contains("hidden"),
+      resumeVisible: resumeNote && !resumeNote.classList.contains("hidden"),
+      startLabel: document.getElementById("start-button")?.textContent || "",
+      hasStartNew: Boolean(document.getElementById("start-new-button"))
+    };
+  });
+  expect(versionStatus.versionVisible, "Version reset note should be visible").toBe(true);
+  expect(versionStatus.resumeVisible, "Resume note should be hidden on reset").toBe(false);
+  expect(versionStatus.startLabel, "Start button should reset to Start Tests").toBe("Start Tests");
+  expect(versionStatus.hasStartNew, "Start new button should be removed").toBe(false);
+  const storedAfterReset = await page.evaluate(({ key }) => localStorage.getItem(key), storageMeta);
+  expect(storedAfterReset, "Outdated session should be cleared").toBeNull();
+  await page.evaluate(() => localStorage.removeItem("lt-test-skip-clear"));
   await page.click("#start-button");
   await page.waitForTimeout(50);
   assertNoIssues("Start click");
