@@ -28,7 +28,8 @@ const validateFile = (filePath) => {
 
   const wordSetStart = content.indexOf("const wordSet");
   const gapFillStart = content.indexOf("const gapFillVariants");
-  const uiStart = content.indexOf("const ui");
+  const configStart = content.indexOf("ltTestConfig");
+  const runnerScript = content.includes("lt-test-runner.js");
 
   if (wordSetStart === -1) {
     errors.push("Missing 'const wordSet' declaration.");
@@ -36,8 +37,11 @@ const validateFile = (filePath) => {
   if (gapFillStart === -1) {
     errors.push("Missing 'const gapFillVariants' declaration.");
   }
-  if (uiStart === -1) {
-    errors.push("Missing 'const ui' declaration.");
+  if (configStart === -1) {
+    errors.push("Missing 'ltTestConfig' assignment.");
+  }
+  if (!runnerScript) {
+    errors.push("Missing lt-test-runner.js script reference.");
   }
 
   const wordSetCount = countMatches(content, /const\s+wordSet/g);
@@ -63,17 +67,12 @@ const validateFile = (filePath) => {
     }
   }
 
-  if (gapFillStart !== -1 && uiStart !== -1) {
+  if (gapFillStart !== -1 && configStart !== -1) {
     const gapFillEnd = content.indexOf("};", gapFillStart);
     if (gapFillEnd === -1) {
       errors.push("Missing gapFillVariants closing '};'.");
-    } else if (gapFillEnd > uiStart) {
-      errors.push("gapFillVariants closes after ui start.");
-    } else {
-      const between = content.slice(gapFillEnd + 2, uiStart).trim();
-      if (between.length) {
-        errors.push("Unexpected content between gapFillVariants and ui.");
-      }
+    } else if (gapFillEnd > configStart) {
+      errors.push("gapFillVariants closes after ltTestConfig start.");
     }
   }
 

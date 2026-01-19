@@ -6,7 +6,7 @@ This repo is used to generate self-contained HTML practice tests for Lithuanian 
 
 1. **Input**: User provides screenshots (images) from a Lithuanian study book.
 2. **Extraction**: Agent extracts all *active* Lithuanian words and phrases from the screenshots.
-3. **Output**: Agent generates a self-contained HTML test page in `tests/` based on `template.html` and the rules in `docs/test_example_description.md`.
+3. **Output**: Agent generates a lightweight HTML test page in `tests/` that loads shared UI/logic from `tests/lib/lt-test-runner.js`, based on `tests/template.html` and the rules in `docs/test_example_description.md`.
 
 ## Extraction rules (screenshots)
 
@@ -26,13 +26,14 @@ If the screenshot text is ambiguous, ask the user to confirm the unclear items r
 ## Test generation rules
 
 Source of truth:
-- `template.html`
+- `tests/template.html`
+- `tests/lib/lt-test-runner.js`
 - `docs/test_example_description.md`
 
 When generating a new test page:
 - Create a **new HTML file** under `tests/` (e.g. `tests/<topic>.html`).
-- The file must be **fully self-contained** (single HTML) and use **TailwindCSS via CDN** for UI.
-- Implement logic in plain JS inside the HTML.
+- The file must load **TailwindCSS via CDN** for UI and the shared runner from `tests/lib/lt-test-runner.js`.
+- Implement logic in `tests/lib/lt-test-runner.js` and keep test HTML focused on data/config only.
 - UI must be **responsive** and work well on mobile.
 
 ### Must-follow behavior (common)
@@ -53,7 +54,7 @@ When generating a new test page:
 
 ### Notes
 
-- Flashcards UX should follow the current `template.html` behavior:
+- Flashcards UX should follow the current `tests/template.html` behavior:
   - Clicking **Know** immediately advances to the next card.
   - Clicking **Don’t know** reveals the translation and allows advancing.
 - The **Next** button should live in a fixed bottom panel (mobile-safe).
@@ -61,7 +62,7 @@ When generating a new test page:
 - For Lithuanian gap-fill tests, use only **vardininkas**, **lilmininkas**, and **galininkas** forms.
 - For each gap-fill variant, **hardcode `options` in the correct Lithuanian form** (no helper-based generation).
 - Add a typing-based gap fill test type that reuses `gapFillVariants` and expects free-text input.
-- When modifying any `tests/*.html` file, bump `TEST_VERSION` so saved progress invalidation works.
+- When modifying any `tests/*.html` file, bump `testVersion` in `window.ltTestConfig` so saved progress invalidation works.
 
 ### Word grouping rules
 
@@ -70,8 +71,9 @@ When generating a new test page:
 
 ## Implementation guidance
 
-- Use `template.html` as the baseline and only replace:
+- Use `tests/template.html` as the baseline and only replace:
   - Title/topic labels
   - `wordSet.words` (and any phrase sets if added)
+  - `window.ltTestConfig.testVersion`
   - Any templates needed to meet the required counts
 - Keep code minimal and consistent with existing style.
