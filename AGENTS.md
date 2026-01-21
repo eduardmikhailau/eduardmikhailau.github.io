@@ -6,7 +6,8 @@ This repo is used to generate self-contained HTML practice tests for Lithuanian 
 
 1. **Input**: User provides screenshots (images) from a Lithuanian study book.
 2. **Extraction**: Agent extracts all *active* Lithuanian words and phrases from the screenshots.
-3. **Output**: Agent generates a lightweight HTML test page in `tests/` that loads shared UI/logic from `tests/lib/lt-test-runner.js`, based on `tests/template.html` and the rules in `docs/test_example_description.md`.
+3. **Review**: Agent writes an editable Markdown word list in `docs/` before generating the HTML test so the user can review and edit the words.
+4. **Output**: Agent generates a lightweight HTML test page in `tests/` that loads shared UI/logic from `tests/lib/lt-test-runner.js`, based on `tests/template.html` and the rules in `docs/test_example_description.md`.
 
 ## Extraction rules (screenshots)
 
@@ -68,6 +69,7 @@ When generating a new test page:
 
 - When splitting a large word list into multiple tests, group by topic to get **about 20 words per test**.
 - Keep closely related themes together (e.g., time + adverbs, professions, city places), and avoid mixing unrelated topics.
+- Ensure `README.md` includes links to **all** tests in `tests/` (GitHub Pages URLs).
 
 ## Implementation guidance
 

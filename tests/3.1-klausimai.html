@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3.1 Klausimai — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Klausimai",
+                        words: [
+                          { id: "kas", lt: "kas", ru: "кто? что?" },
+                          { id: "ka", lt: "ką", ru: "кого? что?" },
+                          { id: "ko", lt: "ko", ru: "чего?" },
+                          { id: "kam", lt: "kam", ru: "кому? чему?" },
+                          { id: "kuo", lt: "kuo", ru: "чем? кем?" },
+                          { id: "koks", lt: "koks", ru: "какой? (м.р.)" },
+                          { id: "kokia", lt: "kokia", ru: "какая? (ж.р.)" },
+                          { id: "kokie", lt: "kokie", ru: "какие? (м.р., мн.ч.)" },
+                          { id: "kokios", lt: "kokios", ru: "какие? (ж.р., мн.ч.)" },
+                          { id: "kuris", lt: "kuris", ru: "который? (м.р.)" },
+                          { id: "kuri", lt: "kuri", ru: "которая? (ж.р.)" },
+                          { id: "kurie", lt: "kurie", ru: "которые? (м.р., мн.ч.)" },
+                          { id: "kurios", lt: "kurios", ru: "которые? (ж.р., мн.ч.)" },
+                          { id: "kieno", lt: "kieno", ru: "чей? чья? чьё? чьи?" },
+                          { id: "kur", lt: "kur", ru: "где?" },
+                          { id: "is_kur", lt: "iš kur", ru: "откуда?" },
+                          { id: "kada", lt: "kada", ru: "когда?" },
+                          { id: "kiek", lt: "kiek", ru: "сколько?" },
+                          { id: "kaip", lt: "kaip", ru: "как?" },
+                          { id: "kodel", lt: "kodėl", ru: "почему?" },
+                          { id: "kelintas", lt: "kelintas", ru: "который по счёту? (м.р.)" },
+                          { id: "kelinta", lt: "kelinta", ru: "которая по счёту? (ж.р.)" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        "kas": [
+                          {
+                            "sentence": "___ jis yra?",
+                            "translationRu": "Кто он?",
+                            "answer": "kas",
+                            "options": ["kas", "kur", "kada"]
+                          },
+                          {
+                            "sentence": "___ atėjo į susitikimą?",
+                            "translationRu": "Кто пришёл на встречу?",
+                            "answer": "kas",
+                            "options": ["kas", "kiek", "kodėl"]
+                          },
+                          {
+                            "sentence": "___ beldžiasi į duris?",
+                            "translationRu": "Кто стучит в дверь?",
+                            "answer": "kas",
+                            "options": ["kas", "kur", "kaip"]
+                          }
+                        ],
+                        "ka": [
+                          {
+                            "sentence": "___ tu skaitai?",
+                            "translationRu": "Что ты читаешь?",
+                            "answer": "ką",
+                            "options": ["ką", "ko", "kas"]
+                          },
+                          {
+                            "sentence": "___ ji perka parduotuvėje?",
+                            "translationRu": "Что она покупает в магазине?",
+                            "answer": "ką",
+                            "options": ["ką", "ko", "kiek"]
+                          },
+                          {
+                            "sentence": "___ mes valgome pietums?",
+                            "translationRu": "Что мы едим на обед?",
+                            "answer": "ką",
+                            "options": ["ką", "kas", "kada"]
+                          }
+                        ],
+                        "ko": [
+                          {
+                            "sentence": "___ tu bijai?",
+                            "translationRu": "Чего ты боишься?",
+                            "answer": "ko",
+                            "options": ["ko", "ką", "kas"]
+                          },
+                          {
+                            "sentence": "___ tau trūksta?",
+                            "translationRu": "Чего тебе не хватает?",
+                            "answer": "ko",
+                            "options": ["ko", "kiek", "kur"]
+                          },
+                          {
+                            "sentence": "___ jis nori?",
+                            "translationRu": "Чего он хочет?",
+                            "answer": "ko",
+                            "options": ["ko", "ką", "kada"]
+                          }
+                        ],
+                        "kam": [
+                          {
+                            "sentence": "___ tu skambini?",
+                            "translationRu": "Кому ты звонишь?",
+                            "answer": "kam",
+                            "options": ["kam", "ką", "ko"]
+                          },
+                          {
+                            "sentence": "___ tai skirta?",
+                            "translationRu": "Кому это предназначено?",
+                            "answer": "kam",
+                            "options": ["kam", "kada", "kur"]
+                          },
+                          {
+                            "sentence": "___ jis padeda?",
+                            "translationRu": "Кому он помогает?",
+                            "answer": "kam",
+                            "options": ["kam", "ką", "kieno"]
+                          }
+                        ],
+                        "kuo": [
+                          {
+                            "sentence": "___ tu važiuoji į darbą?",
+                            "translationRu": "Чем ты добираешься на работу?",
+                            "answer": "kuo",
+                            "options": ["kuo", "kam", "ko"]
+                          },
+                          {
+                            "sentence": "___ jis rašo?",
+                            "translationRu": "Чем он пишет?",
+                            "answer": "kuo",
+                            "options": ["kuo", "ką", "kas"]
+                          },
+                          {
+                            "sentence": "___ tu domiesi?",
+                            "translationRu": "Чем ты интересуешься?",
+                            "answer": "kuo",
+                            "options": ["kuo", "kam", "kiek"]
+                          }
+                        ],
+                        "koks": [
+                          {
+                            "sentence": "___ oras šiandien?",
+                            "translationRu": "Какая сегодня погода?",
+                            "answer": "koks",
+                            "options": ["koks", "kokia", "kokie"]
+                          },
+                          {
+                            "sentence": "___ filmas tau patinka?",
+                            "translationRu": "Какой фильм тебе нравится?",
+                            "answer": "koks",
+                            "options": ["koks", "kuris", "kokie"]
+                          },
+                          {
+                            "sentence": "___ tavo draugas?",
+                            "translationRu": "Какой твой друг?",
+                            "answer": "koks",
+                            "options": ["koks", "kokia", "kuri"]
+                          }
+                        ],
+                        "kokia": [
+                          {
+                            "sentence": "___ tavo sesuo?",
+                            "translationRu": "Какая твоя сестра?",
+                            "answer": "kokia",
+                            "options": ["kokia", "koks", "kokios"]
+                          },
+                          {
+                            "sentence": "___ spalva tau patinka?",
+                            "translationRu": "Какой цвет тебе нравится?",
+                            "answer": "kokia",
+                            "options": ["kokia", "kokie", "kuri"]
+                          },
+                          {
+                            "sentence": "___ tavo nuotaika šiandien?",
+                            "translationRu": "Какое у тебя настроение сегодня?",
+                            "answer": "kokia",
+                            "options": ["kokia", "kuri", "kuris"]
+                          }
+                        ],
+                        "kokie": [
+                          {
+                            "sentence": "___ tavo draugai?",
+                            "translationRu": "Какие твои друзья?",
+                            "answer": "kokie",
+                            "options": ["kokie", "kokios", "kurie"]
+                          },
+                          {
+                            "sentence": "___ batai tau patinka?",
+                            "translationRu": "Какие ботинки тебе нравятся?",
+                            "answer": "kokie",
+                            "options": ["kokie", "kokios", "kurios"]
+                          },
+                          {
+                            "sentence": "___ tavo planai?",
+                            "translationRu": "Какие у тебя планы?",
+                            "answer": "kokie",
+                            "options": ["kokie", "kurie", "kiek"]
+                          }
+                        ],
+                        "kokios": [
+                          {
+                            "sentence": "___ gėlės čia auga?",
+                            "translationRu": "Какие цветы здесь растут?",
+                            "answer": "kokios",
+                            "options": ["kokios", "kokie", "kurios"]
+                          },
+                          {
+                            "sentence": "___ tavo seserys?",
+                            "translationRu": "Какие твои сестры?",
+                            "answer": "kokios",
+                            "options": ["kokios", "kokie", "kurie"]
+                          },
+                          {
+                            "sentence": "___ knygos tau patinka?",
+                            "translationRu": "Какие книги тебе нравятся?",
+                            "answer": "kokios",
+                            "options": ["kokios", "kurios", "kokie"]
+                          }
+                        ],
+                        "kuris": [
+                          {
+                            "sentence": "___ autobusas važiuoja į centrą?",
+                            "translationRu": "Который автобус идет в центр?",
+                            "answer": "kuris",
+                            "options": ["kuris", "kuri", "kurie"]
+                          },
+                          {
+                            "sentence": "___ kabinetas yra tavo?",
+                            "translationRu": "Который кабинет твой?",
+                            "answer": "kuris",
+                            "options": ["kuris", "kuri", "kokie"]
+                          },
+                          {
+                            "sentence": "___ kelias trumpiausias?",
+                            "translationRu": "Который путь самый короткий?",
+                            "answer": "kuris",
+                            "options": ["kuris", "koks", "kuri"]
+                          }
+                        ],
+                        "kuri": [
+                          {
+                            "sentence": "___ knyga tavo?",
+                            "translationRu": "Которая книга твоя?",
+                            "answer": "kuri",
+                            "options": ["kuri", "kuris", "kurios"]
+                          },
+                          {
+                            "sentence": "___ stotelė artimiausia?",
+                            "translationRu": "Которая остановка ближайшая?",
+                            "answer": "kuri",
+                            "options": ["kuri", "kuris", "koks"]
+                          },
+                          {
+                            "sentence": "___ nuotrauka tau patinka?",
+                            "translationRu": "Какая фотография тебе нравится?",
+                            "answer": "kuri",
+                            "options": ["kuri", "kokia", "kurios"]
+                          }
+                        ],
+                        "kurie": [
+                          {
+                            "sentence": "___ studentai atvyko?",
+                            "translationRu": "Которые студенты приехали?",
+                            "answer": "kurie",
+                            "options": ["kurie", "kurios", "kokie"]
+                          },
+                          {
+                            "sentence": "___ draugai gyvena čia?",
+                            "translationRu": "Которые друзья живут здесь?",
+                            "answer": "kurie",
+                            "options": ["kurie", "kokie", "kurios"]
+                          },
+                          {
+                            "sentence": "___ batai tavo?",
+                            "translationRu": "Которые ботинки твои?",
+                            "answer": "kurie",
+                            "options": ["kurie", "kokie", "kokios"]
+                          }
+                        ],
+                        "kurios": [
+                          {
+                            "sentence": "___ merginos mokosi kartu?",
+                            "translationRu": "Которые девушки учатся вместе?",
+                            "answer": "kurios",
+                            "options": ["kurios", "kurie", "kokios"]
+                          },
+                          {
+                            "sentence": "___ gatvės uždarytos?",
+                            "translationRu": "Которые улицы закрыты?",
+                            "answer": "kurios",
+                            "options": ["kurios", "kurie", "kokios"]
+                          },
+                          {
+                            "sentence": "___ knygos tavo?",
+                            "translationRu": "Которые книги твои?",
+                            "answer": "kurios",
+                            "options": ["kurios", "kokios", "kurie"]
+                          }
+                        ],
+                        "kieno": [
+                          {
+                            "sentence": "___ telefonas čia?",
+                            "translationRu": "Чей это телефон?",
+                            "answer": "kieno",
+                            "options": ["kieno", "koks", "kuris"]
+                          },
+                          {
+                            "sentence": "___ tai raktai?",
+                            "translationRu": "Чьи это ключи?",
+                            "answer": "kieno",
+                            "options": ["kieno", "kurios", "kiek"]
+                          },
+                          {
+                            "sentence": "___ šuo loja?",
+                            "translationRu": "Чья собака лает?",
+                            "answer": "kieno",
+                            "options": ["kieno", "koks", "kur"]
+                          }
+                        ],
+                        "kur": [
+                          {
+                            "sentence": "___ tu gyveni?",
+                            "translationRu": "Где ты живёшь?",
+                            "answer": "kur",
+                            "options": ["kur", "kada", "kodėl"]
+                          },
+                          {
+                            "sentence": "___ yra stotis?",
+                            "translationRu": "Где находится станция?",
+                            "answer": "kur",
+                            "options": ["kur", "kada", "kiek"]
+                          },
+                          {
+                            "sentence": "___ mes susitinkame?",
+                            "translationRu": "Где мы встречаемся?",
+                            "answer": "kur",
+                            "options": ["kur", "kodėl", "kaip"]
+                          }
+                        ],
+                        "is_kur": [
+                          {
+                            "sentence": "___ tu atvykai?",
+                            "translationRu": "Откуда ты приехал?",
+                            "answer": "iš kur",
+                            "options": ["iš kur", "kur", "kada"]
+                          },
+                          {
+                            "sentence": "___ jis grįžta?",
+                            "translationRu": "Откуда он возвращается?",
+                            "answer": "iš kur",
+                            "options": ["iš kur", "kur", "kodėl"]
+                          },
+                          {
+                            "sentence": "___ tu esi?",
+                            "translationRu": "Откуда ты?",
+                            "answer": "iš kur",
+                            "options": ["iš kur", "kur", "kiek"]
+                          }
+                        ],
+                        "kada": [
+                          {
+                            "sentence": "___ prasideda pamoka?",
+                            "translationRu": "Когда начинается урок?",
+                            "answer": "kada",
+                            "options": ["kada", "kur", "kiek"]
+                          },
+                          {
+                            "sentence": "___ tu grįši?",
+                            "translationRu": "Когда ты вернёшься?",
+                            "answer": "kada",
+                            "options": ["kada", "kur", "kodėl"]
+                          },
+                          {
+                            "sentence": "___ bus susitikimas?",
+                            "translationRu": "Когда будет встреча?",
+                            "answer": "kada",
+                            "options": ["kada", "kiek", "kaip"]
+                          }
+                        ],
+                        "kiek": [
+                          {
+                            "sentence": "___ tai kainuoja?",
+                            "translationRu": "Сколько это стоит?",
+                            "answer": "kiek",
+                            "options": ["kiek", "kada", "kur"]
+                          },
+                          {
+                            "sentence": "___ žmonių atėjo?",
+                            "translationRu": "Сколько людей пришло?",
+                            "answer": "kiek",
+                            "options": ["kiek", "kada", "kodėl"]
+                          },
+                          {
+                            "sentence": "___ laiko reikia?",
+                            "translationRu": "Сколько времени нужно?",
+                            "answer": "kiek",
+                            "options": ["kiek", "kur", "kaip"]
+                          }
+                        ],
+                        "kaip": [
+                          {
+                            "sentence": "___ tu jautiesi?",
+                            "translationRu": "Как ты себя чувствуешь?",
+                            "answer": "kaip",
+                            "options": ["kaip", "kodėl", "kada"]
+                          },
+                          {
+                            "sentence": "___ vadinasi ši gatvė?",
+                            "translationRu": "Как называется эта улица?",
+                            "answer": "kaip",
+                            "options": ["kaip", "kur", "kada"]
+                          },
+                          {
+                            "sentence": "___ tu važiuoji į darbą?",
+                            "translationRu": "Как ты добираешься на работу?",
+                            "answer": "kaip",
+                            "options": ["kaip", "kodėl", "kiek"]
+                          }
+                        ],
+                        "kodel": [
+                          {
+                            "sentence": "___ tu vėluoji?",
+                            "translationRu": "Почему ты опаздываешь?",
+                            "answer": "kodėl",
+                            "options": ["kodėl", "kada", "kur"]
+                          },
+                          {
+                            "sentence": "___ jis liūdnas?",
+                            "translationRu": "Почему он грустный?",
+                            "answer": "kodėl",
+                            "options": ["kodėl", "kiek", "kaip"]
+                          },
+                          {
+                            "sentence": "___ durys uždarytos?",
+                            "translationRu": "Почему двери закрыты?",
+                            "answer": "kodėl",
+                            "options": ["kodėl", "kada", "kur"]
+                          }
+                        ],
+                        "kelintas": [
+                          {
+                            "sentence": "___ aukštas tavo biure?",
+                            "translationRu": "Который этаж в твоём офисе?",
+                            "answer": "kelintas",
+                            "options": ["kelintas", "kelinta", "kiek"]
+                          },
+                          {
+                            "sentence": "___ numeris tavo bilieto?",
+                            "translationRu": "Какой номер у твоего билета?",
+                            "answer": "kelintas",
+                            "options": ["kelintas", "kiek", "kelinta"]
+                          },
+                          {
+                            "sentence": "___ puslapis dabar?",
+                            "translationRu": "Какая страница сейчас?",
+                            "answer": "kelintas",
+                            "options": ["kelintas", "kelinta", "kada"]
+                          }
+                        ],
+                        "kelinta": [
+                          {
+                            "sentence": "___ pamoka dabar?",
+                            "translationRu": "Который урок сейчас?",
+                            "answer": "kelinta",
+                            "options": ["kelinta", "kelintas", "kada"]
+                          },
+                          {
+                            "sentence": "___ vieta tavo?",
+                            "translationRu": "Которое место твоё?",
+                            "answer": "kelinta",
+                            "options": ["kelinta", "kelintas", "kiek"]
+                          },
+                          {
+                            "sentence": "___ stotelė po stoties?",
+                            "translationRu": "Которая остановка после станции?",
+                            "answer": "kelinta",
+                            "options": ["kelinta", "kelintas", "kur"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.0"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>
