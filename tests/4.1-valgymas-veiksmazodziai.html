@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.1 Valgymas — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Valgymas",
+                        words: [
+                          { id: "megti", lt: "mėgti", ru: "любить" },
+                          { id: "patikti", lt: "patikti", ru: "нравиться" },
+                          { id: "ragauti", lt: "ragauti", ru: "пробовать" },
+                          { id: "valgyti", lt: "valgyti", ru: "есть" },
+                          { id: "gerti", lt: "gerti", ru: "пить" },
+                          { id: "pusryciauti", lt: "pusryčiauti", ru: "завтракать" },
+                          { id: "pietauti", lt: "pietauti", ru: "обедать" },
+                          { id: "vakarieniauti", lt: "vakarieniauti", ru: "ужинать" },
+                          { id: "kviesti", lt: "kviesti", ru: "приглашать" },
+                          { id: "laukti", lt: "laukti", ru: "ждать" },
+                          { id: "virti", lt: "virti", ru: "варить" },
+                          { id: "kepti", lt: "kepti", ru: "жарить, печь" },
+                          { id: "daryti", lt: "daryti", ru: "делать" },
+                          { id: "imti", lt: "imti", ru: "брать" },
+                          { id: "duoti", lt: "duoti", ru: "давать" },
+                          { id: "pilti", lt: "pilti", ru: "лить, наливать" },
+                          { id: "deti", lt: "dėti", ru: "класть" },
+                          { id: "maisyti", lt: "maišyti", ru: "мешать, перемешивать" },
+                          { id: "pjaustyti", lt: "pjaustyti", ru: "резать, нарезать" },
+                          { id: "pasildyti", lt: "pašildyti", ru: "разогреть, подогреть" },
+                          { id: "atrodyti", lt: "atrodyti", ru: "выглядеть" },
+                          { id: "manyti", lt: "manyti", ru: "думать, полагать" },
+                          { id: "prasyti", lt: "prašyti", ru: "просить" },
+                          { id: "rasyti", lt: "rašyti", ru: "писать" },
+                          { id: "skaityti", lt: "skaityti", ru: "читать" },
+                          { id: "pusryciai", lt: "pusryčiai", ru: "завтрак" },
+                          { id: "pietus", lt: "pietūs", ru: "обед" },
+                          { id: "vakariene", lt: "vakarienė", ru: "ужин" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        "megti": [
+                          {
+                            "sentence": "Aš ___ sriubą.",
+                            "translationRu": "Я люблю суп.",
+                            "answer": "mėgstu",
+                            "options": ["mėgstu", "valgau", "geriu"]
+                          },
+                          {
+                            "sentence": "Jis ___ aštrų maistą.",
+                            "translationRu": "Он любит острую еду.",
+                            "answer": "mėgsta",
+                            "options": ["mėgsta", "valgo", "geria"]
+                          },
+                          {
+                            "sentence": "Mes ___ valgyti namuose.",
+                            "translationRu": "Мы любим есть дома.",
+                            "answer": "mėgstame",
+                            "options": ["mėgstame", "valgome", "geriame"]
+                          }
+                        ],
+                        "patikti": [
+                          {
+                            "sentence": "Man ___ šis restoranas.",
+                            "translationRu": "Мне нравится этот ресторан.",
+                            "answer": "patinka",
+                            "options": ["patinka", "tinka", "atrodo"]
+                          },
+                          {
+                            "sentence": "Tau ___ ši sriuba?",
+                            "translationRu": "Тебе нравится этот суп?",
+                            "answer": "patinka",
+                            "options": ["patinka", "reikia", "tinka"]
+                          },
+                          {
+                            "sentence": "Praėjusią savaitę man ___ ši kavinė.",
+                            "translationRu": "На прошлой неделе мне понравилось это кафе.",
+                            "answer": "patiko",
+                            "options": ["patiko", "reikėjo", "tiko"]
+                          }
+                        ],
+                        "ragauti": [
+                          {
+                            "sentence": "Aš ___ naują sūrį.",
+                            "translationRu": "Я пробую новый сыр.",
+                            "answer": "ragauju",
+                            "options": ["ragauju", "valgau", "pjaustau"]
+                          },
+                          {
+                            "sentence": "Ji ___ sriubą.",
+                            "translationRu": "Она пробует суп.",
+                            "answer": "ragauja",
+                            "options": ["ragauja", "verda", "kepa"]
+                          },
+                          {
+                            "sentence": "Mes ___ desertą.",
+                            "translationRu": "Мы пробуем десерт.",
+                            "answer": "ragaujame",
+                            "options": ["ragaujame", "valgome", "geriame"]
+                          }
+                        ],
+                        "valgyti": [
+                          {
+                            "sentence": "Aš ___ pusryčius.",
+                            "translationRu": "Я ем завтрак.",
+                            "answer": "valgau",
+                            "options": ["valgau", "geriu", "skaitau"]
+                          },
+                          {
+                            "sentence": "Vaikai ___ obuolius.",
+                            "translationRu": "Дети едят яблоки.",
+                            "answer": "valgo",
+                            "options": ["valgo", "geria", "pjausto"]
+                          },
+                          {
+                            "sentence": "Mes ___ kartu.",
+                            "translationRu": "Мы едим вместе.",
+                            "answer": "valgome",
+                            "options": ["valgome", "geriame", "rašome"]
+                          }
+                        ],
+                        "gerti": [
+                          {
+                            "sentence": "Aš ___ vandenį.",
+                            "translationRu": "Я пью воду.",
+                            "answer": "geriu",
+                            "options": ["geriu", "valgau", "skaitau"]
+                          },
+                          {
+                            "sentence": "Jis ___ arbatą.",
+                            "translationRu": "Он пьет чай.",
+                            "answer": "geria",
+                            "options": ["geria", "valgo", "pjausto"]
+                          },
+                          {
+                            "sentence": "Mes ___ kavą.",
+                            "translationRu": "Мы пьем кофе.",
+                            "answer": "geriame",
+                            "options": ["geriame", "valgome", "rašome"]
+                          }
+                        ],
+                        "pusryciauti": [
+                          {
+                            "sentence": "Aš ___ anksti.",
+                            "translationRu": "Я завтракаю рано.",
+                            "answer": "pusryčiauju",
+                            "options": ["pusryčiauju", "pietauju", "vakarieniauju"]
+                          },
+                          {
+                            "sentence": "Ji ___ namuose.",
+                            "translationRu": "Она завтракает дома.",
+                            "answer": "pusryčiauja",
+                            "options": ["pusryčiauja", "pietauja", "vakarieniauja"]
+                          },
+                          {
+                            "sentence": "Mes ___ kartu.",
+                            "translationRu": "Мы завтракаем вместе.",
+                            "answer": "pusryčiaujame",
+                            "options": ["pusryčiaujame", "pietaujame", "vakarieniaujame"]
+                          }
+                        ],
+                        "pietauti": [
+                          {
+                            "sentence": "Aš ___ dvyliktą.",
+                            "translationRu": "Я обедаю в двенадцать.",
+                            "answer": "pietauju",
+                            "options": ["pietauju", "pusryčiauju", "vakarieniauju"]
+                          },
+                          {
+                            "sentence": "Jis ___ kavinėje.",
+                            "translationRu": "Он обедает в кафе.",
+                            "answer": "pietauja",
+                            "options": ["pietauja", "pusryčiauja", "vakarieniauja"]
+                          },
+                          {
+                            "sentence": "Mes ___ darbe.",
+                            "translationRu": "Мы обедаем на работе.",
+                            "answer": "pietaujame",
+                            "options": ["pietaujame", "pusryčiaujame", "vakarieniaujame"]
+                          }
+                        ],
+                        "vakarieniauti": [
+                          {
+                            "sentence": "Aš ___ vėlai.",
+                            "translationRu": "Я ужинаю поздно.",
+                            "answer": "vakarieniauju",
+                            "options": ["vakarieniauju", "pietauju", "pusryčiauju"]
+                          },
+                          {
+                            "sentence": "Ji ___ su šeima.",
+                            "translationRu": "Она ужинает с семьей.",
+                            "answer": "vakarieniauja",
+                            "options": ["vakarieniauja", "pietauja", "pusryčiauja"]
+                          },
+                          {
+                            "sentence": "Mes ___ namuose.",
+                            "translationRu": "Мы ужинаем дома.",
+                            "answer": "vakarieniaujame",
+                            "options": ["vakarieniaujame", "pietaujame", "pusryčiaujame"]
+                          }
+                        ],
+                        "kviesti": [
+                          {
+                            "sentence": "Aš ___ draugus į vakarienę.",
+                            "translationRu": "Я приглашаю друзей на ужин.",
+                            "answer": "kviečiu",
+                            "options": ["kviečiu", "laukiu", "rašau"]
+                          },
+                          {
+                            "sentence": "Ji ___ mus į svečius.",
+                            "translationRu": "Она приглашает нас в гости.",
+                            "answer": "kviečia",
+                            "options": ["kviečia", "laukia", "duoda"]
+                          },
+                          {
+                            "sentence": "Mes ___ jus į restoraną.",
+                            "translationRu": "Мы приглашаем вас в ресторан.",
+                            "answer": "kviečiame",
+                            "options": ["kviečiame", "laukiame", "rašome"]
+                          }
+                        ],
+                        "laukti": [
+                          {
+                            "sentence": "Aš ___ užsakymo.",
+                            "translationRu": "Я жду заказ.",
+                            "answer": "laukiu",
+                            "options": ["laukiu", "prašau", "rašau"]
+                          },
+                          {
+                            "sentence": "Ji ___ savo draugės.",
+                            "translationRu": "Она ждет свою подругу.",
+                            "answer": "laukia",
+                            "options": ["laukia", "kviečia", "mato"]
+                          },
+                          {
+                            "sentence": "Mes ___ autobuso.",
+                            "translationRu": "Мы ждем автобуса.",
+                            "answer": "laukiame",
+                            "options": ["laukiame", "kviečiame", "rašome"]
+                          }
+                        ],
+                        "virti": [
+                          {
+                            "sentence": "Aš ___ sriubą.",
+                            "translationRu": "Я варю суп.",
+                            "answer": "verdu",
+                            "options": ["verdu", "kepu", "pjaustau"]
+                          },
+                          {
+                            "sentence": "Mama ___ makaronus.",
+                            "translationRu": "Мама варит макароны.",
+                            "answer": "verda",
+                            "options": ["verda", "kepa", "pjausto"]
+                          },
+                          {
+                            "sentence": "Mes ___ bulves.",
+                            "translationRu": "Мы варим картофель.",
+                            "answer": "verdame",
+                            "options": ["verdame", "kepame", "pjaustome"]
+                          }
+                        ],
+                        "kepti": [
+                          {
+                            "sentence": "Aš ___ blynus.",
+                            "translationRu": "Я жарю блины.",
+                            "answer": "kepu",
+                            "options": ["kepu", "verdu", "pjaustau"]
+                          },
+                          {
+                            "sentence": "Ji ___ vištieną.",
+                            "translationRu": "Она жарит курицу.",
+                            "answer": "kepa",
+                            "options": ["kepa", "verda", "pjausto"]
+                          },
+                          {
+                            "sentence": "Mes ___ pyragą.",
+                            "translationRu": "Мы печем пирог.",
+                            "answer": "kepame",
+                            "options": ["kepame", "verdame", "pjaustome"]
+                          }
+                        ],
+                        "daryti": [
+                          {
+                            "sentence": "Aš ___ salotas.",
+                            "translationRu": "Я делаю салат.",
+                            "answer": "darau",
+                            "options": ["darau", "verdu", "pjaustau"]
+                          },
+                          {
+                            "sentence": "Jis ___ sumuštinį.",
+                            "translationRu": "Он делает бутерброд.",
+                            "answer": "daro",
+                            "options": ["daro", "kepa", "pjausto"]
+                          },
+                          {
+                            "sentence": "Mes ___ vakarienę.",
+                            "translationRu": "Мы готовим ужин.",
+                            "answer": "darome",
+                            "options": ["darome", "verdame", "kepame"]
+                          }
+                        ],
+                        "imti": [
+                          {
+                            "sentence": "Aš ___ puodelį.",
+                            "translationRu": "Я беру чашку.",
+                            "answer": "imu",
+                            "options": ["imu", "dedu", "pilu"]
+                          },
+                          {
+                            "sentence": "Ji ___ šaukštą.",
+                            "translationRu": "Она берет ложку.",
+                            "answer": "ima",
+                            "options": ["ima", "deda", "pila"]
+                          },
+                          {
+                            "sentence": "Mes ___ lėkštes.",
+                            "translationRu": "Мы берем тарелки.",
+                            "answer": "imame",
+                            "options": ["imame", "dedame", "pilame"]
+                          }
+                        ],
+                        "duoti": [
+                          {
+                            "sentence": "Aš ___ tau druskos.",
+                            "translationRu": "Я даю тебе соль.",
+                            "answer": "duodu",
+                            "options": ["duodu", "prašau", "nešu"]
+                          },
+                          {
+                            "sentence": "Jis ___ man receptą.",
+                            "translationRu": "Он дает мне рецепт.",
+                            "answer": "duoda",
+                            "options": ["duoda", "prašo", "neša"]
+                          },
+                          {
+                            "sentence": "Mes ___ vaikams obuolių.",
+                            "translationRu": "Мы даем детям яблок.",
+                            "answer": "duodame",
+                            "options": ["duodame", "prašome", "nešame"]
+                          }
+                        ],
+                        "pilti": [
+                          {
+                            "sentence": "Aš ___ vandenį į stiklinę.",
+                            "translationRu": "Я наливаю воду в стакан.",
+                            "answer": "pilu",
+                            "options": ["pilu", "dedu", "imu"]
+                          },
+                          {
+                            "sentence": "Ji ___ sriubą į dubenį.",
+                            "translationRu": "Она наливает суп в миску.",
+                            "answer": "pila",
+                            "options": ["pila", "deda", "ima"]
+                          },
+                          {
+                            "sentence": "Mes ___ arbatą į puodelius.",
+                            "translationRu": "Мы наливаем чай в чашки.",
+                            "answer": "pilame",
+                            "options": ["pilame", "dedame", "imame"]
+                          }
+                        ],
+                        "deti": [
+                          {
+                            "sentence": "Aš ___ sviestą ant duonos.",
+                            "translationRu": "Я кладу масло на хлеб.",
+                            "answer": "dedu",
+                            "options": ["dedu", "pilu", "imu"]
+                          },
+                          {
+                            "sentence": "Ji ___ sūrį į salotas.",
+                            "translationRu": "Она кладет сыр в салат.",
+                            "answer": "deda",
+                            "options": ["deda", "pila", "ima"]
+                          },
+                          {
+                            "sentence": "Mes ___ cukrų į kavą.",
+                            "translationRu": "Мы кладем сахар в кофе.",
+                            "answer": "dedame",
+                            "options": ["dedame", "pilame", "imame"]
+                          }
+                        ],
+                        "maisyti": [
+                          {
+                            "sentence": "Aš ___ arbatą.",
+                            "translationRu": "Я размешиваю чай.",
+                            "answer": "maišau",
+                            "options": ["maišau", "pilu", "pjaustau"]
+                          },
+                          {
+                            "sentence": "Ji ___ salotas.",
+                            "translationRu": "Она перемешивает салат.",
+                            "answer": "maišo",
+                            "options": ["maišo", "pjausto", "kepa"]
+                          },
+                          {
+                            "sentence": "Mes ___ sriubą.",
+                            "translationRu": "Мы перемешиваем суп.",
+                            "answer": "maišome",
+                            "options": ["maišome", "pjaustome", "kepame"]
+                          }
+                        ],
+                        "pjaustyti": [
+                          {
+                            "sentence": "Aš ___ daržoves.",
+                            "translationRu": "Я режу овощи.",
+                            "answer": "pjaustau",
+                            "options": ["pjaustau", "maišau", "verdu"]
+                          },
+                          {
+                            "sentence": "Ji ___ duoną.",
+                            "translationRu": "Она нарезает хлеб.",
+                            "answer": "pjausto",
+                            "options": ["pjausto", "maišo", "kepa"]
+                          },
+                          {
+                            "sentence": "Mes ___ vaisius.",
+                            "translationRu": "Мы нарезаем фрукты.",
+                            "answer": "pjaustome",
+                            "options": ["pjaustome", "maišome", "kepame"]
+                          }
+                        ],
+                        "pasildyti": [
+                          {
+                            "sentence": "Aš ___ sriubą.",
+                            "translationRu": "Я разогреваю суп.",
+                            "answer": "pašildau",
+                            "options": ["pašildau", "verdu", "pjaustau"]
+                          },
+                          {
+                            "sentence": "Ji ___ vakarienę.",
+                            "translationRu": "Она подогревает ужин.",
+                            "answer": "pašildo",
+                            "options": ["pašildo", "kepa", "pjausto"]
+                          },
+                          {
+                            "sentence": "Mes ___ maistą mikrobangėje.",
+                            "translationRu": "Мы разогреваем еду в микроволновке.",
+                            "answer": "pašildome",
+                            "options": ["pašildome", "verdame", "kepame"]
+                          }
+                        ],
+                        "atrodyti": [
+                          {
+                            "sentence": "Tu ___ pavargęs.",
+                            "translationRu": "Ты выглядишь уставшим.",
+                            "answer": "atrodai",
+                            "options": ["atrodai", "jauti", "esi"]
+                          },
+                          {
+                            "sentence": "Sriuba ___ skani.",
+                            "translationRu": "Суп выглядит вкусным.",
+                            "answer": "atrodo",
+                            "options": ["atrodo", "kvepia", "tinka"]
+                          },
+                          {
+                            "sentence": "Mes ___ linksmi.",
+                            "translationRu": "Мы выглядим веселыми.",
+                            "answer": "atrodome",
+                            "options": ["atrodome", "esame", "turime"]
+                          }
+                        ],
+                        "manyti": [
+                          {
+                            "sentence": "Aš ___, kad tai geras receptas.",
+                            "translationRu": "Я думаю, что это хороший рецепт.",
+                            "answer": "manau",
+                            "options": ["manau", "mėgstu", "rašau"]
+                          },
+                          {
+                            "sentence": "Ji ___, kad pietūs paruošti.",
+                            "translationRu": "Она думает, что обед готов.",
+                            "answer": "mano",
+                            "options": ["mano", "žino", "mato"]
+                          },
+                          {
+                            "sentence": "Mes ___, kad ši kavinė gera.",
+                            "translationRu": "Мы считаем, что это кафе хорошее.",
+                            "answer": "manome",
+                            "options": ["manome", "žinome", "mėgstame"]
+                          }
+                        ],
+                        "prasyti": [
+                          {
+                            "sentence": "Aš ___ vandens.",
+                            "translationRu": "Я прошу воды.",
+                            "answer": "prašau",
+                            "options": ["prašau", "duodu", "laukiu"]
+                          },
+                          {
+                            "sentence": "Jis ___ pagalbos.",
+                            "translationRu": "Он просит помощи.",
+                            "answer": "prašo",
+                            "options": ["prašo", "duoda", "laukia"]
+                          },
+                          {
+                            "sentence": "Mes ___ sąskaitos.",
+                            "translationRu": "Мы просим счет.",
+                            "answer": "prašome",
+                            "options": ["prašome", "duodame", "laukiame"]
+                          }
+                        ],
+                        "rasyti": [
+                          {
+                            "sentence": "Aš ___ pirkinių sąrašą.",
+                            "translationRu": "Я пишу список покупок.",
+                            "answer": "rašau",
+                            "options": ["rašau", "skaitau", "pjaustau"]
+                          },
+                          {
+                            "sentence": "Ji ___ receptą.",
+                            "translationRu": "Она пишет рецепт.",
+                            "answer": "rašo",
+                            "options": ["rašo", "skaito", "maišo"]
+                          },
+                          {
+                            "sentence": "Mes ___ žinutę.",
+                            "translationRu": "Мы пишем сообщение.",
+                            "answer": "rašome",
+                            "options": ["rašome", "skaitome", "laukiame"]
+                          }
+                        ],
+                        "skaityti": [
+                          {
+                            "sentence": "Aš ___ receptą.",
+                            "translationRu": "Я читаю рецепт.",
+                            "answer": "skaitau",
+                            "options": ["skaitau", "rašau", "geriu"]
+                          },
+                          {
+                            "sentence": "Jis ___ meniu.",
+                            "translationRu": "Он читает меню.",
+                            "answer": "skaito",
+                            "options": ["skaito", "rašo", "pjausto"]
+                          },
+                          {
+                            "sentence": "Mes ___ knygą apie maistą.",
+                            "translationRu": "Мы читаем книгу о еде.",
+                            "answer": "skaitome",
+                            "options": ["skaitome", "rašome", "valgome"]
+                          }
+                        ],
+                        "pusryciai": [
+                          {
+                            "sentence": "___ jau ant stalo.",
+                            "translationRu": "Завтрак уже на столе.",
+                            "answer": "Pusryčiai",
+                            "options": ["Pusryčiai", "Pietūs", "Vakarienė"]
+                          },
+                          {
+                            "sentence": "Po ___ einu į darbą.",
+                            "translationRu": "После завтрака я иду на работу.",
+                            "answer": "pusryčių",
+                            "options": ["pusryčių", "pietų", "vakarienės"]
+                          },
+                          {
+                            "sentence": "Aš ruošiu ___.",
+                            "translationRu": "Я готовлю завтрак.",
+                            "answer": "pusryčius",
+                            "options": ["pusryčius", "pietus", "vakarienę"]
+                          }
+                        ],
+                        "pietus": [
+                          {
+                            "sentence": "___ prasideda dvyliktą.",
+                            "translationRu": "Обед начинается в двенадцать.",
+                            "answer": "Pietūs",
+                            "options": ["Pietūs", "Pusryčiai", "Vakarienė"]
+                          },
+                          {
+                            "sentence": "Po ___ geriu kavą.",
+                            "translationRu": "После обеда я пью кофе.",
+                            "answer": "pietų",
+                            "options": ["pietų", "pusryčių", "vakarienės"]
+                          },
+                          {
+                            "sentence": "Ruošiame ___ 13 valandą.",
+                            "translationRu": "Готовим обед в 13 часов.",
+                            "answer": "pietus",
+                            "options": ["pietus", "pusryčius", "vakarienę"]
+                          }
+                        ],
+                        "vakariene": [
+                          {
+                            "sentence": "___ būna vakare.",
+                            "translationRu": "Ужин бывает вечером.",
+                            "answer": "Vakarienė",
+                            "options": ["Vakarienė", "Pietūs", "Pusryčiai"]
+                          },
+                          {
+                            "sentence": "Po ___ mes ilsimės.",
+                            "translationRu": "После ужина мы отдыхаем.",
+                            "answer": "vakarienės",
+                            "options": ["vakarienės", "pietų", "pusryčių"]
+                          },
+                          {
+                            "sentence": "Aš gaminu ___.",
+                            "translationRu": "Я готовлю ужин.",
+                            "answer": "vakarienę",
+                            "options": ["vakarienę", "pietus", "pusryčius"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.0"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

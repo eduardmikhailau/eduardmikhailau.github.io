@@ -51,6 +51,7 @@ GitHub Pages: https://eduardmikhailau.github.io/ (tests under `tests/`).
 - [2.3 Būdvardžiai: išvaizda ir dydis](https://eduardmikhailau.github.io/tests/2.3-budvardziai-isvaizda-dydis.html)
 - [2.4 Būdvardžiai: nuotaikos ir vertinimai](https://eduardmikhailau.github.io/tests/2.4-budvardziai-nuotaikos-vertinimai.html)
 - [3.1 Klausimai](https://eduardmikhailau.github.io/tests/3.1-klausimai.html)
+- [4.1 Valgymas: veiksmažodžiai](https://eduardmikhailau.github.io/tests/4.1-valgymas-veiksmazodziai.html)
 
 ## Kids tests (GitHub Pages)
 
