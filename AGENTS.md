@@ -16,6 +16,7 @@ This repo is used to generate self-contained HTML practice tests for Lithuanian 
 - If the Russian translation is **not** present, automatically provide `ru` by translating from Lithuanian.
 - De-duplicate items across screenshots.
 - Keep diacritics exactly (e.g. `tėvas`, `sūnus`, `senelė`).
+- Use only **single base forms** for Lithuanian words (e.g. `bandelė`, not `bandelės`).
 - Prefer producing a structured list like:
   - `id` (latin slug, stable)
   - `lt` (Lithuanian)
