@@ -4,28 +4,33 @@ Below is the editable word list extracted from the screenshot (with Russian tran
 
 | id | lt | ru | notes |
 | --- | --- | --- | --- |
-| pieno_produktai | pieno produktai | молочные продукты | |
-| mesos_parduotuve | mėsos parduotuvė | мясной магазин | |
+| pienas | pienas | молоко | |
+| produktai | produktai | продукты | |
+| maistas | maistas | еда | |
+| prekes | prekės | товары | |
+| parduotuve | parduotuvė | магазин | |
 | darzoves | daržovės | овощи | |
 | vaisiai | vaisiai | фрукты | |
-| duonos_parduotuve | duonos parduotuvė | хлебный магазин | |
-| zuvies_parduotuve | žuvies parduotuvė | рыбный магазин | |
+| duona | duona | хлеб | |
+| zuvis | žuvis | рыба | |
 | saldumynai | saldumynai | сладости | |
 | konditerija | konditerija | кондитерия | |
-| maisto_prekes | maisto prekės | продовольственные товары | |
 | sviestas | sviestas | масло | |
+| suris | sūris | сыр | |
 | bandeles | bandelės | булочки | |
 | apelsinai | apelsinai | апельсины | |
+| agurkai | agurkai | огурцы | |
+| kiausiniai | kiaušiniai | яйца | |
+| kiausinis | kiaušinis | яйцо | |
+| mesa | mėsa | мясо | |
 | aviena | aviena | баранина | |
 | kiauliena | kiauliena | свинина | |
 | versiena | veršiena | телятина | |
-| agurkai | agurkai | огурцы | |
+| kumpis | kumpis | ветчина | |
 | desreles | dešrelės | сосиски | |
-| marmeladas | marmeladas | повидло, мармелад | |
 | silke | silkė | сельдь | |
-| pienas | pienas | молоко | |
-| kiausiniai | kiaušiniai | яйца | |
-| sviezias_sur | šviežias sūris | свежий сыр | |
-| senas_sviestas | senas sviestas | старое масло | |
-| sudziuves_kumpis | sudžiūvęs kumpis | засохшая ветчина | |
-| pasenes_kiausinis | pasenęs kiaušinis | старое яйцо | |
+| marmeladas | marmeladas | повидло, мармелад | |
+| sviezias | šviežias | свежий | |
+| senas | senas | старый | |
+| pasenes | pasenęs | несвежий | |
+| sudziuves | sudžiūvęs | засохший | |
