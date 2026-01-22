@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>1.2 Vaikams: maisto prekių parduotuvės — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Vaikams: maisto prekių parduotuvės",
+                        words: [
+                          { id: "pieno_produktai", lt: "pieno produktai", ru: "молочные продукты" },
+                          { id: "mesos_parduotuve", lt: "mėsos parduotuvė", ru: "мясной магазин" },
+                          { id: "darzoves", lt: "daržovės", ru: "овощи" },
+                          { id: "vaisiai", lt: "vaisiai", ru: "фрукты" },
+                          { id: "duonos_parduotuve", lt: "duonos parduotuvė", ru: "хлебный магазин" },
+                          { id: "zuvies_parduotuve", lt: "žuvies parduotuvė", ru: "рыбный магазин" },
+                          { id: "saldumynai", lt: "saldumynai", ru: "сладости" },
+                          { id: "konditerija", lt: "konditerija", ru: "кондитерия" },
+                          { id: "maisto_prekes", lt: "maisto prekės", ru: "продовольственные товары" },
+                          { id: "sviestas", lt: "sviestas", ru: "масло" },
+                          { id: "bandeles", lt: "bandelės", ru: "булочки" },
+                          { id: "apelsinai", lt: "apelsinai", ru: "апельсины" },
+                          { id: "aviena", lt: "aviena", ru: "баранина" },
+                          { id: "kiauliena", lt: "kiauliena", ru: "свинина" },
+                          { id: "versiena", lt: "veršiena", ru: "телятина" },
+                          { id: "agurkai", lt: "agurkai", ru: "огурцы" },
+                          { id: "desreles", lt: "dešrelės", ru: "сосиски" },
+                          { id: "marmeladas", lt: "marmeladas", ru: "повидло, мармелад" },
+                          { id: "silke", lt: "silkė", ru: "сельдь" },
+                          { id: "pienas", lt: "pienas", ru: "молоко" },
+                          { id: "kiausiniai", lt: "kiaušiniai", ru: "яйца" },
+                          { id: "sviezias_sur", lt: "šviežias sūris", ru: "свежий сыр" },
+                          { id: "senas_sviestas", lt: "senas sviestas", ru: "старое масло" },
+                          { id: "sudziuves_kumpis", lt: "sudžiūvęs kumpis", ru: "засохшая ветчина" },
+                          { id: "pasenes_kiausinis", lt: "pasenęs kiaušinis", ru: "старое яйцо" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        pieno_produktai: [
+                          {
+                            sentence: "___ yra šaldytuve.",
+                            translationRu: "Молочные продукты в холодильнике.",
+                            answer: "pieno produktai",
+                            options: ["pieno produktai", "saldumynai", "daržovės"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю молочные продукты.",
+                            answer: "pieno produktus",
+                            options: ["pieno produktus", "vaisius", "saldumynus"]
+                          },
+                          {
+                            sentence: "Parduotuvėje daug ___.",
+                            translationRu: "В магазине много молочных продуктов.",
+                            answer: "pieno produktų",
+                            options: ["pieno produktų", "daržovių", "vaisių"]
+                          }
+                        ],
+                        mesos_parduotuve: [
+                          {
+                            sentence: "Šalia yra ___.",
+                            translationRu: "Рядом есть мясной магазин.",
+                            answer: "mėsos parduotuvė",
+                            options: ["mėsos parduotuvė", "duonos parduotuvė", "konditerija"]
+                          },
+                          {
+                            sentence: "Einame į ___.",
+                            translationRu: "Мы идём в мясной магазин.",
+                            answer: "mėsos parduotuvę",
+                            options: ["mėsos parduotuvę", "žuvies parduotuvę", "duonos parduotuvę"]
+                          },
+                          {
+                            sentence: "Netoli namų nėra ___.",
+                            translationRu: "Недалеко от дома нет мясного магазина.",
+                            answer: "mėsos parduotuvės",
+                            options: ["mėsos parduotuvės", "konditerijos", "žuvies parduotuvės"]
+                          }
+                        ],
+                        darzoves: [
+                          {
+                            sentence: "___ yra ant stalo.",
+                            translationRu: "Овощи на столе.",
+                            answer: "daržovės",
+                            options: ["daržovės", "vaisiai", "saldumynai"]
+                          },
+                          {
+                            sentence: "Aš plaunu ___.",
+                            translationRu: "Я мою овощи.",
+                            answer: "daržoves",
+                            options: ["daržoves", "vaisius", "bandeles"]
+                          },
+                          {
+                            sentence: "Parduotuvėje nėra ___.",
+                            translationRu: "В магазине нет овощей.",
+                            answer: "daržovių",
+                            options: ["daržovių", "vaisių", "bandelių"]
+                          }
+                        ],
+                        vaisiai: [
+                          {
+                            sentence: "___ yra saldūs.",
+                            translationRu: "Фрукты сладкие.",
+                            answer: "vaisiai",
+                            options: ["vaisiai", "daržovės", "saldumynai"]
+                          },
+                          {
+                            sentence: "Vaikai valgo ___.",
+                            translationRu: "Дети едят фрукты.",
+                            answer: "vaisius",
+                            options: ["vaisius", "daržoves", "bandeles"]
+                          },
+                          {
+                            sentence: "Krepšyje nėra ___.",
+                            translationRu: "В корзинке нет фруктов.",
+                            answer: "vaisių",
+                            options: ["vaisių", "daržovių", "bandelių"]
+                          }
+                        ],
+                        duonos_parduotuve: [
+                          {
+                            sentence: "___ atsidaro ryte.",
+                            translationRu: "Хлебный магазин открывается утром.",
+                            answer: "duonos parduotuvė",
+                            options: ["duonos parduotuvė", "mėsos parduotuvė", "konditerija"]
+                          },
+                          {
+                            sentence: "Aš einu į ___.",
+                            translationRu: "Я иду в хлебный магазин.",
+                            answer: "duonos parduotuvę",
+                            options: ["duonos parduotuvę", "žuvies parduotuvę", "mėsos parduotuvę"]
+                          },
+                          {
+                            sentence: "Šiame rajone nėra ___.",
+                            translationRu: "В этом районе нет хлебного магазина.",
+                            answer: "duonos parduotuvės",
+                            options: ["duonos parduotuvės", "konditerijos", "žuvies parduotuvės"]
+                          }
+                        ],
+                        zuvies_parduotuve: [
+                          {
+                            sentence: "___ yra netoli turgaus.",
+                            translationRu: "Рыбный магазин рядом с рынком.",
+                            answer: "žuvies parduotuvė",
+                            options: ["žuvies parduotuvė", "mėsos parduotuvė", "duonos parduotuvė"]
+                          },
+                          {
+                            sentence: "Mes užsukame į ___.",
+                            translationRu: "Мы заходим в рыбный магазин.",
+                            answer: "žuvies parduotuvę",
+                            options: ["žuvies parduotuvę", "duonos parduotuvę", "konditeriją"]
+                          },
+                          {
+                            sentence: "Miestelyje nėra ___.",
+                            translationRu: "В городке нет рыбного магазина.",
+                            answer: "žuvies parduotuvės",
+                            options: ["žuvies parduotuvės", "mėsos parduotuvės", "konditerijos"]
+                          }
+                        ],
+                        saldumynai: [
+                          {
+                            sentence: "___ patinka vaikams.",
+                            translationRu: "Сладости нравятся детям.",
+                            answer: "saldumynai",
+                            options: ["saldumynai", "daržovės", "vaisiai"]
+                          },
+                          {
+                            sentence: "Mama perka ___.",
+                            translationRu: "Мама покупает сладости.",
+                            answer: "saldumynus",
+                            options: ["saldumynus", "vaisius", "bandeles"]
+                          },
+                          {
+                            sentence: "Namie nėra ___.",
+                            translationRu: "Дома нет сладостей.",
+                            answer: "saldumynų",
+                            options: ["saldumynų", "vaisių", "daržovių"]
+                          }
+                        ],
+                        konditerija: [
+                          {
+                            sentence: "___ kvepia pyragais.",
+                            translationRu: "Кондитерия пахнет пирогами.",
+                            answer: "konditerija",
+                            options: ["konditerija", "duonos parduotuvė", "mėsos parduotuvė"]
+                          },
+                          {
+                            sentence: "Užsuku į ___ po pamokų.",
+                            translationRu: "Захожу в кондитерию после уроков.",
+                            answer: "konditeriją",
+                            options: ["konditeriją", "duonos parduotuvę", "žuvies parduotuvę"]
+                          },
+                          {
+                            sentence: "Šalia mokyklos nėra ___.",
+                            translationRu: "Рядом со школой нет кондитерии.",
+                            answer: "konditerijos",
+                            options: ["konditerijos", "mėsos parduotuvės", "duonos parduotuvės"]
+                          }
+                        ],
+                        maisto_prekes: [
+                          {
+                            sentence: "___ yra lentynose.",
+                            translationRu: "Продовольственные товары на полках.",
+                            answer: "maisto prekės",
+                            options: ["maisto prekės", "pieno produktai", "saldumynai"]
+                          },
+                          {
+                            sentence: "Mes perkame ___.",
+                            translationRu: "Мы покупаем продовольственные товары.",
+                            answer: "maisto prekes",
+                            options: ["maisto prekes", "pieno produktus", "saldumynus"]
+                          },
+                          {
+                            sentence: "Parduotuvėje daug ___.",
+                            translationRu: "В магазине много продовольственных товаров.",
+                            answer: "maisto prekių",
+                            options: ["maisto prekių", "pieno produktų", "saldumynų"]
+                          }
+                        ],
+                        sviestas: [
+                          {
+                            sentence: "Ant stalo yra ___.",
+                            translationRu: "На столе масло.",
+                            answer: "sviestas",
+                            options: ["sviestas", "pienas", "marmeladas"]
+                          },
+                          {
+                            sentence: "Aš tepu ___ ant duonos.",
+                            translationRu: "Я намазываю масло на хлеб.",
+                            answer: "sviestą",
+                            options: ["sviestą", "marmeladą", "pieną"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет масла.",
+                            answer: "sviesto",
+                            options: ["sviesto", "pieno", "marmelado"]
+                          }
+                        ],
+                        bandeles: [
+                          {
+                            sentence: "___ dar šiltos.",
+                            translationRu: "Булочки ещё тёплые.",
+                            answer: "bandelės",
+                            options: ["bandelės", "daržovės", "vaisiai"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю булочки.",
+                            answer: "bandeles",
+                            options: ["bandeles", "apelsinus", "agurkus"]
+                          },
+                          {
+                            sentence: "Ryte neliko ___.",
+                            translationRu: "Утром не осталось булочек.",
+                            answer: "bandelių",
+                            options: ["bandelių", "apelsinų", "agurkų"]
+                          }
+                        ],
+                        apelsinai: [
+                          {
+                            sentence: "___ yra oranžiniai.",
+                            translationRu: "Апельсины оранжевые.",
+                            answer: "apelsinai",
+                            options: ["apelsinai", "agurkai", "kiaušiniai"]
+                          },
+                          {
+                            sentence: "Vaikai valgo ___.",
+                            translationRu: "Дети едят апельсины.",
+                            answer: "apelsinus",
+                            options: ["apelsinus", "agurkus", "bandeles"]
+                          },
+                          {
+                            sentence: "Krepšyje nėra ___.",
+                            translationRu: "В корзинке нет апельсинов.",
+                            answer: "apelsinų",
+                            options: ["apelsinų", "agurkų", "bandelių"]
+                          }
+                        ],
+                        aviena: [
+                          {
+                            sentence: "___ tinka sriubai.",
+                            translationRu: "Баранина подходит для супа.",
+                            answer: "aviena",
+                            options: ["aviena", "kiauliena", "veršiena"]
+                          },
+                          {
+                            sentence: "Mes valgome ___.",
+                            translationRu: "Мы едим баранину.",
+                            answer: "avieną",
+                            options: ["avieną", "kiaulieną", "veršieną"]
+                          },
+                          {
+                            sentence: "Šiandien nėra ___.",
+                            translationRu: "Сегодня нет баранины.",
+                            answer: "avienos",
+                            options: ["avienos", "kiaulienos", "veršienos"]
+                          }
+                        ],
+                        kiauliena: [
+                          {
+                            sentence: "___ kepa orkaitėje.",
+                            translationRu: "Свинина запекается в духовке.",
+                            answer: "kiauliena",
+                            options: ["kiauliena", "aviena", "veršiena"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю свинину.",
+                            answer: "kiaulieną",
+                            options: ["kiaulieną", "avieną", "veršieną"]
+                          },
+                          {
+                            sentence: "Ant prekystalio nėra ___.",
+                            translationRu: "На прилавке нет свинины.",
+                            answer: "kiaulienos",
+                            options: ["kiaulienos", "avienos", "veršienos"]
+                          }
+                        ],
+                        versiena: [
+                          {
+                            sentence: "___ yra švelni.",
+                            translationRu: "Телятина нежная.",
+                            answer: "veršiena",
+                            options: ["veršiena", "aviena", "kiauliena"]
+                          },
+                          {
+                            sentence: "Mes verdame ___.",
+                            translationRu: "Мы варим телятину.",
+                            answer: "veršieną",
+                            options: ["veršieną", "avieną", "kiaulieną"]
+                          },
+                          {
+                            sentence: "Parduotuvėje nėra ___.",
+                            translationRu: "В магазине нет телятины.",
+                            answer: "veršienos",
+                            options: ["veršienos", "avienos", "kiaulienos"]
+                          }
+                        ],
+                        agurkai: [
+                          {
+                            sentence: "___ yra žali.",
+                            translationRu: "Огурцы зелёные.",
+                            answer: "agurkai",
+                            options: ["agurkai", "apelsinai", "kiaušiniai"]
+                          },
+                          {
+                            sentence: "Aš pjaustau ___.",
+                            translationRu: "Я режу огурцы.",
+                            answer: "agurkus",
+                            options: ["agurkus", "apelsinus", "bandeles"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет огурцов.",
+                            answer: "agurkų",
+                            options: ["agurkų", "apelsinų", "bandelių"]
+                          }
+                        ],
+                        desreles: [
+                          {
+                            sentence: "___ kvepia.",
+                            translationRu: "Сосиски пахнут.",
+                            answer: "dešrelės",
+                            options: ["dešrelės", "bandelės", "agurkai"]
+                          },
+                          {
+                            sentence: "Vaikai valgo ___.",
+                            translationRu: "Дети едят сосиски.",
+                            answer: "dešreles",
+                            options: ["dešreles", "bandeles", "agurkus"]
+                          },
+                          {
+                            sentence: "Lėkštėje nėra ___.",
+                            translationRu: "На тарелке нет сосисок.",
+                            answer: "dešrelių",
+                            options: ["dešrelių", "bandelių", "agurkų"]
+                          }
+                        ],
+                        marmeladas: [
+                          {
+                            sentence: "___ yra saldus.",
+                            translationRu: "Мармелад сладкий.",
+                            answer: "marmeladas",
+                            options: ["marmeladas", "sviestas", "pienas"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю мармелад.",
+                            answer: "marmeladą",
+                            options: ["marmeladą", "sviestą", "pieną"]
+                          },
+                          {
+                            sentence: "Ant stalo nėra ___.",
+                            translationRu: "На столе нет мармелада.",
+                            answer: "marmelado",
+                            options: ["marmelado", "sviesto", "pieno"]
+                          }
+                        ],
+                        silke: [
+                          {
+                            sentence: "___ yra sūri.",
+                            translationRu: "Сельдь солёная.",
+                            answer: "silkė",
+                            options: ["silkė", "veršiena", "aviena"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю сельдь.",
+                            answer: "silkę",
+                            options: ["silkę", "veršieną", "avieną"]
+                          },
+                          {
+                            sentence: "Šiandien nėra ___.",
+                            translationRu: "Сегодня нет сельди.",
+                            answer: "silkės",
+                            options: ["silkės", "veršienos", "avienos"]
+                          }
+                        ],
+                        pienas: [
+                          {
+                            sentence: "___ yra stiklinėje.",
+                            translationRu: "Молоко в стакане.",
+                            answer: "pienas",
+                            options: ["pienas", "sviestas", "marmeladas"]
+                          },
+                          {
+                            sentence: "Vaikas geria ___.",
+                            translationRu: "Ребёнок пьёт молоко.",
+                            answer: "pieną",
+                            options: ["pieną", "sviestą", "marmeladą"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет молока.",
+                            answer: "pieno",
+                            options: ["pieno", "sviesto", "marmelado"]
+                          }
+                        ],
+                        kiausiniai: [
+                          {
+                            sentence: "___ yra krepšelyje.",
+                            translationRu: "Яйца в корзинке.",
+                            answer: "kiaušiniai",
+                            options: ["kiaušiniai", "apelsinai", "agurkai"]
+                          },
+                          {
+                            sentence: "Aš verdu ___.",
+                            translationRu: "Я варю яйца.",
+                            answer: "kiaušinius",
+                            options: ["kiaušinius", "apelsinus", "agurkus"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет яиц.",
+                            answer: "kiaušinių",
+                            options: ["kiaušinių", "apelsinų", "agurkų"]
+                          }
+                        ],
+                        sviezias_sur: [
+                          {
+                            sentence: "___ yra minkštas.",
+                            translationRu: "Свежий сыр мягкий.",
+                            answer: "šviežias sūris",
+                            options: ["šviežias sūris", "senas sviestas", "marmeladas"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю свежий сыр.",
+                            answer: "šviežią sūrį",
+                            options: ["šviežią sūrį", "seną sviestą", "marmeladą"]
+                          },
+                          {
+                            sentence: "Ant stalo nėra ___.",
+                            translationRu: "На столе нет свежего сыра.",
+                            answer: "šviežio sūrio",
+                            options: ["šviežio sūrio", "seno sviesto", "marmelado"]
+                          }
+                        ],
+                        senas_sviestas: [
+                          {
+                            sentence: "___ kvepia blogai.",
+                            translationRu: "Старое масло плохо пахнет.",
+                            answer: "senas sviestas",
+                            options: ["senas sviestas", "šviežias sūris", "marmeladas"]
+                          },
+                          {
+                            sentence: "Aš išmetu ___.",
+                            translationRu: "Я выбрасываю старое масло.",
+                            answer: "seną sviestą",
+                            options: ["seną sviestą", "šviežią sūrį", "marmeladą"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет старого масла.",
+                            answer: "seno sviesto",
+                            options: ["seno sviesto", "šviežio sūrio", "marmelado"]
+                          }
+                        ],
+                        sudziuves_kumpis: [
+                          {
+                            sentence: "___ labai kietas.",
+                            translationRu: "Засохшая ветчина очень жёсткая.",
+                            answer: "sudžiūvęs kumpis",
+                            options: ["sudžiūvęs kumpis", "šviežias sūris", "senas sviestas"]
+                          },
+                          {
+                            sentence: "Aš išmetu ___.",
+                            translationRu: "Я выбрасываю засохшую ветчину.",
+                            answer: "sudžiūvusį kumpį",
+                            options: ["sudžiūvusį kumpį", "šviežią sūrį", "seną sviestą"]
+                          },
+                          {
+                            sentence: "Ant stalo nėra ___.",
+                            translationRu: "На столе нет засохшей ветчины.",
+                            answer: "sudžiūvusio kumpio",
+                            options: ["sudžiūvusio kumpio", "šviežio sūrio", "seno sviesto"]
+                          }
+                        ],
+                        pasenes_kiausinis: [
+                          {
+                            sentence: "___ blogai kvepia.",
+                            translationRu: "Старое яйцо плохо пахнет.",
+                            answer: "pasenęs kiaušinis",
+                            options: ["pasenęs kiaušinis", "šviežias sūris", "marmeladas"]
+                          },
+                          {
+                            sentence: "Aš išmetu ___.",
+                            translationRu: "Я выбрасываю старое яйцо.",
+                            answer: "pasenusį kiaušinį",
+                            options: ["pasenusį kiaušinį", "šviežią sūrį", "marmeladą"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет старого яйца.",
+                            answer: "pasenusio kiaušinio",
+                            options: ["pasenusio kiaušinio", "šviežio sūrio", "marmelado"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.2.0"
+      };
+    </script>
+    <script src="../lib/lt-test-runner.js"></script>
+  </body>
+</html>

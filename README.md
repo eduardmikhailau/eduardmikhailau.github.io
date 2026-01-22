@@ -55,3 +55,4 @@ GitHub Pages: https://eduardmikhailau.github.io/ (tests under `tests/`).
 ## Kids tests (GitHub Pages)
 
 - [1.1 Šeima ir maistas](https://eduardmikhailau.github.io/tests/kids/1.1-seima-maistas.html)
+- [1.2 Maisto prekių parduotuvės](https://eduardmikhailau.github.io/tests/kids/1.2-maisto-prekiu-parduotuves.html)
