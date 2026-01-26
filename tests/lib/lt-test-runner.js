@@ -146,6 +146,7 @@ const STORAGE_KEY = `lt-test-session:${location.pathname}`;
 const SAVED_QUESTIONS_KEY = `lt-test-saved:${location.pathname}`;
 const REPEAT_MIN_OFFSET = 4;
 const REPEAT_MAX_OFFSET = 6;
+const CHATGPT_EXPLAIN_URL = "https://chatgpt.com/?q=";
 
 const ui = {
   startScreen: document.getElementById("start-screen"),
@@ -499,14 +500,72 @@ const getOverallProgress = () => {
 
 const clearFeedback = () => {
   ui.feedback.className = "mt-4 hidden rounded-xl border px-4 py-3 text-sm";
-  ui.feedback.textContent = "";
+  ui.feedback.innerHTML = "";
 };
 
-const showFeedback = (message, isCorrect) => {
+const buildGapSentence = (sentence, answer) => {
+  if (!sentence) {
+    return answer;
+  }
+  const patterns = [/_{2,}/, /\.{3,}/];
+  for (const pattern of patterns) {
+    if (pattern.test(sentence)) {
+      return sentence.replace(pattern, answer);
+    }
+  }
+  return `${sentence} ${answer}`.trim();
+};
+
+const buildExplainPrompt = (sentence) =>
+  `Объясни грамматику и падежи в предложении: ${sentence}`;
+
+const openChatGptExplain = (question) => {
+  if (!question) {
+    return;
+  }
+  const sentence = buildGapSentence(question.prompt, question.correct);
+  const prompt = buildExplainPrompt(sentence);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(prompt).catch(() => {
+      // Clipboard may be blocked; still open the link.
+    });
+  }
+  const targetUrl = `${CHATGPT_EXPLAIN_URL}${encodeURIComponent(prompt)}`;
+  window.open(targetUrl, "_blank", "noopener,noreferrer");
+};
+
+const showFeedback = (message, isCorrect, options = {}) => {
   ui.feedback.className = `mt-4 rounded-xl border px-4 py-3 text-sm ${
     isCorrect ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-rose-200 bg-rose-50 text-rose-700"
   }`;
-  ui.feedback.textContent = message;
+  ui.feedback.innerHTML = "";
+
+  const container = document.createElement("div");
+  container.className = options.action ? "flex items-start justify-between gap-3" : "";
+
+  const text = document.createElement("p");
+  text.textContent = message;
+  container.appendChild(text);
+
+  if (options.action) {
+    const actionButton = document.createElement("button");
+    actionButton.type = "button";
+    actionButton.className =
+      "inline-flex h-9 w-9 items-center justify-center rounded-full border border-rose-200 bg-white text-rose-600 shadow-sm transition hover:bg-rose-100";
+    actionButton.title = options.action.title || "Explain with ChatGPT";
+    actionButton.setAttribute("aria-label", options.action.title || "Explain with ChatGPT");
+    actionButton.innerHTML = `
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12a8 8 0 0 1-8 8H7l-4 4V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/>
+        <path d="M9 9h6"/>
+        <path d="M9 13h4"/>
+      </svg>
+    `;
+    actionButton.addEventListener("click", options.action.onClick);
+    container.appendChild(actionButton);
+  }
+
+  ui.feedback.appendChild(container);
 };
 
 const hideNextButton = () => {
@@ -664,7 +723,15 @@ const renderOptions = (question) => {
 
       showFeedback(
         isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
-        isCorrect
+        isCorrect,
+        !isCorrect && (question.type === "gapFill" || question.type === "gapFillInput")
+          ? {
+              action: {
+                title: "Explain with ChatGPT",
+                onClick: () => openChatGptExplain(question)
+              }
+            }
+          : {}
       );
       if (!isCorrect) {
         enqueueRepeatQuestion(question);
@@ -713,7 +780,15 @@ const renderOptions = (question) => {
 
       showFeedback(
         isCorrect ? "Correct!" : `Not correct. The right answer is “${question.correct}”.`,
-        isCorrect
+        isCorrect,
+        !isCorrect && (question.type === "gapFill" || question.type === "gapFillInput")
+          ? {
+              action: {
+                title: "Explain with ChatGPT",
+                onClick: () => openChatGptExplain(question)
+              }
+            }
+          : {}
       );
       if (!isCorrect) {
         enqueueRepeatQuestion(question);
