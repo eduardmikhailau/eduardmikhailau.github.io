@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.5 Vaisiai ir uogos — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Vaisiai ir uogos",
+                        words: [
+                          { id: "aviete", lt: "avietė", ru: "малина" },
+                          { id: "serbentas", lt: "serbentas", ru: "смородина" },
+                          { id: "vynuoge", lt: "vynuogė", ru: "виноград" },
+                          { id: "kivis", lt: "kivis", ru: "киви" },
+                          { id: "mandarinas", lt: "mandarinas", ru: "мандарин" },
+                          { id: "brukne", lt: "bruknė", ru: "брусника" },
+                          { id: "melyne", lt: "mėlynė", ru: "черника" },
+                          { id: "spanguole", lt: "spanguolė", ru: "клюква" },
+                          { id: "zemuoge", lt: "žemuogė", ru: "земляника" },
+                          { id: "kriause", lt: "kriaušė", ru: "груша" },
+                          { id: "obuolys", lt: "obuolys", ru: "яблоко" },
+                          { id: "slyva", lt: "slyva", ru: "слива" },
+                          { id: "vysnia", lt: "vyšnia", ru: "вишня" },
+                          { id: "bananas", lt: "bananas", ru: "банан" },
+                          { id: "citrina", lt: "citrina", ru: "лимон" },
+                          { id: "apelsinas", lt: "apelsinas", ru: "апельсин" },
+                          { id: "braske", lt: "braškė", ru: "клубника" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        aviete: [
+                          {
+                            sentence: "___ auga sode.",
+                            translationRu: "Малина растёт в саду.",
+                            answer: "avietė",
+                            options: ["avietė", "braškė", "mėlynė"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем малину.",
+                            answer: "avietę",
+                            options: ["avietę", "braškę", "mėlynę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет малины.",
+                            answer: "avietės",
+                            options: ["avietės", "braškės", "mėlynės"]
+                          }
+                        ],
+                        serbentas: [
+                          {
+                            sentence: "___ auga krūme.",
+                            translationRu: "Смородина растёт на кусте.",
+                            answer: "serbentas",
+                            options: ["serbentas", "mandarinas", "bananas"]
+                          },
+                          {
+                            sentence: "Aš renku ___.",
+                            translationRu: "Я собираю смородину.",
+                            answer: "serbentą",
+                            options: ["serbentą", "mandariną", "bananą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет смородины.",
+                            answer: "serbento",
+                            options: ["serbento", "mandarino", "banano"]
+                          }
+                        ],
+                        vynuoge: [
+                          {
+                            sentence: "___ yra saldi.",
+                            translationRu: "Виноградина сладкая.",
+                            answer: "vynuogė",
+                            options: ["vynuogė", "slyva", "kriaušė"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем виноградину.",
+                            answer: "vynuogę",
+                            options: ["vynuogę", "slyvą", "kriaušę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет виноградины.",
+                            answer: "vynuogės",
+                            options: ["vynuogės", "slyvos", "kriaušės"]
+                          }
+                        ],
+                        kivis: [
+                          {
+                            sentence: "___ yra žalias.",
+                            translationRu: "Киви зелёный.",
+                            answer: "kivis",
+                            options: ["kivis", "mandarinas", "bananas"]
+                          },
+                          {
+                            sentence: "Aš pjaustau ___.",
+                            translationRu: "Я режу киви.",
+                            answer: "kivį",
+                            options: ["kivį", "mandariną", "bananą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет киви.",
+                            answer: "kivio",
+                            options: ["kivio", "mandarino", "banano"]
+                          }
+                        ],
+                        mandarinas: [
+                          {
+                            sentence: "___ yra oranžinis.",
+                            translationRu: "Мандарин оранжевый.",
+                            answer: "mandarinas",
+                            options: ["mandarinas", "apelsinas", "bananas"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем мандарин.",
+                            answer: "mandariną",
+                            options: ["mandariną", "apelsiną", "bananą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет мандарина.",
+                            answer: "mandarino",
+                            options: ["mandarino", "apelsino", "banano"]
+                          }
+                        ],
+                        brukne: [
+                          {
+                            sentence: "___ auga miške.",
+                            translationRu: "Брусника растёт в лесу.",
+                            answer: "bruknė",
+                            options: ["bruknė", "spanguolė", "mėlynė"]
+                          },
+                          {
+                            sentence: "Aš renku ___.",
+                            translationRu: "Я собираю бруснику.",
+                            answer: "bruknę",
+                            options: ["bruknę", "spanguolę", "mėlynę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет брусники.",
+                            answer: "bruknės",
+                            options: ["bruknės", "spanguolės", "mėlynės"]
+                          }
+                        ],
+                        melyne: [
+                          {
+                            sentence: "___ yra mėlyna.",
+                            translationRu: "Черника синяя.",
+                            answer: "mėlynė",
+                            options: ["mėlynė", "avietė", "braškė"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем чернику.",
+                            answer: "mėlynę",
+                            options: ["mėlynę", "avietę", "braškę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет черники.",
+                            answer: "mėlynės",
+                            options: ["mėlynės", "avietės", "braškės"]
+                          }
+                        ],
+                        spanguole: [
+                          {
+                            sentence: "___ yra rūgšti.",
+                            translationRu: "Клюква кислая.",
+                            answer: "spanguolė",
+                            options: ["spanguolė", "bruknė", "žemuogė"]
+                          },
+                          {
+                            sentence: "Aš renku ___.",
+                            translationRu: "Я собираю клюкву.",
+                            answer: "spanguolę",
+                            options: ["spanguolę", "bruknę", "žemuogę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет клюквы.",
+                            answer: "spanguolės",
+                            options: ["spanguolės", "bruknės", "žemuogės"]
+                          }
+                        ],
+                        zemuoge: [
+                          {
+                            sentence: "___ yra saldi.",
+                            translationRu: "Земляника сладкая.",
+                            answer: "žemuogė",
+                            options: ["žemuogė", "avietė", "braškė"]
+                          },
+                          {
+                            sentence: "Aš renku ___.",
+                            translationRu: "Я собираю землянику.",
+                            answer: "žemuogę",
+                            options: ["žemuogę", "avietę", "braškę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет земляники.",
+                            answer: "žemuogės",
+                            options: ["žemuogės", "avietės", "braškės"]
+                          }
+                        ],
+                        kriause: [
+                          {
+                            sentence: "___ auga sode.",
+                            translationRu: "Груша растёт в саду.",
+                            answer: "kriaušė",
+                            options: ["kriaušė", "slyva", "vyšnia"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем грушу.",
+                            answer: "kriaušę",
+                            options: ["kriaušę", "slyvą", "vyšnią"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет груши.",
+                            answer: "kriaušės",
+                            options: ["kriaušės", "slyvos", "vyšnios"]
+                          }
+                        ],
+                        obuolys: [
+                          {
+                            sentence: "___ yra raudonas.",
+                            translationRu: "Яблоко красное.",
+                            answer: "obuolys",
+                            options: ["obuolys", "mandarinas", "bananas"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем яблоко.",
+                            answer: "obuolį",
+                            options: ["obuolį", "mandariną", "bananą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет яблока.",
+                            answer: "obuolio",
+                            options: ["obuolio", "mandarino", "banano"]
+                          }
+                        ],
+                        slyva: [
+                          {
+                            sentence: "___ yra prinokusi.",
+                            translationRu: "Слива спелая.",
+                            answer: "slyva",
+                            options: ["slyva", "kriaušė", "vyšnia"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем сливу.",
+                            answer: "slyvą",
+                            options: ["slyvą", "kriaušę", "vyšnią"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет сливы.",
+                            answer: "slyvos",
+                            options: ["slyvos", "kriaušės", "vyšnios"]
+                          }
+                        ],
+                        vysnia: [
+                          {
+                            sentence: "___ yra ant medžio.",
+                            translationRu: "Вишня на дереве.",
+                            answer: "vyšnia",
+                            options: ["vyšnia", "slyva", "kriaušė"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем вишню.",
+                            answer: "vyšnią",
+                            options: ["vyšnią", "slyvą", "kriaušę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет вишни.",
+                            answer: "vyšnios",
+                            options: ["vyšnios", "slyvos", "kriaušės"]
+                          }
+                        ],
+                        bananas: [
+                          {
+                            sentence: "___ yra geltonas.",
+                            translationRu: "Банан жёлтый.",
+                            answer: "bananas",
+                            options: ["bananas", "mandarinas", "apelsinas"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем банан.",
+                            answer: "bananą",
+                            options: ["bananą", "mandariną", "apelsiną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет банана.",
+                            answer: "banano",
+                            options: ["banano", "mandarino", "apelsino"]
+                          }
+                        ],
+                        citrina: [
+                          {
+                            sentence: "___ yra rūgšti.",
+                            translationRu: "Лимон кислый.",
+                            answer: "citrina",
+                            options: ["citrina", "kriaušė", "slyva"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į arbatą.",
+                            translationRu: "Я кладу лимон в чай.",
+                            answer: "citriną",
+                            options: ["citriną", "kriaušę", "slyvą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет лимона.",
+                            answer: "citrinos",
+                            options: ["citrinos", "kriaušės", "slyvos"]
+                          }
+                        ],
+                        apelsinas: [
+                          {
+                            sentence: "___ yra saldus.",
+                            translationRu: "Апельсин сладкий.",
+                            answer: "apelsinas",
+                            options: ["apelsinas", "mandarinas", "bananas"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем апельсин.",
+                            answer: "apelsiną",
+                            options: ["apelsiną", "mandariną", "bananą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет апельсина.",
+                            answer: "apelsino",
+                            options: ["apelsino", "mandarino", "banano"]
+                          }
+                        ],
+                        braske: [
+                          {
+                            sentence: "___ auga sode.",
+                            translationRu: "Клубника растёт в саду.",
+                            answer: "braškė",
+                            options: ["braškė", "avietė", "mėlynė"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем клубнику.",
+                            answer: "braškę",
+                            options: ["braškę", "avietę", "mėlynę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет клубники.",
+                            answer: "braškės",
+                            options: ["braškės", "avietės", "mėlynės"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.0"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

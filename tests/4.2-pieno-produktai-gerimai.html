@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.2 Pieno produktai ir gėrimai — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Pieno produktai ir gėrimai",
+                        words: [
+                          { id: "grietine", lt: "grietinė", ru: "сметана" },
+                          { id: "pienas", lt: "pienas", ru: "молоко" },
+                          { id: "grietinele", lt: "grietinėlės", ru: "сливки" },
+                          { id: "ledai", lt: "ledai", ru: "мороженое" },
+                          { id: "jogurtas", lt: "jogurtas", ru: "йогурт" },
+                          { id: "sviestas", lt: "sviestas", ru: "сливочное масло" },
+                          { id: "varske", lt: "varškė", ru: "творог" },
+                          { id: "suris", lt: "sūris", ru: "сыр" },
+                          { id: "kefyras", lt: "kefyras", ru: "кефир" },
+                          { id: "rugpienis", lt: "rūgpienis", ru: "простокваша" },
+                          { id: "sultys", lt: "sultys", ru: "сок" },
+                          { id: "vanduo", lt: "vanduo", ru: "вода" },
+                          { id: "arbata", lt: "arbata", ru: "чай" },
+                          { id: "kava", lt: "kava", ru: "кофе" },
+                          { id: "gira", lt: "gira", ru: "квас" },
+                          { id: "kakava", lt: "kakava", ru: "какао" },
+                          { id: "kokteilis", lt: "kokteilis", ru: "коктейль" },
+                          { id: "limonadas", lt: "limonadas", ru: "лимонад" },
+                          { id: "gazuotas", lt: "gazuotas", ru: "газированный" },
+                          { id: "negazuotas", lt: "negazuotas", ru: "негазированный" },
+                          { id: "mineralinis", lt: "mineralinis", ru: "минеральный" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        grietine: [
+                          {
+                            sentence: "Ant stalo yra ___.",
+                            translationRu: "На столе сметана.",
+                            answer: "grietinė",
+                            options: ["grietinė", "varškė", "sviestas"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ ant blynų.",
+                            translationRu: "Я кладу сметану на блины.",
+                            answer: "grietinę",
+                            options: ["grietinę", "varškę", "sviestą"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет сметаны.",
+                            answer: "grietinės",
+                            options: ["grietinės", "varškės", "sviesto"]
+                          }
+                        ],
+                        pienas: [
+                          {
+                            sentence: "Stiklinėje yra ___.",
+                            translationRu: "В стакане молоко.",
+                            answer: "pienas",
+                            options: ["pienas", "kefyras", "vanduo"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью молоко.",
+                            answer: "pieną",
+                            options: ["pieną", "kefyrą", "vandenį"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет молока.",
+                            answer: "pieno",
+                            options: ["pieno", "kefyro", "vandens"]
+                          }
+                        ],
+                        grietinele: [
+                          {
+                            sentence: "___ yra kavos puodelyje.",
+                            translationRu: "Сливки в чашке кофе.",
+                            answer: "grietinėlės",
+                            options: ["grietinėlės", "kakava", "arbata"]
+                          },
+                          {
+                            sentence: "Aš įpilu ___ į kavą.",
+                            translationRu: "Я наливаю сливки в кофе.",
+                            answer: "grietinėles",
+                            options: ["grietinėles", "kakavą", "arbatą"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет сливок.",
+                            answer: "grietinėlių",
+                            options: ["grietinėlių", "kakavos", "arbatos"]
+                          }
+                        ],
+                        ledai: [
+                          {
+                            sentence: "___ yra šalti.",
+                            translationRu: "Мороженое холодное.",
+                            answer: "ledai",
+                            options: ["ledai", "sultys", "jogurtai"]
+                          },
+                          {
+                            sentence: "Vaikas valgo ___.",
+                            translationRu: "Ребёнок ест мороженое.",
+                            answer: "ledus",
+                            options: ["ledus", "jogurtus", "sūrius"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет мороженого.",
+                            answer: "ledų",
+                            options: ["ledų", "jogurtų", "sūrių"]
+                          }
+                        ],
+                        jogurtas: [
+                          {
+                            sentence: "___ yra šaltas.",
+                            translationRu: "Йогурт холодный.",
+                            answer: "jogurtas",
+                            options: ["jogurtas", "kefyras", "pienas"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю йогурт.",
+                            answer: "jogurtą",
+                            options: ["jogurtą", "kefyrą", "pieną"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет йогурта.",
+                            answer: "jogurto",
+                            options: ["jogurto", "kefyro", "pieno"]
+                          }
+                        ],
+                        sviestas: [
+                          {
+                            sentence: "Ant duonos yra ___.",
+                            translationRu: "На хлебе масло.",
+                            answer: "sviestas",
+                            options: ["sviestas", "sūris", "varškė"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю масло.",
+                            answer: "sviestą",
+                            options: ["sviestą", "sūrį", "varškę"]
+                          },
+                          {
+                            sentence: "Šaldytuve nėra ___.",
+                            translationRu: "В холодильнике нет масла.",
+                            answer: "sviesto",
+                            options: ["sviesto", "sūrio", "varškės"]
+                          }
+                        ],
+                        varske: [
+                          {
+                            sentence: "___ yra dubenyje.",
+                            translationRu: "Творог в миске.",
+                            answer: "varškė",
+                            options: ["varškė", "grietinė", "sviestas"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем творог.",
+                            answer: "varškę",
+                            options: ["varškę", "grietinę", "sviestą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет творога.",
+                            answer: "varškės",
+                            options: ["varškės", "grietinės", "sviesto"]
+                          }
+                        ],
+                        suris: [
+                          {
+                            sentence: "___ yra ant lėkštės.",
+                            translationRu: "Сыр на тарелке.",
+                            answer: "sūris",
+                            options: ["sūris", "sviestas", "jogurtas"]
+                          },
+                          {
+                            sentence: "Aš pjaustau ___.",
+                            translationRu: "Я режу сыр.",
+                            answer: "sūrį",
+                            options: ["sūrį", "sviestą", "jogurtą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет сыра.",
+                            answer: "sūrio",
+                            options: ["sūrio", "sviesto", "jogurto"]
+                          }
+                        ],
+                        kefyras: [
+                          {
+                            sentence: "___ yra stiklinėje.",
+                            translationRu: "Кефир в стакане.",
+                            answer: "kefyras",
+                            options: ["kefyras", "pienas", "vanduo"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью кефир.",
+                            answer: "kefyrą",
+                            options: ["kefyrą", "pieną", "vandenį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет кефира.",
+                            answer: "kefyro",
+                            options: ["kefyro", "pieno", "vandens"]
+                          }
+                        ],
+                        rugpienis: [
+                          {
+                            sentence: "___ yra šaltas.",
+                            translationRu: "Простокваша холодная.",
+                            answer: "rūgpienis",
+                            options: ["rūgpienis", "kefyras", "pienas"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью простоквашу.",
+                            answer: "rūgpienį",
+                            options: ["rūgpienį", "kefyrą", "pieną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет простокваши.",
+                            answer: "rūgpienio",
+                            options: ["rūgpienio", "kefyro", "pieno"]
+                          }
+                        ],
+                        sultys: [
+                          {
+                            sentence: "___ yra stiklinėje.",
+                            translationRu: "Сок в стакане.",
+                            answer: "sultys",
+                            options: ["sultys", "ledai", "jogurtai"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью сок.",
+                            answer: "sultis",
+                            options: ["sultis", "kakavą", "kavą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет сока.",
+                            answer: "sulčių",
+                            options: ["sulčių", "kakavos", "kavos"]
+                          }
+                        ],
+                        vanduo: [
+                          {
+                            sentence: "___ yra butelyje.",
+                            translationRu: "Вода в бутылке.",
+                            answer: "vanduo",
+                            options: ["vanduo", "pienas", "kefyras"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью воду.",
+                            answer: "vandenį",
+                            options: ["vandenį", "pieną", "kefyrą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет воды.",
+                            answer: "vandens",
+                            options: ["vandens", "pieno", "kefyro"]
+                          }
+                        ],
+                        arbata: [
+                          {
+                            sentence: "___ yra karšta.",
+                            translationRu: "Чай горячий.",
+                            answer: "arbata",
+                            options: ["arbata", "kakava", "kava"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью чай.",
+                            answer: "arbatą",
+                            options: ["arbatą", "kakavą", "kavą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет чая.",
+                            answer: "arbatos",
+                            options: ["arbatos", "kakavos", "kavos"]
+                          }
+                        ],
+                        kava: [
+                          {
+                            sentence: "___ kvepia.",
+                            translationRu: "Кофе пахнет.",
+                            answer: "kava",
+                            options: ["kava", "arbata", "kakava"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью кофе.",
+                            answer: "kavą",
+                            options: ["kavą", "arbatą", "kakavą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет кофе.",
+                            answer: "kavos",
+                            options: ["kavos", "arbatos", "kakavos"]
+                          }
+                        ],
+                        gira: [
+                          {
+                            sentence: "___ yra šalta.",
+                            translationRu: "Квас холодный.",
+                            answer: "gira",
+                            options: ["gira", "kakava", "arbata"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью квас.",
+                            answer: "girą",
+                            options: ["girą", "kakavą", "arbatą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет кваса.",
+                            answer: "giros",
+                            options: ["giros", "kakavos", "arbatos"]
+                          }
+                        ],
+                        kakava: [
+                          {
+                            sentence: "___ yra saldi.",
+                            translationRu: "Какао сладкое.",
+                            answer: "kakava",
+                            options: ["kakava", "arbata", "gira"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью какао.",
+                            answer: "kakavą",
+                            options: ["kakavą", "arbatą", "girą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет какао.",
+                            answer: "kakavos",
+                            options: ["kakavos", "arbatos", "giros"]
+                          }
+                        ],
+                        kokteilis: [
+                          {
+                            sentence: "___ yra saldus.",
+                            translationRu: "Коктейль сладкий.",
+                            answer: "kokteilis",
+                            options: ["kokteilis", "limonadas", "jogurtas"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью коктейль.",
+                            answer: "kokteilį",
+                            options: ["kokteilį", "limonadą", "jogurtą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет коктейля.",
+                            answer: "kokteilio",
+                            options: ["kokteilio", "limonado", "jogurto"]
+                          }
+                        ],
+                        limonadas: [
+                          {
+                            sentence: "___ yra šaltas.",
+                            translationRu: "Лимонад холодный.",
+                            answer: "limonadas",
+                            options: ["limonadas", "kokteilis", "kefyras"]
+                          },
+                          {
+                            sentence: "Aš geriu ___.",
+                            translationRu: "Я пью лимонад.",
+                            answer: "limonadą",
+                            options: ["limonadą", "kokteilį", "kefyrą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет лимонада.",
+                            answer: "limonado",
+                            options: ["limonado", "kokteilio", "kefyro"]
+                          }
+                        ],
+                        gazuotas: [
+                          {
+                            sentence: "Čia yra ___ vanduo.",
+                            translationRu: "Здесь газированная вода.",
+                            answer: "gazuotas",
+                            options: ["gazuotas", "negazuotas", "mineralinis"]
+                          },
+                          {
+                            sentence: "Aš geriu ___ vandenį.",
+                            translationRu: "Я пью газированную воду.",
+                            answer: "gazuotą",
+                            options: ["gazuotą", "negazuotą", "mineralinį"]
+                          },
+                          {
+                            sentence: "Nėra ___ vandens.",
+                            translationRu: "Нет газированной воды.",
+                            answer: "gazuoto",
+                            options: ["gazuoto", "negazuoto", "mineralinio"]
+                          }
+                        ],
+                        negazuotas: [
+                          {
+                            sentence: "Čia yra ___ vanduo.",
+                            translationRu: "Здесь негазированная вода.",
+                            answer: "negazuotas",
+                            options: ["negazuotas", "gazuotas", "mineralinis"]
+                          },
+                          {
+                            sentence: "Aš geriu ___ vandenį.",
+                            translationRu: "Я пью негазированную воду.",
+                            answer: "negazuotą",
+                            options: ["negazuotą", "gazuotą", "mineralinį"]
+                          },
+                          {
+                            sentence: "Nėra ___ vandens.",
+                            translationRu: "Нет негазированной воды.",
+                            answer: "negazuoto",
+                            options: ["negazuoto", "gazuoto", "mineralinio"]
+                          }
+                        ],
+                        mineralinis: [
+                          {
+                            sentence: "___ vanduo yra šaltas.",
+                            translationRu: "Минеральная вода холодная.",
+                            answer: "mineralinis",
+                            options: ["mineralinis", "gazuotas", "negazuotas"]
+                          },
+                          {
+                            sentence: "Aš geriu ___ vandenį.",
+                            translationRu: "Я пью минеральную воду.",
+                            answer: "mineralinį",
+                            options: ["mineralinį", "gazuotą", "negazuotą"]
+                          },
+                          {
+                            sentence: "Nėra ___ vandens.",
+                            translationRu: "Нет минеральной воды.",
+                            answer: "mineralinio",
+                            options: ["mineralinio", "gazuoto", "negazuoto"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.1"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

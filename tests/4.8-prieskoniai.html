@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.8 Prieskoniai — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Prieskoniai",
+                        words: [
+                          { id: "bazilikas", lt: "bazilikas", ru: "базилик" },
+                          { id: "ciobrelis", lt: "čiobrelis", ru: "тимьян" },
+                          { id: "kmynas", lt: "kmynas", ru: "тмин" },
+                          { id: "krapai", lt: "krapai", ru: "укроп" },
+                          { id: "meta", lt: "mėta", ru: "мята" },
+                          { id: "petrazole", lt: "petražolė", ru: "петрушка" },
+                          { id: "salieras", lt: "salieras", ru: "сельдерей" },
+                          { id: "aguona", lt: "aguona", ru: "мак" },
+                          { id: "cinamonas", lt: "cinamonas", ru: "корица" },
+                          { id: "vanile", lt: "vanilė", ru: "ваниль" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        bazilikas: [
+                          {
+                            sentence: "___ kvepia.",
+                            translationRu: "Базилик пахнет.",
+                            answer: "bazilikas",
+                            options: ["bazilikas", "kmynas", "cinamonas"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į sriubą.",
+                            translationRu: "Я добавляю базилик в суп.",
+                            answer: "baziliką",
+                            options: ["baziliką", "kmyną", "cinamoną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет базилика.",
+                            answer: "baziliko",
+                            options: ["baziliko", "kmyno", "cinamono"]
+                          }
+                        ],
+                        ciobrelis: [
+                          {
+                            sentence: "___ kvepia.",
+                            translationRu: "Тимьян пахнет.",
+                            answer: "čiobrelis",
+                            options: ["čiobrelis", "bazilikas", "cinamonas"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į arbatą.",
+                            translationRu: "Я добавляю тимьян в чай.",
+                            answer: "čiobrelį",
+                            options: ["čiobrelį", "baziliką", "cinamoną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет тимьяна.",
+                            answer: "čiobrelio",
+                            options: ["čiobrelio", "baziliko", "cinamono"]
+                          }
+                        ],
+                        kmynas: [
+                          {
+                            sentence: "___ yra ant stalo.",
+                            translationRu: "Тмин на столе.",
+                            answer: "kmynas",
+                            options: ["kmynas", "bazilikas", "cinamonas"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į sriubą.",
+                            translationRu: "Я добавляю тмин в суп.",
+                            answer: "kmyną",
+                            options: ["kmyną", "baziliką", "cinamoną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет тмина.",
+                            answer: "kmyno",
+                            options: ["kmyno", "baziliko", "cinamono"]
+                          }
+                        ],
+                        krapai: [
+                          {
+                            sentence: "___ yra ant stalo.",
+                            translationRu: "Укроп на столе.",
+                            answer: "krapai",
+                            options: ["krapai", "petražolės", "aguonos"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į sriubą.",
+                            translationRu: "Я добавляю укроп в суп.",
+                            answer: "krapus",
+                            options: ["krapus", "petražoles", "aguonas"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет укропа.",
+                            answer: "krapų",
+                            options: ["krapų", "petražolių", "aguonų"]
+                          }
+                        ],
+                        meta: [
+                          {
+                            sentence: "___ kvepia.",
+                            translationRu: "Мята пахнет.",
+                            answer: "mėta",
+                            options: ["mėta", "petražolė", "aguona"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į arbatą.",
+                            translationRu: "Я добавляю мяту в чай.",
+                            answer: "mėtą",
+                            options: ["mėtą", "petražolę", "aguoną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет мяты.",
+                            answer: "mėtos",
+                            options: ["mėtos", "petražolės", "aguonos"]
+                          }
+                        ],
+                        petrazole: [
+                          {
+                            sentence: "___ yra žalia.",
+                            translationRu: "Петрушка зелёная.",
+                            answer: "petražolė",
+                            options: ["petražolė", "mėta", "aguona"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į sriubą.",
+                            translationRu: "Я добавляю петрушку в суп.",
+                            answer: "petražolę",
+                            options: ["petražolę", "mėtą", "aguoną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет петрушки.",
+                            answer: "petražolės",
+                            options: ["petražolės", "mėtos", "aguonos"]
+                          }
+                        ],
+                        salieras: [
+                          {
+                            sentence: "___ yra žalias.",
+                            translationRu: "Сельдерей зелёный.",
+                            answer: "salieras",
+                            options: ["salieras", "bazilikas", "cinamonas"]
+                          },
+                          {
+                            sentence: "Aš pjaustau ___.",
+                            translationRu: "Я режу сельдерей.",
+                            answer: "salierą",
+                            options: ["salierą", "baziliką", "cinamoną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет сельдерея.",
+                            answer: "saliero",
+                            options: ["saliero", "baziliko", "cinamono"]
+                          }
+                        ],
+                        aguona: [
+                          {
+                            sentence: "___ yra maža.",
+                            translationRu: "Мак маленький.",
+                            answer: "aguona",
+                            options: ["aguona", "mėta", "petražolė"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į bandelę.",
+                            translationRu: "Я добавляю мак в булочку.",
+                            answer: "aguoną",
+                            options: ["aguoną", "mėtą", "petražolę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет мака.",
+                            answer: "aguonos",
+                            options: ["aguonos", "mėtos", "petražolės"]
+                          }
+                        ],
+                        cinamonas: [
+                          {
+                            sentence: "___ kvepia.",
+                            translationRu: "Корица пахнет.",
+                            answer: "cinamonas",
+                            options: ["cinamonas", "bazilikas", "kmynas"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į arbatą.",
+                            translationRu: "Я добавляю корицу в чай.",
+                            answer: "cinamoną",
+                            options: ["cinamoną", "baziliką", "kmyną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет корицы.",
+                            answer: "cinamono",
+                            options: ["cinamono", "baziliko", "kmyno"]
+                          }
+                        ],
+                        vanile: [
+                          {
+                            sentence: "___ kvepia.",
+                            translationRu: "Ваниль пахнет.",
+                            answer: "vanilė",
+                            options: ["vanilė", "mėta", "petražolė"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į kremą.",
+                            translationRu: "Я добавляю ваниль в крем.",
+                            answer: "vanilę",
+                            options: ["vanilę", "mėtą", "petražolę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет ванили.",
+                            answer: "vanilės",
+                            options: ["vanilės", "mėtos", "petražolės"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.0"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

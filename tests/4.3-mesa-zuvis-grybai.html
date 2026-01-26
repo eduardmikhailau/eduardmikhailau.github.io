@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.3 Mėsa, žuvis ir grybai — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Mėsa, žuvis ir grybai",
+                        words: [
+                          { id: "kiauliena", lt: "kiauliena", ru: "свинина" },
+                          { id: "jautiena", lt: "jautiena", ru: "говядина" },
+                          { id: "kumpis", lt: "kumpis", ru: "ветчина" },
+                          { id: "vistiena", lt: "vištiena", ru: "курятина" },
+                          { id: "desrele", lt: "dešrelė", ru: "сосиска" },
+                          { id: "desra", lt: "dešra", ru: "колбаса" },
+                          { id: "karpis", lt: "karpis", ru: "карп" },
+                          { id: "pastetas", lt: "paštetas", ru: "паштет" },
+                          { id: "lasisa", lt: "lašiša", ru: "лосось" },
+                          { id: "silke", lt: "silkė", ru: "сельдь" },
+                          { id: "baravykas", lt: "baravykas", ru: "белый гриб" },
+                          { id: "voveraite", lt: "voveraitė", ru: "лисичка" },
+                          { id: "pievagrybis", lt: "pievagrybis", ru: "шампиньон" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        kiauliena: [
+                          {
+                            sentence: "___ yra šviežia.",
+                            translationRu: "Свинина свежая.",
+                            answer: "kiauliena",
+                            options: ["kiauliena", "jautiena", "vištiena"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю свинину.",
+                            answer: "kiaulieną",
+                            options: ["kiaulieną", "jautieną", "vištieną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет свинины.",
+                            answer: "kiaulienos",
+                            options: ["kiaulienos", "jautienos", "vištienos"]
+                          }
+                        ],
+                        jautiena: [
+                          {
+                            sentence: "___ yra parduotuvėje.",
+                            translationRu: "Говядина в магазине.",
+                            answer: "jautiena",
+                            options: ["jautiena", "kiauliena", "vištiena"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю говядину.",
+                            answer: "jautieną",
+                            options: ["jautieną", "kiaulieną", "vištieną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет говядины.",
+                            answer: "jautienos",
+                            options: ["jautienos", "kiaulienos", "vištienos"]
+                          }
+                        ],
+                        kumpis: [
+                          {
+                            sentence: "___ yra rūkytas.",
+                            translationRu: "Ветчина копчёная.",
+                            answer: "kumpis",
+                            options: ["kumpis", "paštetas", "karpis"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю ветчину.",
+                            answer: "kumpį",
+                            options: ["kumpį", "paštetą", "karpį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет ветчины.",
+                            answer: "kumpio",
+                            options: ["kumpio", "pašteto", "karpio"]
+                          }
+                        ],
+                        vistiena: [
+                          {
+                            sentence: "___ yra šviežia.",
+                            translationRu: "Курятина свежая.",
+                            answer: "vištiena",
+                            options: ["vištiena", "kiauliena", "jautiena"]
+                          },
+                          {
+                            sentence: "Aš verdu ___.",
+                            translationRu: "Я варю курятину.",
+                            answer: "vištieną",
+                            options: ["vištieną", "kiaulieną", "jautieną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет курятины.",
+                            answer: "vištienos",
+                            options: ["vištienos", "kiaulienos", "jautienos"]
+                          }
+                        ],
+                        desrele: [
+                          {
+                            sentence: "___ yra ant lėkštės.",
+                            translationRu: "Сосиска на тарелке.",
+                            answer: "dešrelė",
+                            options: ["dešrelė", "dešra", "silkė"]
+                          },
+                          {
+                            sentence: "Vaikas valgo ___.",
+                            translationRu: "Ребёнок ест сосиску.",
+                            answer: "dešrelę",
+                            options: ["dešrelę", "dešrą", "silkę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет сосиски.",
+                            answer: "dešrelės",
+                            options: ["dešrelės", "dešros", "silkės"]
+                          }
+                        ],
+                        desra: [
+                          {
+                            sentence: "___ yra ant stalo.",
+                            translationRu: "Колбаса на столе.",
+                            answer: "dešra",
+                            options: ["dešra", "dešrelė", "silkė"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю колбасу.",
+                            answer: "dešrą",
+                            options: ["dešrą", "dešrelę", "silkę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет колбасы.",
+                            answer: "dešros",
+                            options: ["dešros", "dešrelės", "silkės"]
+                          }
+                        ],
+                        karpis: [
+                          {
+                            sentence: "___ yra šviežias.",
+                            translationRu: "Карп свежий.",
+                            answer: "karpis",
+                            options: ["karpis", "kumpis", "paštetas"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю карпа.",
+                            answer: "karpį",
+                            options: ["karpį", "kumpį", "paštetą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет карпа.",
+                            answer: "karpio",
+                            options: ["karpio", "kumpio", "pašteto"]
+                          }
+                        ],
+                        pastetas: [
+                          {
+                            sentence: "___ yra skanus.",
+                            translationRu: "Паштет вкусный.",
+                            answer: "paštetas",
+                            options: ["paštetas", "kumpis", "karpis"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю паштет.",
+                            answer: "paštetą",
+                            options: ["paštetą", "kumpį", "karpį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет паштета.",
+                            answer: "pašteto",
+                            options: ["pašteto", "kumpio", "karpio"]
+                          }
+                        ],
+                        lasisa: [
+                          {
+                            sentence: "___ yra šviežia.",
+                            translationRu: "Лосось свежий.",
+                            answer: "lašiša",
+                            options: ["lašiša", "silkė", "dešra"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю лосося.",
+                            answer: "lašišą",
+                            options: ["lašišą", "silkę", "dešrą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет лосося.",
+                            answer: "lašišos",
+                            options: ["lašišos", "silkės", "dešros"]
+                          }
+                        ],
+                        silke: [
+                          {
+                            sentence: "___ yra sūri.",
+                            translationRu: "Сельдь солёная.",
+                            answer: "silkė",
+                            options: ["silkė", "lašiša", "dešra"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю сельдь.",
+                            answer: "silkę",
+                            options: ["silkę", "lašišą", "dešrą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет сельди.",
+                            answer: "silkės",
+                            options: ["silkės", "lašišos", "dešros"]
+                          }
+                        ],
+                        baravykas: [
+                          {
+                            sentence: "___ yra miške.",
+                            translationRu: "Белый гриб в лесу.",
+                            answer: "baravykas",
+                            options: ["baravykas", "pievagrybis", "karpis"]
+                          },
+                          {
+                            sentence: "Aš randu ___.",
+                            translationRu: "Я нахожу белый гриб.",
+                            answer: "baravyką",
+                            options: ["baravyką", "pievagrybį", "karpį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет белого гриба.",
+                            answer: "baravyko",
+                            options: ["baravyko", "pievagrybio", "karpio"]
+                          }
+                        ],
+                        voveraite: [
+                          {
+                            sentence: "___ yra geltona.",
+                            translationRu: "Лисичка жёлтая.",
+                            answer: "voveraitė",
+                            options: ["voveraitė", "silkė", "dešrelė"]
+                          },
+                          {
+                            sentence: "Aš renku ___.",
+                            translationRu: "Я собираю лисичку.",
+                            answer: "voveraitę",
+                            options: ["voveraitę", "silkę", "dešrelę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет лисички.",
+                            answer: "voveraitės",
+                            options: ["voveraitės", "silkės", "dešrelės"]
+                          }
+                        ],
+                        pievagrybis: [
+                          {
+                            sentence: "___ yra baltas.",
+                            translationRu: "Шампиньон белый.",
+                            answer: "pievagrybis",
+                            options: ["pievagrybis", "baravykas", "karpis"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю шампиньон.",
+                            answer: "pievagrybį",
+                            options: ["pievagrybį", "baravyką", "karpį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет шампиньона.",
+                            answer: "pievagrybio",
+                            options: ["pievagrybio", "baravyko", "karpio"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.0"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

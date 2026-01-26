@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.4 Duona ir saldumynai — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Duona ir saldumynai",
+                        words: [
+                          { id: "duona", lt: "duona", ru: "хлеб" },
+                          { id: "batonas", lt: "batonas", ru: "батон" },
+                          { id: "bandele", lt: "bandelė", ru: "булочка" },
+                          { id: "riestainis", lt: "riestainis", ru: "крендель" },
+                          { id: "dziuvesis", lt: "džiūvėsis", ru: "сухарь" },
+                          { id: "spurga", lt: "spurga", ru: "пончик" },
+                          { id: "tortas", lt: "tortas", ru: "торт" },
+                          { id: "pyragaitis", lt: "pyragaitis", ru: "пирожное" },
+                          { id: "pyragas", lt: "pyragas", ru: "пирог" },
+                          { id: "sausainis", lt: "sausainis", ru: "печенье" },
+                          { id: "uogiene", lt: "uogienė", ru: "варенье" },
+                          { id: "medus", lt: "medus", ru: "мёд" },
+                          { id: "saldainis", lt: "saldainis", ru: "конфета" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        duona: [
+                          {
+                            sentence: "Ant stalo yra ___.",
+                            translationRu: "На столе хлеб.",
+                            answer: "duona",
+                            options: ["duona", "bandelė", "uogienė"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю хлеб.",
+                            answer: "duoną",
+                            options: ["duoną", "bandelę", "uogienę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет хлеба.",
+                            answer: "duonos",
+                            options: ["duonos", "bandelės", "uogienės"]
+                          }
+                        ],
+                        batonas: [
+                          {
+                            sentence: "___ yra šviežias.",
+                            translationRu: "Батон свежий.",
+                            answer: "batonas",
+                            options: ["batonas", "tortas", "pyragas"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю батон.",
+                            answer: "batoną",
+                            options: ["batoną", "tortą", "pyragą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет батона.",
+                            answer: "batono",
+                            options: ["batono", "torto", "pyrago"]
+                          }
+                        ],
+                        bandele: [
+                          {
+                            sentence: "___ yra šilta.",
+                            translationRu: "Булочка тёплая.",
+                            answer: "bandelė",
+                            options: ["bandelė", "spurga", "uogienė"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю булочку.",
+                            answer: "bandelę",
+                            options: ["bandelę", "spurgą", "uogienę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет булочки.",
+                            answer: "bandelės",
+                            options: ["bandelės", "spurgos", "uogienės"]
+                          }
+                        ],
+                        riestainis: [
+                          {
+                            sentence: "___ yra ant lėkštės.",
+                            translationRu: "Крендель на тарелке.",
+                            answer: "riestainis",
+                            options: ["riestainis", "sausainis", "pyragaitis"]
+                          },
+                          {
+                            sentence: "Vaikas valgo ___.",
+                            translationRu: "Ребёнок ест крендель.",
+                            answer: "riestainį",
+                            options: ["riestainį", "sausainį", "pyragaitį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет кренделя.",
+                            answer: "riestainio",
+                            options: ["riestainio", "sausainio", "pyragaičio"]
+                          }
+                        ],
+                        dziuvesis: [
+                          {
+                            sentence: "___ yra sausas.",
+                            translationRu: "Сухарь сухой.",
+                            answer: "džiūvėsis",
+                            options: ["džiūvėsis", "riestainis", "sausainis"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем сухарь.",
+                            answer: "džiūvėsį",
+                            options: ["džiūvėsį", "riestainį", "sausainį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет сухаря.",
+                            answer: "džiūvėsio",
+                            options: ["džiūvėsio", "riestainio", "sausainio"]
+                          }
+                        ],
+                        spurga: [
+                          {
+                            sentence: "___ yra saldi.",
+                            translationRu: "Пончик сладкий.",
+                            answer: "spurga",
+                            options: ["spurga", "bandelė", "uogienė"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю пончик.",
+                            answer: "spurgą",
+                            options: ["spurgą", "bandelę", "uogienę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет пончика.",
+                            answer: "spurgos",
+                            options: ["spurgos", "bandelės", "uogienės"]
+                          }
+                        ],
+                        tortas: [
+                          {
+                            sentence: "___ yra didelis.",
+                            translationRu: "Торт большой.",
+                            answer: "tortas",
+                            options: ["tortas", "pyragas", "batonas"]
+                          },
+                          {
+                            sentence: "Mes valgome ___.",
+                            translationRu: "Мы едим торт.",
+                            answer: "tortą",
+                            options: ["tortą", "pyragą", "batoną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет торта.",
+                            answer: "torto",
+                            options: ["torto", "pyrago", "batono"]
+                          }
+                        ],
+                        pyragaitis: [
+                          {
+                            sentence: "___ yra mažas.",
+                            translationRu: "Пирожное маленькое.",
+                            answer: "pyragaitis",
+                            options: ["pyragaitis", "sausainis", "riestainis"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю пирожное.",
+                            answer: "pyragaitį",
+                            options: ["pyragaitį", "sausainį", "riestainį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет пирожного.",
+                            answer: "pyragaičio",
+                            options: ["pyragaičio", "sausainio", "riestainio"]
+                          }
+                        ],
+                        pyragas: [
+                          {
+                            sentence: "___ yra skanus.",
+                            translationRu: "Пирог вкусный.",
+                            answer: "pyragas",
+                            options: ["pyragas", "tortas", "batonas"]
+                          },
+                          {
+                            sentence: "Aš kepu ___.",
+                            translationRu: "Я пеку пирог.",
+                            answer: "pyragą",
+                            options: ["pyragą", "tortą", "batoną"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет пирога.",
+                            answer: "pyrago",
+                            options: ["pyrago", "torto", "batono"]
+                          }
+                        ],
+                        sausainis: [
+                          {
+                            sentence: "___ yra ant lėkštės.",
+                            translationRu: "Печенье на тарелке.",
+                            answer: "sausainis",
+                            options: ["sausainis", "riestainis", "pyragaitis"]
+                          },
+                          {
+                            sentence: "Vaikas valgo ___.",
+                            translationRu: "Ребёнок ест печенье.",
+                            answer: "sausainį",
+                            options: ["sausainį", "riestainį", "pyragaitį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет печенья.",
+                            answer: "sausainio",
+                            options: ["sausainio", "riestainio", "pyragaičio"]
+                          }
+                        ],
+                        uogiene: [
+                          {
+                            sentence: "___ yra saldi.",
+                            translationRu: "Варенье сладкое.",
+                            answer: "uogienė",
+                            options: ["uogienė", "spurga", "bandelė"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем варенье.",
+                            answer: "uogienę",
+                            options: ["uogienę", "spurgą", "bandelę"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет варенья.",
+                            answer: "uogienės",
+                            options: ["uogienės", "spurgos", "bandelės"]
+                          }
+                        ],
+                        medus: [
+                          {
+                            sentence: "___ yra saldus.",
+                            translationRu: "Мёд сладкий.",
+                            answer: "medus",
+                            options: ["medus", "tortas", "pyragas"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į arbatą.",
+                            translationRu: "Я добавляю мёд в чай.",
+                            answer: "medų",
+                            options: ["medų", "tortą", "pyragą"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет мёда.",
+                            answer: "medaus",
+                            options: ["medaus", "torto", "pyrago"]
+                          }
+                        ],
+                        saldainis: [
+                          {
+                            sentence: "___ yra saldus.",
+                            translationRu: "Конфета сладкая.",
+                            answer: "saldainis",
+                            options: ["saldainis", "sausainis", "pyragaitis"]
+                          },
+                          {
+                            sentence: "Vaikas valgo ___.",
+                            translationRu: "Ребёнок ест конфету.",
+                            answer: "saldainį",
+                            options: ["saldainį", "sausainį", "pyragaitį"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет конфеты.",
+                            answer: "saldainio",
+                            options: ["saldainio", "sausainio", "pyragaičio"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.0"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

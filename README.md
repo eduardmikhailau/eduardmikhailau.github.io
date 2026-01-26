@@ -52,6 +52,13 @@ GitHub Pages: https://eduardmikhailau.github.io/ (tests under `tests/`).
 - [2.4 Būdvardžiai: nuotaikos ir vertinimai](https://eduardmikhailau.github.io/tests/2.4-budvardziai-nuotaikos-vertinimai.html)
 - [3.1 Klausimai](https://eduardmikhailau.github.io/tests/3.1-klausimai.html)
 - [4.1 Valgymas: veiksmažodžiai](https://eduardmikhailau.github.io/tests/4.1-valgymas-veiksmazodziai.html)
+- [4.2 Pieno produktai ir gėrimai](https://eduardmikhailau.github.io/tests/4.2-pieno-produktai-gerimai.html)
+- [4.3 Mėsa, žuvis ir grybai](https://eduardmikhailau.github.io/tests/4.3-mesa-zuvis-grybai.html)
+- [4.4 Duona ir saldumynai](https://eduardmikhailau.github.io/tests/4.4-duona-saldumynai.html)
+- [4.5 Vaisiai ir uogos](https://eduardmikhailau.github.io/tests/4.5-vaisiai-uogos.html)
+- [4.6 Daržovės ir riešutai](https://eduardmikhailau.github.io/tests/4.6-darzoves-riesutai.html)
+- [4.7 Kitos maisto prekės](https://eduardmikhailau.github.io/tests/4.7-kitos-maisto-prekes.html)
+- [4.8 Prieskoniai](https://eduardmikhailau.github.io/tests/4.8-prieskoniai.html)
 
 ## Kids tests (GitHub Pages)
 
