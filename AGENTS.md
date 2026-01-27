@@ -61,8 +61,9 @@ When generating a new test page:
   - Clicking **Don’t know** reveals the translation and allows advancing.
 - The **Next** button should live in a fixed bottom panel (mobile-safe).
 - Gap fill should use **per-word predefined variants** with correct Lithuanian grammar forms (no generic templates).
-- For Lithuanian gap-fill tests, use only **vardininkas**, **lilmininkas**, and **galininkas** forms.
+- For Lithuanian gap-fill tests, use only **vardininkas**, **kilmininkas**, and **galininkas** forms.
 - For each gap-fill variant, **hardcode `options` in the correct Lithuanian form** (no helper-based generation).
+- In gap-fill variants, reuse **lexicon from previous tests** to reinforce memory. Example: for test 4.3, weave words from tests 1.x–3.x into sentences (e.g. *Mama mėgsta vištieną*). Supporting words should be chosen randomly per gap sentence from the **previous tests’ `docs/*.md` word lists**.
 - Add a typing-based gap fill test type that reuses `gapFillVariants` and expects free-text input.
 - When modifying any `tests/*.html` file, bump `testVersion` in `window.ltTestConfig` so saved progress invalidation works.
 
