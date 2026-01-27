@@ -16,6 +16,7 @@
                           { id: "kumpis", lt: "kumpis", ru: "ветчина" },
                           { id: "vistiena", lt: "vištiena", ru: "курятина" },
                           { id: "desrele", lt: "dešrelė", ru: "сосиска" },
+                          { id: "desreles", lt: "dešrelės", ru: "сосиски" },
                           { id: "desra", lt: "dešra", ru: "колбаса" },
                           { id: "karpis", lt: "karpis", ru: "карп" },
                           { id: "pastetas", lt: "paštetas", ru: "паштет" },
@@ -128,6 +129,26 @@
                             translationRu: "Нет сосиски.",
                             answer: "dešrelės",
                             options: ["dešrelės", "dešros", "silkės"]
+                          }
+                        ],
+                        desreles: [
+                          {
+                            sentence: "___ yra ant lėkštės.",
+                            translationRu: "Сосиски на тарелке.",
+                            answer: "dešrelės",
+                            options: ["dešrelės", "dešros", "silkės"]
+                          },
+                          {
+                            sentence: "Vaikas valgo ___.",
+                            translationRu: "Ребёнок ест сосиски.",
+                            answer: "dešreles",
+                            options: ["dešreles", "dešras", "silkes"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет сосисок.",
+                            answer: "dešrelių",
+                            options: ["dešrelių", "dešrų", "silkių"]
                           }
                         ],
                         desra: [
@@ -356,7 +377,7 @@
         title: document.title,
         wordSet,
         gapFillVariants,
-        testVersion: "1.0.2"
+        testVersion: "1.0.3"
       };
     </script>
     <script src="./lib/lt-test-runner.js"></script>
