@@ -16,12 +16,15 @@
                           { id: "zemes", lt: "žemės", ru: "земляной" },
                           { id: "ziedinis", lt: "žiedinis", ru: "цветной" },
                           { id: "riesutas", lt: "riešutas", ru: "орех" },
+                          { id: "riesutai", lt: "riešutai", ru: "орехи" },
                           { id: "migdolas", lt: "migdolas", ru: "миндаль" },
                           { id: "morka", lt: "morka", ru: "морковь" },
+                          { id: "morkos", lt: "morkos", ru: "моркови" },
                           { id: "moliugas", lt: "moliūgas", ru: "тыква" },
                           { id: "kopustas", lt: "kopūstas", ru: "капуста" },
                           { id: "pupele", lt: "pupelė", ru: "фасоль" },
                           { id: "agurkas", lt: "agurkas", ru: "огурец" },
+                          { id: "agurkai", lt: "agurkai", ru: "огурцы" },
                           { id: "burokelis", lt: "burokėlis", ru: "свёкла" },
                           { id: "svogunas", lt: "svogūnas", ru: "лук" },
                           { id: "salotos", lt: "salotos", ru: "салат" },
@@ -29,6 +32,7 @@
                           { id: "brokolis", lt: "brokoliai", ru: "брокколи" },
                           { id: "cukinija", lt: "cukinija", ru: "кабачок" },
                           { id: "pomidoras", lt: "pomidoras", ru: "помидор" },
+                          { id: "pomidorai", lt: "pomidorai", ru: "помидоры" },
                           { id: "zirnis", lt: "žirnis", ru: "горох" },
                           { id: "cesnakas", lt: "česnakas", ru: "чеснок" },
                           { id: "bulve", lt: "bulvė", ru: "картофель" }
@@ -135,6 +139,26 @@
                             options: ["riešuto", "migdolo", "agurko"]
                           }
                         ],
+                        riesutai: [
+                          {
+                            sentence: "___ yra skanūs.",
+                            translationRu: "Орехи вкусные.",
+                            answer: "riešutai",
+                            options: ["riešutai", "migdolai", "agurkai"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем орехи.",
+                            answer: "riešutus",
+                            options: ["riešutus", "migdolus", "agurkus"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет орехов.",
+                            answer: "riešutų",
+                            options: ["riešutų", "migdolų", "agurkų"]
+                          }
+                        ],
                         migdolas: [
                           {
                             sentence: "___ yra saldus.",
@@ -173,6 +197,26 @@
                             translationRu: "Нет моркови.",
                             answer: "morkos",
                             options: ["morkos", "cukinijos", "bulvės"]
+                          }
+                        ],
+                        morkos: [
+                          {
+                            sentence: "___ yra oranžinės.",
+                            translationRu: "Моркови оранжевые.",
+                            answer: "morkos",
+                            options: ["morkos", "salotos", "bulvės"]
+                          },
+                          {
+                            sentence: "Aš pjaustau ___.",
+                            translationRu: "Я режу моркови.",
+                            answer: "morkas",
+                            options: ["morkas", "salotas", "bulves"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет моркови.",
+                            answer: "morkų",
+                            options: ["morkų", "salotų", "bulvių"]
                           }
                         ],
                         moliugas: [
@@ -253,6 +297,26 @@
                             translationRu: "Нет огурца.",
                             answer: "agurko",
                             options: ["agurko", "pomidoro", "burokėlio"]
+                          }
+                        ],
+                        agurkai: [
+                          {
+                            sentence: "___ yra žali.",
+                            translationRu: "Огурцы зелёные.",
+                            answer: "agurkai",
+                            options: ["agurkai", "pomidorai", "brokoliai"]
+                          },
+                          {
+                            sentence: "Aš pjaustau ___.",
+                            translationRu: "Я режу огурцы.",
+                            answer: "agurkus",
+                            options: ["agurkus", "pomidorus", "brokolius"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет огурцов.",
+                            answer: "agurkų",
+                            options: ["agurkų", "pomidorų", "brokolių"]
                           }
                         ],
                         burokelis: [
@@ -395,6 +459,26 @@
                             options: ["pomidoro", "agurko", "burokėlio"]
                           }
                         ],
+                        pomidorai: [
+                          {
+                            sentence: "___ yra raudoni.",
+                            translationRu: "Помидоры красные.",
+                            answer: "pomidorai",
+                            options: ["pomidorai", "agurkai", "brokoliai"]
+                          },
+                          {
+                            sentence: "Aš pjaustau ___.",
+                            translationRu: "Я режу помидоры.",
+                            answer: "pomidorus",
+                            options: ["pomidorus", "agurkus", "brokolius"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет помидоров.",
+                            answer: "pomidorų",
+                            options: ["pomidorų", "agurkų", "brokolių"]
+                          }
+                        ],
                         zirnis: [
                           {
                             sentence: "___ yra žalias.",
@@ -461,7 +545,7 @@
         title: document.title,
         wordSet,
         gapFillVariants,
-        testVersion: "1.0.1"
+        testVersion: "1.0.2"
       };
     </script>
     <script src="./lib/lt-test-runner.js"></script>

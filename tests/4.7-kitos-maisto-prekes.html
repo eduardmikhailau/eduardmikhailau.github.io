@@ -19,7 +19,9 @@
                           { id: "druska", lt: "druska", ru: "соль" },
                           { id: "pipirai", lt: "pipirai", ru: "перец" },
                           { id: "kiausinis", lt: "kiaušinis", ru: "яйцо" },
+                          { id: "kiausiniai", lt: "kiaušiniai", ru: "яйца" },
                           { id: "avizinis", lt: "avižinis", ru: "овсяный" },
+                          { id: "dziovintas", lt: "džiovintas", ru: "сушёный" },
                           { id: "dribsniai", lt: "dribsniai", ru: "хлопья" },
                           { id: "grikiai", lt: "grikiai", ru: "гречка" },
                           { id: "manai", lt: "manai", ru: "манка" },
@@ -28,7 +30,9 @@
                           { id: "krienai", lt: "krienai", ru: "хрен" },
                           { id: "majonezas", lt: "majonezas", ru: "майонез" },
                           { id: "padazas", lt: "padažas", ru: "соус" },
-                          { id: "dziovinti-vaisiai-ir-uogos", lt: "džiovinti vaisiai ir uogos", ru: "сушёные фрукты и ягоды" },
+                          { id: "padazai", lt: "padažai", ru: "соусы" },
+                          { id: "vaisiai", lt: "vaisiai", ru: "фрукты" },
+                          { id: "uogos", lt: "uogos", ru: "ягоды" },
                           { id: "razinos", lt: "razinos", ru: "изюм" },
                           { id: "kremas", lt: "kremas", ru: "крем" }
                         ]
@@ -194,6 +198,26 @@
                             options: ["kiaušinio", "majonezo", "kremo"]
                           }
                         ],
+                        kiausiniai: [
+                          {
+                            sentence: "___ yra ant lėkštės.",
+                            translationRu: "Яйца на тарелке.",
+                            answer: "kiaušiniai",
+                            options: ["kiaušiniai", "makaronai", "dribsniai"]
+                          },
+                          {
+                            sentence: "Aš imu ___.",
+                            translationRu: "Я беру яйца.",
+                            answer: "kiaušinius",
+                            options: ["kiaušinius", "makaronus", "dribsnius"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет яиц.",
+                            answer: "kiaušinių",
+                            options: ["kiaušinių", "makaronų", "dribsnių"]
+                          }
+                        ],
                         avizinis: [
                           {
                             sentence: "Čia yra ___ dribsniai.",
@@ -212,6 +236,26 @@
                             translationRu: "Нет овсяных хлопьев.",
                             answer: "avižinių",
                             options: ["avižinių", "saldžių", "karštų"]
+                          }
+                        ],
+                        dziovintas: [
+                          {
+                            sentence: "Čia yra ___ vaisius.",
+                            translationRu: "Здесь сушёный фрукт.",
+                            answer: "džiovintas",
+                            options: ["džiovintas", "šviežias", "saldus"]
+                          },
+                          {
+                            sentence: "Aš perku ___ vaisių.",
+                            translationRu: "Я покупаю сушёный фрукт.",
+                            answer: "džiovintą",
+                            options: ["džiovintą", "šviežią", "saldų"]
+                          },
+                          {
+                            sentence: "Nėra ___ vaisiaus.",
+                            translationRu: "Нет сушёного фрукта.",
+                            answer: "džiovinto",
+                            options: ["džiovinto", "šviežio", "saldaus"]
                           }
                         ],
                         dribsniai: [
@@ -374,24 +418,64 @@
                             options: ["padažo", "majonezo", "kremo"]
                           }
                         ],
-                        "dziovinti-vaisiai-ir-uogos": [
+                        padazai: [
                           {
-                            sentence: "___ yra ant stalo.",
-                            translationRu: "Сушёные фрукты и ягоды на столе.",
-                            answer: "džiovinti vaisiai ir uogos",
-                            options: ["džiovinti vaisiai ir uogos", "razinos", "makaronai"]
+                            sentence: "___ yra skanūs.",
+                            translationRu: "Соусы вкусные.",
+                            answer: "padažai",
+                            options: ["padažai", "majonezai", "kremai"]
                           },
                           {
                             sentence: "Aš perku ___.",
-                            translationRu: "Я покупаю сушёные фрукты и ягоды.",
-                            answer: "džiovintus vaisius ir uogas",
-                            options: ["džiovintus vaisius ir uogas", "razinas", "makaronus"]
+                            translationRu: "Я покупаю соусы.",
+                            answer: "padažus",
+                            options: ["padažus", "majonezus", "kremus"]
                           },
                           {
                             sentence: "Nėra ___.",
-                            translationRu: "Нет сушёных фруктов и ягод.",
-                            answer: "džiovintų vaisių ir uogų",
-                            options: ["džiovintų vaisių ir uogų", "razinų", "makaronų"]
+                            translationRu: "Нет соусов.",
+                            answer: "padažų",
+                            options: ["padažų", "majonezų", "kremų"]
+                          }
+                        ],
+                        vaisiai: [
+                          {
+                            sentence: "___ yra ant stalo.",
+                            translationRu: "Фрукты на столе.",
+                            answer: "vaisiai",
+                            options: ["vaisiai", "razinos", "makaronai"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю фрукты.",
+                            answer: "vaisius",
+                            options: ["vaisius", "razinas", "makaronus"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет фруктов.",
+                            answer: "vaisių",
+                            options: ["vaisių", "razinų", "makaronų"]
+                          }
+                        ],
+                        uogos: [
+                          {
+                            sentence: "___ yra dubenyje.",
+                            translationRu: "Ягоды в миске.",
+                            answer: "uogos",
+                            options: ["uogos", "razinos", "dribsniai"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю ягоды.",
+                            answer: "uogas",
+                            options: ["uogas", "razinas", "dribsnius"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет ягод.",
+                            answer: "uogų",
+                            options: ["uogų", "razinų", "dribsnių"]
                           }
                         ],
                         razinos: [
@@ -440,7 +524,7 @@
         title: document.title,
         wordSet,
         gapFillVariants,
-        testVersion: "1.0.0"
+        testVersion: "1.0.4"
       };
     </script>
     <script src="./lib/lt-test-runner.js"></script>

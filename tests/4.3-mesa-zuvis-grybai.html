@@ -22,8 +22,11 @@
                           { id: "lasisa", lt: "lašiša", ru: "лосось" },
                           { id: "silke", lt: "silkė", ru: "сельдь" },
                           { id: "baravykas", lt: "baravykas", ru: "белый гриб" },
+                          { id: "baravykai", lt: "baravykai", ru: "белые грибы" },
                           { id: "voveraite", lt: "voveraitė", ru: "лисичка" },
-                          { id: "pievagrybis", lt: "pievagrybis", ru: "шампиньон" }
+                          { id: "voveraites", lt: "voveraitės", ru: "лисички" },
+                          { id: "pievagrybis", lt: "pievagrybis", ru: "шампиньон" },
+                          { id: "pievagrybiai", lt: "pievagrybiai", ru: "шампиньоны" }
                         ]
                       };
       const gapFillVariants = {
@@ -247,6 +250,26 @@
                             options: ["baravyko", "pievagrybio", "karpio"]
                           }
                         ],
+                        baravykai: [
+                          {
+                            sentence: "___ yra miške.",
+                            translationRu: "Белые грибы в лесу.",
+                            answer: "baravykai",
+                            options: ["baravykai", "pievagrybiai", "karpiai"]
+                          },
+                          {
+                            sentence: "Aš randu ___.",
+                            translationRu: "Я нахожу белые грибы.",
+                            answer: "baravykus",
+                            options: ["baravykus", "pievagrybius", "karpius"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет белых грибов.",
+                            answer: "baravykų",
+                            options: ["baravykų", "pievagrybių", "karpių"]
+                          }
+                        ],
                         voveraite: [
                           {
                             sentence: "___ yra geltona.",
@@ -265,6 +288,26 @@
                             translationRu: "Нет лисички.",
                             answer: "voveraitės",
                             options: ["voveraitės", "silkės", "dešrelės"]
+                          }
+                        ],
+                        voveraites: [
+                          {
+                            sentence: "___ yra geltonos.",
+                            translationRu: "Лисички жёлтые.",
+                            answer: "voveraitės",
+                            options: ["voveraitės", "silkės", "dešrelės"]
+                          },
+                          {
+                            sentence: "Aš renku ___.",
+                            translationRu: "Я собираю лисички.",
+                            answer: "voveraites",
+                            options: ["voveraites", "silkes", "dešreles"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет лисичек.",
+                            answer: "voveraičių",
+                            options: ["voveraičių", "silkių", "dešrelių"]
                           }
                         ],
                         pievagrybis: [
@@ -286,6 +329,26 @@
                             answer: "pievagrybio",
                             options: ["pievagrybio", "baravyko", "karpio"]
                           }
+                        ],
+                        pievagrybiai: [
+                          {
+                            sentence: "___ yra balti.",
+                            translationRu: "Шампиньоны белые.",
+                            answer: "pievagrybiai",
+                            options: ["pievagrybiai", "baravykai", "karpiai"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю шампиньоны.",
+                            answer: "pievagrybius",
+                            options: ["pievagrybius", "baravykus", "karpius"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет шампиньонов.",
+                            answer: "pievagrybių",
+                            options: ["pievagrybių", "baravykų", "karpių"]
+                          }
                         ]
                       };
 
@@ -293,7 +356,7 @@
         title: document.title,
         wordSet,
         gapFillVariants,
-        testVersion: "1.0.0"
+        testVersion: "1.0.2"
       };
     </script>
     <script src="./lib/lt-test-runner.js"></script>

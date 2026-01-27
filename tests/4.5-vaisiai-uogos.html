@@ -16,17 +16,25 @@
                           { id: "vynuoge", lt: "vynuogė", ru: "виноград" },
                           { id: "kivis", lt: "kivis", ru: "киви" },
                           { id: "mandarinas", lt: "mandarinas", ru: "мандарин" },
+                          { id: "mandarinai", lt: "mandarinai", ru: "мандарины" },
                           { id: "brukne", lt: "bruknė", ru: "брусника" },
                           { id: "melyne", lt: "mėlynė", ru: "черника" },
                           { id: "spanguole", lt: "spanguolė", ru: "клюква" },
                           { id: "zemuoge", lt: "žemuogė", ru: "земляника" },
                           { id: "kriause", lt: "kriaušė", ru: "груша" },
+                          { id: "kriauses", lt: "kriaušės", ru: "груши" },
                           { id: "obuolys", lt: "obuolys", ru: "яблоко" },
+                          { id: "obuoliai", lt: "obuoliai", ru: "яблоки" },
                           { id: "slyva", lt: "slyva", ru: "слива" },
+                          { id: "slyvos", lt: "slyvos", ru: "сливы" },
                           { id: "vysnia", lt: "vyšnia", ru: "вишня" },
+                          { id: "vysnios", lt: "vyšnios", ru: "вишни" },
                           { id: "bananas", lt: "bananas", ru: "банан" },
+                          { id: "bananai", lt: "bananai", ru: "бананы" },
                           { id: "citrina", lt: "citrina", ru: "лимон" },
+                          { id: "citrinos", lt: "citrinos", ru: "лимоны" },
                           { id: "apelsinas", lt: "apelsinas", ru: "апельсин" },
+                          { id: "apelsinai", lt: "apelsinai", ru: "апельсины" },
                           { id: "braske", lt: "braškė", ru: "клубника" }
                         ]
                       };
@@ -131,6 +139,26 @@
                             options: ["mandarino", "apelsino", "banano"]
                           }
                         ],
+                        mandarinai: [
+                          {
+                            sentence: "___ yra saldūs.",
+                            translationRu: "Мандарины сладкие.",
+                            answer: "mandarinai",
+                            options: ["mandarinai", "apelsinai", "bananai"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю мандарины.",
+                            answer: "mandarinus",
+                            options: ["mandarinus", "apelsinus", "bananus"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет мандаринов.",
+                            answer: "mandarinų",
+                            options: ["mandarinų", "apelsinų", "bananų"]
+                          }
+                        ],
                         brukne: [
                           {
                             sentence: "___ auga miške.",
@@ -231,6 +259,26 @@
                             options: ["kriaušės", "slyvos", "vyšnios"]
                           }
                         ],
+                        kriauses: [
+                          {
+                            sentence: "___ yra sultingos.",
+                            translationRu: "Груши сочные.",
+                            answer: "kriaušės",
+                            options: ["kriaušės", "slyvos", "vyšnios"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю груши.",
+                            answer: "kriaušes",
+                            options: ["kriaušes", "slyvas", "vyšnias"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет груш.",
+                            answer: "kriaušių",
+                            options: ["kriaušių", "slyvų", "vyšnių"]
+                          }
+                        ],
                         obuolys: [
                           {
                             sentence: "___ yra raudonas.",
@@ -249,6 +297,26 @@
                             translationRu: "Нет яблока.",
                             answer: "obuolio",
                             options: ["obuolio", "mandarino", "banano"]
+                          }
+                        ],
+                        obuoliai: [
+                          {
+                            sentence: "___ yra raudoni.",
+                            translationRu: "Яблоки красные.",
+                            answer: "obuoliai",
+                            options: ["obuoliai", "mandarinai", "bananai"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем яблоки.",
+                            answer: "obuolius",
+                            options: ["obuolius", "mandarinus", "bananus"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет яблок.",
+                            answer: "obuolių",
+                            options: ["obuolių", "mandarinų", "bananų"]
                           }
                         ],
                         slyva: [
@@ -271,6 +339,26 @@
                             options: ["slyvos", "kriaušės", "vyšnios"]
                           }
                         ],
+                        slyvos: [
+                          {
+                            sentence: "___ yra prinokusios.",
+                            translationRu: "Сливы спелые.",
+                            answer: "slyvos",
+                            options: ["slyvos", "kriaušės", "vyšnios"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем сливы.",
+                            answer: "slyvas",
+                            options: ["slyvas", "kriaušes", "vyšnias"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет слив.",
+                            answer: "slyvų",
+                            options: ["slyvų", "kriaušių", "vyšnių"]
+                          }
+                        ],
                         vysnia: [
                           {
                             sentence: "___ yra ant medžio.",
@@ -289,6 +377,26 @@
                             translationRu: "Нет вишни.",
                             answer: "vyšnios",
                             options: ["vyšnios", "slyvos", "kriaušės"]
+                          }
+                        ],
+                        vysnios: [
+                          {
+                            sentence: "___ yra ant medžio.",
+                            translationRu: "Вишни на дереве.",
+                            answer: "vyšnios",
+                            options: ["vyšnios", "slyvos", "kriaušės"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем вишни.",
+                            answer: "vyšnias",
+                            options: ["vyšnias", "slyvas", "kriaušes"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет вишен.",
+                            answer: "vyšnių",
+                            options: ["vyšnių", "slyvų", "kriaušių"]
                           }
                         ],
                         bananas: [
@@ -311,6 +419,26 @@
                             options: ["banano", "mandarino", "apelsino"]
                           }
                         ],
+                        bananai: [
+                          {
+                            sentence: "___ yra geltoni.",
+                            translationRu: "Бананы жёлтые.",
+                            answer: "bananai",
+                            options: ["bananai", "mandarinai", "apelsinai"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем бананы.",
+                            answer: "bananus",
+                            options: ["bananus", "mandarinus", "apelsinus"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет бананов.",
+                            answer: "bananų",
+                            options: ["bananų", "mandarinų", "apelsinų"]
+                          }
+                        ],
                         citrina: [
                           {
                             sentence: "___ yra rūgšti.",
@@ -331,6 +459,26 @@
                             options: ["citrinos", "kriaušės", "slyvos"]
                           }
                         ],
+                        citrinos: [
+                          {
+                            sentence: "___ yra rūgščios.",
+                            translationRu: "Лимоны кислые.",
+                            answer: "citrinos",
+                            options: ["citrinos", "kriaušės", "slyvos"]
+                          },
+                          {
+                            sentence: "Aš dedu ___ į arbatą.",
+                            translationRu: "Я кладу лимоны в чай.",
+                            answer: "citrinas",
+                            options: ["citrinas", "kriaušes", "slyvas"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет лимонов.",
+                            answer: "citrinų",
+                            options: ["citrinų", "kriaušių", "slyvų"]
+                          }
+                        ],
                         apelsinas: [
                           {
                             sentence: "___ yra saldus.",
@@ -349,6 +497,26 @@
                             translationRu: "Нет апельсина.",
                             answer: "apelsino",
                             options: ["apelsino", "mandarino", "banano"]
+                          }
+                        ],
+                        apelsinai: [
+                          {
+                            sentence: "___ yra saldūs.",
+                            translationRu: "Апельсины сладкие.",
+                            answer: "apelsinai",
+                            options: ["apelsinai", "mandarinai", "bananai"]
+                          },
+                          {
+                            sentence: "Aš valgau ___.",
+                            translationRu: "Я ем апельсины.",
+                            answer: "apelsinus",
+                            options: ["apelsinus", "mandarinus", "bananus"]
+                          },
+                          {
+                            sentence: "Nėra ___.",
+                            translationRu: "Нет апельсинов.",
+                            answer: "apelsinų",
+                            options: ["apelsinų", "mandarinų", "bananų"]
                           }
                         ],
                         braske: [
@@ -377,7 +545,7 @@
         title: document.title,
         wordSet,
         gapFillVariants,
-        testVersion: "1.0.0"
+        testVersion: "1.0.1"
       };
     </script>
     <script src="./lib/lt-test-runner.js"></script>
