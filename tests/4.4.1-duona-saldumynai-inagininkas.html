@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.4.1 Duona ir saldumynai (įnagininkas) — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+        topic: "Duona ir saldumynai (įnagininkas)",
+        words: [
+          { id: "duona", lt: "duona", ru: "хлеб" },
+          { id: "batonas", lt: "batonas", ru: "батон" },
+          { id: "bandele", lt: "bandelė", ru: "булочка" },
+          { id: "bandeles", lt: "bandelės", ru: "булочки" },
+          { id: "riestainis", lt: "riestainis", ru: "крендель" },
+          { id: "riestainiai", lt: "riestainiai", ru: "крендели" },
+          { id: "dziuvesis", lt: "džiūvėsis", ru: "сухарь" },
+          { id: "dziuvesiai", lt: "džiūvėsiai", ru: "сухари" },
+          { id: "spurga", lt: "spurga", ru: "пончик" },
+          { id: "spurgos", lt: "spurgos", ru: "пончики" },
+          { id: "tortas", lt: "tortas", ru: "торт" },
+          { id: "pyragaitis", lt: "pyragaitis", ru: "пирожное" },
+          { id: "pyragaiciai", lt: "pyragaičiai", ru: "пирожные" },
+          { id: "pyragas", lt: "pyragas", ru: "пирог" },
+          { id: "sausainis", lt: "sausainis", ru: "печенье" },
+          { id: "uogiene", lt: "uogienė", ru: "варенье" },
+          { id: "medus", lt: "medus", ru: "мёд" },
+          { id: "saldainis", lt: "saldainis", ru: "конфета" },
+          { id: "saldainiai", lt: "saldainiai", ru: "конфеты" }
+        ]
+      };
+      const gapFillVariants = {
+        duona: [
+          {
+            sentence: "Vakarienei valgome sriubą su ___.",
+            translationRu: "На ужин мы едим суп с хлебом.",
+            answer: "duona",
+            options: ["duona", "bandele", "uogiene"]
+          },
+          {
+            sentence: "Ryte mama duoda arbatą ir užkandį su ___.",
+            translationRu: "Утром мама даёт чай и перекус с хлебом.",
+            answer: "duona",
+            options: ["duona", "batonu", "sausainiu"]
+          },
+          {
+            sentence: "Kelionėje turime sūrį ir valgome jį su ___.",
+            translationRu: "В поездке у нас есть сыр, и мы едим его с хлебом.",
+            answer: "duona",
+            options: ["duona", "batonu", "pyragu"]
+          }
+        ],
+        batonas: [
+          {
+            sentence: "Pusryčiams valgau sūrį su ___.",
+            translationRu: "На завтрак я ем сыр с батоном.",
+            answer: "batonu",
+            options: ["batonu", "tortu", "pyragu"]
+          },
+          {
+            sentence: "Sūnus mėgsta sriubą su ___.",
+            translationRu: "Сын любит суп с батоном.",
+            answer: "batonu",
+            options: ["batonu", "duona", "riestainiu"]
+          },
+          {
+            sentence: "Kavinėje užkandžiauju sūriu ir ___.",
+            translationRu: "В кафе я перекусываю сыром и батоном.",
+            answer: "batonu",
+            options: ["batonu", "pyragaičiu", "sausainiu"]
+          }
+        ],
+        bandele: [
+          {
+            sentence: "Kava su ___ yra mano pusryčiai.",
+            translationRu: "Кофе с булочкой — мой завтрак.",
+            answer: "bandele",
+            options: ["bandele", "spurga", "uogiene"]
+          },
+          {
+            sentence: "Mama ateina namo su šilta ___.",
+            translationRu: "Мама приходит домой с тёплой булочкой.",
+            answer: "bandele",
+            options: ["bandele", "spurga", "saldainiu"]
+          },
+          {
+            sentence: "Per pertrauką vaikas vaišinasi ___.",
+            translationRu: "На перемене ребёнок угощается булочкой.",
+            answer: "bandele",
+            options: ["bandele", "pyragaičiu", "sausainiu"]
+          }
+        ],
+        bandeles: [
+          {
+            sentence: "Vaikai vaišinasi ___ per šventę.",
+            translationRu: "Дети угощаются булочками на празднике.",
+            answer: "bandelėmis",
+            options: ["bandelėmis", "spurgomis", "pyragaičiais"]
+          },
+          {
+            sentence: "Savaitgalį vaišiname svečius ___.",
+            translationRu: "В выходные угощаем гостей булочками.",
+            answer: "bandelėmis",
+            options: ["bandelėmis", "riestainiais", "saldainiais"]
+          },
+          {
+            sentence: "Arbata su ___ tinka vakarui.",
+            translationRu: "Чай с булочками подходит для вечера.",
+            answer: "bandelėmis",
+            options: ["bandelėmis", "spurgomis", "džiūvėsiais"]
+          }
+        ],
+        riestainis: [
+          {
+            sentence: "Arbata su ___ — paprasti pusryčiai.",
+            translationRu: "Чай с кренделем — простой завтрак.",
+            answer: "riestainiu",
+            options: ["riestainiu", "sausainiu", "pyragaičiu"]
+          },
+          {
+            sentence: "Senelis vaišina mane ___.",
+            translationRu: "Дедушка угощает меня кренделем.",
+            answer: "riestainiu",
+            options: ["riestainiu", "saldainiu", "pyragaičiu"]
+          },
+          {
+            sentence: "Kelionėje užkandžiauju ___.",
+            translationRu: "В поездке я перекусываю кренделем.",
+            answer: "riestainiu",
+            options: ["riestainiu", "džiūvėsiu", "sausainiu"]
+          }
+        ],
+        riestainiai: [
+          {
+            sentence: "Vaikai dalijasi ___ po pamokų.",
+            translationRu: "Дети делятся кренделями после уроков.",
+            answer: "riestainiais",
+            options: ["riestainiais", "džiūvėsiais", "saldainiais"]
+          },
+          {
+            sentence: "Mokytoja vaišina klasę ___.",
+            translationRu: "Учительница угощает класс кренделями.",
+            answer: "riestainiais",
+            options: ["riestainiais", "pyragaičiais", "spurgomis"]
+          },
+          {
+            sentence: "Ryte geriame arbatą su ___.",
+            translationRu: "Утром мы пьём чай с кренделями.",
+            answer: "riestainiais",
+            options: ["riestainiais", "bandelėmis", "džiūvėsiais"]
+          }
+        ],
+        dziuvesis: [
+          {
+            sentence: "Sriuba gardi su ___.",
+            translationRu: "Суп вкусный с сухарём.",
+            answer: "džiūvėsiu",
+            options: ["džiūvėsiu", "riestainiu", "sausainiu"]
+          },
+          {
+            sentence: "Kelionėje užkandžiauju ___.",
+            translationRu: "В поездке я перекусываю сухарём.",
+            answer: "džiūvėsiu",
+            options: ["džiūvėsiu", "riestainiu", "saldainiu"]
+          },
+          {
+            sentence: "Sūnus dalijasi ___ su broliu.",
+            translationRu: "Сын делится сухарём с братом.",
+            answer: "džiūvėsiu",
+            options: ["džiūvėsiu", "sausainiu", "pyragaičiu"]
+          }
+        ],
+        dziuvesiai: [
+          {
+            sentence: "Vaikai užkandžiauja ___.",
+            translationRu: "Дети перекусывают сухарями.",
+            answer: "džiūvėsiais",
+            options: ["džiūvėsiais", "riestainiais", "saldainiais"]
+          },
+          {
+            sentence: "Senelė vaišina mus ___.",
+            translationRu: "Бабушка угощает нас сухарями.",
+            answer: "džiūvėsiais",
+            options: ["džiūvėsiais", "bandelėmis", "pyragaičiais"]
+          },
+          {
+            sentence: "Arbata su ___ — paprasti pusryčiai.",
+            translationRu: "Чай с сухарями — простой завтрак.",
+            answer: "džiūvėsiais",
+            options: ["džiūvėsiais", "spurgomis", "bandelėmis"]
+          }
+        ],
+        spurga: [
+          {
+            sentence: "Kava su ___ man patinka.",
+            translationRu: "Мне нравится кофе с пончиком.",
+            answer: "spurga",
+            options: ["spurga", "bandele", "uogiene"]
+          },
+          {
+            sentence: "Mergaitė vaišinasi ___ per pertrauką.",
+            translationRu: "Девочка угощается пончиком на перемене.",
+            answer: "spurga",
+            options: ["spurga", "pyragaičiu", "sausainiu"]
+          },
+          {
+            sentence: "Mama ateina su ___.",
+            translationRu: "Мама приходит с пончиком.",
+            answer: "spurga",
+            options: ["spurga", "bandele", "saldainiu"]
+          }
+        ],
+        spurgos: [
+          {
+            sentence: "Vaikai dalijasi ___.",
+            translationRu: "Дети делятся пончиками.",
+            answer: "spurgomis",
+            options: ["spurgomis", "bandelėmis", "saldainiais"]
+          },
+          {
+            sentence: "Kavinėje geriame arbatą su ___.",
+            translationRu: "В кафе мы пьём чай с пончиками.",
+            answer: "spurgomis",
+            options: ["spurgomis", "džiūvėsiais", "pyragaičiais"]
+          },
+          {
+            sentence: "Savaitgalį vaišinamės ___.",
+            translationRu: "В выходные угощаемся пончиками.",
+            answer: "spurgomis",
+            options: ["spurgomis", "bandelėmis", "riestainiais"]
+          }
+        ],
+        tortas: [
+          {
+            sentence: "Gimtadienį švenčiame su ___.",
+            translationRu: "День рождения празднуем с тортом.",
+            answer: "tortu",
+            options: ["tortu", "pyragu", "batonu"]
+          },
+          {
+            sentence: "Mokytoja vaišina klasę ___.",
+            translationRu: "Учительница угощает класс тортом.",
+            answer: "tortu",
+            options: ["tortu", "pyragaičiu", "saldainiu"]
+          },
+          {
+            sentence: "Kava su ___ yra skani.",
+            translationRu: "Кофе с тортом вкусный.",
+            answer: "tortu",
+            options: ["tortu", "pyragu", "sausainiu"]
+          }
+        ],
+        pyragaitis: [
+          {
+            sentence: "Po pamokų geriu arbatą su ___.",
+            translationRu: "После уроков я пью чай с пирожным.",
+            answer: "pyragaičiu",
+            options: ["pyragaičiu", "sausainiu", "riestainiu"]
+          },
+          {
+            sentence: "Mergaitė vaišinasi ___.",
+            translationRu: "Девочка угощается пирожным.",
+            answer: "pyragaičiu",
+            options: ["pyragaičiu", "saldainiu", "džiūvėsiu"]
+          },
+          {
+            sentence: "Kavinėje užkandžiauju ___.",
+            translationRu: "В кафе я перекусываю пирожным.",
+            answer: "pyragaičiu",
+            options: ["pyragaičiu", "riestainiu", "sausainiu"]
+          }
+        ],
+        pyragaiciai: [
+          {
+            sentence: "Vaikai vaišinami ___.",
+            translationRu: "Детей угощают пирожными.",
+            answer: "pyragaičiais",
+            options: ["pyragaičiais", "spurgomis", "saldainiais"]
+          },
+          {
+            sentence: "Savaitgalį dalijamės ___.",
+            translationRu: "В выходные мы делимся пирожными.",
+            answer: "pyragaičiais",
+            options: ["pyragaičiais", "bandelėmis", "riestainiais"]
+          },
+          {
+            sentence: "Kava su ___ man labai patinka.",
+            translationRu: "Мне очень нравится кофе с пирожными.",
+            answer: "pyragaičiais",
+            options: ["pyragaičiais", "džiūvėsiais", "spurgomis"]
+          }
+        ],
+        pyragas: [
+          {
+            sentence: "Mama vaišina svečius ___.",
+            translationRu: "Мама угощает гостей пирогом.",
+            answer: "pyragu",
+            options: ["pyragu", "tortu", "batonu"]
+          },
+          {
+            sentence: "Savaitgalį mėgaujamės ___.",
+            translationRu: "В выходные мы наслаждаемся пирогом.",
+            answer: "pyragu",
+            options: ["pyragu", "tortu", "saldainiu"]
+          },
+          {
+            sentence: "Arbata su ___ yra skani.",
+            translationRu: "Чай с пирогом вкусный.",
+            answer: "pyragu",
+            options: ["pyragu", "tortu", "sausainiu"]
+          }
+        ],
+        sausainis: [
+          {
+            sentence: "Arbata su ___ tinka vakarui.",
+            translationRu: "Чай с печеньем подходит для вечера.",
+            answer: "sausainiu",
+            options: ["sausainiu", "riestainiu", "pyragaičiu"]
+          },
+          {
+            sentence: "Vaikas dalijasi ___ su sese.",
+            translationRu: "Ребёнок делится печеньем с сестрой.",
+            answer: "sausainiu",
+            options: ["sausainiu", "džiūvėsiu", "saldainiu"]
+          },
+          {
+            sentence: "Kelionėje užkandžiauju ___.",
+            translationRu: "В поездке я перекусываю печеньем.",
+            answer: "sausainiu",
+            options: ["sausainiu", "riestainiu", "džiūvėsiu"]
+          }
+        ],
+        uogiene: [
+          {
+            sentence: "Bandelė su ___ man patinka.",
+            translationRu: "Мне нравится булочка с вареньем.",
+            answer: "uogiene",
+            options: ["uogiene", "medumi", "bandele"]
+          },
+          {
+            sentence: "Pyragą valgome su ___.",
+            translationRu: "Мы едим пирог с вареньем.",
+            answer: "uogiene",
+            options: ["uogiene", "medumi", "saldainiu"]
+          },
+          {
+            sentence: "Arbata su ___ yra saldi.",
+            translationRu: "Чай с вареньем сладкий.",
+            answer: "uogiene",
+            options: ["uogiene", "medumi", "pyragaičiu"]
+          }
+        ],
+        medus: [
+          {
+            sentence: "Arbata su ___ sušildo.",
+            translationRu: "Чай с мёдом согревает.",
+            answer: "medumi",
+            options: ["medumi", "uogiene", "saldainiu"]
+          },
+          {
+            sentence: "Vaikas mėgsta varškę su ___.",
+            translationRu: "Ребёнок любит творог с мёдом.",
+            answer: "medumi",
+            options: ["medumi", "uogiene", "pyragaičiu"]
+          },
+          {
+            sentence: "Pusryčiams valgome duoną su ___.",
+            translationRu: "На завтрак мы едим хлеб с мёдом.",
+            answer: "medumi",
+            options: ["medumi", "uogiene", "saldainiu"]
+          }
+        ],
+        saldainis: [
+          {
+            sentence: "Vaikas džiaugiasi ___.",
+            translationRu: "Ребёнок радуется конфете.",
+            answer: "saldainiu",
+            options: ["saldainiu", "sausainiu", "pyragaičiu"]
+          },
+          {
+            sentence: "Mama vaišina mane ___.",
+            translationRu: "Мама угощает меня конфетой.",
+            answer: "saldainiu",
+            options: ["saldainiu", "pyragaičiu", "džiūvėsiu"]
+          },
+          {
+            sentence: "Sūnus dalijasi ___ su draugu.",
+            translationRu: "Сын делится конфетой с другом.",
+            answer: "saldainiu",
+            options: ["saldainiu", "sausainiu", "riestainiu"]
+          }
+        ],
+        saldainiai: [
+          {
+            sentence: "Vaikai dalijasi ___.",
+            translationRu: "Дети делятся конфетами.",
+            answer: "saldainiais",
+            options: ["saldainiais", "džiūvėsiais", "pyragaičiais"]
+          },
+          {
+            sentence: "Mokytoja vaišina klasę ___.",
+            translationRu: "Учительница угощает класс конфетами.",
+            answer: "saldainiais",
+            options: ["saldainiais", "spurgomis", "bandelėmis"]
+          },
+          {
+            sentence: "Per šventę džiaugiamės ___.",
+            translationRu: "На празднике мы радуемся конфетам.",
+            answer: "saldainiais",
+            options: ["saldainiais", "pyragaičiais", "riestainiais"]
+          }
+        ]
+      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.2"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>
