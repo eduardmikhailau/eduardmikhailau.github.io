@@ -52,6 +52,7 @@ When generating a new test page:
 - Ensure every word has **real-life, A2-level sentences** in `gapFillVariants` (used for both multiple-choice gap fill and typing gap fill).
 - Vary sentence contexts per word so they are not repetitive or template-like.
 - Verify **Russian translations are grammatically correct** for each sentence context.
+- Avoid **number ambiguity** in Russian for mass/indeclinable nouns (e.g., капуста/картофель/лук/брокколи). When needed, make the number explicit (e.g., "кочан капусты", "картофелина", "луковица", "зубчик чеснока", "несколько огурцов").
 - Use **Russian feminatives** for female profession entries when appropriate.
 
 ### Notes
