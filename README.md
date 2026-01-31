@@ -66,3 +66,4 @@ GitHub Pages: https://eduardmikhailau.github.io/ (tests under `tests/`).
 - [1.1 Šeima ir maistas](https://eduardmikhailau.github.io/tests/kids/1.1-seima-maistas.html)
 - [1.2 Maisto prekių parduotuvės](https://eduardmikhailau.github.io/tests/kids/1.2-maisto-prekiu-parduotuves.html)
 - [1.3 Kūčios](https://eduardmikhailau.github.io/tests/kids/1.3-kucios.html)
+- [1.4 Vietos ir patalpos](https://eduardmikhailau.github.io/tests/kids/1.4-vietos-patalpos.html)

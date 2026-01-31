@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>1.4 Vaikams: vietos ir patalpos — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Vaikams: vietos ir patalpos",
+                        words: [
+                          { id: "biblioteka", lt: "biblioteka", ru: "библиотека" },
+                          { id: "lentyna", lt: "lentyna", ru: "полка" },
+                          { id: "knyga", lt: "knyga", ru: "книга" },
+                          { id: "vitrina", lt: "vitrina", ru: "витрина" },
+                          { id: "kinas", lt: "kinas", ru: "кинотеатр" },
+                          { id: "bufetas", lt: "bufetas", ru: "буфет" },
+                          { id: "vieta", lt: "vieta", ru: "место" },
+                          { id: "ekranas", lt: "ekranas", ru: "экран" },
+                          { id: "miestas", lt: "miestas", ru: "город" },
+                          { id: "sodas", lt: "sodas", ru: "сад" },
+                          { id: "narvas", lt: "narvas", ru: "клетка" },
+                          { id: "akvariumas", lt: "akvariumas", ru: "аквариум" },
+                          { id: "medis", lt: "medis", ru: "дерево" },
+                          { id: "supuokles", lt: "sūpuoklės", ru: "качели" },
+                          { id: "kambarys", lt: "kambarys", ru: "комната" },
+                          { id: "vazonelis", lt: "vazonėlis", ru: "цветочный горшочек" },
+                          { id: "vidurys", lt: "vidurys", ru: "середина" },
+                          { id: "pasienis", lt: "pasienis", ru: "граница, пограничье" },
+                          { id: "spinta", lt: "spinta", ru: "шкаф" },
+                          { id: "kampas", lt: "kampas", ru: "угол" },
+                          { id: "ligonine", lt: "ligoninė", ru: "больница" },
+                          { id: "lova", lt: "lova", ru: "кровать" },
+                          { id: "palata", lt: "palata", ru: "палата" },
+                          { id: "spintele", lt: "spintelė", ru: "шкафчик" },
+                          { id: "galas", lt: "galas", ru: "конец" },
+                          { id: "operacine", lt: "operacinė", ru: "операционная" },
+                          { id: "spaustuve", lt: "spaustuvė", ru: "типография" },
+                          { id: "darboviete", lt: "darbovietė", ru: "место работы" },
+                          { id: "dezute", lt: "dėžutė", ru: "коробочка" },
+                          { id: "laikrastis", lt: "laikraštis", ru: "газета" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        biblioteka: [
+                          {
+                            sentence: "___ yra didelė.",
+                            translationRu: "Библиотека большая.",
+                            answer: "biblioteka",
+                            options: ["biblioteka", "vitrina", "spaustuvė"]
+                          },
+                          {
+                            sentence: "Mes esame ___.",
+                            translationRu: "Мы в библиотеке.",
+                            answer: "bibliotekoje",
+                            options: ["bibliotekoje", "kambaryje", "mieste"]
+                          },
+                          {
+                            sentence: "Knygos yra ___.",
+                            translationRu: "Книги в библиотеке.",
+                            answer: "bibliotekoje",
+                            options: ["bibliotekoje", "spintoje", "palatoje"]
+                          }
+                        ],
+                        lentyna: [
+                          {
+                            sentence: "___ yra aukšta.",
+                            translationRu: "Полка высокая.",
+                            answer: "lentyna",
+                            options: ["lentyna", "vitrina", "spinta"]
+                          },
+                          {
+                            sentence: "Knyga guli ___.",
+                            translationRu: "Книга лежит на полке.",
+                            answer: "lentynoje",
+                            options: ["lentynoje", "spintoje", "knygoje"]
+                          },
+                          {
+                            sentence: "___ stovi knygos.",
+                            translationRu: "На полке стоят книги.",
+                            answer: "lentynoje",
+                            options: ["lentynoje", "spintoje", "vitrinoje"]
+                          }
+                        ],
+                        knyga: [
+                          {
+                            sentence: "___ yra nauja.",
+                            translationRu: "Книга новая.",
+                            answer: "knyga",
+                            options: ["knyga", "laikraštis", "dėžutė"]
+                          },
+                          {
+                            sentence: "___ yra paveikslėlis.",
+                            translationRu: "В книге есть картинка.",
+                            answer: "knygoje",
+                            options: ["knygoje", "vitrinoje", "lentynoje"]
+                          },
+                          {
+                            sentence: "___ daug pasakų.",
+                            translationRu: "В книге много сказок.",
+                            answer: "knygoje",
+                            options: ["knygoje", "laikraštyje", "bibliotekoje"]
+                          }
+                        ],
+                        vitrina: [
+                          {
+                            sentence: "___ yra švari.",
+                            translationRu: "Витрина чистая.",
+                            answer: "vitrina",
+                            options: ["vitrina", "spinta", "spintelė"]
+                          },
+                          {
+                            sentence: "___ yra saldainiai.",
+                            translationRu: "В витрине есть конфеты.",
+                            answer: "vitrinoje",
+                            options: ["vitrinoje", "lentynoje", "spintoje"]
+                          },
+                          {
+                            sentence: "___ matau duoną.",
+                            translationRu: "В витрине вижу хлеб.",
+                            answer: "vitrinoje",
+                            options: ["vitrinoje", "bibliotekoje", "knygoje"]
+                          }
+                        ],
+                        kinas: [
+                          {
+                            sentence: "___ yra mieste.",
+                            translationRu: "Кинотеатр в городе.",
+                            answer: "kinas",
+                            options: ["kinas", "biblioteka", "ligoninė"]
+                          },
+                          {
+                            sentence: "Mes esame ___.",
+                            translationRu: "Мы в кинотеатре.",
+                            answer: "kine",
+                            options: ["kine", "sode", "kampe"]
+                          },
+                          {
+                            sentence: "___ rodo filmą.",
+                            translationRu: "В кинотеатре показывают фильм.",
+                            answer: "kine",
+                            options: ["kine", "bufete", "ekrane"]
+                          }
+                        ],
+                        bufetas: [
+                          {
+                            sentence: "___ yra atidarytas.",
+                            translationRu: "Буфет открыт.",
+                            answer: "bufetas",
+                            options: ["bufetas", "kinas", "spaustuvė"]
+                          },
+                          {
+                            sentence: "___ yra kompotas.",
+                            translationRu: "В буфете есть компот.",
+                            answer: "bufete",
+                            options: ["bufete", "spintoje", "vitrinoje"]
+                          },
+                          {
+                            sentence: "Mes valgome ___.",
+                            translationRu: "Мы едим в буфете.",
+                            answer: "bufete",
+                            options: ["bufete", "kine", "sode"]
+                          }
+                        ],
+                        vieta: [
+                          {
+                            sentence: "___ yra patogi.",
+                            translationRu: "Место удобное.",
+                            answer: "vieta",
+                            options: ["vieta", "kampas", "galas"]
+                          },
+                          {
+                            sentence: "Aš sėdžiu ___.",
+                            translationRu: "Я сижу на месте.",
+                            answer: "vietoje",
+                            options: ["vietoje", "lovoje", "kambaryje"]
+                          },
+                          {
+                            sentence: "___ yra mamytė.",
+                            translationRu: "На месте есть мама.",
+                            answer: "vietoje",
+                            options: ["vietoje", "spintoje", "bibliotekoje"]
+                          }
+                        ],
+                        ekranas: [
+                          {
+                            sentence: "___ yra didelis.",
+                            translationRu: "Экран большой.",
+                            answer: "ekranas",
+                            options: ["ekranas", "laikraštis", "akvariumas"]
+                          },
+                          {
+                            sentence: "___ yra paveikslas.",
+                            translationRu: "На экране есть картинка.",
+                            answer: "ekrane",
+                            options: ["ekrane", "knygoje", "vitrinoje"]
+                          },
+                          {
+                            sentence: "___ matome žuvį.",
+                            translationRu: "На экране мы видим рыбу.",
+                            answer: "ekrane",
+                            options: ["ekrane", "akvariume", "sode"]
+                          }
+                        ],
+                        miestas: [
+                          {
+                            sentence: "___ yra gražus.",
+                            translationRu: "Город красивый.",
+                            answer: "miestas",
+                            options: ["miestas", "sodas", "pasienis"]
+                          },
+                          {
+                            sentence: "___ yra biblioteka.",
+                            translationRu: "В городе есть библиотека.",
+                            answer: "mieste",
+                            options: ["mieste", "sode", "kambaryje"]
+                          },
+                          {
+                            sentence: "___ gyvena senelis.",
+                            translationRu: "В городе живёт дедушка.",
+                            answer: "mieste",
+                            options: ["mieste", "palatoje", "kine"]
+                          }
+                        ],
+                        sodas: [
+                          {
+                            sentence: "___ yra didelis.",
+                            translationRu: "Сад большой.",
+                            answer: "sodas",
+                            options: ["sodas", "miestas", "kambarys"]
+                          },
+                          {
+                            sentence: "___ auga obuoliai.",
+                            translationRu: "В саду растут яблоки.",
+                            answer: "sode",
+                            options: ["sode", "mieste", "kambaryje"]
+                          },
+                          {
+                            sentence: "___ žaidžia vaikai.",
+                            translationRu: "В саду играют дети.",
+                            answer: "sode",
+                            options: ["sode", "kine", "bibliotekoje"]
+                          }
+                        ],
+                        narvas: [
+                          {
+                            sentence: "___ yra uždarytas.",
+                            translationRu: "Клетка закрыта.",
+                            answer: "narvas",
+                            options: ["narvas", "akvariumas", "spinta"]
+                          },
+                          {
+                            sentence: "___ gyvena paukštis.",
+                            translationRu: "В клетке живёт птица.",
+                            answer: "narve",
+                            options: ["narve", "akvariume", "sode"]
+                          },
+                          {
+                            sentence: "___ yra vanduo.",
+                            translationRu: "В клетке есть вода.",
+                            answer: "narve",
+                            options: ["narve", "palatoje", "spintelėje"]
+                          }
+                        ],
+                        akvariumas: [
+                          {
+                            sentence: "___ yra didelis.",
+                            translationRu: "Аквариум большой.",
+                            answer: "akvariumas",
+                            options: ["akvariumas", "narvas", "vazonėlis"]
+                          },
+                          {
+                            sentence: "___ plaukioja žuvis.",
+                            translationRu: "В аквариуме плавает рыба.",
+                            answer: "akvariume",
+                            options: ["akvariume", "narve", "sode"]
+                          },
+                          {
+                            sentence: "___ yra vanduo.",
+                            translationRu: "В аквариуме есть вода.",
+                            answer: "akvariume",
+                            options: ["akvariume", "kambaryje", "spintoje"]
+                          }
+                        ],
+                        medis: [
+                          {
+                            sentence: "___ yra aukštas.",
+                            translationRu: "Дерево высокое.",
+                            answer: "medis",
+                            options: ["medis", "sodas", "kampas"]
+                          },
+                          {
+                            sentence: "___ kabo obuolys.",
+                            translationRu: "На дереве висит яблоко.",
+                            answer: "medyje",
+                            options: ["medyje", "sode", "vitrinoje"]
+                          },
+                          {
+                            sentence: "___ sėdi paukštis.",
+                            translationRu: "На дереве сидит птица.",
+                            answer: "medyje",
+                            options: ["medyje", "kambaryje", "palatoje"]
+                          }
+                        ],
+                        supuokles: [
+                          {
+                            sentence: "___ yra kieme.",
+                            translationRu: "Качели во дворе.",
+                            answer: "sūpuoklės",
+                            options: ["sūpuoklės", "vitrina", "knyga"]
+                          },
+                          {
+                            sentence: "___ sėdi sesutė.",
+                            translationRu: "На качелях сидит сестричка.",
+                            answer: "sūpuoklėse",
+                            options: ["sūpuoklėse", "kambaryje", "lovoje"]
+                          },
+                          {
+                            sentence: "___ žaidžia vaikai.",
+                            translationRu: "На качелях играют дети.",
+                            answer: "sūpuoklėse",
+                            options: ["sūpuoklėse", "sode", "bibliotekoje"]
+                          }
+                        ],
+                        kambarys: [
+                          {
+                            sentence: "___ yra švarus.",
+                            translationRu: "Комната чистая.",
+                            answer: "kambarys",
+                            options: ["kambarys", "sodas", "kinas"]
+                          },
+                          {
+                            sentence: "___ yra lova.",
+                            translationRu: "В комнате есть кровать.",
+                            answer: "kambaryje",
+                            options: ["kambaryje", "palatoje", "vitrinoje"]
+                          },
+                          {
+                            sentence: "___ stovi spinta.",
+                            translationRu: "В комнате стоит шкаф.",
+                            answer: "kambaryje",
+                            options: ["kambaryje", "sode", "kine"]
+                          }
+                        ],
+                        vazonelis: [
+                          {
+                            sentence: "___ yra mažas.",
+                            translationRu: "Цветочный горшочек маленький.",
+                            answer: "vazonėlis",
+                            options: ["vazonėlis", "dėžutė", "akvariumas"]
+                          },
+                          {
+                            sentence: "___ auga gėlė.",
+                            translationRu: "В горшочке растёт цветок.",
+                            answer: "vazonėlyje",
+                            options: ["vazonėlyje", "sode", "kambaryje"]
+                          },
+                          {
+                            sentence: "___ yra žemė.",
+                            translationRu: "В горшочке есть земля.",
+                            answer: "vazonėlyje",
+                            options: ["vazonėlyje", "spintelėje", "laikraštyje"]
+                          }
+                        ],
+                        vidurys: [
+                          {
+                            sentence: "___ yra čia.",
+                            translationRu: "Середина здесь.",
+                            answer: "vidurys",
+                            options: ["vidurys", "galas", "kampas"]
+                          },
+                          {
+                            sentence: "___ stalo yra duona.",
+                            translationRu: "В середине стола есть хлеб.",
+                            answer: "viduryje",
+                            options: ["viduryje", "kampe", "gale"]
+                          },
+                          {
+                            sentence: "___ kambario stovi stalas.",
+                            translationRu: "В середине комнаты стоит стол.",
+                            answer: "viduryje",
+                            options: ["viduryje", "kampe", "gale"]
+                          }
+                        ],
+                        pasienis: [
+                          {
+                            sentence: "___ yra toli.",
+                            translationRu: "Граница далеко.",
+                            answer: "pasienis",
+                            options: ["pasienis", "miestas", "sodas"]
+                          },
+                          {
+                            sentence: "___ yra miškas.",
+                            translationRu: "На границе есть лес.",
+                            answer: "pasienyje",
+                            options: ["pasienyje", "mieste", "sode"]
+                          },
+                          {
+                            sentence: "___ stovi namas.",
+                            translationRu: "На границе стоит дом.",
+                            answer: "pasienyje",
+                            options: ["pasienyje", "kampe", "kambaryje"]
+                          }
+                        ],
+                        spinta: [
+                          {
+                            sentence: "___ yra didelė.",
+                            translationRu: "Шкаф большой.",
+                            answer: "spinta",
+                            options: ["spinta", "vitrina", "kambarys"]
+                          },
+                          {
+                            sentence: "___ yra drabužiai.",
+                            translationRu: "В шкафу есть одежда.",
+                            answer: "spintoje",
+                            options: ["spintoje", "knygoje", "lentynoje"]
+                          },
+                          {
+                            sentence: "___ guli megztinis.",
+                            translationRu: "В шкафу лежит свитер.",
+                            answer: "spintoje",
+                            options: ["spintoje", "palatoje", "vitrinoje"]
+                          }
+                        ],
+                        kampas: [
+                          {
+                            sentence: "___ yra tamsus.",
+                            translationRu: "Угол тёмный.",
+                            answer: "kampas",
+                            options: ["kampas", "galas", "vidurys"]
+                          },
+                          {
+                            sentence: "___ stovi stalas.",
+                            translationRu: "В углу стоит стол.",
+                            answer: "kampe",
+                            options: ["kampe", "gale", "viduryje"]
+                          },
+                          {
+                            sentence: "___ yra kėdė.",
+                            translationRu: "В углу есть стул.",
+                            answer: "kampe",
+                            options: ["kampe", "kambaryje", "sode"]
+                          }
+                        ],
+                        ligonine: [
+                          {
+                            sentence: "___ yra didelė.",
+                            translationRu: "Больница большая.",
+                            answer: "ligoninė",
+                            options: ["ligoninė", "biblioteka", "spaustuvė"]
+                          },
+                          {
+                            sentence: "___ dirba gydytojas.",
+                            translationRu: "В больнице работает врач.",
+                            answer: "ligoninėje",
+                            options: ["ligoninėje", "spaustuvėje", "darbovietėje"]
+                          },
+                          {
+                            sentence: "___ yra palata.",
+                            translationRu: "В больнице есть палата.",
+                            answer: "ligoninėje",
+                            options: ["ligoninėje", "bibliotekoje", "kine"]
+                          }
+                        ],
+                        lova: [
+                          {
+                            sentence: "___ yra minkšta.",
+                            translationRu: "Кровать мягкая.",
+                            answer: "lova",
+                            options: ["lova", "spinta", "palata"]
+                          },
+                          {
+                            sentence: "___ miega broliukas.",
+                            translationRu: "В кровати спит младший брат.",
+                            answer: "lovoje",
+                            options: ["lovoje", "kambaryje", "sode"]
+                          },
+                          {
+                            sentence: "___ yra pagalvė.",
+                            translationRu: "В кровати есть подушка.",
+                            answer: "lovoje",
+                            options: ["lovoje", "spintoje", "vitrinoje"]
+                          }
+                        ],
+                        palata: [
+                          {
+                            sentence: "___ yra rami.",
+                            translationRu: "Палата спокойная.",
+                            answer: "palata",
+                            options: ["palata", "kambarys", "ligoninė"]
+                          },
+                          {
+                            sentence: "___ guli senelis.",
+                            translationRu: "В палате лежит дедушка.",
+                            answer: "palatoje",
+                            options: ["palatoje", "lovoje", "kine"]
+                          },
+                          {
+                            sentence: "___ yra lova.",
+                            translationRu: "В палате есть кровать.",
+                            answer: "palatoje",
+                            options: ["palatoje", "kambaryje", "sode"]
+                          }
+                        ],
+                        spintele: [
+                          {
+                            sentence: "___ yra balta.",
+                            translationRu: "Шкафчик белый.",
+                            answer: "spintelė",
+                            options: ["spintelė", "vitrina", "lentyna"]
+                          },
+                          {
+                            sentence: "___ yra puodelis.",
+                            translationRu: "В шкафчике есть чашка.",
+                            answer: "spintelėje",
+                            options: ["spintelėje", "spintoje", "vazonėlyje"]
+                          },
+                          {
+                            sentence: "___ guli knyga.",
+                            translationRu: "В шкафчике лежит книга.",
+                            answer: "spintelėje",
+                            options: ["spintelėje", "knygoje", "lentynoje"]
+                          }
+                        ],
+                        galas: [
+                          {
+                            sentence: "___ yra čia.",
+                            translationRu: "Конец здесь.",
+                            answer: "galas",
+                            options: ["galas", "vidurys", "kampas"]
+                          },
+                          {
+                            sentence: "___ kambario yra langas.",
+                            translationRu: "В конце комнаты есть окно.",
+                            answer: "gale",
+                            options: ["gale", "kampe", "viduryje"]
+                          },
+                          {
+                            sentence: "___ stalo yra kėdė.",
+                            translationRu: "В конце стола есть стул.",
+                            answer: "gale",
+                            options: ["gale", "viduryje", "kampe"]
+                          }
+                        ],
+                        operacine: [
+                          {
+                            sentence: "___ yra švari.",
+                            translationRu: "Операционная чистая.",
+                            answer: "operacinė",
+                            options: ["operacinė", "palata", "biblioteka"]
+                          },
+                          {
+                            sentence: "___ dirba gydytojas.",
+                            translationRu: "В операционной работает врач.",
+                            answer: "operacinėje",
+                            options: ["operacinėje", "ligoninėje", "spaustuvėje"]
+                          },
+                          {
+                            sentence: "___ yra šviesa.",
+                            translationRu: "В операционной есть свет.",
+                            answer: "operacinėje",
+                            options: ["operacinėje", "kambaryje", "spintoje"]
+                          }
+                        ],
+                        spaustuve: [
+                          {
+                            sentence: "___ yra didelė.",
+                            translationRu: "Типография большая.",
+                            answer: "spaustuvė",
+                            options: ["spaustuvė", "biblioteka", "ligoninė"]
+                          },
+                          {
+                            sentence: "___ spausdinamos knygos.",
+                            translationRu: "В типографии печатают книги.",
+                            answer: "spaustuvėje",
+                            options: ["spaustuvėje", "bibliotekoje", "kine"]
+                          },
+                          {
+                            sentence: "___ dirba tėvelis.",
+                            translationRu: "В типографии работает папа.",
+                            answer: "spaustuvėje",
+                            options: ["spaustuvėje", "darbovietėje", "ligoninėje"]
+                          }
+                        ],
+                        darboviete: [
+                          {
+                            sentence: "___ yra netoli.",
+                            translationRu: "Место работы недалеко.",
+                            answer: "darbovietė",
+                            options: ["darbovietė", "kambarys", "sodas"]
+                          },
+                          {
+                            sentence: "___ dirba mamytė.",
+                            translationRu: "На работе работает мама.",
+                            answer: "darbovietėje",
+                            options: ["darbovietėje", "ligoninėje", "bibliotekoje"]
+                          },
+                          {
+                            sentence: "___ yra kabinetas.",
+                            translationRu: "На работе есть кабинет.",
+                            answer: "darbovietėje",
+                            options: ["darbovietėje", "kambaryje", "spintoje"]
+                          }
+                        ],
+                        dezute: [
+                          {
+                            sentence: "___ yra maža.",
+                            translationRu: "Коробочка маленькая.",
+                            answer: "dėžutė",
+                            options: ["dėžutė", "vazonėlis", "knyga"]
+                          },
+                          {
+                            sentence: "___ yra saldainis.",
+                            translationRu: "В коробочке есть конфета.",
+                            answer: "dėžutėje",
+                            options: ["dėžutėje", "spintelėje", "vitrinoje"]
+                          },
+                          {
+                            sentence: "___ guli žiedas.",
+                            translationRu: "В коробочке лежит кольцо.",
+                            answer: "dėžutėje",
+                            options: ["dėžutėje", "knygoje", "palatoje"]
+                          }
+                        ],
+                        laikrastis: [
+                          {
+                            sentence: "___ yra naujas.",
+                            translationRu: "Газета новая.",
+                            answer: "laikraštis",
+                            options: ["laikraštis", "knyga", "dėžutė"]
+                          },
+                          {
+                            sentence: "___ yra nuotrauka.",
+                            translationRu: "В газете есть фотография.",
+                            answer: "laikraštyje",
+                            options: ["laikraštyje", "knygoje", "vitrinoje"]
+                          },
+                          {
+                            sentence: "___ rašo apie miestą.",
+                            translationRu: "В газете пишут о городе.",
+                            answer: "laikraštyje",
+                            options: ["laikraštyje", "bibliotekoje", "kambaryje"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.4.0"
+      };
+    </script>
+    <script src="../lib/lt-test-runner.js"></script>
+  </body>
+</html>
