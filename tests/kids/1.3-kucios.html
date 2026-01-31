@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>1.3 Vaikams: Kūčios — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Vaikams: Kūčios",
+                        words: [
+                          { id: "kucios", lt: "kūčios", ru: "Рождественский сочельник" },
+                          { id: "blaskyti", lt: "blaškyti", ru: "кидать, метать" },
+                          { id: "sventvakaris", lt: "šventvakaris", ru: "канун праздника" },
+                          { id: "zidinys", lt: "židinys", ru: "очаг" },
+                          { id: "jungtis", lt: "jungtis", ru: "связь, связка" },
+                          { id: "gardu", lt: "gardù", ru: "вкусно" },
+                          { id: "putinas", lt: "pūtinas", ru: "калина" },
+                          { id: "kanape", lt: "kanapė", ru: "конопля" },
+                          { id: "seselis", lt: "šešėlis", ru: "тень" },
+                          { id: "salygos", lt: "sąlygos", ru: "условия (обстоятельства)" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        kucios: [
+                          {
+                            sentence: "Per ___ valgome žuvį ir duoną.",
+                            translationRu: "В Рождественский сочельник мы едим рыбу и хлеб.",
+                            answer: "kūčias",
+                            options: ["kūčias", "sąlygas", "kanapes"]
+                          },
+                          {
+                            sentence: "Laukiame ___ kartu su seneliu.",
+                            translationRu: "Мы ждём Рождественского сочельника вместе с дедушкой.",
+                            answer: "kūčių",
+                            options: ["kūčių", "sąlygų", "pūtino"]
+                          },
+                          {
+                            sentence: "Namuose ___ su mamyte ir tėveliu yra jaukios.",
+                            translationRu: "Дома Рождественский сочельник с мамой и папой уютный.",
+                            answer: "kūčios",
+                            options: ["kūčios", "sąlygos", "kanapės"]
+                          }
+                        ],
+                        blaskyti: [
+                          {
+                            sentence: "Aš moku ___ kamuolį.",
+                            translationRu: "Я умею бросать мяч.",
+                            answer: "blaškyti",
+                            options: ["blaškyti", "žaisti", "valgyti"]
+                          },
+                          {
+                            sentence: "Tėvelis moko mane ___ sniego gniūžtę.",
+                            translationRu: "Папа учит меня бросать снежок.",
+                            answer: "blaškyti",
+                            options: ["blaškyti", "žaisti", "valgyti"]
+                          },
+                          {
+                            sentence: "Broliukas nori ___ pagalvę.",
+                            translationRu: "Младший брат хочет бросать подушку.",
+                            answer: "blaškyti",
+                            options: ["blaškyti", "žaisti", "valgyti"]
+                          }
+                        ],
+                        sventvakaris: [
+                          {
+                            sentence: "Šiandien yra ___, mamytė kepa bandelę.",
+                            translationRu: "Сегодня канун праздника, мама печёт булочку.",
+                            answer: "šventvakaris",
+                            options: ["šventvakaris", "židinys", "šešėlis"]
+                          },
+                          {
+                            sentence: "Laukiame ___ ir geriame kompotą.",
+                            translationRu: "Мы ждём кануна праздника и пьём компот.",
+                            answer: "šventvakario",
+                            options: ["šventvakario", "židinio", "šešėlio"]
+                          },
+                          {
+                            sentence: "Švenčiame ___ su seneliu.",
+                            translationRu: "Мы празднуем канун праздника с дедушкой.",
+                            answer: "šventvakarį",
+                            options: ["šventvakarį", "židinį", "šešėlį"]
+                          }
+                        ],
+                        zidinys: [
+                          {
+                            sentence: "Kambaryje dega ___, mamytė šildo rankas.",
+                            translationRu: "В комнате горит очаг, мама греет руки.",
+                            answer: "židinys",
+                            options: ["židinys", "šešėlis", "šventvakaris"]
+                          },
+                          {
+                            sentence: "Sėdime prie ___ ir geriame kisielių.",
+                            translationRu: "Мы сидим у очага и пьём кисель.",
+                            answer: "židinio",
+                            options: ["židinio", "šešėlio", "šventvakario"]
+                          },
+                          {
+                            sentence: "Tėvelis kūrena ___.",
+                            translationRu: "Папа топит очаг.",
+                            answer: "židinį",
+                            options: ["židinį", "šešėlį", "šventvakarį"]
+                          }
+                        ],
+                        jungtis: [
+                          {
+                            sentence: "Laido ___ yra tvirta, tėvelis ją sutvarkė.",
+                            translationRu: "Соединение провода прочное, папа его починил.",
+                            answer: "jungtis",
+                            options: ["jungtis", "židinys", "šešėlis"]
+                          },
+                          {
+                            sentence: "Taisau laido ___ su broliuku.",
+                            translationRu: "Я чиню соединение провода вместе с младшим братом.",
+                            answer: "jungtį",
+                            options: ["jungtį", "židinį", "šešėlį"]
+                          },
+                          {
+                            sentence: "Nėra laido ___, todėl televizorius neveikia.",
+                            translationRu: "Нет соединения провода, поэтому телевизор не работает.",
+                            answer: "jungties",
+                            options: ["jungties", "židinio", "šešėlio"]
+                          }
+                        ],
+                        gardu: [
+                          {
+                            sentence: "Čia labai ___ valgyti sriubą.",
+                            translationRu: "Здесь очень вкусно есть суп.",
+                            answer: "gardù",
+                            options: ["gardù", "saldu", "skanu"]
+                          },
+                          {
+                            sentence: "Mamytė sako: „Kaip ___!“",
+                            translationRu: "Мама говорит: «Как вкусно!»",
+                            answer: "gardù",
+                            options: ["gardù", "saldu", "skanu"]
+                          },
+                          {
+                            sentence: "Valgyti bandelę su sviestu yra ___.",
+                            translationRu: "Есть булочку с маслом вкусно.",
+                            answer: "gardù",
+                            options: ["gardù", "saldu", "skanu"]
+                          }
+                        ],
+                        putinas: [
+                          {
+                            sentence: "Močiutė sodina ___ prie namų.",
+                            translationRu: "Бабушка сажает калину возле дома.",
+                            answer: "pūtiną",
+                            options: ["pūtiną", "kanapę", "šešėlį"]
+                          },
+                          {
+                            sentence: "___ auga prie namų, o ant stalo yra obuolys.",
+                            translationRu: "Калина растёт возле дома, а на столе есть яблоко.",
+                            answer: "pūtinas",
+                            options: ["pūtinas", "kanapė", "šešėlis"]
+                          },
+                          {
+                            sentence: "Nėra ___, todėl nėra uogų.",
+                            translationRu: "Нет калины, поэтому нет ягод.",
+                            answer: "pūtino",
+                            options: ["pūtino", "kanapės", "šešėlio"]
+                          }
+                        ],
+                        kanape: [
+                          {
+                            sentence: "Senelis augina ___ sode.",
+                            translationRu: "Дедушка выращивает коноплю в саду.",
+                            answer: "kanapę",
+                            options: ["kanapę", "pūtiną", "židinį"]
+                          },
+                          {
+                            sentence: "Ant stalo nėra ___.",
+                            translationRu: "На столе нет конопли.",
+                            answer: "kanapės",
+                            options: ["kanapės", "pūtino", "židinio"]
+                          },
+                          {
+                            sentence: "___ yra augalas, o agurkas yra daržovė.",
+                            translationRu: "Конопля — растение, а огурец — овощ.",
+                            answer: "kanapė",
+                            options: ["kanapė", "pūtinas", "židinys"]
+                          }
+                        ],
+                        seselis: [
+                          {
+                            sentence: "Po medžiu yra ___, broliukas ten žaidžia.",
+                            translationRu: "Под деревом есть тень, младший брат там играет.",
+                            answer: "šešėlis",
+                            options: ["šešėlis", "židinys", "šventvakaris"]
+                          },
+                          {
+                            sentence: "Aš matau ___ ant kelio.",
+                            translationRu: "Я вижу тень на дороге.",
+                            answer: "šešėlį",
+                            options: ["šešėlį", "židinį", "šventvakarį"]
+                          },
+                          {
+                            sentence: "Nėra ___, todėl saulė šviečia.",
+                            translationRu: "Нет тени, поэтому светит солнце.",
+                            answer: "šešėlio",
+                            options: ["šešėlio", "židinio", "šventvakario"]
+                          }
+                        ],
+                        salygos: [
+                          {
+                            sentence: "Žaidimo ___ yra paprastos.",
+                            translationRu: "Условия игры простые.",
+                            answer: "sąlygos",
+                            options: ["sąlygos", "kūčios", "kanapės"]
+                          },
+                          {
+                            sentence: "Mamytė keičia ___ namuose.",
+                            translationRu: "Мама меняет условия дома.",
+                            answer: "sąlygas",
+                            options: ["sąlygas", "kūčias", "kanapes"]
+                          },
+                          {
+                            sentence: "Nėra gerų ___, todėl neperkame saldainių.",
+                            translationRu: "Нет хороших условий, поэтому мы не покупаем конфеты.",
+                            answer: "sąlygų",
+                            options: ["sąlygų", "kūčių", "kanapių"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.3.0"
+      };
+    </script>
+    <script src="../lib/lt-test-runner.js"></script>
+  </body>
+</html>
