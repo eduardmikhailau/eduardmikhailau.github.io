@@ -11,7 +11,7 @@
       const wordSet = {
                         topic: "Vaikams: Kūčios",
                         words: [
-                          { id: "kucios", lt: "kūčios", ru: "Рождественский сочельник" },
+                          { id: "kucios", lt: "kūčia", ru: "Рождественский сочельник" },
                           { id: "blaskyti", lt: "blaškyti", ru: "кидать, метать" },
                           { id: "sventvakaris", lt: "šventvakaris", ru: "канун праздника" },
                           { id: "zidinys", lt: "židinys", ru: "очаг" },
@@ -20,28 +20,28 @@
                           { id: "putinas", lt: "pūtinas", ru: "калина" },
                           { id: "kanape", lt: "kanapė", ru: "конопля" },
                           { id: "seselis", lt: "šešėlis", ru: "тень" },
-                          { id: "salygos", lt: "sąlygos", ru: "условия (обстоятельства)" }
+                          { id: "salygos", lt: "sąlyga", ru: "условие (обстоятельство)" }
                         ]
                       };
       const gapFillVariants = {
                         kucios: [
                           {
-                            sentence: "Per ___ valgome žuvį ir duoną.",
-                            translationRu: "В Рождественский сочельник мы едим рыбу и хлеб.",
-                            answer: "kūčias",
-                            options: ["kūčias", "sąlygas", "kanapes"]
+                            sentence: "Šiandien yra ___.",
+                            translationRu: "Сегодня Рождественский сочельник.",
+                            answer: "kūčia",
+                            options: ["kūčia", "sąlyga", "kanapė"]
                           },
                           {
-                            sentence: "Laukiame ___ kartu su seneliu.",
-                            translationRu: "Мы ждём Рождественского сочельника вместе с дедушкой.",
-                            answer: "kūčių",
-                            options: ["kūčių", "sąlygų", "pūtino"]
+                            sentence: "Švenčiame ___ su šeima.",
+                            translationRu: "Мы празднуем Рождественский сочельник с семьёй.",
+                            answer: "kūčią",
+                            options: ["kūčią", "sąlygą", "kanapę"]
                           },
                           {
-                            sentence: "Namuose ___ su mamyte ir tėveliu yra jaukios.",
-                            translationRu: "Дома Рождественский сочельник с мамой и папой уютный.",
-                            answer: "kūčios",
-                            options: ["kūčios", "sąlygos", "kanapės"]
+                            sentence: "___ būna žiemą.",
+                            translationRu: "Рождественский сочельник бывает зимой.",
+                            answer: "kūčia",
+                            options: ["kūčia", "sąlyga", "kanapė"]
                           }
                         ],
                         blaskyti: [
@@ -72,16 +72,16 @@
                             options: ["šventvakaris", "židinys", "šešėlis"]
                           },
                           {
-                            sentence: "Laukiame ___ ir geriame kompotą.",
-                            translationRu: "Мы ждём кануна праздника и пьём компот.",
-                            answer: "šventvakario",
-                            options: ["šventvakario", "židinio", "šešėlio"]
-                          },
-                          {
                             sentence: "Švenčiame ___ su seneliu.",
                             translationRu: "Мы празднуем канун праздника с дедушкой.",
                             answer: "šventvakarį",
                             options: ["šventvakarį", "židinį", "šešėlį"]
+                          },
+                          {
+                            sentence: "___ būna prieš šventę.",
+                            translationRu: "Канун праздника бывает перед праздником.",
+                            answer: "šventvakaris",
+                            options: ["šventvakaris", "židinys", "šešėlis"]
                           }
                         ],
                         zidinys: [
@@ -92,16 +92,16 @@
                             options: ["židinys", "šešėlis", "šventvakaris"]
                           },
                           {
-                            sentence: "Sėdime prie ___ ir geriame kisielių.",
-                            translationRu: "Мы сидим у очага и пьём кисель.",
-                            answer: "židinio",
-                            options: ["židinio", "šešėlio", "šventvakario"]
-                          },
-                          {
                             sentence: "Tėvelis kūrena ___.",
                             translationRu: "Папа топит очаг.",
                             answer: "židinį",
                             options: ["židinį", "šešėlį", "šventvakarį"]
+                          },
+                          {
+                            sentence: "___ šildo kambarį.",
+                            translationRu: "Очаг согревает комнату.",
+                            answer: "židinys",
+                            options: ["židinys", "šešėlis", "šventvakaris"]
                           }
                         ],
                         jungtis: [
@@ -118,10 +118,10 @@
                             options: ["jungtį", "židinį", "šešėlį"]
                           },
                           {
-                            sentence: "Nėra laido ___, todėl televizorius neveikia.",
-                            translationRu: "Нет соединения провода, поэтому телевизор не работает.",
-                            answer: "jungties",
-                            options: ["jungties", "židinio", "šešėlio"]
+                            sentence: "___ laiko laidą vietoje.",
+                            translationRu: "Соединение держит провод на месте.",
+                            answer: "jungtis",
+                            options: ["jungtis", "židinys", "šešėlis"]
                           }
                         ],
                         gardu: [
@@ -158,10 +158,10 @@
                             options: ["pūtinas", "kanapė", "šešėlis"]
                           },
                           {
-                            sentence: "Nėra ___, todėl nėra uogų.",
-                            translationRu: "Нет калины, поэтому нет ягод.",
-                            answer: "pūtino",
-                            options: ["pūtino", "kanapės", "šešėlio"]
+                            sentence: "Aš matau ___ prie tvoros.",
+                            translationRu: "Я вижу калину у забора.",
+                            answer: "pūtiną",
+                            options: ["pūtiną", "kanapę", "židinį"]
                           }
                         ],
                         kanape: [
@@ -172,16 +172,16 @@
                             options: ["kanapę", "pūtiną", "židinį"]
                           },
                           {
-                            sentence: "Ant stalo nėra ___.",
-                            translationRu: "На столе нет конопли.",
-                            answer: "kanapės",
-                            options: ["kanapės", "pūtino", "židinio"]
-                          },
-                          {
                             sentence: "___ yra augalas, o agurkas yra daržovė.",
                             translationRu: "Конопля — растение, а огурец — овощ.",
                             answer: "kanapė",
                             options: ["kanapė", "pūtinas", "židinys"]
+                          },
+                          {
+                            sentence: "Mama sodina ___ prie tvoros.",
+                            translationRu: "Мама сажает коноплю возле забора.",
+                            answer: "kanapę",
+                            options: ["kanapę", "pūtiną", "židinį"]
                           }
                         ],
                         seselis: [
@@ -198,30 +198,30 @@
                             options: ["šešėlį", "židinį", "šventvakarį"]
                           },
                           {
-                            sentence: "Nėra ___, todėl saulė šviečia.",
-                            translationRu: "Нет тени, поэтому светит солнце.",
-                            answer: "šešėlio",
-                            options: ["šešėlio", "židinio", "šventvakario"]
+                            sentence: "___ vėsina takelį.",
+                            translationRu: "Тень охлаждает тропинку.",
+                            answer: "šešėlis",
+                            options: ["šešėlis", "židinys", "šventvakaris"]
                           }
                         ],
                         salygos: [
                           {
-                            sentence: "Žaidimo ___ yra paprastos.",
-                            translationRu: "Условия игры простые.",
-                            answer: "sąlygos",
-                            options: ["sąlygos", "kūčios", "kanapės"]
+                            sentence: "Žaidimo ___ yra paprasta.",
+                            translationRu: "Условие игры простое.",
+                            answer: "sąlyga",
+                            options: ["sąlyga", "kūčia", "kanapė"]
                           },
                           {
                             sentence: "Mamytė keičia ___ namuose.",
-                            translationRu: "Мама меняет условия дома.",
-                            answer: "sąlygas",
-                            options: ["sąlygas", "kūčias", "kanapes"]
+                            translationRu: "Мама меняет условие дома.",
+                            answer: "sąlygą",
+                            options: ["sąlygą", "kūčią", "kanapę"]
                           },
                           {
-                            sentence: "Nėra gerų ___, todėl neperkame saldainių.",
-                            translationRu: "Нет хороших условий, поэтому мы не покупаем конфеты.",
-                            answer: "sąlygų",
-                            options: ["sąlygų", "kūčių", "kanapių"]
+                            sentence: "Aš suprantu ___.",
+                            translationRu: "Я понимаю условие.",
+                            answer: "sąlygą",
+                            options: ["sąlygą", "kūčią", "kanapę"]
                           }
                         ]
                       };
@@ -230,7 +230,7 @@
         title: document.title,
         wordSet,
         gapFillVariants,
-        testVersion: "1.3.1"
+        testVersion: "1.3.2"
       };
     </script>
     <script src="../lib/lt-test-runner.js"></script>
