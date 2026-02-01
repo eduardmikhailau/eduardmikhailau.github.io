@@ -20,7 +20,8 @@
                           { id: "salieras", lt: "salieras", ru: "сельдерей" },
                           { id: "aguona", lt: "aguona", ru: "мак" },
                           { id: "cinamonas", lt: "cinamonas", ru: "корица" },
-                          { id: "vanile", lt: "vanilė", ru: "ваниль" }
+                          { id: "vanile", lt: "vanilė", ru: "ваниль" },
+                          { id: "gaminti", lt: "gaminti", ru: "готовить" }
                         ]
                       };
       const gapFillVariants = {
@@ -223,6 +224,26 @@
                             answer: "vanilės",
                             options: ["vanilės", "mėtos", "petražolės"]
                           }
+                        ],
+                        gaminti: [
+                          {
+                            sentence: "Aš mokausi ___ vakarienę.",
+                            translationRu: "Я учусь готовить ужин.",
+                            answer: "gaminti",
+                            options: ["gaminti", "virti", "kepti"]
+                          },
+                          {
+                            sentence: "Mama mėgsta ___ sriubą.",
+                            translationRu: "Мама любит готовить суп.",
+                            answer: "gaminti",
+                            options: ["gaminti", "virti", "ragauti"]
+                          },
+                          {
+                            sentence: "Mes norime ___ vištieną.",
+                            translationRu: "Мы хотим готовить курятину.",
+                            answer: "gaminti",
+                            options: ["gaminti", "kepti", "virti"]
+                          }
                         ]
                       };
 
@@ -230,7 +251,7 @@
         title: document.title,
         wordSet,
         gapFillVariants,
-        testVersion: "1.0.0"
+        testVersion: "1.1.0"
       };
     </script>
     <script src="./lib/lt-test-runner.js"></script>
