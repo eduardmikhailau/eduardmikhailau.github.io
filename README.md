@@ -57,7 +57,9 @@ GitHub Pages: https://eduardmikhailau.github.io/ (tests under `tests/`).
 - [4.4 Duona ir saldumynai](https://eduardmikhailau.github.io/tests/4.4-duona-saldumynai.html)
 - [4.4.1 Duona ir saldumynai (įnagininkas)](https://eduardmikhailau.github.io/tests/4.4.1-duona-saldumynai-inagininkas.html)
 - [4.5 Vaisiai ir uogos](https://eduardmikhailau.github.io/tests/4.5-vaisiai-uogos.html)
+- [4.5.1 Vaisiai ir uogos (įnagininkas)](https://eduardmikhailau.github.io/tests/4.5.1-vaisiai-uogos-inagininkas.html)
 - [4.6 Daržovės ir riešutai](https://eduardmikhailau.github.io/tests/4.6-darzoves-riesutai.html)
+- [4.6.1 Daržovės ir riešutai (įnagininkas)](https://eduardmikhailau.github.io/tests/4.6.1-darzoves-riesutai-inagininkas.html)
 - [4.7 Kitos maisto prekės](https://eduardmikhailau.github.io/tests/4.7-kitos-maisto-prekes.html)
 - [4.8 Prieskoniai](https://eduardmikhailau.github.io/tests/4.8-prieskoniai.html)
 

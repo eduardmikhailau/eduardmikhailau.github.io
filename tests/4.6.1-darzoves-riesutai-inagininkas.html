@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.6.1 Daržovės ir riešutai (įnagininkas) — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+        topic: "Daržovės ir riešutai (įnagininkas)",
+        words: [
+          { id: "graikinis", lt: "graikinis", ru: "грецкий" },
+          { id: "lazdyno", lt: "lazdyno", ru: "лещиновый" },
+          { id: "zemes", lt: "žemės", ru: "земляной" },
+          { id: "ziedinis", lt: "žiedinis", ru: "цветной" },
+          { id: "riesutas", lt: "riešutas", ru: "орех" },
+          { id: "riesutai", lt: "riešutai", ru: "орехи" },
+          { id: "migdolas", lt: "migdolas", ru: "миндальный орех" },
+          { id: "morka", lt: "morka", ru: "морковка" },
+          { id: "morkos", lt: "morkos", ru: "морковки" },
+          { id: "moliugas", lt: "moliūgas", ru: "тыква" },
+          { id: "kopustas", lt: "kopūstas", ru: "кочан капусты" },
+          { id: "pupele", lt: "pupelė", ru: "фасолина" },
+          { id: "agurkas", lt: "agurkas", ru: "огурец" },
+          { id: "agurkai", lt: "agurkai", ru: "огурцы" },
+          { id: "burokelis", lt: "burokėlis", ru: "свёкла" },
+          { id: "svogunas", lt: "svogūnas", ru: "луковица" },
+          { id: "salotos", lt: "salotos", ru: "листья салата" },
+          { id: "baklazanas", lt: "baklažanas", ru: "баклажан" },
+          { id: "brokolis", lt: "brokoliai", ru: "кочаны брокколи" },
+          { id: "cukinija", lt: "cukinija", ru: "кабачок" },
+          { id: "pomidoras", lt: "pomidoras", ru: "помидор" },
+          { id: "pomidorai", lt: "pomidorai", ru: "помидоры" },
+          { id: "zirnis", lt: "žirnis", ru: "горошина" },
+          { id: "cesnakas", lt: "česnakas", ru: "зубчик чеснока" },
+          { id: "bulve", lt: "bulvė", ru: "картофелина" }
+        ]
+      };
+      const gapFillVariants = {
+        graikinis: [
+          {
+            sentence: "Salotos su ___ riešutu yra traškios.",
+            translationRu: "Салат с грецким орехом хрустящий.",
+            answer: "graikiniu",
+            options: ["graikiniu", "lazdyno", "žemės"]
+          },
+          {
+            sentence: "Pyragas su ___ riešutu greitai dingsta.",
+            translationRu: "Пирог с грецким орехом быстро исчезает.",
+            answer: "graikiniu",
+            options: ["graikiniu", "lazdyno", "žemės"]
+          },
+          {
+            sentence: "Man patinka užkandis su ___ riešutu.",
+            translationRu: "Мне нравится перекус с грецким орехом.",
+            answer: "graikiniu",
+            options: ["graikiniu", "lazdyno", "žemės"]
+          }
+        ],
+        lazdyno: [
+          {
+            sentence: "Jogurtas su ___ riešutu yra skanus.",
+            translationRu: "Йогурт с лещиновым орехом вкусный.",
+            answer: "lazdyno",
+            options: ["lazdyno", "graikiniu", "žemės"]
+          },
+          {
+            sentence: "Sūnus renkasi sausainį su ___ riešutu.",
+            translationRu: "Сын выбирает печенье с лещиновым орехом.",
+            answer: "lazdyno",
+            options: ["lazdyno", "graikiniu", "žemės"]
+          },
+          {
+            sentence: "Arbata su ___ riešutu kvepia.",
+            translationRu: "Чай с лещиновым орехом пахнет.",
+            answer: "lazdyno",
+            options: ["lazdyno", "graikiniu", "žemės"]
+          }
+        ],
+        zemes: [
+          {
+            sentence: "Sumuštinis su ___ riešutu sotus.",
+            translationRu: "Бутерброд с земляным орехом сытный.",
+            answer: "žemės",
+            options: ["žemės", "graikiniu", "lazdyno"]
+          },
+          {
+            sentence: "Padažas su ___ riešutu tinka salotoms.",
+            translationRu: "Соус с земляным орехом подходит для салата.",
+            answer: "žemės",
+            options: ["žemės", "graikiniu", "lazdyno"]
+          },
+          {
+            sentence: "Desertas su ___ riešutu yra saldus.",
+            translationRu: "Десерт с земляным орехом сладкий.",
+            answer: "žemės",
+            options: ["žemės", "graikiniu", "lazdyno"]
+          }
+        ],
+        ziedinis: [
+          {
+            sentence: "Troškinys su ___ kopūstu labai skanus.",
+            translationRu: "Рагу с цветной капустой очень вкусное.",
+            answer: "žiediniu",
+            options: ["žiediniu", "graikiniu", "žemės"]
+          },
+          {
+            sentence: "Vakarienei valgome ryžius su ___ kopūstu.",
+            translationRu: "На ужин мы едим рис с цветной капустой.",
+            answer: "žiediniu",
+            options: ["žiediniu", "graikiniu", "žemės"]
+          },
+          {
+            sentence: "Pietums renkuosi sriubą su ___ kopūstu.",
+            translationRu: "На обед я выбираю суп с цветной капустой.",
+            answer: "žiediniu",
+            options: ["žiediniu", "graikiniu", "žemės"]
+          }
+        ],
+        riesutas: [
+          {
+            sentence: "Užkandis su ___ tinka mokykloje.",
+            translationRu: "Перекус с орехом подходит в школе.",
+            answer: "riešutu",
+            options: ["riešutu", "migdolu", "agurku"]
+          },
+          {
+            sentence: "Kava su ___ man patinka.",
+            translationRu: "Кофе с орехом мне нравится.",
+            answer: "riešutu",
+            options: ["riešutu", "migdolu", "agurku"]
+          },
+          {
+            sentence: "Desertas su ___ yra saldus.",
+            translationRu: "Десерт с орехом сладкий.",
+            answer: "riešutu",
+            options: ["riešutu", "migdolu", "agurku"]
+          }
+        ],
+        riesutai: [
+          {
+            sentence: "Vaikai dalijasi ___ per pertrauką.",
+            translationRu: "Дети делятся орехами на перемене.",
+            answer: "riešutais",
+            options: ["riešutais", "migdolais", "agurkais"]
+          },
+          {
+            sentence: "Salotos su ___ yra sotios.",
+            translationRu: "Салат с орехами сытный.",
+            answer: "riešutais",
+            options: ["riešutais", "migdolais", "agurkais"]
+          },
+          {
+            sentence: "Mes vaišinamės ___ vakare.",
+            translationRu: "Мы угощаемся орехами вечером.",
+            answer: "riešutais",
+            options: ["riešutais", "migdolais", "agurkais"]
+          }
+        ],
+        migdolas: [
+          {
+            sentence: "Jogurtas su ___ yra švelnus.",
+            translationRu: "Йогурт с миндальным орехом нежный.",
+            answer: "migdolu",
+            options: ["migdolu", "riešutu", "agurku"]
+          },
+          {
+            sentence: "Sausainis su ___ kvepia.",
+            translationRu: "Печенье с миндальным орехом пахнет.",
+            answer: "migdolu",
+            options: ["migdolu", "riešutu", "agurku"]
+          },
+          {
+            sentence: "Desertas su ___ patinka mamai.",
+            translationRu: "Десерт с миндальным орехом нравится маме.",
+            answer: "migdolu",
+            options: ["migdolu", "riešutu", "agurku"]
+          }
+        ],
+        morka: [
+          {
+            sentence: "Sriuba su ___ yra karšta.",
+            translationRu: "Суп с морковкой горячий.",
+            answer: "morka",
+            options: ["morka", "cukinija", "bulve"]
+          },
+          {
+            sentence: "Troškinys su ___ kvepia.",
+            translationRu: "Рагу с морковкой пахнет.",
+            answer: "morka",
+            options: ["morka", "cukinija", "bulve"]
+          },
+          {
+            sentence: "Salotos su ___ tinka pietums.",
+            translationRu: "Салат с морковкой подходит для обеда.",
+            answer: "morka",
+            options: ["morka", "cukinija", "bulve"]
+          }
+        ],
+        morkos: [
+          {
+            sentence: "Vaikai dalijasi ___.",
+            translationRu: "Дети делятся морковками.",
+            answer: "morkomis",
+            options: ["morkomis", "agurkais", "pomidorais"]
+          },
+          {
+            sentence: "Salotos su ___ yra gaivios.",
+            translationRu: "Салат с морковками свежий.",
+            answer: "morkomis",
+            options: ["morkomis", "agurkais", "pomidorais"]
+          },
+          {
+            sentence: "Pietums valgome sriubą su ___.",
+            translationRu: "На обед мы едим суп с морковками.",
+            answer: "morkomis",
+            options: ["morkomis", "agurkais", "pomidorais"]
+          }
+        ],
+        moliugas: [
+          {
+            sentence: "Košė su ___ šildo.",
+            translationRu: "Каша с тыквой согревает.",
+            answer: "moliūgu",
+            options: ["moliūgu", "agurku", "burokėliu"]
+          },
+          {
+            sentence: "Pyragas su ___ kvepia namais.",
+            translationRu: "Пирог с тыквой пахнет домом.",
+            answer: "moliūgu",
+            options: ["moliūgu", "agurku", "burokėliu"]
+          },
+          {
+            sentence: "Troškinys su ___ tinka vakarui.",
+            translationRu: "Рагу с тыквой подходит для вечера.",
+            answer: "moliūgu",
+            options: ["moliūgu", "agurku", "burokėliu"]
+          }
+        ],
+        kopustas: [
+          {
+            sentence: "Mama grįžta iš turgaus su ___.",
+            translationRu: "Мама возвращается с рынка с кочаном капусты.",
+            answer: "kopūstu",
+            options: ["kopūstu", "moliūgu", "agurku"]
+          },
+          {
+            sentence: "Aš einu namo su ___.",
+            translationRu: "Я иду домой с кочаном капусты.",
+            answer: "kopūstu",
+            options: ["kopūstu", "moliūgu", "agurku"]
+          },
+          {
+            sentence: "Stoviu prie durų su ___.",
+            translationRu: "Я стою у двери с кочаном капусты.",
+            answer: "kopūstu",
+            options: ["kopūstu", "moliūgu", "agurku"]
+          }
+        ],
+        pupele: [
+          {
+            sentence: "Sriuba su viena ___ yra lengva.",
+            translationRu: "Суп с одной фасолиной лёгкий.",
+            answer: "pupele",
+            options: ["pupele", "morka", "bulve"]
+          },
+          {
+            sentence: "Salotos su viena ___ tinka vakarui.",
+            translationRu: "Салат с одной фасолиной подходит для вечера.",
+            answer: "pupele",
+            options: ["pupele", "morka", "bulve"]
+          },
+          {
+            sentence: "Ryžiai su viena ___ man patinka.",
+            translationRu: "Рис с одной фасолиной мне нравится.",
+            answer: "pupele",
+            options: ["pupele", "morka", "bulve"]
+          }
+        ],
+        agurkas: [
+          {
+            sentence: "Sumuštinis su ___ šviežias.",
+            translationRu: "Бутерброд с огурцом свежий.",
+            answer: "agurku",
+            options: ["agurku", "pomidoru", "burokėliu"]
+          },
+          {
+            sentence: "Salotos su ___ yra žalios.",
+            translationRu: "Салат с огурцом зелёный.",
+            answer: "agurku",
+            options: ["agurku", "pomidoru", "burokėliu"]
+          },
+          {
+            sentence: "Lėkštė su ___ stovi ant stalo.",
+            translationRu: "Тарелка с огурцом стоит на столе.",
+            answer: "agurku",
+            options: ["agurku", "pomidoru", "burokėliu"]
+          }
+        ],
+        agurkai: [
+          {
+            sentence: "Vaikai dalijasi ___.",
+            translationRu: "Дети делятся огурцами.",
+            answer: "agurkais",
+            options: ["agurkais", "pomidorais", "brokoliais"]
+          },
+          {
+            sentence: "Salotos su ___ tinka pietums.",
+            translationRu: "Салат с огурцами подходит для обеда.",
+            answer: "agurkais",
+            options: ["agurkais", "pomidorais", "brokoliais"]
+          },
+          {
+            sentence: "Mes valgome sumuštinius su ___.",
+            translationRu: "Мы едим бутерброды с огурцами.",
+            answer: "agurkais",
+            options: ["agurkais", "pomidorais", "brokoliais"]
+          }
+        ],
+        burokelis: [
+          {
+            sentence: "Salotos su ___ yra ryškios.",
+            translationRu: "Салат со свёклой яркий.",
+            answer: "burokėliu",
+            options: ["burokėliu", "agurku", "pomidoru"]
+          },
+          {
+            sentence: "Sriuba su ___ šilta.",
+            translationRu: "Суп со свёклой тёплый.",
+            answer: "burokėliu",
+            options: ["burokėliu", "agurku", "pomidoru"]
+          },
+          {
+            sentence: "Troškinys su ___ tinka pietums.",
+            translationRu: "Рагу со свёклой подходит для обеда.",
+            answer: "burokėliu",
+            options: ["burokėliu", "agurku", "pomidoru"]
+          }
+        ],
+        svogunas: [
+          {
+            sentence: "Sriuba su ___ kvepia.",
+            translationRu: "Суп с луковицей пахнет.",
+            answer: "svogūnu",
+            options: ["svogūnu", "česnaku", "agurku"]
+          },
+          {
+            sentence: "Troškinys su ___ skanus.",
+            translationRu: "Рагу с луковицей вкусное.",
+            answer: "svogūnu",
+            options: ["svogūnu", "česnaku", "agurku"]
+          },
+          {
+            sentence: "Salotos su ___ yra aštrios.",
+            translationRu: "Салат с луковицей острый.",
+            answer: "svogūnu",
+            options: ["svogūnu", "česnaku", "agurku"]
+          }
+        ],
+        salotos: [
+          {
+            sentence: "Sumuštinis su ___ šviežias.",
+            translationRu: "Бутерброд с листьями салата свежий.",
+            answer: "salotomis",
+            options: ["salotomis", "morkomis", "agurkais"]
+          },
+          {
+            sentence: "Vakarienei valgome vištieną su ___.",
+            translationRu: "На ужин мы едим курицу с листьями салата.",
+            answer: "salotomis",
+            options: ["salotomis", "morkomis", "agurkais"]
+          },
+          {
+            sentence: "Pietums renkuosi žuvį su ___.",
+            translationRu: "На обед я выбираю рыбу с листьями салата.",
+            answer: "salotomis",
+            options: ["salotomis", "morkomis", "agurkais"]
+          }
+        ],
+        baklazanas: [
+          {
+            sentence: "Troškinys su ___ skanus.",
+            translationRu: "Рагу с баклажаном вкусное.",
+            answer: "baklažanu",
+            options: ["baklažanu", "cukinija", "pomidoru"]
+          },
+          {
+            sentence: "Salotos su ___ yra sotios.",
+            translationRu: "Салат с баклажаном сытный.",
+            answer: "baklažanu",
+            options: ["baklažanu", "cukinija", "pomidoru"]
+          },
+          {
+            sentence: "Ryžiai su ___ tinka vakarui.",
+            translationRu: "Рис с баклажаном подходит для вечера.",
+            answer: "baklažanu",
+            options: ["baklažanu", "cukinija", "pomidoru"]
+          }
+        ],
+        brokolis: [
+          {
+            sentence: "Sriuba su ___ šilta.",
+            translationRu: "Суп с кочанами брокколи тёплый.",
+            answer: "brokoliais",
+            options: ["brokoliais", "agurkais", "pomidorais"]
+          },
+          {
+            sentence: "Salotos su ___ yra žalios.",
+            translationRu: "Салат с кочанами брокколи зелёный.",
+            answer: "brokoliais",
+            options: ["brokoliais", "agurkais", "pomidorais"]
+          },
+          {
+            sentence: "Daržovės su ___ tinka pietums.",
+            translationRu: "Овощи с кочанами брокколи подходят для обеда.",
+            answer: "brokoliais",
+            options: ["brokoliais", "agurkais", "pomidorais"]
+          }
+        ],
+        cukinija: [
+          {
+            sentence: "Troškinys su ___ švelnus.",
+            translationRu: "Рагу с кабачком нежное.",
+            answer: "cukinija",
+            options: ["cukinija", "baklažanu", "moliūgu"]
+          },
+          {
+            sentence: "Blynai su ___ skanūs.",
+            translationRu: "Блинчики с кабачком вкусные.",
+            answer: "cukinija",
+            options: ["cukinija", "baklažanu", "moliūgu"]
+          },
+          {
+            sentence: "Ryžiai su ___ tinka pietums.",
+            translationRu: "Рис с кабачком подходит для обеда.",
+            answer: "cukinija",
+            options: ["cukinija", "baklažanu", "moliūgu"]
+          }
+        ],
+        pomidoras: [
+          {
+            sentence: "Sumuštinis su ___ skanus.",
+            translationRu: "Бутерброд с помидором вкусный.",
+            answer: "pomidoru",
+            options: ["pomidoru", "agurku", "burokėliu"]
+          },
+          {
+            sentence: "Salotos su ___ yra gaivios.",
+            translationRu: "Салат с помидором свежий.",
+            answer: "pomidoru",
+            options: ["pomidoru", "agurku", "burokėliu"]
+          },
+          {
+            sentence: "Sriuba su ___ karšta.",
+            translationRu: "Суп с помидором горячий.",
+            answer: "pomidoru",
+            options: ["pomidoru", "agurku", "burokėliu"]
+          }
+        ],
+        pomidorai: [
+          {
+            sentence: "Vaikai dalijasi ___.",
+            translationRu: "Дети делятся помидорами.",
+            answer: "pomidorais",
+            options: ["pomidorais", "agurkais", "brokoliais"]
+          },
+          {
+            sentence: "Salotos su ___ tinka pietums.",
+            translationRu: "Салат с помидорами подходит для обеда.",
+            answer: "pomidorais",
+            options: ["pomidorais", "agurkais", "brokoliais"]
+          },
+          {
+            sentence: "Mes valgome sumuštinius su ___.",
+            translationRu: "Мы едим бутерброды с помидорами.",
+            answer: "pomidorais",
+            options: ["pomidorais", "agurkais", "brokoliais"]
+          }
+        ],
+        zirnis: [
+          {
+            sentence: "Sriuba su vienu ___ šilta.",
+            translationRu: "Суп с одной горошиной тёплый.",
+            answer: "žirniu",
+            options: ["žirniu", "pupele", "morka"]
+          },
+          {
+            sentence: "Salotos su vienu ___ yra lengvos.",
+            translationRu: "Салат с одной горошиной лёгкий.",
+            answer: "žirniu",
+            options: ["žirniu", "pupele", "morka"]
+          },
+          {
+            sentence: "Ryžiai su vienu ___ tinka vakarui.",
+            translationRu: "Рис с одной горошиной подходит для вечера.",
+            answer: "žirniu",
+            options: ["žirniu", "pupele", "morka"]
+          }
+        ],
+        cesnakas: [
+          {
+            sentence: "Duona su ___ kvepia.",
+            translationRu: "Хлеб с зубчиком чеснока пахнет.",
+            answer: "česnaku",
+            options: ["česnaku", "svogūnu", "agurku"]
+          },
+          {
+            sentence: "Sriuba su ___ šildo.",
+            translationRu: "Суп с зубчиком чеснока согревает.",
+            answer: "česnaku",
+            options: ["česnaku", "svogūnu", "agurku"]
+          },
+          {
+            sentence: "Padažas su ___ yra aštrus.",
+            translationRu: "Соус с зубчиком чеснока острый.",
+            answer: "česnaku",
+            options: ["česnaku", "svogūnu", "agurku"]
+          }
+        ],
+        bulve: [
+          {
+            sentence: "Troškinys su viena ___ sotus.",
+            translationRu: "Рагу с одной картофелиной сытное.",
+            answer: "bulve",
+            options: ["bulve", "morka", "cukinija"]
+          },
+          {
+            sentence: "Sriuba su viena ___ šilta.",
+            translationRu: "Суп с одной картофелиной тёплый.",
+            answer: "bulve",
+            options: ["bulve", "morka", "cukinija"]
+          },
+          {
+            sentence: "Pietums valgau mėsą su viena ___.",
+            translationRu: "На обед я ем мясо с одной картофелиной.",
+            answer: "bulve",
+            options: ["bulve", "morka", "cukinija"]
+          }
+        ]
+      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.0"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

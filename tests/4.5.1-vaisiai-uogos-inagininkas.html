@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.5.1 Vaisiai ir uogos (įnagininkas) — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+        topic: "Vaisiai ir uogos (įnagininkas)",
+        words: [
+          { id: "aviete", lt: "avietė", ru: "ягода малины" },
+          { id: "serbentas", lt: "serbentas", ru: "ягода смородины" },
+          { id: "vynuoge", lt: "vynuogė", ru: "виноградина" },
+          { id: "kivis", lt: "kivis", ru: "плод киви" },
+          { id: "mandarinas", lt: "mandarinas", ru: "мандарин" },
+          { id: "mandarinai", lt: "mandarinai", ru: "мандарины" },
+          { id: "brukne", lt: "bruknė", ru: "ягода брусники" },
+          { id: "melyne", lt: "mėlynė", ru: "ягода черники" },
+          { id: "spanguole", lt: "spanguolė", ru: "ягода клюквы" },
+          { id: "zemuoge", lt: "žemuogė", ru: "ягода земляники" },
+          { id: "kriause", lt: "kriaušė", ru: "груша" },
+          { id: "kriauses", lt: "kriaušės", ru: "груши" },
+          { id: "obuolys", lt: "obuolys", ru: "яблоко" },
+          { id: "obuoliai", lt: "obuoliai", ru: "яблоки" },
+          { id: "slyva", lt: "slyva", ru: "слива" },
+          { id: "slyvos", lt: "slyvos", ru: "сливы" },
+          { id: "vysnia", lt: "vyšnia", ru: "вишня" },
+          { id: "vysnios", lt: "vyšnios", ru: "вишни" },
+          { id: "bananas", lt: "bananas", ru: "банан" },
+          { id: "bananai", lt: "bananai", ru: "бананы" },
+          { id: "citrina", lt: "citrina", ru: "лимон" },
+          { id: "citrinos", lt: "citrinos", ru: "лимоны" },
+          { id: "apelsinas", lt: "apelsinas", ru: "апельсин" },
+          { id: "apelsinai", lt: "apelsinai", ru: "апельсины" },
+          { id: "braske", lt: "braškė", ru: "ягода клубники" }
+        ]
+      };
+      const gapFillVariants = {
+        aviete: [
+          {
+            sentence: "Pusryčiams valgau jogurtą su ___.",
+            translationRu: "На завтрак я ем йогурт с ягодой малины.",
+            answer: "aviete",
+            options: ["aviete", "braške", "mėlyne"]
+          },
+          {
+            sentence: "Mama kepa pyragą su ___.",
+            translationRu: "Мама печёт пирог с ягодой малины.",
+            answer: "aviete",
+            options: ["aviete", "braške", "mėlyne"]
+          },
+          {
+            sentence: "Kavinėje renkuosi desertą su ___.",
+            translationRu: "В кафе я выбираю десерт с ягодой малины.",
+            answer: "aviete",
+            options: ["aviete", "braške", "mėlyne"]
+          }
+        ],
+        serbentas: [
+          {
+            sentence: "Senelis vaišina mus pyragu su ___.",
+            translationRu: "Дедушка угощает нас пирогом с ягодой смородины.",
+            answer: "serbentu",
+            options: ["serbentu", "aviete", "mėlyne"]
+          },
+          {
+            sentence: "Per pietus valgome varškę su ___.",
+            translationRu: "В обед мы едим творог с ягодой смородины.",
+            answer: "serbentu",
+            options: ["serbentu", "aviete", "mėlyne"]
+          },
+          {
+            sentence: "Parduotuvėje perku jogurtą su ___.",
+            translationRu: "В магазине я покупаю йогурт с ягодой смородины.",
+            answer: "serbentu",
+            options: ["serbentu", "aviete", "mėlyne"]
+          }
+        ],
+        vynuoge: [
+          {
+            sentence: "Pyragaitis su ___ man patinka.",
+            translationRu: "Пирожное с виноградиной мне нравится.",
+            answer: "vynuoge",
+            options: ["vynuoge", "kriauše", "slyva"]
+          },
+          {
+            sentence: "Vaisių salotos su ___ yra gaivios.",
+            translationRu: "Фруктовый салат с виноградиной свежий.",
+            answer: "vynuoge",
+            options: ["vynuoge", "kriauše", "slyva"]
+          },
+          {
+            sentence: "Ant stalo yra desertas su ___.",
+            translationRu: "На столе есть десерт с виноградиной.",
+            answer: "vynuoge",
+            options: ["vynuoge", "kriauše", "slyva"]
+          }
+        ],
+        kivis: [
+          {
+            sentence: "Ryte geriu kokteilį su ___.",
+            translationRu: "Утром я пью коктейль с плодом киви.",
+            answer: "kiviu",
+            options: ["kiviu", "bananu", "apelsinu"]
+          },
+          {
+            sentence: "Mama gamina salotas su ___.",
+            translationRu: "Мама готовит салат с плодом киви.",
+            answer: "kiviu",
+            options: ["kiviu", "bananu", "apelsinu"]
+          },
+          {
+            sentence: "Pyragas su ___ dingsta greitai.",
+            translationRu: "Пирог с плодом киви быстро исчезает.",
+            answer: "kiviu",
+            options: ["kiviu", "bananu", "apelsinu"]
+          }
+        ],
+        mandarinas: [
+          {
+            sentence: "Po pamokų užkandžiauju varške su ___.",
+            translationRu: "После уроков я перекусываю творогом с мандарином.",
+            answer: "mandarinu",
+            options: ["mandarinu", "apelsinu", "bananu"]
+          },
+          {
+            sentence: "Arbata su ___ kvepia.",
+            translationRu: "Чай с мандарином пахнет.",
+            answer: "mandarinu",
+            options: ["mandarinu", "apelsinu", "bananu"]
+          },
+          {
+            sentence: "Tėtis perka jogurtą su ___.",
+            translationRu: "Папа покупает йогурт с мандарином.",
+            answer: "mandarinu",
+            options: ["mandarinu", "apelsinu", "bananu"]
+          }
+        ],
+        mandarinai: [
+          {
+            sentence: "Vaikai vaišinasi ___ per šventę.",
+            translationRu: "Дети угощаются мандаринами на празднике.",
+            answer: "mandarinais",
+            options: ["mandarinais", "apelsinais", "bananais"]
+          },
+          {
+            sentence: "Krepšys su ___ stovi virtuvėje.",
+            translationRu: "Сумка с мандаринами стоит на кухне.",
+            answer: "mandarinais",
+            options: ["mandarinais", "apelsinais", "bananais"]
+          },
+          {
+            sentence: "Salotos su ___ yra ryškios.",
+            translationRu: "Салат с мандаринами яркий.",
+            answer: "mandarinais",
+            options: ["mandarinais", "apelsinais", "bananais"]
+          }
+        ],
+        brukne: [
+          {
+            sentence: "Arbata su ___ padeda, kai šalta.",
+            translationRu: "Чай с ягодой брусники помогает, когда холодно.",
+            answer: "brukne",
+            options: ["brukne", "spanguole", "mėlyne"]
+          },
+          {
+            sentence: "Senelė verda košę su ___.",
+            translationRu: "Бабушка варит кашу с ягодой брусники.",
+            answer: "brukne",
+            options: ["brukne", "spanguole", "mėlyne"]
+          },
+          {
+            sentence: "Jogurtas su ___ yra rūgštokas.",
+            translationRu: "Йогурт с ягодой брусники кисловатый.",
+            answer: "brukne",
+            options: ["brukne", "spanguole", "mėlyne"]
+          }
+        ],
+        melyne: [
+          {
+            sentence: "Blyneliai su ___ tinka pusryčiams.",
+            translationRu: "Блинчики с ягодой черники подходят для завтрака.",
+            answer: "mėlyne",
+            options: ["mėlyne", "aviete", "braške"]
+          },
+          {
+            sentence: "Sūnus renkasi jogurtą su ___.",
+            translationRu: "Сын выбирает йогурт с ягодой черники.",
+            answer: "mėlyne",
+            options: ["mėlyne", "aviete", "braške"]
+          },
+          {
+            sentence: "Ant stalo yra varškė su ___.",
+            translationRu: "На столе есть творог с ягодой черники.",
+            answer: "mėlyne",
+            options: ["mėlyne", "aviete", "braške"]
+          }
+        ],
+        spanguole: [
+          {
+            sentence: "Vakarienei geriame arbatą su ___.",
+            translationRu: "На ужин мы пьём чай с ягодой клюквы.",
+            answer: "spanguole",
+            options: ["spanguole", "brukne", "žemuoge"]
+          },
+          {
+            sentence: "Padažas su ___ tinka prie mėsos.",
+            translationRu: "Соус с ягодой клюквы подходит к мясу.",
+            answer: "spanguole",
+            options: ["spanguole", "brukne", "žemuoge"]
+          },
+          {
+            sentence: "Aš valgau košę su ___.",
+            translationRu: "Я ем кашу с ягодой клюквы.",
+            answer: "spanguole",
+            options: ["spanguole", "brukne", "žemuoge"]
+          }
+        ],
+        zemuoge: [
+          {
+            sentence: "Ledai su ___ yra mano mėgstami.",
+            translationRu: "Мороженое с ягодой земляники - моё любимое.",
+            answer: "žemuoge",
+            options: ["žemuoge", "aviete", "braške"]
+          },
+          {
+            sentence: "Mama kepa blynus su ___.",
+            translationRu: "Мама печёт блины с ягодой земляники.",
+            answer: "žemuoge",
+            options: ["žemuoge", "aviete", "braške"]
+          },
+          {
+            sentence: "Desertas su ___ greitai dingsta.",
+            translationRu: "Десерт с ягодой земляники быстро исчезает.",
+            answer: "žemuoge",
+            options: ["žemuoge", "aviete", "braške"]
+          }
+        ],
+        kriause: [
+          {
+            sentence: "Sultys su ___ yra saldžios.",
+            translationRu: "Сок с грушей сладкий.",
+            answer: "kriauše",
+            options: ["kriauše", "obuoliu", "slyva"]
+          },
+          {
+            sentence: "Pusryčiams valgau košę su ___.",
+            translationRu: "На завтрак я ем кашу с грушей.",
+            answer: "kriauše",
+            options: ["kriauše", "obuoliu", "slyva"]
+          },
+          {
+            sentence: "Kavinėje renkuosi pyragą su ___.",
+            translationRu: "В кафе я выбираю пирог с грушей.",
+            answer: "kriauše",
+            options: ["kriauše", "obuoliu", "slyva"]
+          }
+        ],
+        kriauses: [
+          {
+            sentence: "Vaikai dalijasi ___ po pamokų.",
+            translationRu: "Дети делятся грушами после уроков.",
+            answer: "kriaušėmis",
+            options: ["kriaušėmis", "obuoliais", "apelsinais"]
+          },
+          {
+            sentence: "Lėkštė su ___ stovi ant stalo.",
+            translationRu: "Тарелка с грушами стоит на столе.",
+            answer: "kriaušėmis",
+            options: ["kriaušėmis", "obuoliais", "apelsinais"]
+          },
+          {
+            sentence: "Salotos su ___ yra gaivios.",
+            translationRu: "Салат с грушами свежий.",
+            answer: "kriaušėmis",
+            options: ["kriaušėmis", "obuoliais", "apelsinais"]
+          }
+        ],
+        obuolys: [
+          {
+            sentence: "Pyragas su ___ kvepia namais.",
+            translationRu: "Пирог с яблоком пахнет домом.",
+            answer: "obuoliu",
+            options: ["obuoliu", "kriauše", "slyva"]
+          },
+          {
+            sentence: "Vaikas valgo varškę su ___.",
+            translationRu: "Ребёнок ест творог с яблоком.",
+            answer: "obuoliu",
+            options: ["obuoliu", "kriauše", "slyva"]
+          },
+          {
+            sentence: "Ryte valgau košę su ___.",
+            translationRu: "Утром я ем кашу с яблоком.",
+            answer: "obuoliu",
+            options: ["obuoliu", "kriauše", "slyva"]
+          }
+        ],
+        obuoliai: [
+          {
+            sentence: "Krepšys su ___ sunkus.",
+            translationRu: "Сумка с яблоками тяжёлая.",
+            answer: "obuoliais",
+            options: ["obuoliais", "kriaušėmis", "apelsinais"]
+          },
+          {
+            sentence: "Vaikai vaišinasi ___ per pertrauką.",
+            translationRu: "Дети угощаются яблоками на перемене.",
+            answer: "obuoliais",
+            options: ["obuoliais", "kriaušėmis", "apelsinais"]
+          },
+          {
+            sentence: "Salotos su ___ tinka vakarui.",
+            translationRu: "Салат с яблоками подходит для вечера.",
+            answer: "obuoliais",
+            options: ["obuoliais", "kriaušėmis", "apelsinais"]
+          }
+        ],
+        slyva: [
+          {
+            sentence: "Pusryčiams valgau jogurtą su ___.",
+            translationRu: "На завтрак я ем йогурт со сливой.",
+            answer: "slyva",
+            options: ["slyva", "vyšnia", "kriauše"]
+          },
+          {
+            sentence: "Mama kepa pyragą su ___.",
+            translationRu: "Мама печёт пирог со сливой.",
+            answer: "slyva",
+            options: ["slyva", "vyšnia", "kriauše"]
+          },
+          {
+            sentence: "Ant stalo yra varškė su ___.",
+            translationRu: "На столе есть творог со сливой.",
+            answer: "slyva",
+            options: ["slyva", "vyšnia", "kriauše"]
+          }
+        ],
+        slyvos: [
+          {
+            sentence: "Vaikai dalijasi ___.",
+            translationRu: "Дети делятся сливами.",
+            answer: "slyvomis",
+            options: ["slyvomis", "vyšniomis", "kriaušėmis"]
+          },
+          {
+            sentence: "Pyragas su ___ greitai dingsta.",
+            translationRu: "Пирог со сливами быстро исчезает.",
+            answer: "slyvomis",
+            options: ["slyvomis", "vyšniomis", "kriaušėmis"]
+          },
+          {
+            sentence: "Lėkštė su ___ stovi virtuvėje.",
+            translationRu: "Тарелка со сливами стоит на кухне.",
+            answer: "slyvomis",
+            options: ["slyvomis", "vyšniomis", "kriaušėmis"]
+          }
+        ],
+        vysnia: [
+          {
+            sentence: "Tortas su ___ atrodo gražiai.",
+            translationRu: "Торт с вишней выглядит красиво.",
+            answer: "vyšnia",
+            options: ["vyšnia", "slyva", "braške"]
+          },
+          {
+            sentence: "Blynai su ___ patinka vaikams.",
+            translationRu: "Блины с вишней нравятся детям.",
+            answer: "vyšnia",
+            options: ["vyšnia", "slyva", "braške"]
+          },
+          {
+            sentence: "Jogurtas su ___ yra rūgštokas.",
+            translationRu: "Йогурт с вишней кисловатый.",
+            answer: "vyšnia",
+            options: ["vyšnia", "slyva", "braške"]
+          }
+        ],
+        vysnios: [
+          {
+            sentence: "Vaikai vaišinasi ___ per šventę.",
+            translationRu: "Дети угощаются вишнями на празднике.",
+            answer: "vyšniomis",
+            options: ["vyšniomis", "slyvomis", "kriaušėmis"]
+          },
+          {
+            sentence: "Pyragas su ___ yra šiltas.",
+            translationRu: "Пирог с вишнями тёплый.",
+            answer: "vyšniomis",
+            options: ["vyšniomis", "slyvomis", "kriaušėmis"]
+          },
+          {
+            sentence: "Dubuo su ___ stovi ant stalo.",
+            translationRu: "Миска с вишнями стоит на столе.",
+            answer: "vyšniomis",
+            options: ["vyšniomis", "slyvomis", "kriaušėmis"]
+          }
+        ],
+        bananas: [
+          {
+            sentence: "Pusryčiams valgau košę su ___.",
+            translationRu: "На завтрак я ем кашу с бананом.",
+            answer: "bananu",
+            options: ["bananu", "apelsinu", "mandarinu"]
+          },
+          {
+            sentence: "Vaikas renkasi jogurtą su ___.",
+            translationRu: "Ребёнок выбирает йогурт с бананом.",
+            answer: "bananu",
+            options: ["bananu", "apelsinu", "mandarinu"]
+          },
+          {
+            sentence: "Desertas su ___ yra saldus.",
+            translationRu: "Десерт с бананом сладкий.",
+            answer: "bananu",
+            options: ["bananu", "apelsinu", "mandarinu"]
+          }
+        ],
+        bananai: [
+          {
+            sentence: "Krepšys su ___ stovi prie durų.",
+            translationRu: "Сумка с бананами стоит у двери.",
+            answer: "bananais",
+            options: ["bananais", "apelsinais", "mandarinais"]
+          },
+          {
+            sentence: "Vaikai vaišinasi ___.",
+            translationRu: "Дети угощаются бананами.",
+            answer: "bananais",
+            options: ["bananais", "apelsinais", "mandarinais"]
+          },
+          {
+            sentence: "Salotos su ___ tinka pietums.",
+            translationRu: "Салат с бананами подходит для обеда.",
+            answer: "bananais",
+            options: ["bananais", "apelsinais", "mandarinais"]
+          }
+        ],
+        citrina: [
+          {
+            sentence: "Arbata su ___ šildo.",
+            translationRu: "Чай с лимоном согревает.",
+            answer: "citrina",
+            options: ["citrina", "apelsinu", "mandarinu"]
+          },
+          {
+            sentence: "Vanduo su ___ padeda po sporto.",
+            translationRu: "Вода с лимоном помогает после спорта.",
+            answer: "citrina",
+            options: ["citrina", "apelsinu", "mandarinu"]
+          },
+          {
+            sentence: "Žuvis su ___ skani.",
+            translationRu: "Рыба с лимоном вкусная.",
+            answer: "citrina",
+            options: ["citrina", "apelsinu", "mandarinu"]
+          }
+        ],
+        citrinos: [
+          {
+            sentence: "Lėkštė su ___ yra ant stalo.",
+            translationRu: "Тарелка с лимонами стоит на столе.",
+            answer: "citrinomis",
+            options: ["citrinomis", "apelsinais", "mandarinais"]
+          },
+          {
+            sentence: "Mama kepa pyragą su ___.",
+            translationRu: "Мама печёт пирог с лимонами.",
+            answer: "citrinomis",
+            options: ["citrinomis", "apelsinais", "mandarinais"]
+          },
+          {
+            sentence: "Salotos su ___ yra gaivios.",
+            translationRu: "Салат с лимонами свежий.",
+            answer: "citrinomis",
+            options: ["citrinomis", "apelsinais", "mandarinais"]
+          }
+        ],
+        apelsinas: [
+          {
+            sentence: "Sultys su ___ yra saldžios.",
+            translationRu: "Сок с апельсином сладкий.",
+            answer: "apelsinu",
+            options: ["apelsinu", "mandarinu", "bananu"]
+          },
+          {
+            sentence: "Desertas su ___ patinka mamai.",
+            translationRu: "Десерт с апельсином нравится маме.",
+            answer: "apelsinu",
+            options: ["apelsinu", "mandarinu", "bananu"]
+          },
+          {
+            sentence: "Vaikas valgo varškę su ___.",
+            translationRu: "Ребёнок ест творог с апельсином.",
+            answer: "apelsinu",
+            options: ["apelsinu", "mandarinu", "bananu"]
+          }
+        ],
+        apelsinai: [
+          {
+            sentence: "Krepšys su ___ sunkus.",
+            translationRu: "Сумка с апельсинами тяжёлая.",
+            answer: "apelsinais",
+            options: ["apelsinais", "bananais", "mandarinais"]
+          },
+          {
+            sentence: "Vaikai dalijasi ___.",
+            translationRu: "Дети делятся апельсинами.",
+            answer: "apelsinais",
+            options: ["apelsinais", "bananais", "mandarinais"]
+          },
+          {
+            sentence: "Salotos su ___ tinka pusryčiams.",
+            translationRu: "Салат с апельсинами подходит для завтрака.",
+            answer: "apelsinais",
+            options: ["apelsinais", "bananais", "mandarinais"]
+          }
+        ],
+        braske: [
+          {
+            sentence: "Tortas su ___ atrodo šventiškai.",
+            translationRu: "Торт с ягодой клубники выглядит празднично.",
+            answer: "braške",
+            options: ["braške", "aviete", "žemuoge"]
+          },
+          {
+            sentence: "Ledai su ___ yra mano mėgstami.",
+            translationRu: "Мороженое с ягодой клубники - моё любимое.",
+            answer: "braške",
+            options: ["braške", "aviete", "žemuoge"]
+          },
+          {
+            sentence: "Varškė su ___ tinka vakarui.",
+            translationRu: "Творог с ягодой клубники подходит для вечера.",
+            answer: "braške",
+            options: ["braške", "aviete", "žemuoge"]
+          }
+        ]
+      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.2"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

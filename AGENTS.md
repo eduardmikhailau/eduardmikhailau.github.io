@@ -53,6 +53,7 @@ When generating a new test page:
 - Vary sentence contexts per word so they are not repetitive or template-like.
 - Verify **Russian translations are grammatically correct** for each sentence context.
 - Avoid **number ambiguity** in Russian for mass/indeclinable nouns (e.g., капуста/картофель/лук/брокколи). When needed, make the number explicit (e.g., "кочан капусты", "картофелина", "луковица", "зубчик чеснока", "несколько огурцов").
+- Provide a **strong singular/plural signal** in Russian when Lithuanian distinguishes number (e.g., "ягода малины" vs "ягоды малины", "виноградина", "плод киви").
 - Use **Russian feminatives** for female profession entries when appropriate.
 
 ### Notes
