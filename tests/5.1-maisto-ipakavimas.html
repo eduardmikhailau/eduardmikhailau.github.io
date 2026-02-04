@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5.1 Maisto įpakavimas — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Maisto įpakavimas",
+                        words: [
+                          { id: "butelis", lt: "butelis", ru: "бутылка" },
+                          { id: "stiklainis", lt: "stiklainis", ru: "банка" },
+                          { id: "dezute", lt: "dėžutė", ru: "коробочка" },
+                          { id: "pakelis", lt: "pakelis", ru: "пачка" },
+                          { id: "gabalelis", lt: "gabalėlis", ru: "кусочек" },
+                          { id: "rieke", lt: "riekė", ru: "ломтик" },
+                          { id: "maiselis", lt: "maišelis", ru: "пакетик" },
+                          { id: "indelis", lt: "indelis", ru: "баночка" },
+                          { id: "gramas", lt: "gramas", ru: "грамм" },
+                          { id: "kilogramas", lt: "kilogramas", ru: "килограмм" },
+                          { id: "deze", lt: "dėžė", ru: "коробка" },
+                          { id: "kepalas", lt: "kepalas", ru: "буханка" },
+                          { id: "plytele", lt: "plytelė", ru: "плитка" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        butelis: [
+                          {
+                            sentence: "Vandens ___ kainuoja du eurus.",
+                            translationRu: "Бутылка воды стоит два евро.",
+                            answer: "butelis",
+                            options: ["butelis", "stiklainis", "pakelis"]
+                          },
+                          {
+                            sentence: "Man reikia ___ sulčių.",
+                            translationRu: "Мне нужна бутылка сока.",
+                            answer: "butelio",
+                            options: ["butelio", "stiklainio", "pakelio"]
+                          },
+                          {
+                            sentence: "Aš perku ___ vandens.",
+                            translationRu: "Я покупаю бутылку воды.",
+                            answer: "butelį",
+                            options: ["butelį", "stiklainį", "pakelį"]
+                          },
+                          {
+                            sentence: "Jis užsisako picą su ___ vandens.",
+                            translationRu: "Он заказывает пиццу с бутылкой воды.",
+                            answer: "buteliu",
+                            options: ["buteliu", "stiklainiu", "pakeliu"]
+                          },
+                          {
+                            sentence: "___ kainuoja po vieną eurą.",
+                            translationRu: "Бутылки стоят по одному евро.",
+                            answer: "buteliai",
+                            options: ["buteliai", "stiklainiai", "pakeliai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ mineralinio vandens.",
+                            translationRu: "Нам нужны бутылки минеральной воды.",
+                            answer: "butelių",
+                            options: ["butelių", "stiklainių", "pakelių"]
+                          },
+                          {
+                            sentence: "Pardavėja parduoda ___ vandens.",
+                            translationRu: "Продавщица продаёт бутылки воды.",
+                            answer: "butelius",
+                            options: ["butelius", "stiklainius", "pakelius"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme sumuštinius su ___ limonado.",
+                            translationRu: "Мы заказали сэндвичи с бутылками лимонада.",
+                            answer: "buteliais",
+                            options: ["buteliais", "stiklainiais", "pakeliais"]
+                          }
+                        ],
+                        stiklainis: [
+                          {
+                            sentence: "Medaus ___ kainuoja tris eurus.",
+                            translationRu: "Банка мёда стоит три евро.",
+                            answer: "stiklainis",
+                            options: ["stiklainis", "butelis", "pakelis"]
+                          },
+                          {
+                            sentence: "Man reikia ___ uogienės.",
+                            translationRu: "Мне нужна банка варенья.",
+                            answer: "stiklainio",
+                            options: ["stiklainio", "butelio", "pakelio"]
+                          },
+                          {
+                            sentence: "Aš perku ___ medaus.",
+                            translationRu: "Я покупаю банку мёда.",
+                            answer: "stiklainį",
+                            options: ["stiklainį", "butelį", "pakelį"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo blynus su ___ uogienės.",
+                            translationRu: "Официантка предлагает блины с банкой варенья.",
+                            answer: "stiklainiu",
+                            options: ["stiklainiu", "buteliu", "pakeliu"]
+                          },
+                          {
+                            sentence: "___ kainuoja po keturis eurus.",
+                            translationRu: "Банки стоят по четыре евро.",
+                            answer: "stiklainiai",
+                            options: ["stiklainiai", "buteliai", "pakeliai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ marinuotų agurkų.",
+                            translationRu: "Нам нужны банки маринованных огурцов.",
+                            answer: "stiklainių",
+                            options: ["stiklainių", "butelių", "pakelių"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___ medaus.",
+                            translationRu: "Продавец продаёт банки мёда.",
+                            answer: "stiklainius",
+                            options: ["stiklainius", "butelius", "pakelius"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme varškę su ___ uogienės.",
+                            translationRu: "Мы заказали творог с банками варенья.",
+                            answer: "stiklainiais",
+                            options: ["stiklainiais", "buteliais", "pakeliais"]
+                          }
+                        ],
+                        dezute: [
+                          {
+                            sentence: "___ šokoladinių saldainių kainuoja penkis eurus.",
+                            translationRu: "Коробочка шоколадных конфет стоит пять евро.",
+                            answer: "dėžutė",
+                            options: ["dėžutė", "dėžė", "plytelė"]
+                          },
+                          {
+                            sentence: "Man reikia ___ arbatos.",
+                            translationRu: "Мне нужна коробочка чая.",
+                            answer: "dėžutės",
+                            options: ["dėžutės", "dėžės", "plytelės"]
+                          },
+                          {
+                            sentence: "Aš perku ___ sausainių.",
+                            translationRu: "Я покупаю коробочку печенья.",
+                            answer: "dėžutę",
+                            options: ["dėžutę", "dėžę", "plytelę"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo kavą su ___ sausainių.",
+                            translationRu: "Официантка предлагает кофе с коробочкой печенья.",
+                            answer: "dėžute",
+                            options: ["dėžute", "dėže", "plytele"]
+                          },
+                          {
+                            sentence: "___ kruopų kainuoja po du eurus.",
+                            translationRu: "Коробочки круп стоят по два евро.",
+                            answer: "dėžutės",
+                            options: ["dėžutės", "dėžės", "plytelės"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ sulčių.",
+                            translationRu: "Нам нужны коробочки сока.",
+                            answer: "dėžučių",
+                            options: ["dėžučių", "dėžių", "plytelių"]
+                          },
+                          {
+                            sentence: "Pardavėja parduoda ___ arbatos.",
+                            translationRu: "Продавщица продаёт коробочки чая.",
+                            answer: "dėžutes",
+                            options: ["dėžutes", "dėžes", "plyteles"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme desertą su ___ saldainių.",
+                            translationRu: "Мы заказали десерт с коробочками конфет.",
+                            answer: "dėžutėmis",
+                            options: ["dėžutėmis", "dėžėmis", "plytelėmis"]
+                          }
+                        ],
+                        pakelis: [
+                          {
+                            sentence: "___ makaronų kainuoja vieną eurą.",
+                            translationRu: "Пачка макарон стоит один евро.",
+                            answer: "pakelis",
+                            options: ["pakelis", "butelis", "stiklainis"]
+                          },
+                          {
+                            sentence: "Man reikia ___ ryžių.",
+                            translationRu: "Мне нужна пачка риса.",
+                            answer: "pakelio",
+                            options: ["pakelio", "butelio", "stiklainio"]
+                          },
+                          {
+                            sentence: "Aš moku už ___ cukraus.",
+                            translationRu: "Я плачу за пачку сахара.",
+                            answer: "pakelį",
+                            options: ["pakelį", "butelį", "stiklainį"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo sriubą su ___ prieskonių.",
+                            translationRu: "Официантка предлагает суп с пачкой специй.",
+                            answer: "pakeliu",
+                            options: ["pakeliu", "buteliu", "stiklainiu"]
+                          },
+                          {
+                            sentence: "___ dribsnių kainuoja po tris eurus.",
+                            translationRu: "Пачки хлопьев стоят по три евро.",
+                            answer: "pakeliai",
+                            options: ["pakeliai", "buteliai", "stiklainiai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ dribsnių.",
+                            translationRu: "Нам нужны пачки хлопьев.",
+                            answer: "pakelių",
+                            options: ["pakelių", "butelių", "stiklainių"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___ kavos.",
+                            translationRu: "Продавец продаёт пачки кофе.",
+                            answer: "pakelius",
+                            options: ["pakelius", "butelius", "stiklainius"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme košę su ___ dribsnių.",
+                            translationRu: "Мы заказали кашу с пачками хлопьев.",
+                            answer: "pakeliais",
+                            options: ["pakeliais", "buteliais", "stiklainiais"]
+                          }
+                        ],
+                        gabalelis: [
+                          {
+                            sentence: "___ sūrio kainuoja vieną eurą.",
+                            translationRu: "Кусочек сыра стоит один евро.",
+                            answer: "gabalėlis",
+                            options: ["gabalėlis", "maišelis", "indelis"]
+                          },
+                          {
+                            sentence: "Man reikia ___ sūrio.",
+                            translationRu: "Мне нужен кусочек сыра.",
+                            answer: "gabalėlio",
+                            options: ["gabalėlio", "maišelio", "indelio"]
+                          },
+                          {
+                            sentence: "Aš perku ___ pyrago.",
+                            translationRu: "Я покупаю кусочек пирога.",
+                            answer: "gabalėlį",
+                            options: ["gabalėlį", "maišelį", "indelį"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo arbatą su ___ pyrago.",
+                            translationRu: "Официантка предлагает чай с кусочком пирога.",
+                            answer: "gabalėliu",
+                            options: ["gabalėliu", "maišeliu", "indeliu"]
+                          },
+                          {
+                            sentence: "___ šokolado kainuoja po vieną eurą.",
+                            translationRu: "Кусочки шоколада стоят по одному евро.",
+                            answer: "gabalėliai",
+                            options: ["gabalėliai", "maišeliai", "indeliai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ sūrio.",
+                            translationRu: "Нам нужны кусочки сыра.",
+                            answer: "gabalėlių",
+                            options: ["gabalėlių", "maišelių", "indelių"]
+                          },
+                          {
+                            sentence: "Pardavėja parduoda ___ torto.",
+                            translationRu: "Продавщица продаёт кусочки торта.",
+                            answer: "gabalėlius",
+                            options: ["gabalėlius", "maišelius", "indelius"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme kavą su ___ pyrago.",
+                            translationRu: "Мы заказали кофе с кусочками пирога.",
+                            answer: "gabalėliais",
+                            options: ["gabalėliais", "maišeliais", "indeliais"]
+                          }
+                        ],
+                        rieke: [
+                          {
+                            sentence: "___ duonos kainuoja penkiasdešimt centų.",
+                            translationRu: "Ломтик хлеба стоит пятьдесят центов.",
+                            answer: "riekė",
+                            options: ["riekė", "dėžė", "plytelė"]
+                          },
+                          {
+                            sentence: "Man reikia ___ duonos.",
+                            translationRu: "Мне нужен ломтик хлеба.",
+                            answer: "riekės",
+                            options: ["riekės", "dėžės", "plytelės"]
+                          },
+                          {
+                            sentence: "Aš perku ___ batono.",
+                            translationRu: "Я покупаю ломтик батона.",
+                            answer: "riekę",
+                            options: ["riekę", "dėžę", "plytelę"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo sriubą su ___ duonos.",
+                            translationRu: "Официантка предлагает суп с ломтиком хлеба.",
+                            answer: "rieke",
+                            options: ["rieke", "dėže", "plytele"]
+                          },
+                          {
+                            sentence: "___ duonos kainuoja vieną eurą.",
+                            translationRu: "Ломтики хлеба стоят один евро.",
+                            answer: "riekės",
+                            options: ["riekės", "dėžės", "plytelės"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ duonos.",
+                            translationRu: "Нам нужны ломтики хлеба.",
+                            answer: "riekių",
+                            options: ["riekių", "dėžių", "plytelių"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___ batono.",
+                            translationRu: "Продавец продаёт ломтики батона.",
+                            answer: "riekes",
+                            options: ["riekes", "dėžes", "plyteles"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme sriubą su ___ duonos.",
+                            translationRu: "Мы заказали суп с ломтиками хлеба.",
+                            answer: "riekėmis",
+                            options: ["riekėmis", "dėžėmis", "plytelėmis"]
+                          }
+                        ],
+                        maiselis: [
+                          {
+                            sentence: "___ obuolių kainuoja du eurus.",
+                            translationRu: "Пакетик яблок стоит два евро.",
+                            answer: "maišelis",
+                            options: ["maišelis", "gabalėlis", "indelis"]
+                          },
+                          {
+                            sentence: "Man reikia ___ bulvių.",
+                            translationRu: "Мне нужен пакетик картофеля.",
+                            answer: "maišelio",
+                            options: ["maišelio", "gabalėlio", "indelio"]
+                          },
+                          {
+                            sentence: "Aš perku ___ morkų.",
+                            translationRu: "Я покупаю пакетик моркови.",
+                            answer: "maišelį",
+                            options: ["maišelį", "gabalėlį", "indelį"]
+                          },
+                          {
+                            sentence: "Pardavėja siūlo saldainius su ___.",
+                            translationRu: "Продавщица предлагает конфеты с пакетиком.",
+                            answer: "maišeliu",
+                            options: ["maišeliu", "gabalėliu", "indeliu"]
+                          },
+                          {
+                            sentence: "___ apelsinų kainuoja po tris eurus.",
+                            translationRu: "Пакетики апельсинов стоят по три евро.",
+                            answer: "maišeliai",
+                            options: ["maišeliai", "gabalėliai", "indeliai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ svogūnų.",
+                            translationRu: "Нам нужны пакетики луковиц.",
+                            answer: "maišelių",
+                            options: ["maišelių", "gabalėlių", "indelių"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___ riešutų.",
+                            translationRu: "Продавец продаёт пакетики орехов.",
+                            answer: "maišelius",
+                            options: ["maišelius", "gabalėlius", "indelius"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme spragėsius su ___.",
+                            translationRu: "Мы заказали попкорн с пакетиками.",
+                            answer: "maišeliais",
+                            options: ["maišeliais", "gabalėliais", "indeliais"]
+                          }
+                        ],
+                        indelis: [
+                          {
+                            sentence: "___ jogurto kainuoja eurą.",
+                            translationRu: "Баночка йогурта стоит один евро.",
+                            answer: "indelis",
+                            options: ["indelis", "maišelis", "gabalėlis"]
+                          },
+                          {
+                            sentence: "Man reikia ___ grietinės.",
+                            translationRu: "Мне нужна баночка сметаны.",
+                            answer: "indelio",
+                            options: ["indelio", "maišelio", "gabalėlio"]
+                          },
+                          {
+                            sentence: "Aš perku ___ ledų.",
+                            translationRu: "Я покупаю баночку мороженого.",
+                            answer: "indelį",
+                            options: ["indelį", "maišelį", "gabalėlį"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pyragą su ___ ledų.",
+                            translationRu: "Официантка предлагает пирог с баночкой мороженого.",
+                            answer: "indeliu",
+                            options: ["indeliu", "maišeliu", "gabalėliu"]
+                          },
+                          {
+                            sentence: "___ jogurto kainuoja po eurą.",
+                            translationRu: "Баночки йогурта стоят по одному евро.",
+                            answer: "indeliai",
+                            options: ["indeliai", "maišeliai", "gabalėliai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ grietinės.",
+                            translationRu: "Нам нужны баночки сметаны.",
+                            answer: "indelių",
+                            options: ["indelių", "maišelių", "gabalėlių"]
+                          },
+                          {
+                            sentence: "Pardavėja parduoda ___ ledų.",
+                            translationRu: "Продавщица продаёт баночки мороженого.",
+                            answer: "indelius",
+                            options: ["indelius", "maišelius", "gabalėlius"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme vaisius su ___ jogurto.",
+                            translationRu: "Мы заказали фрукты с баночками йогурта.",
+                            answer: "indeliais",
+                            options: ["indeliais", "maišeliais", "gabalėliais"]
+                          }
+                        ],
+                        gramas: [
+                          {
+                            sentence: "___ šokolado kainuoja penkis centus.",
+                            translationRu: "Грамм шоколада стоит пять центов.",
+                            answer: "gramas",
+                            options: ["gramas", "kilogramas", "kepalas"]
+                          },
+                          {
+                            sentence: "Man reikia ___ cinamono.",
+                            translationRu: "Мне нужен грамм корицы.",
+                            answer: "gramo",
+                            options: ["gramo", "kilogramo", "kepalo"]
+                          },
+                          {
+                            sentence: "Aš perku ___ vanilės.",
+                            translationRu: "Я покупаю грамм ванили.",
+                            answer: "gramą",
+                            options: ["gramą", "kilogramą", "kepalą"]
+                          },
+                          {
+                            sentence: "Kepėja siūlo pyragą su ___ cinamono.",
+                            translationRu: "Кондитерша предлагает пирог с граммом корицы.",
+                            answer: "gramu",
+                            options: ["gramu", "kilogramu", "kepalu"]
+                          },
+                          {
+                            sentence: "___ kakavos kainuoja po dešimt centų.",
+                            translationRu: "Граммы какао стоят по десять центов.",
+                            answer: "gramai",
+                            options: ["gramai", "kilogramai", "kepalai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ cukraus.",
+                            translationRu: "Нам нужно несколько граммов сахара.",
+                            answer: "gramų",
+                            options: ["gramų", "kilogramų", "kepalų"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___ kavos.",
+                            translationRu: "Продавец продаёт граммы кофе.",
+                            answer: "gramus",
+                            options: ["gramus", "kilogramus", "kepalus"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme desertą su ___ vanilės.",
+                            translationRu: "Мы заказали десерт с граммами ванили.",
+                            answer: "gramais",
+                            options: ["gramais", "kilogramais", "kepalais"]
+                          }
+                        ],
+                        kilogramas: [
+                          {
+                            sentence: "___ bulvių kainuoja vieną eurą.",
+                            translationRu: "Килограмм картофеля стоит один евро.",
+                            answer: "kilogramas",
+                            options: ["kilogramas", "gramas", "kepalas"]
+                          },
+                          {
+                            sentence: "Man reikia ___ morkų.",
+                            translationRu: "Мне нужен килограмм моркови.",
+                            answer: "kilogramo",
+                            options: ["kilogramo", "gramo", "kepalo"]
+                          },
+                          {
+                            sentence: "Aš perku ___ obuolių.",
+                            translationRu: "Я покупаю килограмм яблок.",
+                            answer: "kilogramą",
+                            options: ["kilogramą", "gramą", "kepalą"]
+                          },
+                          {
+                            sentence: "Pardavėja siūlo daržoves su ___ bulvių.",
+                            translationRu: "Продавщица предлагает овощи с килограммом картофеля.",
+                            answer: "kilogramu",
+                            options: ["kilogramu", "gramu", "kepalu"]
+                          },
+                          {
+                            sentence: "___ obuolių kainuoja po du eurus.",
+                            translationRu: "Килограммы яблок стоят по два евро.",
+                            answer: "kilogramai",
+                            options: ["kilogramai", "gramai", "kepalai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ ryžių.",
+                            translationRu: "Нам нужно несколько килограммов риса.",
+                            answer: "kilogramų",
+                            options: ["kilogramų", "gramų", "kepalų"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___ pomidorų.",
+                            translationRu: "Продавец продаёт килограммы помидоров.",
+                            answer: "kilogramus",
+                            options: ["kilogramus", "gramus", "kepalus"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme mėsą su ___ daržovių.",
+                            translationRu: "Мы заказали мясо с килограммами овощей.",
+                            answer: "kilogramais",
+                            options: ["kilogramais", "gramais", "kepalais"]
+                          }
+                        ],
+                        deze: [
+                          {
+                            sentence: "___ arbatos kainuoja penkis eurus.",
+                            translationRu: "Коробка чая стоит пять евро.",
+                            answer: "dėžė",
+                            options: ["dėžė", "dėžutė", "plytelė"]
+                          },
+                          {
+                            sentence: "Man reikia ___ saldainių.",
+                            translationRu: "Мне нужна коробка конфет.",
+                            answer: "dėžės",
+                            options: ["dėžės", "dėžutės", "plytelės"]
+                          },
+                          {
+                            sentence: "Aš perku ___ obuolių.",
+                            translationRu: "Я покупаю коробку яблок.",
+                            answer: "dėžę",
+                            options: ["dėžę", "dėžutę", "plytelę"]
+                          },
+                          {
+                            sentence: "Pardavėja siūlo rinkinį su ___ vaisių.",
+                            translationRu: "Продавщица предлагает набор с коробкой фруктов.",
+                            answer: "dėže",
+                            options: ["dėže", "dėžute", "plytele"]
+                          },
+                          {
+                            sentence: "___ vynuogių kainuoja po keturis eurus.",
+                            translationRu: "Коробки винограда стоят по четыре евро.",
+                            answer: "dėžės",
+                            options: ["dėžės", "dėžutės", "plytelės"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ pomidorų.",
+                            translationRu: "Нам нужны коробки помидоров.",
+                            answer: "dėžių",
+                            options: ["dėžių", "dėžučių", "plytelių"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___ apelsinų.",
+                            translationRu: "Продавец продаёт коробки апельсинов.",
+                            answer: "dėžes",
+                            options: ["dėžes", "dėžutes", "plyteles"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme rinkinį su ___ uogų.",
+                            translationRu: "Мы заказали набор с коробками ягод.",
+                            answer: "dėžėmis",
+                            options: ["dėžėmis", "dėžutėmis", "plytelėmis"]
+                          }
+                        ],
+                        kepalas: [
+                          {
+                            sentence: "___ duonos kainuoja vieną eurą.",
+                            translationRu: "Буханка хлеба стоит один евро.",
+                            answer: "kepalas",
+                            options: ["kepalas", "gramas", "kilogramas"]
+                          },
+                          {
+                            sentence: "Man reikia ___ duonos.",
+                            translationRu: "Мне нужна буханка хлеба.",
+                            answer: "kepalo",
+                            options: ["kepalo", "gramo", "kilogramo"]
+                          },
+                          {
+                            sentence: "Aš perku ___ duonos.",
+                            translationRu: "Я покупаю буханку хлеба.",
+                            answer: "kepalą",
+                            options: ["kepalą", "gramą", "kilogramą"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo sriubą su ___ duonos.",
+                            translationRu: "Официантка предлагает суп с буханкой хлеба.",
+                            answer: "kepalu",
+                            options: ["kepalu", "gramu", "kilogramu"]
+                          },
+                          {
+                            sentence: "___ duonos kainuoja po tris eurus.",
+                            translationRu: "Буханки хлеба стоят по три евро.",
+                            answer: "kepalai",
+                            options: ["kepalai", "gramai", "kilogramai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ duonos.",
+                            translationRu: "Нам нужны буханки хлеба.",
+                            answer: "kepalų",
+                            options: ["kepalų", "gramų", "kilogramų"]
+                          },
+                          {
+                            sentence: "Pardavėja parduoda ___ duonos.",
+                            translationRu: "Продавщица продаёт буханки хлеба.",
+                            answer: "kepalus",
+                            options: ["kepalus", "gramus", "kilogramus"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme vakarienę su ___ duonos.",
+                            translationRu: "Мы заказали ужин с буханками хлеба.",
+                            answer: "kepalais",
+                            options: ["kepalais", "gramais", "kilogramais"]
+                          }
+                        ],
+                        plytele: [
+                          {
+                            sentence: "___ šokolado kainuoja du eurus.",
+                            translationRu: "Плитка шоколада стоит два евро.",
+                            answer: "plytelė",
+                            options: ["plytelė", "dėžutė", "dėžė"]
+                          },
+                          {
+                            sentence: "Man reikia ___ šokolado.",
+                            translationRu: "Мне нужна плитка шоколада.",
+                            answer: "plytelės",
+                            options: ["plytelės", "dėžutės", "dėžės"]
+                          },
+                          {
+                            sentence: "Aš perku ___ šokolado.",
+                            translationRu: "Я покупаю плитку шоколада.",
+                            answer: "plytelę",
+                            options: ["plytelę", "dėžutę", "dėžę"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo kavą su ___ šokolado.",
+                            translationRu: "Официантка предлагает кофе с плиткой шоколада.",
+                            answer: "plytele",
+                            options: ["plytele", "dėžute", "dėže"]
+                          },
+                          {
+                            sentence: "___ šokolado kainuoja po du eurus.",
+                            translationRu: "Плитки шоколада стоят по два евро.",
+                            answer: "plytelės",
+                            options: ["plytelės", "dėžutės", "dėžės"]
+                          },
+                          {
+                            sentence: "Mums reikia ___ šokolado.",
+                            translationRu: "Нам нужны плитки шоколада.",
+                            answer: "plytelių",
+                            options: ["plytelių", "dėžučių", "dėžių"]
+                          },
+                          {
+                            sentence: "Pardavėja parduoda ___ šokolado.",
+                            translationRu: "Продавщица продаёт плитки шоколада.",
+                            answer: "plyteles",
+                            options: ["plyteles", "dėžutes", "dėžes"]
+                          },
+                          {
+                            sentence: "Mes užsisakėme desertą su ___ šokolado.",
+                            translationRu: "Мы заказали десерт с плитками шоколада.",
+                            answer: "plytelėmis",
+                            options: ["plytelėmis", "dėžutėmis", "dėžėmis"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.0"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

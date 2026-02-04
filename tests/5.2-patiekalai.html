@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5.2 Patiekalai — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+                        topic: "Patiekalai",
+                        words: [
+                          { id: "barsciai", lt: "barščiai", ru: "борщ" },
+                          { id: "sriuba", lt: "sriuba", ru: "суп" },
+                          { id: "sultinys", lt: "sultinys", ru: "бульон" },
+                          { id: "saltibarsciai", lt: "šaltibarščiai", ru: "холодный борщ" },
+                          { id: "balandeliai", lt: "balandėliai", ru: "голубцы" },
+                          { id: "blynai", lt: "blynai", ru: "блины" },
+                          { id: "cepelinai", lt: "cepelinai", ru: "цеппелины" },
+                          { id: "kepsnys", lt: "kepsnys", ru: "отбивная" },
+                          { id: "kiausiniene", lt: "kiaušinienė", ru: "яичница" },
+                          { id: "koldunai", lt: "koldūnai", ru: "пельмени" },
+                          { id: "kose", lt: "košė", ru: "каша" },
+                          { id: "kotletas", lt: "kotletas", ru: "котлета" },
+                          { id: "omletas", lt: "omletas", ru: "омлет" },
+                          { id: "salotos", lt: "salotos", ru: "салат" },
+                          { id: "troskinys", lt: "troškinys", ru: "рагу" },
+                          { id: "virtiniai", lt: "virtiniai", ru: "вареники" }
+                        ]
+                      };
+      const gapFillVariants = {
+                        barsciai: [
+                          {
+                            sentence: "___ kainuoja keturis eurus.",
+                            translationRu: "Порции борща стоят четыре евро.",
+                            answer: "barščiai",
+                            options: ["barščiai", "šaltibarščiai", "balandėliai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___.",
+                            translationRu: "Нам нужны порции борща.",
+                            answer: "barščių",
+                            options: ["barščių", "šaltibarščių", "balandėlių"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю порции борща.",
+                            answer: "barščius",
+                            options: ["barščius", "šaltibarščius", "balandėlius"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с порциями борща.",
+                            answer: "barščiais",
+                            options: ["barščiais", "šaltibarščiais", "balandėliais"]
+                          }
+                        ],
+                        sriuba: [
+                          {
+                            sentence: "___ kainuoja tris eurus.",
+                            translationRu: "Суп стоит три евро.",
+                            answer: "sriuba",
+                            options: ["sriuba", "sultinys", "troškinys"]
+                          },
+                          {
+                            sentence: "Man reikia ___.",
+                            translationRu: "Мне нужен суп.",
+                            answer: "sriubos",
+                            options: ["sriubos", "sultinio", "troškinio"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю суп.",
+                            answer: "sriubą",
+                            options: ["sriubą", "sultinį", "troškinį"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с супом.",
+                            answer: "sriuba",
+                            options: ["sriuba", "sultiniu", "troškiniu"]
+                          }
+                        ],
+                        sultinys: [
+                          {
+                            sentence: "___ kainuoja du eurus.",
+                            translationRu: "Бульон стоит два евро.",
+                            answer: "sultinys",
+                            options: ["sultinys", "sriuba", "troškinys"]
+                          },
+                          {
+                            sentence: "Man reikia ___.",
+                            translationRu: "Мне нужен бульон.",
+                            answer: "sultinio",
+                            options: ["sultinio", "sriubos", "troškinio"]
+                          },
+                          {
+                            sentence: "Aš moku už ___.",
+                            translationRu: "Я плачу за бульон.",
+                            answer: "sultinį",
+                            options: ["sultinį", "sriubą", "troškinį"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с бульоном.",
+                            answer: "sultiniu",
+                            options: ["sultiniu", "sriuba", "troškiniu"]
+                          }
+                        ],
+                        saltibarsciai: [
+                          {
+                            sentence: "___ kainuoja penkis eurus.",
+                            translationRu: "Порции холодного борща стоят пять евро.",
+                            answer: "šaltibarščiai",
+                            options: ["šaltibarščiai", "barščiai", "blynai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___.",
+                            translationRu: "Нам нужны порции холодного борща.",
+                            answer: "šaltibarščių",
+                            options: ["šaltibarščių", "barščių", "blynų"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___.",
+                            translationRu: "Продавец продаёт порции холодного борща.",
+                            answer: "šaltibarščius",
+                            options: ["šaltibarščius", "barščius", "blynus"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с порциями холодного борща.",
+                            answer: "šaltibarščiais",
+                            options: ["šaltibarščiais", "barščiais", "blynais"]
+                          }
+                        ],
+                        balandeliai: [
+                          {
+                            sentence: "___ kainuoja šešis eurus.",
+                            translationRu: "Голубцы стоят шесть евро.",
+                            answer: "balandėliai",
+                            options: ["balandėliai", "blynai", "koldūnai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___.",
+                            translationRu: "Нам нужны голубцы.",
+                            answer: "balandėlių",
+                            options: ["balandėlių", "blynų", "koldūnų"]
+                          },
+                          {
+                            sentence: "Mes užsisakome ___.",
+                            translationRu: "Мы заказываем голубцы.",
+                            answer: "balandėlius",
+                            options: ["balandėlius", "blynus", "koldūnus"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с голубцами.",
+                            answer: "balandėliais",
+                            options: ["balandėliais", "blynais", "koldūnais"]
+                          }
+                        ],
+                        blynai: [
+                          {
+                            sentence: "___ kainuoja tris eurus.",
+                            translationRu: "Блины стоят три евро.",
+                            answer: "blynai",
+                            options: ["blynai", "balandėliai", "koldūnai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___.",
+                            translationRu: "Нам нужны блины.",
+                            answer: "blynų",
+                            options: ["blynų", "balandėlių", "koldūnų"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю блины.",
+                            answer: "blynus",
+                            options: ["blynus", "balandėlius", "koldūnus"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с блинами.",
+                            answer: "blynais",
+                            options: ["blynais", "balandėliais", "koldūnais"]
+                          }
+                        ],
+                        cepelinai: [
+                          {
+                            sentence: "___ kainuoja septynis eurus.",
+                            translationRu: "Цеппелины стоят семь евро.",
+                            answer: "cepelinai",
+                            options: ["cepelinai", "didžkukuliai", "virtiniai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___.",
+                            translationRu: "Нам нужны цеппелины.",
+                            answer: "cepelinų",
+                            options: ["cepelinų", "didžkukulių", "virtinių"]
+                          },
+                          {
+                            sentence: "Aš moku už ___.",
+                            translationRu: "Я плачу за цеппелины.",
+                            answer: "cepelinus",
+                            options: ["cepelinus", "didžkukulius", "virtinius"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с цеппелинами.",
+                            answer: "cepelinais",
+                            options: ["cepelinais", "didžkukuliais", "virtiniais"]
+                          }
+                        ],
+                        kepsnys: [
+                          {
+                            sentence: "___ kainuoja aštuonis eurus.",
+                            translationRu: "Отбивная стоит восемь евро.",
+                            answer: "kepsnys",
+                            options: ["kepsnys", "kotletas", "omletas"]
+                          },
+                          {
+                            sentence: "Man reikia ___.",
+                            translationRu: "Мне нужна отбивная.",
+                            answer: "kepsnio",
+                            options: ["kepsnio", "kotleto", "omleto"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___.",
+                            translationRu: "Продавец продаёт отбивную.",
+                            answer: "kepsnį",
+                            options: ["kepsnį", "kotletą", "omletą"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с отбивной.",
+                            answer: "kepsniu",
+                            options: ["kepsniu", "kotletu", "omletu"]
+                          }
+                        ],
+                        kiausiniene: [
+                          {
+                            sentence: "___ kainuoja du eurus.",
+                            translationRu: "Яичница стоит два евро.",
+                            answer: "kiaušinienė",
+                            options: ["kiaušinienė", "omletas", "košė"]
+                          },
+                          {
+                            sentence: "Man reikia ___.",
+                            translationRu: "Мне нужна яичница.",
+                            answer: "kiaušinienės",
+                            options: ["kiaušinienės", "omleto", "košės"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю яичницу.",
+                            answer: "kiaušinienę",
+                            options: ["kiaušinienę", "omletą", "košę"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с яичницей.",
+                            answer: "kiaušiniene",
+                            options: ["kiaušiniene", "omletu", "koše"]
+                          }
+                        ],
+                        koldunai: [
+                          {
+                            sentence: "___ kainuoja penkis eurus.",
+                            translationRu: "Пельмени стоят пять евро.",
+                            answer: "koldūnai",
+                            options: ["koldūnai", "virtiniai", "blynai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___.",
+                            translationRu: "Нам нужны пельмени.",
+                            answer: "koldūnų",
+                            options: ["koldūnų", "virtinių", "blynų"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю пельмени.",
+                            answer: "koldūnus",
+                            options: ["koldūnus", "virtinius", "blynus"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с пельменями.",
+                            answer: "koldūnais",
+                            options: ["koldūnais", "virtiniais", "blynais"]
+                          }
+                        ],
+                        kose: [
+                          {
+                            sentence: "___ kainuoja vieną eurą.",
+                            translationRu: "Каша стоит один евро.",
+                            answer: "košė",
+                            options: ["košė", "kiaušinienė", "sriuba"]
+                          },
+                          {
+                            sentence: "Man reikia ___.",
+                            translationRu: "Мне нужна каша.",
+                            answer: "košės",
+                            options: ["košės", "kiaušinienės", "sriubos"]
+                          },
+                          {
+                            sentence: "Aš moku už ___.",
+                            translationRu: "Я плачу за кашу.",
+                            answer: "košę",
+                            options: ["košę", "kiaušinienę", "sriubą"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с кашей.",
+                            answer: "koše",
+                            options: ["koše", "kiaušiniene", "sriuba"]
+                          }
+                        ],
+                        kotletas: [
+                          {
+                            sentence: "___ kainuoja keturis eurus.",
+                            translationRu: "Котлета стоит четыре евро.",
+                            answer: "kotletas",
+                            options: ["kotletas", "kepsnys", "omletas"]
+                          },
+                          {
+                            sentence: "Man reikia ___.",
+                            translationRu: "Мне нужна котлета.",
+                            answer: "kotleto",
+                            options: ["kotleto", "kepsnio", "omleto"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю котлету.",
+                            answer: "kotletą",
+                            options: ["kotletą", "kepsnį", "omletą"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с котлетой.",
+                            answer: "kotletu",
+                            options: ["kotletu", "kepsniu", "omletu"]
+                          }
+                        ],
+                        omletas: [
+                          {
+                            sentence: "___ kainuoja tris eurus.",
+                            translationRu: "Омлет стоит три евро.",
+                            answer: "omletas",
+                            options: ["omletas", "kotletas", "kiaušinienė"]
+                          },
+                          {
+                            sentence: "Man reikia ___.",
+                            translationRu: "Мне нужен омлет.",
+                            answer: "omleto",
+                            options: ["omleto", "kotleto", "kiaušinienės"]
+                          },
+                          {
+                            sentence: "Mes užsisakome ___.",
+                            translationRu: "Мы заказываем омлет.",
+                            answer: "omletą",
+                            options: ["omletą", "kotletą", "kiaušinienę"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с омлетом.",
+                            answer: "omletu",
+                            options: ["omletu", "kotletu", "kiaušiniene"]
+                          }
+                        ],
+                        salotos: [
+                          {
+                            sentence: "___ kainuoja penkis eurus.",
+                            translationRu: "Салаты стоят пять евро.",
+                            answer: "salotos",
+                            options: ["salotos", "blynai", "virtiniai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___.",
+                            translationRu: "Нам нужны салаты.",
+                            answer: "salotų",
+                            options: ["salotų", "blynų", "virtinių"]
+                          },
+                          {
+                            sentence: "Aš perku ___.",
+                            translationRu: "Я покупаю салаты.",
+                            answer: "salotas",
+                            options: ["salotas", "blynus", "virtinius"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с салатами.",
+                            answer: "salotomis",
+                            options: ["salotomis", "blynais", "virtiniais"]
+                          }
+                        ],
+                        troskinys: [
+                          {
+                            sentence: "___ kainuoja penkis eurus.",
+                            translationRu: "Рагу стоит пять евро.",
+                            answer: "troškinys",
+                            options: ["troškinys", "sultinys", "sriuba"]
+                          },
+                          {
+                            sentence: "Man reikia ___.",
+                            translationRu: "Мне нужно рагу.",
+                            answer: "troškinio",
+                            options: ["troškinio", "sultinio", "sriubos"]
+                          },
+                          {
+                            sentence: "Pardavėjas parduoda ___.",
+                            translationRu: "Продавец продаёт рагу.",
+                            answer: "troškinį",
+                            options: ["troškinį", "sultinį", "sriubą"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с рагу.",
+                            answer: "troškiniu",
+                            options: ["troškiniu", "sultiniu", "sriuba"]
+                          }
+                        ],
+                        virtiniai: [
+                          {
+                            sentence: "___ kainuoja šešis eurus.",
+                            translationRu: "Вареники стоят шесть евро.",
+                            answer: "virtiniai",
+                            options: ["virtiniai", "koldūnai", "cepelinai"]
+                          },
+                          {
+                            sentence: "Mums reikia ___.",
+                            translationRu: "Нам нужны вареники.",
+                            answer: "virtinių",
+                            options: ["virtinių", "koldūnų", "cepelinų"]
+                          },
+                          {
+                            sentence: "Mes užsisakome ___.",
+                            translationRu: "Мы заказываем вареники.",
+                            answer: "virtinius",
+                            options: ["virtinius", "koldūnus", "cepelinus"]
+                          },
+                          {
+                            sentence: "Padavėja siūlo pietus su ___.",
+                            translationRu: "Официантка предлагает обед с варениками.",
+                            answer: "virtiniais",
+                            options: ["virtiniais", "koldūnais", "cepelinais"]
+                          }
+                        ]
+                      };
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.3"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>
