@@ -1,0 +1,3035 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.9 Maisto būdvardžiai 1 — Practice Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <script>
+      const wordSet = {
+          "topic": "Maisto būdvardžiai 1",
+          "words": [
+                    {
+                              "id": "alkanas",
+                              "lt": "alkanas, alkana",
+                              "ru": "голодный, голодная"
+                    },
+                    {
+                              "id": "sotus",
+                              "lt": "sotus, soti",
+                              "ru": "сытый, сытая"
+                    },
+                    {
+                              "id": "brangus",
+                              "lt": "brangus, brangi",
+                              "ru": "дорогой, дорогая"
+                    },
+                    {
+                              "id": "pigus",
+                              "lt": "pigus, pigi",
+                              "ru": "дешёвый, дешёвая"
+                    },
+                    {
+                              "id": "sviezias",
+                              "lt": "šviežias, šviežia",
+                              "ru": "свежий, свежая"
+                    },
+                    {
+                              "id": "senas",
+                              "lt": "senas, sena",
+                              "ru": "старый, старая"
+                    },
+                    {
+                              "id": "riebus",
+                              "lt": "riebus, riebi",
+                              "ru": "жирный, жирная"
+                    },
+                    {
+                              "id": "liesas",
+                              "lt": "liesas, liesa",
+                              "ru": "нежирный, нежирная"
+                    },
+                    {
+                              "id": "skanus",
+                              "lt": "skanus, skani",
+                              "ru": "вкусный, вкусная"
+                    },
+                    {
+                              "id": "neskanus",
+                              "lt": "neskanus, neskani",
+                              "ru": "невкусный, невкусная"
+                    },
+                    {
+                              "id": "pilnas",
+                              "lt": "pilnas, pilna",
+                              "ru": "полный, полная"
+                    },
+                    {
+                              "id": "tuscias",
+                              "lt": "tuščias, tuščia",
+                              "ru": "пустой, пустая"
+                    },
+                    {
+                              "id": "lengvas",
+                              "lt": "lengvas, lengva",
+                              "ru": "лёгкий, лёгкая"
+                    },
+                    {
+                              "id": "sunkus",
+                              "lt": "sunkus, sunki",
+                              "ru": "тяжёлый, тяжёлая"
+                    },
+                    {
+                              "id": "naujas",
+                              "lt": "naujas, nauja",
+                              "ru": "новый, новая"
+                    },
+                    {
+                              "id": "paprastas",
+                              "lt": "paprastas, paprasta",
+                              "ru": "простой, простая"
+                    },
+                    {
+                              "id": "sudetingas",
+                              "lt": "sudėtingas, sudėtinga",
+                              "ru": "сложный, сложная"
+                    },
+                    {
+                              "id": "sveikas",
+                              "lt": "sveikas, sveika",
+                              "ru": "здоровый, здоровая"
+                    }
+          ]
+};
+
+      const gapFillVariants = {
+          "alkanas": [
+                    {
+                              "sentence": "Šiandien ___ pirkėjas renkasi produktus.",
+                              "translationRu": "Сегодня голодный покупатель выбирает продукты.",
+                              "answer": "alkanas",
+                              "options": [
+                                        "alkanas",
+                                        "sotus",
+                                        "brangus"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien ___ pirkėja perka duoną.",
+                              "translationRu": "Сегодня голодная покупательница покупает хлеб.",
+                              "answer": "alkana",
+                              "options": [
+                                        "alkana",
+                                        "soti",
+                                        "brangi"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien ___ pirkėjai stovi eilėje.",
+                              "translationRu": "Сегодня голодные покупатели стоят в очереди.",
+                              "answer": "alkani",
+                              "options": [
+                                        "alkani",
+                                        "sotūs",
+                                        "brangūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien ___ pirkėjos perka uogas.",
+                              "translationRu": "Сегодня голодные покупательницы покупают ягоды.",
+                              "answer": "alkanos",
+                              "options": [
+                                        "alkanos",
+                                        "sotios",
+                                        "brangios"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ pirkėjo.",
+                              "translationRu": "В магазине нет голодного покупателя.",
+                              "answer": "alkano",
+                              "options": [
+                                        "alkano",
+                                        "sotaus",
+                                        "brangaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ pirkėjos.",
+                              "translationRu": "В магазине нет голодной покупательницы.",
+                              "answer": "alkanos",
+                              "options": [
+                                        "alkanos",
+                                        "sotios",
+                                        "brangios"
+                              ]
+                    },
+                    {
+                              "sentence": "Prie kasos nėra ___ pirkėjų.",
+                              "translationRu": "У кассы нет голодных покупателей.",
+                              "answer": "alkanų",
+                              "options": [
+                                        "alkanų",
+                                        "sotių",
+                                        "brangių"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ pirkėjų moterų.",
+                              "translationRu": "Сегодня нет голодных покупательниц.",
+                              "answer": "alkanų",
+                              "options": [
+                                        "alkanų",
+                                        "sotių",
+                                        "brangių"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ pirkėją prie kasos.",
+                              "translationRu": "Я вижу голодного покупателя у кассы.",
+                              "answer": "alkaną",
+                              "options": [
+                                        "alkaną",
+                                        "sotų",
+                                        "brangų"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ pirkėją su krepšiu.",
+                              "translationRu": "Я вижу голодную покупательницу с корзиной.",
+                              "answer": "alkaną",
+                              "options": [
+                                        "alkaną",
+                                        "sotią",
+                                        "brangią"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ pirkėjus turguje.",
+                              "translationRu": "Я вижу голодных покупателей на рынке.",
+                              "answer": "alkanus",
+                              "options": [
+                                        "alkanus",
+                                        "sotius",
+                                        "brangius"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ pirkėjas eilėje.",
+                              "translationRu": "Я вижу голодных покупательниц в очереди.",
+                              "answer": "alkanas",
+                              "options": [
+                                        "alkanas",
+                                        "sotias",
+                                        "brangias"
+                              ]
+                    },
+                    {
+                              "sentence": "Kalbu su ___ pirkėju apie kainas.",
+                              "translationRu": "Я говорю с голодным покупателем о ценах.",
+                              "answer": "alkanu",
+                              "options": [
+                                        "alkanu",
+                                        "sotumi",
+                                        "brangumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Kalbu su ___ pirkėja apie nuolaidas.",
+                              "translationRu": "Я говорю с голодной покупательницей о скидках.",
+                              "answer": "alkana",
+                              "options": [
+                                        "alkana",
+                                        "sotia",
+                                        "brangia"
+                              ]
+                    },
+                    {
+                              "sentence": "Kalbu su ___ pirkėjais apie turgų.",
+                              "translationRu": "Я говорю с голодными покупателями о рынке.",
+                              "answer": "alkanais",
+                              "options": [
+                                        "alkanais",
+                                        "sotiais",
+                                        "brangiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Kalbu su ___ pirkėjomis apie vaisius.",
+                              "translationRu": "Я говорю с голодными покупательницами о фруктах.",
+                              "answer": "alkanomis",
+                              "options": [
+                                        "alkanomis",
+                                        "sotiomis",
+                                        "brangiomis"
+                              ]
+                    }
+          ],
+          "sotus": [
+                    {
+                              "sentence": "Šiandien ___ pirkėjas renkasi produktus.",
+                              "translationRu": "Сегодня сытый покупатель выбирает продукты.",
+                              "answer": "sotus",
+                              "options": [
+                                        "sotus",
+                                        "alkanas",
+                                        "brangus"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien ___ pirkėja perka duoną.",
+                              "translationRu": "Сегодня сытая покупательница покупает хлеб.",
+                              "answer": "soti",
+                              "options": [
+                                        "soti",
+                                        "alkana",
+                                        "brangi"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien ___ pirkėjai stovi eilėje.",
+                              "translationRu": "Сегодня сытые покупатели стоят в очереди.",
+                              "answer": "sotūs",
+                              "options": [
+                                        "sotūs",
+                                        "alkani",
+                                        "brangūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien ___ pirkėjos perka uogas.",
+                              "translationRu": "Сегодня сытые покупательницы покупают ягоды.",
+                              "answer": "sotios",
+                              "options": [
+                                        "sotios",
+                                        "alkanos",
+                                        "brangios"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ pirkėjo.",
+                              "translationRu": "В магазине нет сытого покупателя.",
+                              "answer": "sotaus",
+                              "options": [
+                                        "sotaus",
+                                        "alkano",
+                                        "brangaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ pirkėjos.",
+                              "translationRu": "В магазине нет сытой покупательницы.",
+                              "answer": "sotios",
+                              "options": [
+                                        "sotios",
+                                        "alkanos",
+                                        "brangios"
+                              ]
+                    },
+                    {
+                              "sentence": "Prie kasos nėra ___ pirkėjų.",
+                              "translationRu": "У кассы нет сытых покупателей.",
+                              "answer": "sotių",
+                              "options": [
+                                        "sotių",
+                                        "alkanų",
+                                        "brangių"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ pirkėjų moterų.",
+                              "translationRu": "Сегодня нет сытых покупательниц.",
+                              "answer": "sotių",
+                              "options": [
+                                        "sotių",
+                                        "alkanų",
+                                        "brangių"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ pirkėją prie kasos.",
+                              "translationRu": "Я вижу сытого покупателя у кассы.",
+                              "answer": "sotų",
+                              "options": [
+                                        "sotų",
+                                        "alkaną",
+                                        "brangų"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ pirkėją su krepšiu.",
+                              "translationRu": "Я вижу сытую покупательницу с корзиной.",
+                              "answer": "sotią",
+                              "options": [
+                                        "sotią",
+                                        "alkaną",
+                                        "brangią"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ pirkėjus turguje.",
+                              "translationRu": "Я вижу сытых покупателей на рынке.",
+                              "answer": "sotius",
+                              "options": [
+                                        "sotius",
+                                        "alkanus",
+                                        "brangius"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ pirkėjas eilėje.",
+                              "translationRu": "Я вижу сытых покупательниц в очереди.",
+                              "answer": "sotias",
+                              "options": [
+                                        "sotias",
+                                        "alkanas",
+                                        "brangias"
+                              ]
+                    },
+                    {
+                              "sentence": "Kalbu su ___ pirkėju apie kainas.",
+                              "translationRu": "Я говорю с сытым покупателем о ценах.",
+                              "answer": "sotumi",
+                              "options": [
+                                        "sotumi",
+                                        "alkanu",
+                                        "brangumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Kalbu su ___ pirkėja apie nuolaidas.",
+                              "translationRu": "Я говорю с сытой покупательницей о скидках.",
+                              "answer": "sotia",
+                              "options": [
+                                        "sotia",
+                                        "alkana",
+                                        "brangia"
+                              ]
+                    },
+                    {
+                              "sentence": "Kalbu su ___ pirkėjais apie turgų.",
+                              "translationRu": "Я говорю с сытыми покупателями о рынке.",
+                              "answer": "sotiais",
+                              "options": [
+                                        "sotiais",
+                                        "alkanais",
+                                        "brangiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Kalbu su ___ pirkėjomis apie vaisius.",
+                              "translationRu": "Я говорю с сытыми покупательницами о фруктах.",
+                              "answer": "sotiomis",
+                              "options": [
+                                        "sotiomis",
+                                        "alkanomis",
+                                        "brangiomis"
+                              ]
+                    }
+          ],
+          "brangus": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе дорогой сыр.",
+                              "answer": "brangus",
+                              "options": [
+                                        "brangus",
+                                        "pigus",
+                                        "neskanus"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uoga.",
+                              "translationRu": "В миске дорогая ягода.",
+                              "answer": "brangi",
+                              "options": [
+                                        "brangi",
+                                        "šviežia",
+                                        "pilna"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ agurkai.",
+                              "translationRu": "В корзине дорогие огурцы.",
+                              "answer": "brangūs",
+                              "options": [
+                                        "brangūs",
+                                        "seni",
+                                        "tušči"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uogos.",
+                              "translationRu": "В миске дорогие ягоды.",
+                              "answer": "brangios",
+                              "options": [
+                                        "brangios",
+                                        "riebios",
+                                        "lengvos"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет дорогого сыра.",
+                              "answer": "brangaus",
+                              "options": [
+                                        "brangaus",
+                                        "lieso",
+                                        "sunkaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ uogos.",
+                              "translationRu": "В магазине нет дорогой ягоды.",
+                              "answer": "brangios",
+                              "options": [
+                                        "brangios",
+                                        "skanios",
+                                        "naujos"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ agurkų.",
+                              "translationRu": "На рынке нет дорогих огурцов.",
+                              "answer": "brangių",
+                              "options": [
+                                        "brangių",
+                                        "neskanių",
+                                        "paprastų"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ uogų.",
+                              "translationRu": "Сегодня нет дорогих ягод.",
+                              "answer": "brangių",
+                              "options": [
+                                        "brangių",
+                                        "pilnų",
+                                        "sudėtingų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю дорогой сыр на ужин.",
+                              "answer": "brangų",
+                              "options": [
+                                        "brangų",
+                                        "tuščią",
+                                        "sveiką"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogą desertui.",
+                              "translationRu": "Я покупаю дорогую ягоду для десерта.",
+                              "answer": "brangią",
+                              "options": [
+                                        "brangią",
+                                        "lengvą",
+                                        "alkaną"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ agurkus salotoms.",
+                              "translationRu": "Я покупаю дорогие огурцы для салата.",
+                              "answer": "brangius",
+                              "options": [
+                                        "brangius",
+                                        "sunkius",
+                                        "sotius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogas desertui.",
+                              "translationRu": "Я покупаю дорогие ягоды для десерта.",
+                              "answer": "brangias",
+                              "options": [
+                                        "brangias",
+                                        "naujas",
+                                        "riebias"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau bulves su ___ sūriu.",
+                              "translationRu": "Я ем картошку с дорогим сыром.",
+                              "answer": "brangumi",
+                              "options": [
+                                        "brangumi",
+                                        "paprastu",
+                                        "pigumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau blynus su ___ grietine.",
+                              "translationRu": "Я ем блины с дорогой сметаной.",
+                              "answer": "brangia",
+                              "options": [
+                                        "brangia",
+                                        "sudėtinga",
+                                        "šviežia"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau žuvį su ___ agurkais.",
+                              "translationRu": "Я ем рыбу с дорогими огурцами.",
+                              "answer": "brangiais",
+                              "options": [
+                                        "brangiais",
+                                        "sveikais",
+                                        "senais"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau jogurtą su ___ uogomis.",
+                              "translationRu": "Я ем йогурт с дорогими ягодами.",
+                              "answer": "brangiomis",
+                              "options": [
+                                        "brangiomis",
+                                        "alkanomis",
+                                        "riebiomis"
+                              ]
+                    }
+          ],
+          "pigus": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе дешёвый сыр.",
+                              "answer": "pigus",
+                              "options": [
+                                        "pigus",
+                                        "šviežias",
+                                        "pilnas"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uoga.",
+                              "translationRu": "В миске дешёвая ягода.",
+                              "answer": "pigi",
+                              "options": [
+                                        "pigi",
+                                        "sena",
+                                        "tuščia"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ agurkai.",
+                              "translationRu": "В корзине дешёвые огурцы.",
+                              "answer": "pigūs",
+                              "options": [
+                                        "pigūs",
+                                        "riebūs",
+                                        "lengvi"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uogos.",
+                              "translationRu": "В миске дешёвые ягоды.",
+                              "answer": "pigios",
+                              "options": [
+                                        "pigios",
+                                        "liesos",
+                                        "sunkios"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет дешёвого сыра.",
+                              "answer": "pigaus",
+                              "options": [
+                                        "pigaus",
+                                        "skanaus",
+                                        "naujo"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ uogos.",
+                              "translationRu": "В магазине нет дешёвой ягоды.",
+                              "answer": "pigios",
+                              "options": [
+                                        "pigios",
+                                        "neskanios",
+                                        "paprastos"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ agurkų.",
+                              "translationRu": "На рынке нет дешёвых огурцов.",
+                              "answer": "pigių",
+                              "options": [
+                                        "pigių",
+                                        "pilnų",
+                                        "sudėtingų"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ uogų.",
+                              "translationRu": "Сегодня нет дешёвых ягод.",
+                              "answer": "pigių",
+                              "options": [
+                                        "pigių",
+                                        "tuščių",
+                                        "sveikų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю дешёвый сыр на ужин.",
+                              "answer": "pigų",
+                              "options": [
+                                        "pigų",
+                                        "lengvą",
+                                        "alkaną"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogą desertui.",
+                              "translationRu": "Я покупаю дешёвую ягоду для десерта.",
+                              "answer": "pigią",
+                              "options": [
+                                        "pigią",
+                                        "sunkią",
+                                        "sotią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ agurkus salotoms.",
+                              "translationRu": "Я покупаю дешёвые огурцы для салата.",
+                              "answer": "pigius",
+                              "options": [
+                                        "pigius",
+                                        "naujus",
+                                        "brangius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogas desertui.",
+                              "translationRu": "Я покупаю дешёвые ягоды для десерта.",
+                              "answer": "pigias",
+                              "options": [
+                                        "pigias",
+                                        "paprastas",
+                                        "liesas"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau bulves su ___ sūriu.",
+                              "translationRu": "Я ем картошку с дешёвым сыром.",
+                              "answer": "pigumi",
+                              "options": [
+                                        "pigumi",
+                                        "sudėtingu",
+                                        "šviežiu"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau blynus su ___ grietine.",
+                              "translationRu": "Я ем блины с дешёвой сметаной.",
+                              "answer": "pigia",
+                              "options": [
+                                        "pigia",
+                                        "sveika",
+                                        "sena"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau žuvį su ___ agurkais.",
+                              "translationRu": "Я ем рыбу с дешёвыми огурцами.",
+                              "answer": "pigiais",
+                              "options": [
+                                        "pigiais",
+                                        "alkanais",
+                                        "riebiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau jogurtą su ___ uogomis.",
+                              "translationRu": "Я ем йогурт с дешёвыми ягодами.",
+                              "answer": "pigiomis",
+                              "options": [
+                                        "pigiomis",
+                                        "sotiomis",
+                                        "liesomis"
+                              ]
+                    }
+          ],
+          "sviezias": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе свежий сыр.",
+                              "answer": "šviežias",
+                              "options": [
+                                        "šviežias",
+                                        "senas",
+                                        "tuščias"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uoga.",
+                              "translationRu": "В миске свежая ягода.",
+                              "answer": "šviežia",
+                              "options": [
+                                        "šviežia",
+                                        "riebi",
+                                        "lengva"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ agurkai.",
+                              "translationRu": "В корзине свежие огурцы.",
+                              "answer": "švieži",
+                              "options": [
+                                        "švieži",
+                                        "liesi",
+                                        "sunkūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uogos.",
+                              "translationRu": "В миске свежие ягоды.",
+                              "answer": "šviežios",
+                              "options": [
+                                        "šviežios",
+                                        "skanios",
+                                        "naujos"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет свежего сыра.",
+                              "answer": "šviežio",
+                              "options": [
+                                        "šviežio",
+                                        "neskanaus",
+                                        "paprasto"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ uogos.",
+                              "translationRu": "В магазине нет свежей ягоды.",
+                              "answer": "šviežios",
+                              "options": [
+                                        "šviežios",
+                                        "pilnos",
+                                        "sudėtingos"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ agurkų.",
+                              "translationRu": "На рынке нет свежих огурцов.",
+                              "answer": "šviežių",
+                              "options": [
+                                        "šviežių",
+                                        "tuščių",
+                                        "sveikų"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ uogų.",
+                              "translationRu": "Сегодня нет свежих ягод.",
+                              "answer": "šviežių",
+                              "options": [
+                                        "šviežių",
+                                        "lengvų",
+                                        "alkanų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю свежий сыр на ужин.",
+                              "answer": "šviežią",
+                              "options": [
+                                        "šviežią",
+                                        "sunkų",
+                                        "sotų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogą desertui.",
+                              "translationRu": "Я покупаю свежую ягоду для десерта.",
+                              "answer": "šviežią",
+                              "options": [
+                                        "šviežią",
+                                        "naują",
+                                        "brangią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ agurkus salotoms.",
+                              "translationRu": "Я покупаю свежие огурцы для салата.",
+                              "answer": "šviežius",
+                              "options": [
+                                        "šviežius",
+                                        "paprastus",
+                                        "pigius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogas desertui.",
+                              "translationRu": "Я покупаю свежие ягоды для десерта.",
+                              "answer": "šviežias",
+                              "options": [
+                                        "šviežias",
+                                        "sudėtingas",
+                                        "skanias"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau bulves su ___ sūriu.",
+                              "translationRu": "Я ем картошку со свежим сыром.",
+                              "answer": "šviežiu",
+                              "options": [
+                                        "šviežiu",
+                                        "sveiku",
+                                        "senu"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau blynus su ___ grietine.",
+                              "translationRu": "Я ем блины со свежей сметаной.",
+                              "answer": "šviežia",
+                              "options": [
+                                        "šviežia",
+                                        "alkana",
+                                        "riebia"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau žuvį su ___ agurkais.",
+                              "translationRu": "Я ем рыбу со свежими огурцами.",
+                              "answer": "šviežiais",
+                              "options": [
+                                        "šviežiais",
+                                        "sotiais",
+                                        "liesais"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau jogurtą su ___ uogomis.",
+                              "translationRu": "Я ем йогурт со свежими ягодами.",
+                              "answer": "šviežiomis",
+                              "options": [
+                                        "šviežiomis",
+                                        "brangiomis",
+                                        "skaniomis"
+                              ]
+                    }
+          ],
+          "senas": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе старый сыр.",
+                              "answer": "senas",
+                              "options": [
+                                        "senas",
+                                        "riebus",
+                                        "lengvas"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uoga.",
+                              "translationRu": "В миске старая ягода.",
+                              "answer": "sena",
+                              "options": [
+                                        "sena",
+                                        "liesa",
+                                        "sunki"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ agurkai.",
+                              "translationRu": "В корзине старые огурцы.",
+                              "answer": "seni",
+                              "options": [
+                                        "seni",
+                                        "skanūs",
+                                        "nauji"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uogos.",
+                              "translationRu": "В миске старые ягоды.",
+                              "answer": "senos",
+                              "options": [
+                                        "senos",
+                                        "neskanios",
+                                        "paprastos"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет старого сыра.",
+                              "answer": "seno",
+                              "options": [
+                                        "seno",
+                                        "pilno",
+                                        "sudėtingo"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ uogos.",
+                              "translationRu": "В магазине нет старой ягоды.",
+                              "answer": "senos",
+                              "options": [
+                                        "senos",
+                                        "tuščios",
+                                        "sveikos"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ agurkų.",
+                              "translationRu": "На рынке нет старых огурцов.",
+                              "answer": "senų",
+                              "options": [
+                                        "senų",
+                                        "lengvų",
+                                        "alkanų"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ uogų.",
+                              "translationRu": "Сегодня нет старых ягод.",
+                              "answer": "senų",
+                              "options": [
+                                        "senų",
+                                        "sunkių",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю старый сыр на ужин.",
+                              "answer": "seną",
+                              "options": [
+                                        "seną",
+                                        "naują",
+                                        "brangų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogą desertui.",
+                              "translationRu": "Я покупаю старую ягоду для десерта.",
+                              "answer": "seną",
+                              "options": [
+                                        "seną",
+                                        "paprastą",
+                                        "pigią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ agurkus salotoms.",
+                              "translationRu": "Я покупаю старые огурцы для салата.",
+                              "answer": "senus",
+                              "options": [
+                                        "senus",
+                                        "sudėtingus",
+                                        "šviežius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogas desertui.",
+                              "translationRu": "Я покупаю старые ягоды для десерта.",
+                              "answer": "senas",
+                              "options": [
+                                        "senas",
+                                        "sveikas",
+                                        "neskanias"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau bulves su ___ sūriu.",
+                              "translationRu": "Я ем картошку со старым сыром.",
+                              "answer": "senu",
+                              "options": [
+                                        "senu",
+                                        "alkanu",
+                                        "riebumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau blynus su ___ grietine.",
+                              "translationRu": "Я ем блины со старой сметаной.",
+                              "answer": "sena",
+                              "options": [
+                                        "sena",
+                                        "sotia",
+                                        "liesa"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau žuvį su ___ agurkais.",
+                              "translationRu": "Я ем рыбу со старыми огурцами.",
+                              "answer": "senais",
+                              "options": [
+                                        "senais",
+                                        "brangiais",
+                                        "skaniais"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau jogurtą su ___ uogomis.",
+                              "translationRu": "Я ем йогурт со старыми ягодами.",
+                              "answer": "senomis",
+                              "options": [
+                                        "senomis",
+                                        "pigiomis",
+                                        "neskaniomis"
+                              ]
+                    }
+          ],
+          "riebus": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе жирный сыр.",
+                              "answer": "riebus",
+                              "options": [
+                                        "riebus",
+                                        "alkanas",
+                                        "sotus"
+                              ]
+                    },
+                    {
+                              "sentence": "Ant stalo yra ___ grietinė.",
+                              "translationRu": "На столе жирная сметана.",
+                              "answer": "riebi",
+                              "options": [
+                                        "riebi",
+                                        "alkana",
+                                        "soti"
+                              ]
+                    },
+                    {
+                              "sentence": "Lėkštėje yra ___ kepsniai.",
+                              "translationRu": "На тарелке жирные отбивные.",
+                              "answer": "riebūs",
+                              "options": [
+                                        "riebūs",
+                                        "alkani",
+                                        "sotūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Lėkštėje yra ___ dešros.",
+                              "translationRu": "На тарелке жирные колбаски.",
+                              "answer": "riebios",
+                              "options": [
+                                        "riebios",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет жирного сыра.",
+                              "answer": "riebaus",
+                              "options": [
+                                        "riebaus",
+                                        "alkano",
+                                        "sotaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ grietinės.",
+                              "translationRu": "В холодильнике нет жирной сметаны.",
+                              "answer": "riebios",
+                              "options": [
+                                        "riebios",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Meniu nėra ___ kepsnių.",
+                              "translationRu": "В меню нет жирных отбивных.",
+                              "answer": "riebių",
+                              "options": [
+                                        "riebių",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Meniu nėra ___ dešrų.",
+                              "translationRu": "В меню нет жирных колбасок.",
+                              "answer": "riebių",
+                              "options": [
+                                        "riebių",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю жирный сыр на ужин.",
+                              "answer": "riebų",
+                              "options": [
+                                        "riebų",
+                                        "alkaną",
+                                        "sotų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ grietinę.",
+                              "translationRu": "Я покупаю жирную сметану.",
+                              "answer": "riebią",
+                              "options": [
+                                        "riebią",
+                                        "alkaną",
+                                        "sotią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ kepsnius pietums.",
+                              "translationRu": "Я покупаю жирные отбивные к обеду.",
+                              "answer": "riebius",
+                              "options": [
+                                        "riebius",
+                                        "alkanus",
+                                        "sotius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ dešras vakarui.",
+                              "translationRu": "Я покупаю жирные колбаски на вечер.",
+                              "answer": "riebias",
+                              "options": [
+                                        "riebias",
+                                        "alkanas",
+                                        "sotias"
+                              ]
+                    },
+                    {
+                              "sentence": "Bulvės su ___ sūriu yra skanios.",
+                              "translationRu": "Картошка с жирным сыром вкусная.",
+                              "answer": "riebumi",
+                              "options": [
+                                        "riebumi",
+                                        "alkanu",
+                                        "sotumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Blynai su ___ grietine patinka vaikams.",
+                              "translationRu": "Блины с жирной сметаной нравятся детям.",
+                              "answer": "riebia",
+                              "options": [
+                                        "riebia",
+                                        "alkana",
+                                        "sotia"
+                              ]
+                    },
+                    {
+                              "sentence": "Ryžiai su ___ kepsniais yra sotūs.",
+                              "translationRu": "Рис с жирными отбивными сытный.",
+                              "answer": "riebiais",
+                              "options": [
+                                        "riebiais",
+                                        "alkanais",
+                                        "sotiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Pica su ___ dešromis kvepia skaniai.",
+                              "translationRu": "Пицца с жирными колбасками пахнет вкусно.",
+                              "answer": "riebiomis",
+                              "options": [
+                                        "riebiomis",
+                                        "alkanomis",
+                                        "sotiomis"
+                              ]
+                    }
+          ],
+          "liesas": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе нежирный сыр.",
+                              "answer": "liesas",
+                              "options": [
+                                        "liesas",
+                                        "alkanas",
+                                        "sotus"
+                              ]
+                    },
+                    {
+                              "sentence": "Ant stalo yra ___ grietinė.",
+                              "translationRu": "На столе нежирная сметана.",
+                              "answer": "liesa",
+                              "options": [
+                                        "liesa",
+                                        "alkana",
+                                        "soti"
+                              ]
+                    },
+                    {
+                              "sentence": "Lėkštėje yra ___ kepsniai.",
+                              "translationRu": "На тарелке нежирные отбивные.",
+                              "answer": "liesi",
+                              "options": [
+                                        "liesi",
+                                        "alkani",
+                                        "sotūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Lėkštėje yra ___ dešros.",
+                              "translationRu": "На тарелке нежирные колбаски.",
+                              "answer": "liesos",
+                              "options": [
+                                        "liesos",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет нежирного сыра.",
+                              "answer": "lieso",
+                              "options": [
+                                        "lieso",
+                                        "alkano",
+                                        "sotaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ grietinės.",
+                              "translationRu": "В холодильнике нет нежирной сметаны.",
+                              "answer": "liesos",
+                              "options": [
+                                        "liesos",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Meniu nėra ___ kepsnių.",
+                              "translationRu": "В меню нет нежирных отбивных.",
+                              "answer": "liesų",
+                              "options": [
+                                        "liesų",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Meniu nėra ___ dešrų.",
+                              "translationRu": "В меню нет нежирных колбасок.",
+                              "answer": "liesų",
+                              "options": [
+                                        "liesų",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю нежирный сыр на ужин.",
+                              "answer": "liesą",
+                              "options": [
+                                        "liesą",
+                                        "alkaną",
+                                        "sotų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ grietinę.",
+                              "translationRu": "Я покупаю нежирную сметану.",
+                              "answer": "liesą",
+                              "options": [
+                                        "liesą",
+                                        "alkaną",
+                                        "sotią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ kepsnius pietums.",
+                              "translationRu": "Я покупаю нежирные отбивные к обеду.",
+                              "answer": "liesus",
+                              "options": [
+                                        "liesus",
+                                        "alkanus",
+                                        "sotius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ dešras vakarui.",
+                              "translationRu": "Я покупаю нежирные колбаски на вечер.",
+                              "answer": "liesas",
+                              "options": [
+                                        "liesas",
+                                        "alkanas",
+                                        "sotias"
+                              ]
+                    },
+                    {
+                              "sentence": "Bulvės su ___ sūriu yra skanios.",
+                              "translationRu": "Картошка с нежирным сыром вкусная.",
+                              "answer": "liesu",
+                              "options": [
+                                        "liesu",
+                                        "alkanu",
+                                        "sotumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Blynai su ___ grietine patinka vaikams.",
+                              "translationRu": "Блины с нежирной сметаной нравятся детям.",
+                              "answer": "liesa",
+                              "options": [
+                                        "liesa",
+                                        "alkana",
+                                        "sotia"
+                              ]
+                    },
+                    {
+                              "sentence": "Ryžiai su ___ kepsniais yra sotūs.",
+                              "translationRu": "Рис с нежирными отбивными сытный.",
+                              "answer": "liesais",
+                              "options": [
+                                        "liesais",
+                                        "alkanais",
+                                        "sotiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Pica su ___ dešromis kvepia skaniai.",
+                              "translationRu": "Пицца с нежирными колбасками пахнет вкусно.",
+                              "answer": "liesomis",
+                              "options": [
+                                        "liesomis",
+                                        "alkanomis",
+                                        "sotiomis"
+                              ]
+                    }
+          ],
+          "skanus": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе вкусный сыр.",
+                              "answer": "skanus",
+                              "options": [
+                                        "skanus",
+                                        "neskanus",
+                                        "paprastas"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uoga.",
+                              "translationRu": "В миске вкусная ягода.",
+                              "answer": "skani",
+                              "options": [
+                                        "skani",
+                                        "pilna",
+                                        "sudėtinga"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ agurkai.",
+                              "translationRu": "В корзине вкусные огурцы.",
+                              "answer": "skanūs",
+                              "options": [
+                                        "skanūs",
+                                        "tušči",
+                                        "sveiki"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uogos.",
+                              "translationRu": "В миске вкусные ягоды.",
+                              "answer": "skanios",
+                              "options": [
+                                        "skanios",
+                                        "lengvos",
+                                        "alkanos"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет вкусного сыра.",
+                              "answer": "skanaus",
+                              "options": [
+                                        "skanaus",
+                                        "sunkaus",
+                                        "sotaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ uogos.",
+                              "translationRu": "В магазине нет вкусной ягоды.",
+                              "answer": "skanios",
+                              "options": [
+                                        "skanios",
+                                        "naujos",
+                                        "brangios"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ agurkų.",
+                              "translationRu": "На рынке нет вкусных огурцов.",
+                              "answer": "skanių",
+                              "options": [
+                                        "skanių",
+                                        "paprastų",
+                                        "pigių"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ uogų.",
+                              "translationRu": "Сегодня нет вкусных ягод.",
+                              "answer": "skanių",
+                              "options": [
+                                        "skanių",
+                                        "sudėtingų",
+                                        "šviežių"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю вкусный сыр на ужин.",
+                              "answer": "skanų",
+                              "options": [
+                                        "skanų",
+                                        "sveiką",
+                                        "seną"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogą desertui.",
+                              "translationRu": "Я покупаю вкусную ягоду для десерта.",
+                              "answer": "skanią",
+                              "options": [
+                                        "skanią",
+                                        "alkaną",
+                                        "riebią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ agurkus salotoms.",
+                              "translationRu": "Я покупаю вкусные огурцы для салата.",
+                              "answer": "skanius",
+                              "options": [
+                                        "skanius",
+                                        "sotius",
+                                        "liesus"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogas desertui.",
+                              "translationRu": "Я покупаю вкусные ягоды для десерта.",
+                              "answer": "skanias",
+                              "options": [
+                                        "skanias",
+                                        "brangias",
+                                        "lengvas"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau bulves su ___ sūriu.",
+                              "translationRu": "Я ем картошку с вкусным сыром.",
+                              "answer": "skanumi",
+                              "options": [
+                                        "skanumi",
+                                        "pigumi",
+                                        "neskanumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau blynus su ___ grietine.",
+                              "translationRu": "Я ем блины с вкусной сметаной.",
+                              "answer": "skania",
+                              "options": [
+                                        "skania",
+                                        "šviežia",
+                                        "pilna"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau žuvį su ___ agurkais.",
+                              "translationRu": "Я ем рыбу с вкусными огурцами.",
+                              "answer": "skaniais",
+                              "options": [
+                                        "skaniais",
+                                        "senais",
+                                        "tuščiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau jogurtą su ___ uogomis.",
+                              "translationRu": "Я ем йогурт с вкусными ягодами.",
+                              "answer": "skaniomis",
+                              "options": [
+                                        "skaniomis",
+                                        "riebiomis",
+                                        "lengvomis"
+                              ]
+                    }
+          ],
+          "neskanus": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе невкусный сыр.",
+                              "answer": "neskanus",
+                              "options": [
+                                        "neskanus",
+                                        "pilnas",
+                                        "sudėtingas"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uoga.",
+                              "translationRu": "В миске невкусная ягода.",
+                              "answer": "neskani",
+                              "options": [
+                                        "neskani",
+                                        "tuščia",
+                                        "sveika"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ agurkai.",
+                              "translationRu": "В корзине невкусные огурцы.",
+                              "answer": "neskanūs",
+                              "options": [
+                                        "neskanūs",
+                                        "lengvi",
+                                        "alkani"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uogos.",
+                              "translationRu": "В миске невкусные ягоды.",
+                              "answer": "neskanios",
+                              "options": [
+                                        "neskanios",
+                                        "sunkios",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет невкусного сыра.",
+                              "answer": "neskanaus",
+                              "options": [
+                                        "neskanaus",
+                                        "naujo",
+                                        "brangaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ uogos.",
+                              "translationRu": "В магазине нет невкусной ягоды.",
+                              "answer": "neskanios",
+                              "options": [
+                                        "neskanios",
+                                        "paprastos",
+                                        "pigios"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ agurkų.",
+                              "translationRu": "На рынке нет невкусных огурцов.",
+                              "answer": "neskanių",
+                              "options": [
+                                        "neskanių",
+                                        "sudėtingų",
+                                        "šviežių"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ uogų.",
+                              "translationRu": "Сегодня нет невкусных ягод.",
+                              "answer": "neskanių",
+                              "options": [
+                                        "neskanių",
+                                        "sveikų",
+                                        "senų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю невкусный сыр на ужин.",
+                              "answer": "neskanų",
+                              "options": [
+                                        "neskanų",
+                                        "alkaną",
+                                        "riebų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogą desertui.",
+                              "translationRu": "Я покупаю невкусную ягоду для десерта.",
+                              "answer": "neskanią",
+                              "options": [
+                                        "neskanią",
+                                        "sotią",
+                                        "liesą"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ agurkus salotoms.",
+                              "translationRu": "Я покупаю невкусные огурцы для салата.",
+                              "answer": "neskanius",
+                              "options": [
+                                        "neskanius",
+                                        "brangius",
+                                        "skanius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogas desertui.",
+                              "translationRu": "Я покупаю невкусные ягоды для десерта.",
+                              "answer": "neskanias",
+                              "options": [
+                                        "neskanias",
+                                        "pigias",
+                                        "sunkias"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau bulves su ___ sūriu.",
+                              "translationRu": "Я ем картошку с невкусным сыром.",
+                              "answer": "neskanumi",
+                              "options": [
+                                        "neskanumi",
+                                        "šviežiu",
+                                        "pilnu"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau blynus su ___ grietine.",
+                              "translationRu": "Я ем блины с невкусной сметаной.",
+                              "answer": "neskania",
+                              "options": [
+                                        "neskania",
+                                        "sena",
+                                        "tuščia"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau žuvį su ___ agurkais.",
+                              "translationRu": "Я ем рыбу с невкусными огурцами.",
+                              "answer": "neskaniais",
+                              "options": [
+                                        "neskaniais",
+                                        "riebiais",
+                                        "lengvais"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau jogurtą su ___ uogomis.",
+                              "translationRu": "Я ем йогурт с невкусными ягодами.",
+                              "answer": "neskaniomis",
+                              "options": [
+                                        "neskaniomis",
+                                        "liesomis",
+                                        "sunkiomis"
+                              ]
+                    }
+          ],
+          "pilnas": [
+                    {
+                              "sentence": "Ant stalo stovi ___ puodelis.",
+                              "translationRu": "На столе стоит полный стакан.",
+                              "answer": "pilnas",
+                              "options": [
+                                        "pilnas",
+                                        "alkanas",
+                                        "sotus"
+                              ]
+                    },
+                    {
+                              "sentence": "Ant stalo stovi ___ lėkštė.",
+                              "translationRu": "На столе стоит полная тарелка.",
+                              "answer": "pilna",
+                              "options": [
+                                        "pilna",
+                                        "alkana",
+                                        "soti"
+                              ]
+                    },
+                    {
+                              "sentence": "Ant stalo stovi ___ puodeliai.",
+                              "translationRu": "На столе стоят полные стаканы.",
+                              "answer": "pilni",
+                              "options": [
+                                        "pilni",
+                                        "alkani",
+                                        "sotūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Ant stalo stovi ___ lėkštės.",
+                              "translationRu": "На столе стоят полные тарелки.",
+                              "answer": "pilnos",
+                              "options": [
+                                        "pilnos",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Spintelėje nėra ___ puodelio.",
+                              "translationRu": "В шкафу нет полного стакана.",
+                              "answer": "pilno",
+                              "options": [
+                                        "pilno",
+                                        "alkano",
+                                        "sotaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Spintelėje nėra ___ lėkštės.",
+                              "translationRu": "В шкафу нет полной тарелки.",
+                              "answer": "pilnos",
+                              "options": [
+                                        "pilnos",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Spintelėje nėra ___ puodelių.",
+                              "translationRu": "В шкафу нет полных стаканов.",
+                              "answer": "pilnų",
+                              "options": [
+                                        "pilnų",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Spintelėje nėra ___ lėkščių.",
+                              "translationRu": "В шкафу нет полных тарелок.",
+                              "answer": "pilnų",
+                              "options": [
+                                        "pilnų",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ puodelį ant stalo.",
+                              "translationRu": "Я вижу полный стакан на столе.",
+                              "answer": "pilną",
+                              "options": [
+                                        "pilną",
+                                        "alkaną",
+                                        "sotų"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ lėkštę ant stalo.",
+                              "translationRu": "Я вижу полную тарелку на столе.",
+                              "answer": "pilną",
+                              "options": [
+                                        "pilną",
+                                        "alkaną",
+                                        "sotią"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ puodelius virtuvėje.",
+                              "translationRu": "Я вижу полные стаканы на кухне.",
+                              "answer": "pilnus",
+                              "options": [
+                                        "pilnus",
+                                        "alkanus",
+                                        "sotius"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ lėkštes virtuvėje.",
+                              "translationRu": "Я вижу полные тарелки на кухне.",
+                              "answer": "pilnas",
+                              "options": [
+                                        "pilnas",
+                                        "alkanas",
+                                        "sotias"
+                              ]
+                    },
+                    {
+                              "sentence": "Džiaugiuosi ___ puodeliu.",
+                              "translationRu": "Я доволен полным стаканом.",
+                              "answer": "pilnu",
+                              "options": [
+                                        "pilnu",
+                                        "alkanu",
+                                        "sotumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Džiaugiuosi ___ lėkšte.",
+                              "translationRu": "Я доволен полной тарелкой.",
+                              "answer": "pilna",
+                              "options": [
+                                        "pilna",
+                                        "alkana",
+                                        "sotia"
+                              ]
+                    },
+                    {
+                              "sentence": "Džiaugiuosi ___ puodeliais.",
+                              "translationRu": "Я доволен полными стаканами.",
+                              "answer": "pilnais",
+                              "options": [
+                                        "pilnais",
+                                        "alkanais",
+                                        "sotiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Džiaugiuosi ___ lėkštėmis.",
+                              "translationRu": "Я доволен полными тарелками.",
+                              "answer": "pilnomis",
+                              "options": [
+                                        "pilnomis",
+                                        "alkanomis",
+                                        "sotiomis"
+                              ]
+                    }
+          ],
+          "tuscias": [
+                    {
+                              "sentence": "Ant stalo stovi ___ puodelis.",
+                              "translationRu": "На столе стоит пустой стакан.",
+                              "answer": "tuščias",
+                              "options": [
+                                        "tuščias",
+                                        "alkanas",
+                                        "sotus"
+                              ]
+                    },
+                    {
+                              "sentence": "Ant stalo stovi ___ lėkštė.",
+                              "translationRu": "На столе стоит пустая тарелка.",
+                              "answer": "tuščia",
+                              "options": [
+                                        "tuščia",
+                                        "alkana",
+                                        "soti"
+                              ]
+                    },
+                    {
+                              "sentence": "Ant stalo stovi ___ puodeliai.",
+                              "translationRu": "На столе стоят пустые стаканы.",
+                              "answer": "tušči",
+                              "options": [
+                                        "tušči",
+                                        "alkani",
+                                        "sotūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Ant stalo stovi ___ lėkštės.",
+                              "translationRu": "На столе стоят пустые тарелки.",
+                              "answer": "tuščios",
+                              "options": [
+                                        "tuščios",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Spintelėje nėra ___ puodelio.",
+                              "translationRu": "В шкафу нет пустого стакана.",
+                              "answer": "tuščio",
+                              "options": [
+                                        "tuščio",
+                                        "alkano",
+                                        "sotaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Spintelėje nėra ___ lėkštės.",
+                              "translationRu": "В шкафу нет пустой тарелки.",
+                              "answer": "tuščios",
+                              "options": [
+                                        "tuščios",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Spintelėje nėra ___ puodelių.",
+                              "translationRu": "В шкафу нет пустых стаканов.",
+                              "answer": "tuščių",
+                              "options": [
+                                        "tuščių",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Spintelėje nėra ___ lėkščių.",
+                              "translationRu": "В шкафу нет пустых тарелок.",
+                              "answer": "tuščių",
+                              "options": [
+                                        "tuščių",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ puodelį ant stalo.",
+                              "translationRu": "Я вижу пустой стакан на столе.",
+                              "answer": "tuščią",
+                              "options": [
+                                        "tuščią",
+                                        "alkaną",
+                                        "sotų"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ lėkštę ant stalo.",
+                              "translationRu": "Я вижу пустую тарелку на столе.",
+                              "answer": "tuščią",
+                              "options": [
+                                        "tuščią",
+                                        "alkaną",
+                                        "sotią"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ puodelius virtuvėje.",
+                              "translationRu": "Я вижу пустые стаканы на кухне.",
+                              "answer": "tuščius",
+                              "options": [
+                                        "tuščius",
+                                        "alkanus",
+                                        "sotius"
+                              ]
+                    },
+                    {
+                              "sentence": "Matau ___ lėkštes virtuvėje.",
+                              "translationRu": "Я вижу пустые тарелки на кухне.",
+                              "answer": "tuščias",
+                              "options": [
+                                        "tuščias",
+                                        "alkanas",
+                                        "sotias"
+                              ]
+                    },
+                    {
+                              "sentence": "Džiaugiuosi ___ puodeliu.",
+                              "translationRu": "Я доволен пустым стаканом.",
+                              "answer": "tuščiu",
+                              "options": [
+                                        "tuščiu",
+                                        "alkanu",
+                                        "sotumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Džiaugiuosi ___ lėkšte.",
+                              "translationRu": "Я доволен пустой тарелкой.",
+                              "answer": "tuščia",
+                              "options": [
+                                        "tuščia",
+                                        "alkana",
+                                        "sotia"
+                              ]
+                    },
+                    {
+                              "sentence": "Džiaugiuosi ___ puodeliais.",
+                              "translationRu": "Я доволен пустыми стаканами.",
+                              "answer": "tuščiais",
+                              "options": [
+                                        "tuščiais",
+                                        "alkanais",
+                                        "sotiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Džiaugiuosi ___ lėkštėmis.",
+                              "translationRu": "Я доволен пустыми тарелками.",
+                              "answer": "tuščiomis",
+                              "options": [
+                                        "tuščiomis",
+                                        "alkanomis",
+                                        "sotiomis"
+                              ]
+                    }
+          ],
+          "lengvas": [
+                    {
+                              "sentence": "Ant stalo yra ___ desertas.",
+                              "translationRu": "На столе лёгкий десерт.",
+                              "answer": "lengvas",
+                              "options": [
+                                        "lengvas",
+                                        "alkanas",
+                                        "sotus"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ sriuba.",
+                              "translationRu": "В миске лёгкая похлёбка.",
+                              "answer": "lengva",
+                              "options": [
+                                        "lengva",
+                                        "alkana",
+                                        "soti"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ desertai.",
+                              "translationRu": "В корзине лёгкие десерты.",
+                              "answer": "lengvi",
+                              "options": [
+                                        "lengvi",
+                                        "alkani",
+                                        "sotūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ sriubos.",
+                              "translationRu": "В миске лёгкие похлёбки.",
+                              "answer": "lengvos",
+                              "options": [
+                                        "lengvos",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ deserto.",
+                              "translationRu": "В магазине нет лёгкого десерта.",
+                              "answer": "lengvo",
+                              "options": [
+                                        "lengvo",
+                                        "alkano",
+                                        "sotaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ sriubos.",
+                              "translationRu": "В магазине нет лёгкой похлёбки.",
+                              "answer": "lengvos",
+                              "options": [
+                                        "lengvos",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ desertų.",
+                              "translationRu": "На рынке нет лёгких десертов.",
+                              "answer": "lengvų",
+                              "options": [
+                                        "lengvų",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ sriubų.",
+                              "translationRu": "Сегодня нет лёгких похлёбок.",
+                              "answer": "lengvų",
+                              "options": [
+                                        "lengvų",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ desertą.",
+                              "translationRu": "Я покупаю лёгкий десерт.",
+                              "answer": "lengvą",
+                              "options": [
+                                        "lengvą",
+                                        "alkaną",
+                                        "sotų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sriubą.",
+                              "translationRu": "Я покупаю лёгкую похлёбку.",
+                              "answer": "lengvą",
+                              "options": [
+                                        "lengvą",
+                                        "alkaną",
+                                        "sotią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ desertus.",
+                              "translationRu": "Я покупаю лёгкие десерты.",
+                              "answer": "lengvus",
+                              "options": [
+                                        "lengvus",
+                                        "alkanus",
+                                        "sotius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sriubas.",
+                              "translationRu": "Я покупаю лёгкие похлёбки.",
+                              "answer": "lengvas",
+                              "options": [
+                                        "lengvas",
+                                        "alkanas",
+                                        "sotias"
+                              ]
+                    },
+                    {
+                              "sentence": "Domiuosi ___ desertu.",
+                              "translationRu": "Я интересуюсь лёгким десертом.",
+                              "answer": "lengvu",
+                              "options": [
+                                        "lengvu",
+                                        "alkanu",
+                                        "sotumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Domiuosi ___ sriuba.",
+                              "translationRu": "Я интересуюсь лёгкой похлёбкой.",
+                              "answer": "lengva",
+                              "options": [
+                                        "lengva",
+                                        "alkana",
+                                        "sotia"
+                              ]
+                    },
+                    {
+                              "sentence": "Domiuosi ___ desertais.",
+                              "translationRu": "Я интересуюсь лёгкими десертами.",
+                              "answer": "lengvais",
+                              "options": [
+                                        "lengvais",
+                                        "alkanais",
+                                        "sotiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Domiuosi ___ sriubomis.",
+                              "translationRu": "Я интересуюсь лёгкими похлёбками.",
+                              "answer": "lengvomis",
+                              "options": [
+                                        "lengvomis",
+                                        "alkanomis",
+                                        "sotiomis"
+                              ]
+                    }
+          ],
+          "sunkus": [
+                    {
+                              "sentence": "Ant stalo yra ___ patiekalas.",
+                              "translationRu": "На столе тяжёлый ужин.",
+                              "answer": "sunkus",
+                              "options": [
+                                        "sunkus",
+                                        "alkanas",
+                                        "sotus"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ vakarienė.",
+                              "translationRu": "В миске тяжёлая еда.",
+                              "answer": "sunki",
+                              "options": [
+                                        "sunki",
+                                        "alkana",
+                                        "soti"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ patiekalai.",
+                              "translationRu": "В корзине тяжёлые ужины.",
+                              "answer": "sunkūs",
+                              "options": [
+                                        "sunkūs",
+                                        "alkani",
+                                        "sotūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ vakarienės.",
+                              "translationRu": "В миске тяжёлые трапезы.",
+                              "answer": "sunkios",
+                              "options": [
+                                        "sunkios",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ patiekalo.",
+                              "translationRu": "В магазине нет тяжёлого ужина.",
+                              "answer": "sunkaus",
+                              "options": [
+                                        "sunkaus",
+                                        "alkano",
+                                        "sotaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ vakarienės.",
+                              "translationRu": "В магазине нет тяжёлой еды.",
+                              "answer": "sunkios",
+                              "options": [
+                                        "sunkios",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ patiekalų.",
+                              "translationRu": "На рынке нет тяжёлых ужинов.",
+                              "answer": "sunkių",
+                              "options": [
+                                        "sunkių",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ vakarienių.",
+                              "translationRu": "Сегодня нет тяжёлых трапез.",
+                              "answer": "sunkių",
+                              "options": [
+                                        "sunkių",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ patiekalą.",
+                              "translationRu": "Я покупаю тяжёлый ужин.",
+                              "answer": "sunkų",
+                              "options": [
+                                        "sunkų",
+                                        "alkaną",
+                                        "sotų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ vakarienę.",
+                              "translationRu": "Я покупаю тяжёлую еду.",
+                              "answer": "sunkią",
+                              "options": [
+                                        "sunkią",
+                                        "alkaną",
+                                        "sotią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ patiekalus.",
+                              "translationRu": "Я покупаю тяжёлые ужины.",
+                              "answer": "sunkius",
+                              "options": [
+                                        "sunkius",
+                                        "alkanus",
+                                        "sotius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ vakarienes.",
+                              "translationRu": "Я покупаю тяжёлые трапезы.",
+                              "answer": "sunkias",
+                              "options": [
+                                        "sunkias",
+                                        "alkanas",
+                                        "sotias"
+                              ]
+                    },
+                    {
+                              "sentence": "Domiuosi ___ patiekalu.",
+                              "translationRu": "Я интересуюсь тяжёлым ужином.",
+                              "answer": "sunkumi",
+                              "options": [
+                                        "sunkumi",
+                                        "alkanu",
+                                        "sotumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Domiuosi ___ vakariene.",
+                              "translationRu": "Я интересуюсь тяжёлой едой.",
+                              "answer": "sunkia",
+                              "options": [
+                                        "sunkia",
+                                        "alkana",
+                                        "sotia"
+                              ]
+                    },
+                    {
+                              "sentence": "Domiuosi ___ patiekalais.",
+                              "translationRu": "Я интересуюсь тяжёлыми ужинами.",
+                              "answer": "sunkiais",
+                              "options": [
+                                        "sunkiais",
+                                        "alkanais",
+                                        "sotiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Domiuosi ___ vakarienėmis.",
+                              "translationRu": "Я интересуюсь тяжёлыми трапезами.",
+                              "answer": "sunkiomis",
+                              "options": [
+                                        "sunkiomis",
+                                        "alkanomis",
+                                        "sotiomis"
+                              ]
+                    }
+          ],
+          "naujas": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе новый сыр.",
+                              "answer": "naujas",
+                              "options": [
+                                        "naujas",
+                                        "paprastas",
+                                        "pigus"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uoga.",
+                              "translationRu": "В миске новая ягода.",
+                              "answer": "nauja",
+                              "options": [
+                                        "nauja",
+                                        "sudėtinga",
+                                        "šviežia"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ agurkai.",
+                              "translationRu": "В корзине новые огурцы.",
+                              "answer": "nauji",
+                              "options": [
+                                        "nauji",
+                                        "sveiki",
+                                        "seni"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uogos.",
+                              "translationRu": "В миске новые ягоды.",
+                              "answer": "naujos",
+                              "options": [
+                                        "naujos",
+                                        "alkanos",
+                                        "riebios"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет нового сыра.",
+                              "answer": "naujo",
+                              "options": [
+                                        "naujo",
+                                        "sotaus",
+                                        "lieso"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ uogos.",
+                              "translationRu": "В магазине нет новой ягоды.",
+                              "answer": "naujos",
+                              "options": [
+                                        "naujos",
+                                        "brangios",
+                                        "skanios"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ agurkų.",
+                              "translationRu": "На рынке нет новых огурцов.",
+                              "answer": "naujų",
+                              "options": [
+                                        "naujų",
+                                        "pigių",
+                                        "neskanių"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ uogų.",
+                              "translationRu": "Сегодня нет новых ягод.",
+                              "answer": "naujų",
+                              "options": [
+                                        "naujų",
+                                        "šviežių",
+                                        "pilnų"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю новый сыр на ужин.",
+                              "answer": "naują",
+                              "options": [
+                                        "naują",
+                                        "seną",
+                                        "tuščią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogą desertui.",
+                              "translationRu": "Я покупаю новую ягоду для десерта.",
+                              "answer": "naują",
+                              "options": [
+                                        "naują",
+                                        "riebią",
+                                        "lengvą"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ agurkus salotoms.",
+                              "translationRu": "Я покупаю новые огурцы для салата.",
+                              "answer": "naujus",
+                              "options": [
+                                        "naujus",
+                                        "liesus",
+                                        "sunkius"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogas desertui.",
+                              "translationRu": "Я покупаю новые ягоды для десерта.",
+                              "answer": "naujas",
+                              "options": [
+                                        "naujas",
+                                        "skanias",
+                                        "alkanas"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau bulves su ___ sūriu.",
+                              "translationRu": "Я ем картошку с новым сыром.",
+                              "answer": "nauju",
+                              "options": [
+                                        "nauju",
+                                        "neskanumi",
+                                        "paprastu"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau blynus su ___ grietine.",
+                              "translationRu": "Я ем блины с новой сметаной.",
+                              "answer": "nauja",
+                              "options": [
+                                        "nauja",
+                                        "pilna",
+                                        "sudėtinga"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau žuvį su ___ agurkais.",
+                              "translationRu": "Я ем рыбу с новыми огурцами.",
+                              "answer": "naujais",
+                              "options": [
+                                        "naujais",
+                                        "tuščiais",
+                                        "sveikais"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau jogurtą su ___ uogomis.",
+                              "translationRu": "Я ем йогурт с новыми ягодами.",
+                              "answer": "naujomis",
+                              "options": [
+                                        "naujomis",
+                                        "lengvomis",
+                                        "alkanomis"
+                              ]
+                    }
+          ],
+          "paprastas": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе простой сыр.",
+                              "answer": "paprastas",
+                              "options": [
+                                        "paprastas",
+                                        "sudėtingas",
+                                        "šviežias"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uoga.",
+                              "translationRu": "В миске простая ягода.",
+                              "answer": "paprasta",
+                              "options": [
+                                        "paprasta",
+                                        "sveika",
+                                        "sena"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ agurkai.",
+                              "translationRu": "В корзине простые огурцы.",
+                              "answer": "paprasti",
+                              "options": [
+                                        "paprasti",
+                                        "alkani",
+                                        "riebūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uogos.",
+                              "translationRu": "В миске простые ягоды.",
+                              "answer": "paprastos",
+                              "options": [
+                                        "paprastos",
+                                        "sotios",
+                                        "liesos"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет простого сыра.",
+                              "answer": "paprasto",
+                              "options": [
+                                        "paprasto",
+                                        "brangaus",
+                                        "skanaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ uogos.",
+                              "translationRu": "В магазине нет простой ягоды.",
+                              "answer": "paprastos",
+                              "options": [
+                                        "paprastos",
+                                        "pigios",
+                                        "neskanios"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ agurkų.",
+                              "translationRu": "На рынке нет простых огурцов.",
+                              "answer": "paprastų",
+                              "options": [
+                                        "paprastų",
+                                        "šviežių",
+                                        "pilnų"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ uogų.",
+                              "translationRu": "Сегодня нет простых ягод.",
+                              "answer": "paprastų",
+                              "options": [
+                                        "paprastų",
+                                        "senų",
+                                        "tuščių"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю простой сыр на ужин.",
+                              "answer": "paprastą",
+                              "options": [
+                                        "paprastą",
+                                        "riebų",
+                                        "lengvą"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogą desertui.",
+                              "translationRu": "Я покупаю простую ягоду для десерта.",
+                              "answer": "paprastą",
+                              "options": [
+                                        "paprastą",
+                                        "liesą",
+                                        "sunkią"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ agurkus salotoms.",
+                              "translationRu": "Я покупаю простые огурцы для салата.",
+                              "answer": "paprastus",
+                              "options": [
+                                        "paprastus",
+                                        "skanius",
+                                        "naujus"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogas desertui.",
+                              "translationRu": "Я покупаю простые ягоды для десерта.",
+                              "answer": "paprastas",
+                              "options": [
+                                        "paprastas",
+                                        "neskanias",
+                                        "sotias"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau bulves su ___ sūriu.",
+                              "translationRu": "Я ем картошку с простым сыром.",
+                              "answer": "paprastu",
+                              "options": [
+                                        "paprastu",
+                                        "pilnu",
+                                        "sudėtingu"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau blynus su ___ grietine.",
+                              "translationRu": "Я ем блины с простой сметаной.",
+                              "answer": "paprasta",
+                              "options": [
+                                        "paprasta",
+                                        "tuščia",
+                                        "sveika"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau žuvį su ___ agurkais.",
+                              "translationRu": "Я ем рыбу с простыми огурцами.",
+                              "answer": "paprastais",
+                              "options": [
+                                        "paprastais",
+                                        "lengvais",
+                                        "alkanais"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau jogurtą su ___ uogomis.",
+                              "translationRu": "Я ем йогурт с простыми ягодами.",
+                              "answer": "paprastomis",
+                              "options": [
+                                        "paprastomis",
+                                        "sunkiomis",
+                                        "sotiomis"
+                              ]
+                    }
+          ],
+          "sudetingas": [
+                    {
+                              "sentence": "Šis receptas yra ___.",
+                              "translationRu": "Этот рецепт сложный.",
+                              "answer": "sudėtingas",
+                              "options": [
+                                        "sudėtingas",
+                                        "alkanas",
+                                        "sotus"
+                              ]
+                    },
+                    {
+                              "sentence": "Ši užduotis yra ___.",
+                              "translationRu": "Эта задача сложная.",
+                              "answer": "sudėtinga",
+                              "options": [
+                                        "sudėtinga",
+                                        "alkana",
+                                        "soti"
+                              ]
+                    },
+                    {
+                              "sentence": "Šie receptai yra ___.",
+                              "translationRu": "Эти рецепты сложные.",
+                              "answer": "sudėtingi",
+                              "options": [
+                                        "sudėtingi",
+                                        "alkani",
+                                        "sotūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Šios užduotys yra ___.",
+                              "translationRu": "Эти задачи сложные.",
+                              "answer": "sudėtingos",
+                              "options": [
+                                        "sudėtingos",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Neturime ___ recepto.",
+                              "translationRu": "У нас нет сложного рецепта.",
+                              "answer": "sudėtingo",
+                              "options": [
+                                        "sudėtingo",
+                                        "alkano",
+                                        "sotaus"
+                              ]
+                    },
+                    {
+                              "sentence": "Neturime ___ užduoties.",
+                              "translationRu": "У нас нет сложной задачи.",
+                              "answer": "sudėtingos",
+                              "options": [
+                                        "sudėtingos",
+                                        "alkanos",
+                                        "sotios"
+                              ]
+                    },
+                    {
+                              "sentence": "Neturime ___ receptų.",
+                              "translationRu": "У нас нет сложных рецептов.",
+                              "answer": "sudėtingų",
+                              "options": [
+                                        "sudėtingų",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Neturime ___ užduočių.",
+                              "translationRu": "У нас нет сложных задач.",
+                              "answer": "sudėtingų",
+                              "options": [
+                                        "sudėtingų",
+                                        "alkanų",
+                                        "sotių"
+                              ]
+                    },
+                    {
+                              "sentence": "Skaitau ___ receptą.",
+                              "translationRu": "Я читаю сложный рецепт.",
+                              "answer": "sudėtingą",
+                              "options": [
+                                        "sudėtingą",
+                                        "alkaną",
+                                        "sotų"
+                              ]
+                    },
+                    {
+                              "sentence": "Sprendžiu ___ užduotį.",
+                              "translationRu": "Я решаю сложную задачу.",
+                              "answer": "sudėtingą",
+                              "options": [
+                                        "sudėtingą",
+                                        "alkaną",
+                                        "sotią"
+                              ]
+                    },
+                    {
+                              "sentence": "Skaitau ___ receptus.",
+                              "translationRu": "Я читаю сложные рецепты.",
+                              "answer": "sudėtingus",
+                              "options": [
+                                        "sudėtingus",
+                                        "alkanus",
+                                        "sotius"
+                              ]
+                    },
+                    {
+                              "sentence": "Sprendžiu ___ užduotis.",
+                              "translationRu": "Я решаю сложные задачи.",
+                              "answer": "sudėtingas",
+                              "options": [
+                                        "sudėtingas",
+                                        "alkanas",
+                                        "sotias"
+                              ]
+                    },
+                    {
+                              "sentence": "Dirbu su ___ receptu.",
+                              "translationRu": "Я работаю с сложным рецептом.",
+                              "answer": "sudėtingu",
+                              "options": [
+                                        "sudėtingu",
+                                        "alkanu",
+                                        "sotumi"
+                              ]
+                    },
+                    {
+                              "sentence": "Dirbu su ___ užduotimi.",
+                              "translationRu": "Я работаю с сложной задачей.",
+                              "answer": "sudėtinga",
+                              "options": [
+                                        "sudėtinga",
+                                        "alkana",
+                                        "sotia"
+                              ]
+                    },
+                    {
+                              "sentence": "Dirbu su ___ receptais.",
+                              "translationRu": "Я работаю с сложными рецептами.",
+                              "answer": "sudėtingais",
+                              "options": [
+                                        "sudėtingais",
+                                        "alkanais",
+                                        "sotiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Dirbu su ___ užduotimis.",
+                              "translationRu": "Я работаю с сложными задачами.",
+                              "answer": "sudėtingomis",
+                              "options": [
+                                        "sudėtingomis",
+                                        "alkanomis",
+                                        "sotiomis"
+                              ]
+                    }
+          ],
+          "sveikas": [
+                    {
+                              "sentence": "Ant stalo yra ___ sūris.",
+                              "translationRu": "На столе здоровый сыр.",
+                              "answer": "sveikas",
+                              "options": [
+                                        "sveikas",
+                                        "alkanas",
+                                        "riebus"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uoga.",
+                              "translationRu": "В миске здоровая ягода.",
+                              "answer": "sveika",
+                              "options": [
+                                        "sveika",
+                                        "soti",
+                                        "liesa"
+                              ]
+                    },
+                    {
+                              "sentence": "Krepšyje yra ___ agurkai.",
+                              "translationRu": "В корзине здоровые огурцы.",
+                              "answer": "sveiki",
+                              "options": [
+                                        "sveiki",
+                                        "brangūs",
+                                        "skanūs"
+                              ]
+                    },
+                    {
+                              "sentence": "Dubenyje yra ___ uogos.",
+                              "translationRu": "В миске здоровые ягоды.",
+                              "answer": "sveikos",
+                              "options": [
+                                        "sveikos",
+                                        "pigios",
+                                        "neskanios"
+                              ]
+                    },
+                    {
+                              "sentence": "Šaldytuve nėra ___ sūrio.",
+                              "translationRu": "В холодильнике нет здорового сыра.",
+                              "answer": "sveiko",
+                              "options": [
+                                        "sveiko",
+                                        "šviežio",
+                                        "pilno"
+                              ]
+                    },
+                    {
+                              "sentence": "Parduotuvėje nėra ___ uogos.",
+                              "translationRu": "В магазине нет здоровой ягоды.",
+                              "answer": "sveikos",
+                              "options": [
+                                        "sveikos",
+                                        "senos",
+                                        "tuščios"
+                              ]
+                    },
+                    {
+                              "sentence": "Turguje nėra ___ agurkų.",
+                              "translationRu": "На рынке нет здоровых огурцов.",
+                              "answer": "sveikų",
+                              "options": [
+                                        "sveikų",
+                                        "riebių",
+                                        "lengvų"
+                              ]
+                    },
+                    {
+                              "sentence": "Šiandien nėra ___ uogų.",
+                              "translationRu": "Сегодня нет здоровых ягод.",
+                              "answer": "sveikų",
+                              "options": [
+                                        "sveikų",
+                                        "liesų",
+                                        "sunkių"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ sūrį vakarienei.",
+                              "translationRu": "Я покупаю здоровый сыр на ужин.",
+                              "answer": "sveiką",
+                              "options": [
+                                        "sveiką",
+                                        "skanų",
+                                        "naują"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogą desertui.",
+                              "translationRu": "Я покупаю здоровую ягоду для десерта.",
+                              "answer": "sveiką",
+                              "options": [
+                                        "sveiką",
+                                        "neskanią",
+                                        "paprastą"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ agurkus salotoms.",
+                              "translationRu": "Я покупаю здоровые огурцы для салата.",
+                              "answer": "sveikus",
+                              "options": [
+                                        "sveikus",
+                                        "pilnus",
+                                        "sudėtingus"
+                              ]
+                    },
+                    {
+                              "sentence": "Perku ___ uogas desertui.",
+                              "translationRu": "Я покупаю здоровые ягоды для десерта.",
+                              "answer": "sveikas",
+                              "options": [
+                                        "sveikas",
+                                        "tuščias",
+                                        "pigias"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau bulves su ___ sūriu.",
+                              "translationRu": "Я ем картошку со здоровым сыром.",
+                              "answer": "sveiku",
+                              "options": [
+                                        "sveiku",
+                                        "lengvu",
+                                        "alkanu"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau blynus su ___ grietine.",
+                              "translationRu": "Я ем блины со здоровой сметаной.",
+                              "answer": "sveika",
+                              "options": [
+                                        "sveika",
+                                        "sunkia",
+                                        "sotia"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau žuvį su ___ agurkais.",
+                              "translationRu": "Я ем рыбу со здоровыми огурцами.",
+                              "answer": "sveikais",
+                              "options": [
+                                        "sveikais",
+                                        "naujais",
+                                        "brangiais"
+                              ]
+                    },
+                    {
+                              "sentence": "Valgau jogurtą su ___ uogomis.",
+                              "translationRu": "Я ем йогурт со здоровыми ягодами.",
+                              "answer": "sveikomis",
+                              "options": [
+                                        "sveikomis",
+                                        "paprastomis",
+                                        "pigiomis"
+                              ]
+                    }
+          ]
+};
+
+      window.ltTestConfig = {
+        title: document.title,
+        wordSet,
+        gapFillVariants,
+        testVersion: "1.0.8"
+      };
+    </script>
+    <script src="./lib/lt-test-runner.js"></script>
+  </body>
+</html>

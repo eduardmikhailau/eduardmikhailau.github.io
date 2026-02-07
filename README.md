@@ -62,6 +62,8 @@ GitHub Pages: https://eduardmikhailau.github.io/ (tests under `tests/`).
 - [4.6.1 Daržovės ir riešutai (įnagininkas)](https://eduardmikhailau.github.io/tests/4.6.1-darzoves-riesutai-inagininkas.html)
 - [4.7 Kitos maisto prekės](https://eduardmikhailau.github.io/tests/4.7-kitos-maisto-prekes.html)
 - [4.8 Prieskoniai](https://eduardmikhailau.github.io/tests/4.8-prieskoniai.html)
+- [4.9 Maisto būdvardžiai 1](https://eduardmikhailau.github.io/tests/4.9-maisto-budvardziai-1.html)
+- [4.10 Maisto būdvardžiai 2](https://eduardmikhailau.github.io/tests/4.10-maisto-budvardziai-2.html)
 - [5.1 Maisto įpakavimas](https://eduardmikhailau.github.io/tests/5.1-maisto-ipakavimas.html)
 - [5.2 Patiekalai](https://eduardmikhailau.github.io/tests/5.2-patiekalai.html)
 
