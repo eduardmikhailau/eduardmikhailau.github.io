@@ -138,6 +138,13 @@ document.getElementById("page-title").textContent = testTitle;
 
 const wordSetData = config.wordSet;
 const gapFillVariantsData = config.gapFillVariants;
+const flashcardDirectionsData = Array.isArray(config.flashcardDirections)
+  ? config.flashcardDirections
+  : ["ltToRu", "ruToLt"];
+const multipleChoicePerWordData =
+  Number.isInteger(config.multipleChoicePerWord) && config.multipleChoicePerWord > 0
+    ? config.multipleChoicePerWord
+    : 3;
 const QUESTION_TYPE_CHUNK_SIZE = 10;
 const AUTO_ADVANCE_DELAY_MS = 3000;
 const NEXT_BUTTON_LABEL = "Next";
@@ -196,20 +203,24 @@ const normalizeAnswer = (value) => value.trim().toLowerCase().replace(/\s+/g, " 
 const buildFlashcards = () => {
   const cards = [];
   wordSetData.words.forEach((word) => {
-    cards.push({
-      id: `flash_${word.id}_lt`,
-      type: "flashcards",
-      prompt: word.lt,
-      answer: word.ru,
-      label: "Translate to Russian"
-    });
-    cards.push({
-      id: `flash_${word.id}_ru`,
-      type: "flashcards",
-      prompt: word.ru,
-      answer: word.lt,
-      label: "Translate to Lithuanian"
-    });
+    if (flashcardDirectionsData.includes("ltToRu")) {
+      cards.push({
+        id: `flash_${word.id}_lt`,
+        type: "flashcards",
+        prompt: word.lt,
+        answer: word.ru,
+        label: "Translate to Russian"
+      });
+    }
+    if (flashcardDirectionsData.includes("ruToLt")) {
+      cards.push({
+        id: `flash_${word.id}_ru`,
+        type: "flashcards",
+        prompt: word.ru,
+        answer: word.lt,
+        label: "Translate to Lithuanian"
+      });
+    }
   });
   return shuffle(cards);
 };
@@ -217,7 +228,7 @@ const buildFlashcards = () => {
 const buildMultipleChoice = () => {
   const questions = [];
   wordSetData.words.forEach((word) => {
-    for (let i = 0; i < 3; i += 1) {
+    for (let i = 0; i < multipleChoicePerWordData; i += 1) {
       const wrong = getRandomWords(word.id, 2, "ru");
       const options = shuffle([word.ru, ...wrong]);
       questions.push({

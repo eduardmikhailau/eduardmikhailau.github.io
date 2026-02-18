@@ -3023,11 +3023,28 @@
           ]
 };
 
+      const reducedGapWordIds = wordSet.words.slice(0, 9).map((word) => word.id);
+      const singularCaseVariantIndexes = [4, 5, 8, 9];
+      const filteredGapFillVariants = Object.fromEntries(
+        Object.entries(gapFillVariants).map(([wordId, variants]) => {
+          if (!reducedGapWordIds.includes(wordId)) {
+            return [wordId, variants];
+          }
+
+          return [
+            wordId,
+            singularCaseVariantIndexes.map((index) => variants[index]).filter(Boolean)
+          ];
+        })
+      );
+
       window.ltTestConfig = {
         title: document.title,
         wordSet,
-        gapFillVariants,
-        testVersion: "1.0.8"
+        gapFillVariants: filteredGapFillVariants,
+        flashcardDirections: ["ltToRu"],
+        multipleChoicePerWord: 1,
+        testVersion: "1.0.9"
       };
     </script>
     <script src="./lib/lt-test-runner.js"></script>
